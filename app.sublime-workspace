@@ -1,0 +1,1882 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"matrix",
+				"matrix2"
+			],
+			[
+				"Runtime",
+				"RuntimeException"
+			],
+			[
+				"get",
+				"getRows()"
+			],
+			[
+				"m",
+				"matrix"
+			],
+			[
+				"villa",
+				"villageID"
+			],
+			[
+				"cals",
+				"class"
+			],
+			[
+				"spa",
+				"space-between"
+			],
+			[
+				"pad",
+				"padding-block"
+			],
+			[
+				"sideba",
+				"sidebar-1"
+			],
+			[
+				"li",
+				"li"
+			],
+			[
+				"side",
+				"slider-1"
+			],
+			[
+				"5",
+				"html5\tSimple HTML5 Boilerplate"
+			],
+			[
+				"b",
+				"builder\\"
+			],
+			[
+				"json",
+				"json_data"
+			],
+			[
+				"th",
+				"th"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"get_",
+				"get_villages"
+			],
+			[
+				"vi",
+				"village_name"
+			],
+			[
+				"fni",
+				"find_all"
+			],
+			[
+				"g",
+				"get"
+			],
+			[
+				"getpo",
+				"getPossibleBuilding"
+			],
+			[
+				"pus",
+				"push_back"
+			],
+			[
+				"build",
+				"builds"
+			],
+			[
+				"time",
+				"timepassed"
+			],
+			[
+				"cla",
+				"getClayPerHour"
+			],
+			[
+				"getiron",
+				"getIronPerHour"
+			],
+			[
+				"getp",
+				"getWoodPerHour"
+			],
+			[
+				"level",
+				"levelRequired"
+			],
+			[
+				"ad",
+				"addRequirement"
+			],
+			[
+				"MAX_B",
+				"MAX_BUILDS"
+			],
+			[
+				"_cs",
+				"c_str"
+			],
+			[
+				"buil",
+				"getBuilding"
+			],
+			[
+				"print",
+				"printBuildings"
+			],
+			[
+				"c_",
+				"c_str"
+			],
+			[
+				"BUil",
+				"BuildJob"
+			],
+			[
+				"remain",
+				"remainingSeconds"
+			],
+			[
+				"getma",
+				"getMaxResource"
+			],
+			[
+				"bui",
+				"buildQueue"
+			],
+			[
+				"prin",
+				"printBuildQueue"
+			],
+			[
+				"Buil",
+				"BuildJob"
+			],
+			[
+				"getre",
+				"getClayPerHour"
+			],
+			[
+				"win32",
+				"win32_label\tlabel"
+			],
+			[
+				"boier",
+				"boilerplate_raylib\tboilerplate_raylib"
+			],
+			[
+				"LINKER",
+				"LINKER_FLAGS_RAYLIB\tLINKER_FLAGS_RAYLIB"
+			],
+			[
+				"make",
+				"makeExeCpp\tMakeExeCpp"
+			],
+			[
+				"Clay",
+				"BuildClay"
+			],
+			[
+				"price",
+				"prices"
+			],
+			[
+				"Bui",
+				"BuildClay"
+			],
+			[
+				"Vec",
+				"Vector3"
+			],
+			[
+				"vEC",
+				"Vector3"
+			],
+			[
+				"CA",
+				"CAMERA_PERSPECTIVE"
+			],
+			[
+				"BeginmO",
+				"BeginMode3D"
+			],
+			[
+				"-i",
+				"I-iso646"
+			],
+			[
+				"MAKE",
+				"makeExeCpp\tMakeExeCpp"
+			],
+			[
+				"boiler",
+				"boilerplate_raylib\tboilerplate_raylib"
+			],
+			[
+				"println",
+				"println(float x) : void"
+			],
+			[
+				"Pes",
+				"PesquisaLarguraRec"
+			],
+			[
+				"Messageb",
+				"MessageBoxA"
+			],
+			[
+				"comp",
+				"ComponentList"
+			],
+			[
+				"compon",
+				"getComponentById"
+			],
+			[
+				"main",
+				"mainCamera"
+			],
+			[
+				"fot",
+				"footW2s"
+			],
+			[
+				"draw",
+				"drawFilledRectangle"
+			],
+			[
+				"vECTOR",
+				"Vector2"
+			],
+			[
+				"last",
+				"LastActiveObject"
+			],
+			[
+				"acti",
+				"LastActiveObject"
+			],
+			[
+				"obj",
+				"objects"
+			],
+			[
+				"Uni",
+				"UnityPlayer"
+			],
+			[
+				"UINTP",
+				"uintptr_t"
+			],
+			[
+				"read",
+				"readBytes"
+			],
+			[
+				"Messa",
+				"MessageBoxA"
+			],
+			[
+				"PAGE_READ",
+				"PAGE_READONLY"
+			],
+			[
+				"Message",
+				"MessageBoxA"
+			],
+			[
+				"PAGE_EXEC",
+				"PAGE_EXECUTE_READWRITE"
+			],
+			[
+				"gam",
+				"gameObjectManager"
+			],
+			[
+				"absol",
+				"absoluteAddress"
+			],
+			[
+				"PATTER",
+				"PATTERN_GAMEOBJECTMANAGER"
+			],
+			[
+				"Exit",
+				"exit"
+			],
+			[
+				"rect",
+				"rectForeground"
+			],
+			[
+				"hwnd",
+				"hwndActive"
+			],
+			[
+				"Rect",
+				"RECT"
+			],
+			[
+				"GetRect",
+				"GetWindowRect"
+			],
+			[
+				"KEYEVENT",
+				"KEYEVENTF_SCANCODE"
+			],
+			[
+				"max",
+				"maxResource"
+			],
+			[
+				"Vila",
+				"VillageProduce"
+			],
+			[
+				"Res",
+				"ResourceBuild"
+			],
+			[
+				"ReS",
+				"ResourceBuild"
+			],
+			[
+				"TYP",
+				"typefunction\ttypedefFunction"
+			],
+			[
+				"ID",
+				"ID_CLAY"
+			],
+			[
+				"ma",
+				"maxPopulation"
+			],
+			[
+				"resop",
+				"ResoucePerHour"
+			],
+			[
+				"Vill",
+				"VillageProduce"
+			],
+			[
+				"Vil",
+				"VillagePrint"
+			],
+			[
+				"targetwindow",
+				"targetWindowClass_"
+			],
+			[
+				"update",
+				"UpdateEsp"
+			],
+			[
+				"targ",
+				"targetWindowName"
+			],
+			[
+				"CreateWindo",
+				"CreateWindowEx"
+			],
+			[
+				"CreateWindow",
+				"CreateWindowA"
+			],
+			[
+				"Base",
+				"BaseCheat"
+			],
+			[
+				"boil",
+				"boilerplate_window_win32\tboilerplate_window_win32"
+			],
+			[
+				"xor_",
+				"xor_w"
+			],
+			[
+				"proce",
+				"processName_"
+			],
+			[
+				"p",
+				"getPassageiros"
+			],
+			[
+				"auto",
+				"autocarro"
+			],
+			[
+				"paragem",
+				"paragemAtual"
+			],
+			[
+				"PARA",
+				"paragemExiste"
+			],
+			[
+				"para",
+				"paragemAtual"
+			],
+			[
+				"pasra",
+				"passageiros"
+			],
+			[
+				"pasa",
+				"passageiros"
+			],
+			[
+				"num",
+				"numLugares"
+			],
+			[
+				"getNh",
+				"getNHorasTotaisVoo"
+			],
+			[
+				"nhora",
+				"nHorasVooDesdeUltimaManutencao"
+			],
+			[
+				"nHora",
+				"nHorasVooDesdeUltimaManutencao"
+			],
+			[
+				"Avia",
+				"AviaoPassageiro"
+			],
+			[
+				"com",
+				"combustivel"
+			],
+			[
+				"matr",
+				"matricula_"
+			],
+			[
+				"hora",
+				"nHorasVoo"
+			],
+			[
+				"ofer",
+				"ofertas"
+			],
+			[
+				"obte",
+				"obtemNome"
+			],
+			[
+				"opera",
+				"operator-"
+			],
+			[
+				"LIG",
+				"LIGHT_DIRECTIONAL"
+			],
+			[
+				"LIGH",
+				"LIGHT_DIRECTIONAL"
+			],
+			[
+				"DrawG",
+				"DrawGame"
+			],
+			[
+				"LoadmATR",
+				"LoadMaterialDefault"
+			],
+			[
+				"LoadM",
+				"LoadMaterials"
+			],
+			[
+				"MAX_",
+				"MAX_TEXTURE"
+			],
+			[
+				"cure",
+				"currentEntity"
+			],
+			[
+				"Vect",
+				"Vector3"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C Single File.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/javatar.sublime-build",
+					""
+				],
+				[
+					"Packages/User/javatar.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/javatar.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"removep",
+				"Package Control: Remove Package"
+			],
+			[
+				"LSP-jd",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"enabl",
+				"LSP: Enable Language Server Globally"
+			],
+			[
+				"LSP enal",
+				"LSP: Enable Language Server in Project"
+			],
+			[
+				"lsp-jst",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"sideb",
+				"View: Toggle Side Bar"
+			],
+			[
+				"LSP -jd",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"LSP-jt",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"lsj",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"call",
+				"Javatar: Calls..."
+			],
+			[
+				"build",
+				"Javatar: Builds..."
+			],
+			[
+				"file",
+				"File: Close All"
+			],
+			[
+				"javatar",
+				"Javatar: Builds..."
+			],
+			[
+				"j",
+				"Javatar: Builds..."
+			],
+			[
+				"buil",
+				"Javatar: Builds..."
+			],
+			[
+				"ja",
+				"Javatar: Calls..."
+			],
+			[
+				"builds",
+				"Javatar: Builds..."
+			],
+			[
+				"java",
+				"Javatar: Builds..."
+			],
+			[
+				"jata",
+				"Javatar: Builds..."
+			],
+			[
+				"javatar setting",
+				"Preferences: Javatar Settings – Default"
+			],
+			[
+				"jav",
+				"Javatar: Builds..."
+			],
+			[
+				"package control",
+				"Package Control: Remove Package"
+			],
+			[
+				"browsep",
+				"Preferences: Browse Packages"
+			],
+			[
+				"javatar create",
+				"Javatar: Create new..."
+			],
+			[
+				"create",
+				"Package Control: Create Package File"
+			],
+			[
+				"createpa",
+				"Package Control: Create Package File"
+			],
+			[
+				"javatar settings",
+				"Preferences: Javatar Settings – User"
+			],
+			[
+				"javatar ",
+				"Javatar: Builds..."
+			],
+			[
+				"isntal",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Project: Add Folder"
+			],
+			[
+				"term",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"waka",
+				"WakaTime: Open Dashboard"
+			],
+			[
+				"te",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"ter",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"renam",
+				"Rename File"
+			],
+			[
+				"ren",
+				"Rename File"
+			],
+			[
+				"close",
+				"File: Close All"
+			],
+			[
+				"files ",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"single",
+				"Build With: C Single File - Run"
+			],
+			[
+				"renma",
+				"Rename File"
+			],
+			[
+				"tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"TERM",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"work",
+				"LSP-jdtls: Build Workspace"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"settings",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"restar",
+				"LSP: Restart Server"
+			],
+			[
+				"lsp",
+				"LSP: Restart Server"
+			],
+			[
+				"lspsett",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"lSP rest",
+				"LSP: Restart Server"
+			],
+			[
+				"settings lsp",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"lspset",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"lSP-jdtl",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"LSP-jdtls",
+				"Preferences: LSP-jdtls Settings"
+			],
+			[
+				"bu",
+				"Build With: JavaFX"
+			],
+			[
+				"CLOSE",
+				"File: Close All"
+			],
+			[
+				"TER",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"clo",
+				"File: Close All"
+			],
+			[
+				"remn",
+				"Rename File"
+			],
+			[
+				"SIngle",
+				"Build With: C Single File - Run"
+			],
+			[
+				"sing",
+				"Build With: C Single File - Run"
+			],
+			[
+				"singl",
+				"Build With: C Single File - Run"
+			],
+			[
+				"fil",
+				"File: Close All"
+			],
+			[
+				"filec",
+				"File: Close All"
+			],
+			[
+				"rena",
+				"Rename File"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"ISNTAL",
+				"Package Control: Install Package"
+			],
+			[
+				"b",
+				"Browse Mode: Current file or project"
+			],
+			[
+				"filebr",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"brow",
+				"Browse Mode: Left Sidebar"
+			],
+			[
+				"file bro",
+				"Browse Mode: Current file or project"
+			],
+			[
+				"fio",
+				"Browse Mode: Current file or project"
+			],
+			[
+				"termi",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"tte",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"LS",
+				"Preferences: LSP Settings"
+			],
+			[
+				"Symbol",
+				"LSP: Goto Symbol"
+			],
+			[
+				"symbol",
+				"LSP: Goto Symbol"
+			],
+			[
+				"symb",
+				"LSP: Goto Symbol"
+			],
+			[
+				"INSTAL",
+				"Package Control: Install Package"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"files b",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"fiel",
+				"File: Close All"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"t",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"fi",
+				"File: Close All"
+			],
+			[
+				"file br",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"termin",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"tabs",
+				"View: Toggle Tabs"
+			],
+			[
+				"sy",
+				"Set Syntax: C++"
+			],
+			[
+				"s",
+				"Set Syntax: C++"
+			],
+			[
+				"lSP set",
+				"Preferences: LSP Settings"
+			],
+			[
+				"c+",
+				"Set Syntax: C++"
+			],
+			[
+				"C++",
+				"Set Syntax: Objective-C++"
+			],
+			[
+				"syn",
+				"Set Syntax: C++11"
+			],
+			[
+				"LSP",
+				"Preferences: LSP Settings"
+			],
+			[
+				"LSP enab",
+				"LSP: Enable Language Server Globally"
+			],
+			[
+				"REMOVEP",
+				"Package Control: Remove Package"
+			],
+			[
+				"SYNTAX c++",
+				"Set Syntax: C++"
+			],
+			[
+				"syntax C",
+				"Set Syntax: C++11"
+			],
+			[
+				"syntax C++",
+				"Set Syntax: C++11"
+			],
+			[
+				"syntax C impr",
+				"Set Syntax: C Improved"
+			],
+			[
+				"syntax C+",
+				"Set Syntax: C++11"
+			],
+			[
+				"syntax",
+				"Set Syntax: C++"
+			],
+			[
+				"LSP sett",
+				"Preferences: LSP Settings"
+			],
+			[
+				"set syntax c++",
+				"Set Syntax: C++"
+			],
+			[
+				"terminu",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"SIDEB",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"LSP settings",
+				"Preferences: LSP Settings"
+			],
+			[
+				"lsp setin",
+				"Preferences: LSP-clangd Settings"
+			],
+			[
+				"enable",
+				"LSP: Enable Language Server Globally"
+			],
+			[
+				"lsp ena",
+				"LSP: Enable Language Server Globally"
+			],
+			[
+				"LSP enabl",
+				"LSP: Enable Language Server Globally"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/App/src/Main.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/App/app.sublime-project",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/User/LSP-jdtls.sublime-settings",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/LSP-jdtls/LSP-jdtls.sublime-settings",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex7/Matrix.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex7/Main.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex8/Matrix.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex8/Main.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex4/Main.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex7/teeste.hpp",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex4/Tabela.java",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/User/javatar.sublime-build",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/Javatar/Javatar.sublime-settings",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/User/Javatar.sublime-settings",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex3/Main.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/Ex3.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/Tabela.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/ficha1/src/pt/isec/ex1/Ex1.java",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/Second/src/pt/isec/meuprograma/Main.java",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/Second/src/pt/isec/meuprograma/Aposta.java",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/Second/bin/Main.class",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Python/TWBot/first.py",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Python/TWBot/tw.py",
+		"/D/Chats/TWBOT/Speed/config.json",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/myproject/pom.xml",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/FirstTry/Teste/pom.xml",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/FirstTry/Teste/README.md",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/FirstTry/pom.xml",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Pre-Coded/Web/Frontend/css/sidebar.css",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Pre-Coded/Web/Frontend/index.html",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Pre-Coded/Web/Frontend/css/gallery.css",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Web/WebBuiler/index.html",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Python/Automation/main.c",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Python/Automation/main.py",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/User/MySnippets/Java/hello.sublime-snippet",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Java/FirstTry/HelloWorld.java",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Pre-Coded/Web/Frontend/sidebar.html",
+		"/D/Chats/TWBOT/Speed/TWB-master/config.json",
+		"/D/Chats/TWBOT/Speed/TWB-master/config.example.json",
+		"/C/Users/Rodrigo Reis/Documents/isec/ME/AulaPratica-1.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/config.json",
+		"/D/Chats/TWBOT/IronGang/CHANGELOG.md",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/tw.py",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/chatgpt.txt",
+		"/C/Users/Rodrigo Reis/Downloads/TWBOT/t/config.json",
+		"/C/Users/Rodrigo Reis/Downloads/TWBOT/t/twb.py",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/views.py",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/templates/builder/basic.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/templates/build.html",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/templates/index.html",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/app.py",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/teste.py",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/Bot/flask-server/server.py",
+		"/C/Users/Rodrigo Reis/Downloads/tw_bot-4dc71cbd57f1dafc5c0f9d8fe811d5fdfb85b5ea/teste.py",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/include/Const.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/main.c",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/prices.h",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/src/Village.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/include/Village.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/src/TribalWars.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/include/TribalWars.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/src/Building.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/building_info.xml",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/NeuralNetwork.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/bin/release/missions.xml",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/bin/release/building_level_required.xml",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/include/Building.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/src/main.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/BD/3",
+		"/C/Users/Rodrigo Reis/Documents/Prog/BD/3.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/BD/ExameEsteAno.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/C_/Win32/src/main.c",
+		"/C/Users/Rodrigo Reis/Documents/Prog/C_/RaylibTeste/MakeFile",
+		"/C/Users/Rodrigo Reis/Documents/Prog/C_/RaylibTeste/src/main.c",
+		"/C/Users/Rodrigo Reis/Documents/Prog/C_/RaylibTeste/src/compile_flags.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/C_/teste.c",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/src/Village.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/src/compile_flags.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/src/Building.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/MakeFile",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/include/Resource.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/TribalWars/main.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/BD/main.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/BD/ExameAnoPasssado.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/BD/seuarquivo.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/utils.h",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/Entity.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/Minecraft.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/Chunk.cpp",
+		"/C/raylib/src/raylib.h",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/Chunk.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/Minecraft.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/minshell.html",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/main.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/compile_flags.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/Makefile",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/Game.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/Makefile",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/User/MySnippets/Boilerplate/boilerplate_opengl.sublime-snippet",
+		"/C/Users/Rodrigo Reis/Documents/Prog/Minecraft/src/glad.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/BD/InconsistentAnalysisProblem",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/src/Main.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/build.gradle",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/.classpath",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/teste.sublime-project",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/MyClass.java",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/.sublime-project",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/src/HBox.java",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.swing.jar",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx-swt.jar",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.web.jar",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.graphics.jar",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.properties",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.media.jar",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.fxml.jar",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.base.jar",
+		"/C/Program Files/javafx-sdk-21.0.2/lib/javafx.controls.jar",
+		"/C/Users/Rodrigo Reis/Documents/isec/PA/JavaFXHelloWorld.java",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/User/JavaFX.sublime-build",
+		"/C/Users/Rodrigo Reis/AppData/Roaming/Sublime Text/Packages/User/JavaRunner.sublime-build",
+		"/C/Users/Rodrigo Reis/Documents/Prog/C_/busca.c",
+		"/C/Users/Rodrigo Reis/Documents/Prog/ShooterCheats/include/cheats/offsets.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/ShooterCheats/dump.txt",
+		"/C/Users/Rodrigo Reis/Documents/Prog/ShooterCheats/src/overlay.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/ShooterCheats/src/unitycheats.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/ShooterCheats/src/baseCheat.cpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/ShooterCheats/include/cheats/baseCheat.hpp",
+		"/C/Users/Rodrigo Reis/Documents/Prog/ShooterCheats/include/cheats/unityCheat.hpp"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 340.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 42.0
+	},
+	"input":
+	{
+		"height": 116.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.LSP Log Panel":
+	{
+		"height": 0.0
+	},
+	"output.Terminus":
+	{
+		"height": 266.0
+	},
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 245.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.mvn_exec":
+	{
+		"height": 138.0
+	},
+	"pinned_build_system": "Packages/User/javatar.sublime-build",
+	"project": "app.sublime-project",
+	"replace":
+	{
+		"height": 80.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"main",
+				"src\\pt\\isec\\ex7\\Main.java"
+			],
+			[
+				"matr",
+				"src\\pt\\isec\\ex7\\Matrix.java"
+			],
+			[
+				"matrix",
+				"src\\pt\\isec\\ex7\\Matrix.java"
+			],
+			[
+				"ta",
+				"Tabela.java"
+			],
+			[
+				"side",
+				"css\\sidebar.css"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"sibe",
+				"sidebar.html"
+			],
+			[
+				"si",
+				"css\\sidebar.css"
+			],
+			[
+				"vie",
+				"views.py"
+			],
+			[
+				"ap",
+				"app.py"
+			],
+			[
+				"mai",
+				"src\\main.cpp"
+			],
+			[
+				"vi",
+				"src\\Village.cpp"
+			],
+			[
+				"bu",
+				"include\\Building.hpp"
+			],
+			[
+				"vil",
+				"src\\Village.cpp"
+			],
+			[
+				"bui",
+				"src\\Building.cpp"
+			],
+			[
+				"v",
+				"include\\Village.hpp"
+			],
+			[
+				"ma",
+				"src\\main.cpp"
+			],
+			[
+				"b",
+				"include\\Building.hpp"
+			],
+			[
+				"trib",
+				"src\\TribalWars.cpp"
+			],
+			[
+				"tri",
+				"src\\TribalWars.cpp"
+			],
+			[
+				"m",
+				"src\\main.cpp"
+			],
+			[
+				"VI",
+				"src\\Village.cpp"
+			],
+			[
+				"buil",
+				"include\\Building.hpp"
+			],
+			[
+				"via",
+				"src\\Village.cpp"
+			],
+			[
+				"MAIN",
+				"src\\main.cpp"
+			],
+			[
+				"CONST",
+				"include\\Const.hpp"
+			],
+			[
+				"cons",
+				"include\\Const.hpp"
+			],
+			[
+				"tr",
+				"include\\TribalWars.hpp"
+			],
+			[
+				"TR",
+				"src\\TribalWars.cpp"
+			],
+			[
+				"TRIB",
+				"include\\TribalWars.hpp"
+			],
+			[
+				"triba",
+				"include\\TribalWars.hpp"
+			],
+			[
+				"VIL",
+				"include\\Village.hpp"
+			],
+			[
+				"chun",
+				"Chunk.cpp"
+			],
+			[
+				"minec",
+				"Minecraft.hpp"
+			],
+			[
+				"min",
+				"Minecraft.hpp"
+			],
+			[
+				"bas",
+				"src\\baseCheat.cpp"
+			],
+			[
+				"unit",
+				"src\\unitycheats.cpp"
+			],
+			[
+				"pain",
+				"include\\cheats\\paintWarfare.hpp"
+			],
+			[
+				"ui",
+				"src\\unitycheats.cpp"
+			],
+			[
+				"uni",
+				"src\\unitycheats.cpp"
+			],
+			[
+				"base",
+				"src\\baseCheat.cpp"
+			],
+			[
+				"un",
+				"src\\unitycheats.cpp"
+			],
+			[
+				"overl",
+				"src\\overlay.cpp"
+			],
+			[
+				"MAKE",
+				"MakeFile"
+			],
+			[
+				"OVERL",
+				"src\\overlay.cpp"
+			],
+			[
+				"memor",
+				"src\\memory.cpp"
+			],
+			[
+				"ba",
+				"src\\baseCheat.cpp"
+			],
+			[
+				"UNI",
+				"src\\unitycheats.cpp"
+			],
+			[
+				"me",
+				"src\\memory.cpp"
+			],
+			[
+				"memo",
+				"src\\memory.cpp"
+			],
+			[
+				"UNIT",
+				"src\\unitycheats.cpp"
+			],
+			[
+				"emo",
+				"src\\memory.cpp"
+			],
+			[
+				"ove",
+				"src\\overlay.cpp"
+			],
+			[
+				"ov",
+				"src\\overlay.cpp"
+			],
+			[
+				"over",
+				"include\\overlay.hpp"
+			],
+			[
+				"xor",
+				"include\\xor.h"
+			],
+			[
+				"pr",
+				"prices.h"
+			],
+			[
+				"pri",
+				"prices.h"
+			],
+			[
+				"o",
+				"src\\overlay.cpp"
+			],
+			[
+				"ain",
+				"src\\main.cpp"
+			],
+			[
+				"chea",
+				"include\\cheat.hpp"
+			],
+			[
+				" main",
+				"src\\main.cpp"
+			],
+			[
+				"gam",
+				"src\\game.c"
+			],
+			[
+				"ENTI",
+				"src\\entity.c"
+			],
+			[
+				"GAM",
+				"src\\game.c"
+			],
+			[
+				"en",
+				"src\\entity.c"
+			],
+			[
+				"ga",
+				"src\\game.c"
+			],
+			[
+				"enti",
+				"include\\entity.h"
+			],
+			[
+				"game",
+				"src\\game.c"
+			],
+			[
+				"GA",
+				"include\\game.h"
+			],
+			[
+				"cma",
+				"src\\CMakeLists.txt"
+			],
+			[
+				"make",
+				"Makefile"
+			],
+			[
+				"ene",
+				"enemy.c"
+			],
+			[
+				"wave",
+				"wave_spawner.c"
+			],
+			[
+				"card",
+				"Card.c"
+			],
+			[
+				"ent",
+				"entity.h"
+			],
+			[
+				"gamh",
+				"game.h"
+			],
+			[
+				"titl",
+				"title_screen.c"
+			],
+			[
+				"TIT",
+				"title_screen.c"
+			],
+			[
+				"TITL",
+				"title_screen.c"
+			],
+			[
+				"mak",
+				"Makefile"
+			],
+			[
+				"enem",
+				"enemy.h"
+			],
+			[
+				"contr",
+				"controller.c"
+			],
+			[
+				"wea",
+				"wave_spawner.c"
+			],
+			[
+				"car",
+				"Card.c"
+			],
+			[
+				"eni",
+				"entity.c"
+			],
+			[
+				"par",
+				"particle.c"
+			],
+			[
+				"GAME",
+				"game.c"
+			],
+			[
+				"TIEL",
+				"title_screen.c"
+			],
+			[
+				"",
+				"enemy.c"
+			],
+			[
+				"EN",
+				"enemy.c"
+			],
+			[
+				"t",
+				"title_screen.c"
+			],
+			[
+				"g",
+				"game.c"
+			],
+			[
+				"ti",
+				"title_screen.c"
+			],
+			[
+				"op",
+				"options_screen.c"
+			],
+			[
+				"scre",
+				"screen.h"
+			],
+			[
+				"opti",
+				"options_screen.c"
+			],
+			[
+				"enemy",
+				"enemy.c"
+			],
+			[
+				"OPTIO",
+				"options_screen.c"
+			],
+			[
+				"SCRE",
+				"screen.h"
+			],
+			[
+				"opt",
+				"options_screen.c"
+			],
+			[
+				"TI",
+				"title_screen.c"
+			],
+			[
+				"tit",
+				"title_screen.c"
+			],
+			[
+				"optio",
+				"options_screen.c"
+			],
+			[
+				"gma",
+				"game.h"
+			],
+			[
+				"opito",
+				"options.c"
+			],
+			[
+				"til",
+				"titlescreen.c"
+			],
+			[
+				"con",
+				"controller.c"
+			],
+			[
+				"contro",
+				"controller.c"
+			],
+			[
+				"CON",
+				"controller.c"
+			],
+			[
+				"C",
+				"controller.c"
+			],
+			[
+				"co",
+				"controller.c"
+			],
+			[
+				"space",
+				"wave_spawner.c"
+			],
+			[
+				"TIL",
+				"title_screen.c"
+			],
+			[
+				"hud",
+				"hud.c"
+			],
+			[
+				"CO",
+				"controller.c"
+			],
+			[
+				"wa",
+				"wave_spawner.c"
+			],
+			[
+				"scr",
+				"screen.h"
+			],
+			[
+				"te",
+				"title_screen.c"
+			],
+			[
+				"T",
+				"title_screen.c"
+			],
+			[
+				"RAY",
+				"raygui.h"
+			],
+			[
+				"G",
+				"game.c"
+			],
+			[
+				"cotnro",
+				"controller.c"
+			],
+			[
+				"h",
+				"hud.c"
+			],
+			[
+				"ar",
+				"Card.c"
+			],
+			[
+				"ontr",
+				"controller.h"
+			],
+			[
+				"entit",
+				"entity.c"
+			],
+			[
+				"part",
+				"particle.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 311.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

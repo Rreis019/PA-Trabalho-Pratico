@@ -1,0 +1,27 @@
+.button {
+    -fx-cursor: hand;
+    -fx-padding: 8px 20px;
+    -fx-font-size: 16px;
+    -fx-background-color: black;
+    -fx-text-fill: black;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+    -fx-position: relative;
+    -fx-z-index: 1;
+    -fx-overflow: hidden;
+    -fx-transition: -fx-text-fill, 500ms ease-in-out;
+}
+
+.button:hover {
+    -fx-text-fill: white;
+}
+
+.button::before {
+    -fx-content: "fafaf";
+    -fx-position: absolute;
+    -fx-width: 100px;
+    -fx-height: 100px;
+
+.button:hover::before {
+    -fx-transform: translateX(0);
+}

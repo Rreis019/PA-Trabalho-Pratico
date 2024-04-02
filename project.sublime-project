@@ -1,0 +1,43 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		}
+	],
+	 "build_systems": [
+        {
+            "name": "RunJavaFX",
+            "shell_cmd": "cd bin && java --module-path %JAVAFX% --add-modules ALL-MODULE-PATH pt.isec.pa.javalife.Main",
+            "working_dir": "${project_path:${folder}}",
+            "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+            "selector": "source.java",
+        },
+	    {
+	        "name": "RunTest",
+			"shell_cmd": "cd bin && java -cp ../lib/junit/junit-4.13.2.jar;../lib/junit/hamcrest-core-1.3.jar;. org.junit.runner.JUnitCore pt.isec.pa.javalife.tests.${file_base_name}",
+	        "working_dir": "${project_path:${folder}}",
+	        "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+	        "selector": "source.java",
+	    }
+	],
+	"javatar":
+	{
+		"dependencies":
+		[
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx-swt.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.base.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.controls.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.fxml.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.fxml.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.graphics.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.media.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.swing.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx\\javafx.web.jar",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib\\javafx",
+			"C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App\\lib",
+		],
+		"dependencies_path": "C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\App",
+		"source_folder": "C:\\Users\\Rodrigo Reis\\Documents\\isec\\PA\\Pa_TrabalhoPratico\\src",
+	},
+}
