@@ -6,12 +6,12 @@ import pt.isec.pa.javalife.Main;
 
 
 public class MainTest {
-    
-    
+
+
     @Test
     public void testSomar() {
-        Main calculadora = new Main();
-        int resultado = calculadora.somar(3, 7);
+        Main main = new Main();
+        int resultado = main.somar(3, 7);
         assertEquals(10, resultado);
     }
 }
