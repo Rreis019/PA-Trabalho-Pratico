@@ -1,10 +1,19 @@
 package pt.isec.pa.javalife.ui.gui;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.scene.Group;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
+
+import pt.isec.pa.javalife.ui.gui.scenes.StartScene;
 
 public class MainJFX extends Application {
 
@@ -14,12 +23,12 @@ public class MainJFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Javalife");
-        Scene scene = new Scene(new Group(), 400, 300); // Grupo vazio, largura e altura definidas
+        primaryStage.setTitle("Javaldsife");
 
-        primaryStage.setScene(scene);
+        Font.loadFont(getClass().getResource("/fonts/Inter-Regular.ttf").toExternalForm(), 20);
 
+        StartScene startScene = new StartScene(primaryStage);
+        primaryStage.setScene(startScene);
         primaryStage.show();
-        
     }
 }

@@ -1,27 +1,33 @@
-.button {
-    -fx-cursor: hand;
-    -fx-padding: 8px 20px;
-    -fx-font-size: 16px;
-    -fx-background-color: black;
-    -fx-text-fill: black;
-    -fx-border-width: 1px;
-    -fx-border-color: black;
-    -fx-position: relative;
-    -fx-z-index: 1;
-    -fx-overflow: hidden;
-    -fx-transition: -fx-text-fill, 500ms ease-in-out;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Convergence&display=swap');
+
+.primary-background
+{
+    
+    -fx-background-color: #373054;
 }
 
-.button:hover {
+.secondary-background
+{
+  -fx-background-color: #5A508C;
     -fx-text-fill: white;
 }
 
-.button::before {
-    -fx-content: "fafaf";
-    -fx-position: absolute;
-    -fx-width: 100px;
-    -fx-height: 100px;
+.heading {
+    -fx-font-size : 21px;
+    -fx-text-fill: white; 
+    -fx-font-smoothing-type: subpixel; 
+    -fx-font-family: "Convergence", sans-serif;
+    -fx-font-weight: 400;
 
-.button:hover::before {
-    -fx-transform: translateX(0);
+}
+
+.btn-primary
+{
+    -fx-background-color: #373054;
+    -fx-border-radius: 5px;
+    -fx-text-fill: white; 
+    -fx-font-family: "Inter", sans-serif;
+    -fx-font-size : 20px;
+    -fx-font-smoothing-type: gray; 
 }
