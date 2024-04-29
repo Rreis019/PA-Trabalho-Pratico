@@ -1,11 +1,14 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 
 class CreateEcosystemScene extends Scene
 {
+    private Scene scene;
+    private VBox root;
     public CreateEcosystemScene()
     {
-        super(null);
+        super(new VBox());
         createView();
         registerHandlers();
     }
@@ -19,4 +22,10 @@ class CreateEcosystemScene extends Scene
     {
         // Implementação do registro de event handlers
     }
+
+    public Scene getScene()
+    {
+        return this.scene;
+    }
+
 }

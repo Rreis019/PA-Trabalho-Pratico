@@ -14,6 +14,8 @@ import javafx.scene.text.Font;
 
 
 import pt.isec.pa.javalife.ui.gui.scenes.StartScene;
+import pt.isec.pa.javalife.ui.gui.scenes.*;
+
 
 public class MainJFX extends Application {
 
@@ -30,5 +32,6 @@ public class MainJFX extends Application {
         StartScene startScene = new StartScene(primaryStage);
         primaryStage.setScene(startScene);
         primaryStage.show();
+
     }
 }

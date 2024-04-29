@@ -1,4 +1,5 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
+import  pt.isec.pa.javalife.ui.gui.scenes.CreateEcosystemScene;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,13 +11,19 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser;
+import java.io.File;
 
 public class StartScene extends Scene {
 
-    public StartScene(Stage primaryStage) {
+    Button btnCreate,btnImport;
+    Stage primaryStage;
+
+    public StartScene(Stage primaryStage_) {
         super(new VBox());
-        createView(primaryStage);
+        createView(primaryStage_);
         registerHandlers();
+        primaryStage =  primaryStage_;
     }
 
     private void createView(Stage primaryStage) {
@@ -39,9 +46,9 @@ public class StartScene extends Scene {
         topPanel.setSpacing(30);
         bottomPanel.setSpacing(30);
 
-        Button btnCreate = new Button("Criar");
+        btnCreate = new Button("Criar");
         Label lbCreate = new Label("Comece do Zero: Crie Seu Próprio Ecossistema");
-        Button btnImport = new Button("Importar");
+        btnImport = new Button("Importar");
         Label lbImport = new Label("Traga Diversidade: Importe um Ecossistema Existente");
 
         lbCreate.setWrapText(true);
@@ -70,6 +77,28 @@ public class StartScene extends Scene {
     }
 
     private void registerHandlers() {
-        // Implementação do registro de event handlers
+        btnCreate.setOnAction(e -> {
+            // Aqui você pode adicionar o código para a ação do botão "Criar"
+            System.out.println("Botão 'Criar' foi clicado");
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene();
+            // Criar um novo palco (janela)
+            primaryStage.setScene(createEcoSystemScene);
+            primaryStage.show();
+        });
+
+        btnImport.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+            if (selectedFile != null) {
+                System.out.println("Arquivo CSV selecionado: " + selectedFile.getName());
+                // Aqui você pode adicionar o código para ler o arquivo CSV
+                CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene();
+                // Criar um novo palco (janela)
+                primaryStage.setScene(createEcoSystemScene);
+                primaryStage.show();
+            }
+        });
     }
 }
