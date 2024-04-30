@@ -1,5 +1,4 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
-import  pt.isec.pa.javalife.ui.gui.scenes.CreateEcosystemScene;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -80,7 +79,7 @@ public class StartScene extends Scene {
         btnCreate.setOnAction(e -> {
             // Aqui você pode adicionar o código para a ação do botão "Criar"
             System.out.println("Botão 'Criar' foi clicado");
-            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene();
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage);
             // Criar um novo palco (janela)
             primaryStage.setScene(createEcoSystemScene);
             primaryStage.show();
@@ -94,9 +93,9 @@ public class StartScene extends Scene {
             if (selectedFile != null) {
                 System.out.println("Arquivo CSV selecionado: " + selectedFile.getName());
                 // Aqui você pode adicionar o código para ler o arquivo CSV
-                CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene();
+                MainScene mainscene = new MainScene(primaryStage);
                 // Criar um novo palco (janela)
-                primaryStage.setScene(createEcoSystemScene);
+                primaryStage.setScene(mainscene);
                 primaryStage.show();
             }
         });
