@@ -67,9 +67,9 @@ class MainScene extends Scene
         btninspecionar = new Button("Inspecionar");
         btnconfigurar = new Button("Configurar");
 
-        btninspecionar.setMinWidth(5);
+        btninspecionar.setMinWidth(10);
         btninspecionar.setMinHeight(5);
-        btnconfigurar.setMinWidth(5);
+        btnconfigurar.setMinWidth(10);
         btnconfigurar.setMinHeight(5);
         btninspecionar.getStyleClass().add("btn-secundary");
         btnconfigurar.getStyleClass().add("btn-secundary");
@@ -79,6 +79,8 @@ class MainScene extends Scene
         bottonpanel.getChildren().addAll(btninspecionar, btnconfigurar);
         HBox hboxMainAndVBox = new HBox(mainpanel, spacer, vbox);
         HBox hboxButtons = new HBox(btninspecionar, btnconfigurar);
+        hboxButtons.setSpacing(5);
+        hboxButtons.setPadding(new Insets(5));
         bottonpanel.getChildren().add(hboxButtons);
 
         VBox.setVgrow(topPanel, Priority.ALWAYS);
@@ -96,16 +98,6 @@ class MainScene extends Scene
 
     private void registerHandlers()
     {
-        /*inspecionar.setOnAction(e -> {
-            panel1.setVisible(true);
-            panel2.setVisible(false);
-        });
-
-        configurar.setOnAction(e -> {
-            panel1.setVisible(false);
-            panel2.setVisible(true);
-        });*/
-
         btninspecionar.setOnAction(e -> {
             VBox inspecionarPanel = new VBox();
 
