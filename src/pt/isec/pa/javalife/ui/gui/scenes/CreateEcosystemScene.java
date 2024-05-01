@@ -16,9 +16,9 @@ class CreateEcosystemScene extends Scene
     public CreateEcosystemScene(Stage primaryStage_)
     {
         super(new VBox());
+        primaryStage =  primaryStage_;
         createView(primaryStage_);
         registerHandlers();
-        primaryStage =  primaryStage_;
     }
 
     private void createView(Stage primaryStage)
