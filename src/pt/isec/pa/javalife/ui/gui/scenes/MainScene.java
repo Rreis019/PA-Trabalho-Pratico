@@ -1,16 +1,11 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
+
 
 
 class MainScene extends Scene
@@ -79,9 +74,7 @@ class MainScene extends Scene
         btninspecionar.getStyleClass().add("btn-secundary");
         btnconfigurar.getStyleClass().add("btn-secundary");
 
-// Adicionando os painéis e o espaçador a um HBox
         VBox vboxBottonAndLateral = new VBox(bottonpanel, lateralpanel);
-
         VBox vbox = new VBox(vboxBottonAndLateral);
         bottonpanel.getChildren().addAll(btninspecionar, btnconfigurar);
         HBox hboxMainAndVBox = new HBox(mainpanel, spacer, vbox);
@@ -114,11 +107,55 @@ class MainScene extends Scene
         });*/
 
         btninspecionar.setOnAction(e -> {
+            VBox inspecionarPanel = new VBox();
 
+            ComboBox<String> faunaDropdown = new ComboBox<>();
+            faunaDropdown.getItems().addAll("Option 1", "Option 2"); // Add your options here
+            faunaDropdown.setPromptText("Fauna");
+
+            Button btnAdicionarElemento = new Button("Adicionar Elemento");
+            Button btnCriarEcossistema = new Button("Criar Ecossistema");
+            Button btnImportar = new Button("Importar");
+            Button btnExportar = new Button("Exportar");
+
+            inspecionarPanel.getChildren().addAll(faunaDropdown, btnAdicionarElemento, btnCriarEcossistema, btnImportar, btnExportar);
+
+            // Assuming mainpanel is the panel you want to update
+            lateralpanel.getChildren().clear();
+            lateralpanel.getChildren().add(inspecionarPanel);
+
+            System.out.println("inspecionar");
         });
 
         btnconfigurar.setOnAction(e -> {
+            VBox configurarPanel = new VBox();
 
+            Label lblImagemDoBicho = new Label("Imagem do bicho");
+            TextField txtId = new TextField();
+            txtId.setPromptText("Id");
+
+            ComboBox<String> tipoDropdown = new ComboBox<>();
+            tipoDropdown.getItems().addAll("Option 1", "Option 2"); // Add your options here
+            tipoDropdown.setPromptText("Tipo: Fauna");
+
+            TextField txtPosicao = new TextField();
+            txtPosicao.setPromptText("Posição");
+
+            TextField txtArea = new TextField();
+            txtArea.setPromptText("Area");
+
+            Slider sliderForca = new Slider();
+            sliderForca.setMin(0);
+            sliderForca.setMax(100);
+            sliderForca.setValue(23);
+
+            Button btnRemover = new Button("Remover");
+
+            configurarPanel.getChildren().addAll(lblImagemDoBicho, txtId, tipoDropdown, txtPosicao, txtArea, sliderForca, btnRemover);
+
+            // Assuming mainpanel is the panel you want to update
+            lateralpanel.getChildren().clear();
+            lateralpanel.getChildren().add(configurarPanel);
         });
     }
 }
