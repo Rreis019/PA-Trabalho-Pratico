@@ -85,6 +85,8 @@ class MainScene extends Scene
         VBox vbox = new VBox(vboxBottonAndLateral);
         bottonpanel.getChildren().addAll(btninspecionar, btnconfigurar);
         HBox hboxMainAndVBox = new HBox(mainpanel, spacer, vbox);
+        HBox hboxButtons = new HBox(btninspecionar, btnconfigurar);
+        bottonpanel.getChildren().add(hboxButtons);
 
         VBox.setVgrow(topPanel, Priority.ALWAYS);
         VBox.setVgrow(hboxMainAndVBox, Priority.ALWAYS);
