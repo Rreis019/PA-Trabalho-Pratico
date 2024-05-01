@@ -1,14 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Convergence&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Convergence&display=swap');
+
+
+
+/*--------------------------THEME-----------------------------*/
+.root {
+    -primary-color:   #373054;
+    -secondary-color: #5A508C;
+    -primary-hover:  #322B4B;/* Primary color mais escura */
+}
+
+
+
+/*-------------------------------------------------------*/
+
 .primary-background
 {
-    -fx-background-color: #373054;
+    -fx-background-color: -primary-color;
 }
 
 .secondary-background
 {
-    -fx-background-color: #5A508C;
+    -fx-background-color: -secondary-color;
     -fx-text-fill: white;
 }
 
@@ -18,15 +34,128 @@
     -fx-font-smoothing-type: gray; 
     -fx-font-family: "Convergence", sans-serif;
     -fx-font-weight: 400;
-
 }
 
 .btn-primary
 {
-    -fx-background-color: #373054;
+    -fx-background-color: -primary-color;
     -fx-border-radius: 5px;
     -fx-text-fill: white; 
     -fx-font-family: "Inter", sans-serif;
+
     -fx-font-size : 20px;
     -fx-font-smoothing-type: gray; 
+}
+
+.btn-primary:hover,.spinner-btn:hover {
+    -fx-background-color: -primary-hover;
+    -fx-cursor: hand;
+}
+
+.button:focused {
+  -fx-background-insets: 0, 0, 1, 2;
+}
+
+/*-------------------------------------------------------------------------------------*/
+.combo-box .list-cell,
+.combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
+    -fx-text-fill: white ;
+    -fx-background-color: -primary-color;
+    -fx-border-radius: 5px;
+     -fx-font-size : 14px;
+    -fx-background-radius:0px;
+}
+
+
+.combo-box
+{
+    -fx-focus-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+.combo-box .list-cell
+{
+    -fx-font-family: "Inter", sans-serif;
+    -fx-font-size : 18px;
+
+}
+/* combo-box hover text */
+.combo-box .list-view .list-cell:hover {
+   -fx-background-color: -primary-hover;
+   -fx-text-fill: white;
+   
+}
+
+
+.combo-box .arrow
+{
+-fx-background-color: white;
+}
+
+.combo-box .arrow-button{
+     -fx-background-color:  -primary-hover;
+     -fx-text-fill: white;
+}
+
+/*-------------------------------------------------------------------------------------*/
+
+
+
+.spinner-btn
+{
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white; 
+    -fx-background-radius: 0 5 5 0;
+    -fx-border:0px;
+      -fx-border-color: transparent;
+}
+
+.spinner-btn-left,.spinner-btn-right{
+    -fx-font-size:16px;
+}
+
+.spinner-btn-right{
+    -fx-background-radius: 0 5 5 0;
+}
+
+.spinner-btn-left{
+    -fx-background-radius: 5 0 0 5;
+}
+
+.spinner-title
+{
+    -fx-font-family: "Inter", sans-serif;
+    -fx-font-weight: 900;
+    -fx-font-size:13px;
+    -fx-text-fill: white; 
+}
+
+
+.spinner-textfield{
+    -fx-background-color: #4A417A;
+    -fx-text-fill: white;
+    -fx-border-radius:0px;   
+    -fx-background-radius: 0;
+
+    -fx-font-family: "Inter", sans-serif;
+    -fx-font-weight: 900;
+    -fx-font-size:18px;
+}
+
+
+.slider .thumb {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+}
+
+.slider .track {
+    -fx-background-color: #373054;
+}
+
+.slider-text
+{
+    -fx-font-family: "Inter", sans-serif;
+    -fx-font-weight: 900;
+    -fx-font-size:14px;
+    -fx-text-fill: white; 
 }
