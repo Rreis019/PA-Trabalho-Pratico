@@ -44,7 +44,7 @@ public class MainScene extends Scene
 
         root.getStyleClass().add("secondary-background");
 
-        primaryStage.setTitle("bruh");
+        primaryStage.setTitle("JavaLife - Ecossistema");
 
 
         ClickableSVG svgPlay = new ClickableSVG();
@@ -101,6 +101,7 @@ public class MainScene extends Scene
         ecosystemPanel.getStyleClass().add("primary-background");
 
         HBox.setHgrow(ecosystemPanel, Priority.ALWAYS);
+        VBox.setVgrow(ecosystemPanel, Priority.ALWAYS);
         HBox.setMargin(ecosystemPanel, new Insets(10));
 
  
@@ -110,7 +111,7 @@ public class MainScene extends Scene
 
         root.getChildren().addAll(topPanel,content);
         primaryStage.setWidth(978);
-        primaryStage.setHeight(692);
+        primaryStage.setHeight(710);
 
 
     }
