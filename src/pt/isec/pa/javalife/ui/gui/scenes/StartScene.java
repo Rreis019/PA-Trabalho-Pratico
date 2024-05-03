@@ -65,6 +65,8 @@ public class StartScene extends Scene {
         btnImport.setMinHeight(45);
         btnCreate.getStyleClass().add("btn-primary");
         btnImport.getStyleClass().add("btn-primary");
+        btnCreate.getStyleClass().add("heading");
+        btnImport.getStyleClass().add("heading");
 
         topPanel.getChildren().addAll(lbCreate, btnCreate);
         bottomPanel.getChildren().addAll(btnImport, lbImport);

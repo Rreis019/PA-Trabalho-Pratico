@@ -112,6 +112,10 @@ public class MainScene extends Scene
         root.getChildren().addAll(topPanel,content);
         primaryStage.setWidth(978);
         primaryStage.setHeight(710);
+        primaryStage.setMinWidth(978);
+        primaryStage.setMaxWidth(3000);
+        primaryStage.setMinHeight(710);
+        primaryStage.setMaxHeight(3000);
 
 
     }

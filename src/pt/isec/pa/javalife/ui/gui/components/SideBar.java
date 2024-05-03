@@ -1,6 +1,7 @@
 package pt.isec.pa.javalife.ui.gui.components;
 
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
@@ -18,13 +19,13 @@ import javafx.scene.paint.Color;
  */
 public class SideBar extends VBox {
 
-	private SideBarNavbar navbar;
-	private VBox ecoTab;
-	private VBox inspectTab;
+    private SideBarNavbar navbar;
+    private VBox ecoTab;
+    private VBox inspectTab;
 
-	public SideBar()
-	{
-		setPrefWidth(200);
+    public SideBar()
+    {
+        setPrefWidth(200);
         setMaxWidth(200);
         VBox.setMargin(this, new Insets(0));
         setAlignment(Pos.TOP_CENTER);
@@ -32,7 +33,7 @@ public class SideBar extends VBox {
         getStyleClass().add("secondary-background");
         setStyle("-fx-border-width: 0 0 0 2px; -fx-border-color: #373054;");
 
-	 	ecoTab = new VBox();
+        ecoTab = new VBox();
         ecoTab.setSpacing(10);
         ecoTab.setMaxWidth(190);
 
@@ -179,17 +180,20 @@ public class SideBar extends VBox {
         containerArea.getChildren().addAll(containerEsq,containerCima,containerDir,containerBaixo);
         containerArea.setSpacing(6);
 
-        VBox containerImg = new VBox();
-        containerImg.setPrefWidth(100);
-        containerImg.setPrefHeight(100);
-        containerImg.setMaxWidth(100);
-        containerImg.setMaxHeight(100);
-        containerImg.getStyleClass().addAll("primary-background");
+        StackPane containerImg = new StackPane();
+        containerImg.setAlignment(Pos.CENTER);
 
+        VBox rectImg = new VBox();
+        rectImg.setPrefWidth(100);
+        rectImg.setPrefHeight(100);
+        rectImg.setMaxWidth(100);
+        rectImg.setMaxHeight(100);
+        rectImg.getStyleClass().addAll("primary-background");
+        containerImg.getChildren().addAll(rectImg);
         inspectTab.getChildren().addAll(containerImg,containerId,containerType,separate,lbPosicao,containerPos,separate2,lbArea,containerArea,separate3,strenghtSlider,btnDelElement);
 
 
-     	navbar = new SideBarNavbar(new SideBarNavbar.NavbarCallback() {
+        navbar = new SideBarNavbar(new SideBarNavbar.NavbarCallback() {
             @Override
             public void onFirstButtonClicked() {
                 ecoTab.setVisible(true);
@@ -211,6 +215,6 @@ public class SideBar extends VBox {
         space.setMinWidth(5);
         space.setMinHeight(5);
 
-     	this.getChildren().addAll(navbar,space,ecoTab,inspectTab);
-	}
+        this.getChildren().addAll(navbar,space,ecoTab,inspectTab);
+    }
 }
