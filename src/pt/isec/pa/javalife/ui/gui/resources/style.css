@@ -11,9 +11,16 @@
     -primary-color:   #373054;
     -secondary-color: #5A508C;
     -primary-hover:  #322B4B;/* Primary color mais escura */
+    -secondary-hover: #776AB8;
 }
 
+.disabled-label {
+    -fx-text-fill: white;
+}
 
+.disabled-label:disabled {
+    -fx-opacity: 1.0;
+}
 
 /*-------------------------------------------------------*/
 
@@ -41,20 +48,68 @@
     -fx-background-color: -primary-color;
     -fx-border-radius: 5px;
     -fx-text-fill: white; 
-    -fx-font-family: "Inter", sans-serif;
-
-    -fx-font-size : 20px;
     -fx-font-smoothing-type: gray; 
+    -fx-fill: -primary-color;
+
+}
+
+.sidebar-title 
+{
+    -fx-font-size : 14px;
+    -fx-font-family: "Inter", sans-serif;
+        -fx-text-fill: white; 
+}
+
+.icon
+{
+    -fx-fill: -secondary-color;
+}
+
+.icon:hover
+{
+    -fx-fill: -secondary-hover;
+       -fx-cursor: hand;
+}
+
+
+.btn-secondary
+{
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: white; 
+    -fx-font-smoothing-type: gray; 
+    -fx-fill: -secondary-color;
+}
+
+.btn-secondary:hover
+{
+    -fx-background-color: -secondary-hover;
+    -fx-cursor: hand;
+    -fx-fill: -secondary-hover;
 }
 
 .btn-primary:hover,.spinner-btn:hover {
     -fx-background-color: -primary-hover;
     -fx-cursor: hand;
+    -fx-fill: -primary-hover;
 }
 
 .button:focused {
   -fx-background-insets: 0, 0, 1, 2;
 }
+
+
+/*-------------------------------------------------------------------------------------*/
+
+.text-field {
+    -fx-background-color: -primary-color;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-text-fill : white;
+}
+.text-field:focused {
+    -fx-background-color: -primary-color;
+}
+
 
 /*-------------------------------------------------------------------------------------*/
 .combo-box .list-cell,
@@ -89,7 +144,7 @@
 
 .combo-box .arrow
 {
--fx-background-color: white;
+    -fx-background-color: white;
 }
 
 .combo-box .arrow-button{
@@ -152,10 +207,17 @@
     -fx-background-color: #373054;
 }
 
-.slider-text
+.text-bold
 {
     -fx-font-family: "Inter", sans-serif;
     -fx-font-weight: 900;
+    -fx-font-size:14px;
+    -fx-text-fill: white; 
+}
+
+.text-regular
+{
+    -fx-font-family: "Inter", sans-serif;
     -fx-font-size:14px;
     -fx-text-fill: white; 
 }

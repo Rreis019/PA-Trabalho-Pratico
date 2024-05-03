@@ -18,10 +18,10 @@ public class BlueSlider extends VBox {
         this.slider.setMaxWidth(width);
 
         this.valueLabel = new Label(value + "/" + max);
-        this.valueLabel.getStyleClass().add("slider-text");
+        this.valueLabel.getStyleClass().add("text-bold");
 
         Label titleLabel = new Label(title);
-        titleLabel.getStyleClass().add("slider-text");
+        titleLabel.getStyleClass().add("text-bold");
 
         BorderPane pane = new BorderPane();
         HBox.setHgrow(pane, Priority.ALWAYS);
