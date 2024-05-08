@@ -1,8 +1,6 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
-import pt.isec.pa.javalife.model.data.Ecosystem;
-import pt.isec.pa.javalife.model.data.elements.Fauna;
-import pt.isec.pa.javalife.model.data.elements.Flora;
+import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
@@ -11,7 +9,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 public class MovingState extends FaunaStateAdapter {
 
-	public MovingState(FaunaStateContext context,Ecosystem ecosystem)
+	public MovingState(FaunaStateContext context, EcosystemManager ecosystem)
 	{
 		super(context,ecosystem);
 	}

@@ -1,6 +1,6 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
-import pt.isec.pa.javalife.model.data.Ecosystem;
+import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
@@ -8,7 +8,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 public class ReproduceState extends FaunaStateAdapter {
 
-	public ReproduceState(FaunaStateContext context,Ecosystem ecosystem)
+	public ReproduceState(FaunaStateContext context, EcosystemManager ecosystem)
 	{
 		super(context,ecosystem);
 	}

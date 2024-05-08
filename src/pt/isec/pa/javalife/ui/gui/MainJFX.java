@@ -1,23 +1,22 @@
 package pt.isec.pa.javalife.ui.gui;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-
-import pt.isec.pa.javalife.ui.gui.scenes.StartScene;
-import pt.isec.pa.javalife.ui.gui.scenes.*;
-
+import pt.isec.pa.javalife.model.EcosystemManager;
+import pt.isec.pa.javalife.model.gameengine.GameEngine;
+import pt.isec.pa.javalife.ui.gui.scenes.SplashScreen;
 
 public class MainJFX extends Application {
+    private EcosystemManager model;
+    private GameEngine gameEngine;
+
+    public MainJFX(){
+        this.model = new EcosystemManager();
+        gameEngine = new GameEngine();
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -25,13 +24,31 @@ public class MainJFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Javaldsife");
+        primaryStage.setTitle("JavaLife");
+        primaryStage.setResizable(false);
+        primaryStage.centerOnScreen();
 
         Font.loadFont(getClass().getResource("/fonts/Inter-Regular.ttf").toExternalForm(), 20);
 
-        StartScene startScene = new StartScene(primaryStage);
-        primaryStage.setScene(startScene);
+        Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
+        primaryStage.getIcons().add(icon);
+
+        SplashScreen splashScreen = new SplashScreen(primaryStage);
+
+        primaryStage.setScene(splashScreen);
         primaryStage.show();
 
+    }
+
+    @Override
+    public void init() throws Exception {
+        gameEngine.registerClient(model);
+        gameEngine.start(250);
+    }
+
+    @Override
+    public void stop() throws Exception {
+        gameEngine.stop();
+        gameEngine.waitForTheEnd();
     }
 }

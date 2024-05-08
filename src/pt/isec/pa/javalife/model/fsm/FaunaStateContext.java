@@ -1,14 +1,13 @@
 package pt.isec.pa.javalife.model.fsm;
-import pt.isec.pa.javalife.model.data.Ecosystem;
+import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
-import pt.isec.pa.javalife.model.data.elements.Flora;
 
 public final class FaunaStateContext {
 	private Fauna data;
 	private IFaunaState state;
-	private Ecosystem ecosystem; 
+	private EcosystemManager ecosystem;
 	
-	public FaunaStateContext(Ecosystem ecosystem)
+	public FaunaStateContext(EcosystemManager ecosystem)
 	{
 		this.ecosystem = ecosystem;
  		state = IFaunaState.createState(FaunaState.MOVING,this, this.ecosystem);

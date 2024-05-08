@@ -1,13 +1,13 @@
 package pt.isec.pa.javalife.model.fsm;
 
-import pt.isec.pa.javalife.model.data.Ecosystem;
+import pt.isec.pa.javalife.model.EcosystemManager;
 
 public abstract class FaunaStateAdapter implements IFaunaState {
 
 	protected FaunaStateContext context; 
-	protected Ecosystem ecosystem;
+	protected EcosystemManager ecosystem;
 
-	public FaunaStateAdapter(FaunaStateContext context,Ecosystem eco)
+	public FaunaStateAdapter(FaunaStateContext context, EcosystemManager eco)
 	{
 		this.context = context;
 		this.ecosystem = eco;

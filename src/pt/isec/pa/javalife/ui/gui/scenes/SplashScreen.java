@@ -1,22 +1,115 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
-class SplashScreen extends Scene
+
+public class SplashScreen extends Scene
 {
-    public SplashScreen()
+    Stage primaryStage;
+    public SplashScreen(Stage primaryStage_)
     {
-        super(null);
-        createView();
+        super(new VBox());
+        createView(primaryStage_);
         registerHandlers();
+        primaryStage = primaryStage_;
     }
 
-    private void createView()
+    private void createView( Stage primaryStage)
     {
-        // Implementação da criação da interface gráfica
+        getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+
+        VBox root = (VBox) this.getRoot();
+        root.getStyleClass().add("primary-background");
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+
+        BorderPane mainPane = new BorderPane();
+        mainPane.getStyleClass().add("secondary-background");
+
+        VBox.setVgrow(mainPane, Priority.ALWAYS);
+
+        // Header
+        ImageView imgHeader = new ImageView(new Image(getClass().getResourceAsStream("/images/logoIsec.png")));
+        Label lbHeader1 = new Label("Instituto Superior de Engenharia de Coimbra");
+        lbHeader1.getStyleClass().add("text-regular");
+        Label lbHeader2 = new Label("Licenciatura em Engenharia Informática");
+        lbHeader2.getStyleClass().add("text-regular");
+        Label lbHeader3 = new Label("Programação Avançada - 2023/2024");
+        lbHeader3.getStyleClass().add("text-regular");
+
+        imgHeader.setFitHeight(80);
+        imgHeader.setFitWidth(100);
+
+        VBox headerBox = new VBox();
+        headerBox.getChildren().addAll(imgHeader, lbHeader1, lbHeader2, lbHeader3);
+        headerBox.setAlignment(Pos.CENTER);
+
+        //Center
+        ImageView imgCenter = new ImageView(new Image(getClass().getResourceAsStream("/images/logoJLExtended.png")));
+        Label lbInfoStart = new Label("Pressione qualquer tecla para começar\n");
+
+        imgCenter.setFitWidth(550);
+        imgCenter.setFitHeight(100);
+
+        lbInfoStart.setStyle("-fx-font-size: 20px;");
+
+        VBox centerBox = new VBox();
+        centerBox.getChildren().addAll(imgCenter,lbInfoStart);
+        centerBox.setSpacing(20);
+        centerBox.setAlignment(Pos.CENTER);
+
+       //Footer
+        Label lbFooter1 = new Label("Desenvolvido por:");
+        lbFooter1.getStyleClass().add("text-regular");
+        Label lbFooter2 = new Label("Chelsea Duarte; Diogo Ribeiro; e Rodrigo Reis");
+        lbFooter2.getStyleClass().add("text-regular");
+        Label lbFooter3 = new Label("2021100010; 2022136604; 2022137090");
+        lbFooter3.getStyleClass().add("text-regular");
+
+        VBox footerBox = new VBox();
+        footerBox.getChildren().addAll(lbFooter1, lbFooter2, lbFooter3);
+        footerBox.setAlignment(Pos.CENTER);
+
+
+        // Configuração da transição para a label "start" fazer blink na tela
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), lbInfoStart);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.0);
+        fadeTransition.setCycleCount(Animation.INDEFINITE);
+        fadeTransition.setAutoReverse(true);
+
+        // Para iniciar a transição
+        fadeTransition.play();
+
+        mainPane.setTop(headerBox);
+        mainPane.setCenter(centerBox);
+        mainPane.setBottom(footerBox);
+        mainPane.setPadding(new Insets(0,0,20,0));
+
+        root.getChildren().add(mainPane);
+
+        primaryStage.setWidth(750);
+        primaryStage.setHeight(525);
+
     }
 
-    private void registerHandlers()
-    {
-        // Implementação do registro de event handlers
+    private void registerHandlers(){
+        setOnKeyPressed(event -> {
+            StartScene startScene = new StartScene(primaryStage);
+            primaryStage.setScene(startScene);
+            primaryStage.centerOnScreen();
+            primaryStage.show();
+        });
     }
 }
