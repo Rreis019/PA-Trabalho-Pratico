@@ -1,6 +1,7 @@
 package pt.isec.pa.javalife.model.data.elements;
 
 import java.io.Serializable;
+import java.lang.ModuleLayer.Controller;
 
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
@@ -12,7 +13,7 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 public final class Fauna extends BaseElement implements IElementWithImage,IElementWithStrength,Serializable
 {
 	static final long serialVersionUID = 1L;
-
+    Controller controller;
 	public Fauna(int id, Element tipo, Area area) {
         super(id, tipo, area);
     }

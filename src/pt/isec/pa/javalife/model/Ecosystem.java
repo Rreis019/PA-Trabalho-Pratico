@@ -10,13 +10,13 @@ import java.io.Serializable;
 import java.util.Set;
 
 
-public class EcosystemManager implements Serializable, IGameEngineEvolve, IEcosystem {
+public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private static final long serialVersionUID = 1L;
     private transient Set<IElement> elements;
     private final PropertyChangeSupport pcs; // Para o observable
 
 
-    public EcosystemManager () { //Facade
+    public Ecosystem() { //Facade
         pcs = new PropertyChangeSupport(this);
     }
 

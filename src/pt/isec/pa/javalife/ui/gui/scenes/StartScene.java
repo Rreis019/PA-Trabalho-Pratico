@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import pt.isec.pa.javalife.model.Ecosystem;
 import javafx.stage.FileChooser;
 import java.io.File;
 
@@ -17,12 +18,14 @@ public class StartScene extends Scene {
 
     Button btnCreate,btnImport;
     Stage primaryStage;
+    Ecosystem model;
 
-    public StartScene(Stage primaryStage_) {
+    public StartScene(Stage primaryStage_,Ecosystem ecosystem) {
         super(new VBox());
         createView(primaryStage_);
         registerHandlers();
         primaryStage =  primaryStage_;
+        model = ecosystem;
     }
 
     private void createView(Stage primaryStage) {
@@ -81,7 +84,7 @@ public class StartScene extends Scene {
         btnCreate.setOnAction(e -> {
             // Aqui você pode adicionar o código para a ação do botão "Criar"
             System.out.println("Botão 'Criar' foi clicado");
-            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage);
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
             // Criar um novo palco (janela)
             primaryStage.setScene(createEcoSystemScene);
             primaryStage.show();
@@ -95,7 +98,7 @@ public class StartScene extends Scene {
             if (selectedFile != null) {
                 System.out.println("Arquivo CSV selecionado: " + selectedFile.getName());
                 // Aqui você pode adicionar o código para ler o arquivo CSV
-                MainScene mainscene = new MainScene(primaryStage);
+                MainScene mainscene = new MainScene(primaryStage,model);
                 // Criar um novo palco (janela)
                 primaryStage.setScene(mainscene);
                 primaryStage.show();

@@ -2,6 +2,7 @@ package pt.isec.pa.javalife.ui.gui.scenes;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.ui.gui.components.ClickableSVG;
 import pt.isec.pa.javalife.ui.gui.components.SideBar;
 import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
@@ -19,6 +20,7 @@ import javafx.scene.shape.Polygon;
 
 public class MainScene extends Scene
 {
+    Ecosystem model;
     Button btninspecionar, btnConfigurar;
     Stage primaryStage;
 
@@ -29,10 +31,11 @@ public class MainScene extends Scene
     Button btnPlay,btnSnapShot,btnRewind;
 
 
-    public MainScene(Stage primaryStage__)
+    public MainScene(Stage primaryStage__,Ecosystem ecosystem)
     {
         super(new VBox());
         primaryStage =  primaryStage__;
+        model = ecosystem;
         createView(primaryStage);
         registerHandlers();
     }

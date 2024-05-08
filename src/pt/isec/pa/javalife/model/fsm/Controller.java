@@ -1,5 +1,6 @@
 package pt.isec.pa.javalife.model;
 
+import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 import java.beans.PropertyChangeListener;
@@ -12,12 +13,12 @@ import java.beans.PropertyChangeListener;
 public class Controller {
 
     private FaunaStateContext fsm; // Contexto da FSM
-    private EcosystemManager ecosystem; // Manager do projeto (ecossistema)
+    private Ecosystem ecosystem; // Manager do projeto (ecossistema)
 
 
-    public Controller() {
-        ecosystem = new EcosystemManager();
-        fsm = new FaunaStateContext(ecosystem);
+    public Controller(Ecosystem ecosystem_) {
+        ecosystem = ecosystem_;
+        fsm = new FaunaStateContext(ecosystem_);
     }
 
     //área para o observable

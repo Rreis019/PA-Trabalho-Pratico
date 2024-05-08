@@ -10,19 +10,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import pt.isec.pa.javalife.model.Ecosystem;
 
 
 public class SplashScreen extends Scene
 {
     Stage primaryStage;
-    public SplashScreen(Stage primaryStage_)
+    private Ecosystem model;
+    public SplashScreen(Stage primaryStage_,Ecosystem ecosystem)
     {
         super(new VBox());
         createView(primaryStage_);
         registerHandlers();
         primaryStage = primaryStage_;
+        model = ecosystem;
     }
 
     private void createView( Stage primaryStage)
@@ -42,11 +46,14 @@ public class SplashScreen extends Scene
         // Header
         ImageView imgHeader = new ImageView(new Image(getClass().getResourceAsStream("/images/logoIsec.png")));
         Label lbHeader1 = new Label("Instituto Superior de Engenharia de Coimbra");
-        lbHeader1.getStyleClass().add("text-regular");
+        lbHeader1.getStyleClass().add("text-bold");
+        lbHeader1.setTextFill(Color.web("#D9D9D9"));
         Label lbHeader2 = new Label("Licenciatura em Engenharia Informática");
-        lbHeader2.getStyleClass().add("text-regular");
+        lbHeader2.getStyleClass().add("text-bold");
+        lbHeader2.setTextFill(Color.web("#D9D9D9"));
         Label lbHeader3 = new Label("Programação Avançada - 2023/2024");
-        lbHeader3.getStyleClass().add("text-regular");
+        lbHeader3.getStyleClass().add("text-bold");
+        lbHeader3.setTextFill(Color.web("#D9D9D9"));
 
         imgHeader.setFitHeight(80);
         imgHeader.setFitWidth(100);
@@ -71,11 +78,14 @@ public class SplashScreen extends Scene
 
        //Footer
         Label lbFooter1 = new Label("Desenvolvido por:");
-        lbFooter1.getStyleClass().add("text-regular");
+        lbFooter1.getStyleClass().add("text-bold");
+        lbFooter1.setTextFill(Color.web("#D9D9D9"));
         Label lbFooter2 = new Label("Chelsea Duarte; Diogo Ribeiro; e Rodrigo Reis");
-        lbFooter2.getStyleClass().add("text-regular");
+        lbFooter2.getStyleClass().add("text-bold");
+        lbFooter2.setTextFill(Color.web("#D9D9D9"));
         Label lbFooter3 = new Label("2021100010; 2022136604; 2022137090");
-        lbFooter3.getStyleClass().add("text-regular");
+        lbFooter3.getStyleClass().add("text-bold");
+        lbFooter3.setTextFill(Color.web("#D9D9D9"));
 
         VBox footerBox = new VBox();
         footerBox.getChildren().addAll(lbFooter1, lbFooter2, lbFooter3);
@@ -99,14 +109,14 @@ public class SplashScreen extends Scene
 
         root.getChildren().add(mainPane);
 
-        primaryStage.setWidth(750);
-        primaryStage.setHeight(525);
+        primaryStage.setWidth(732);
+        primaryStage.setHeight(515);
 
     }
 
     private void registerHandlers(){
         setOnKeyPressed(event -> {
-            StartScene startScene = new StartScene(primaryStage);
+            StartScene startScene = new StartScene(primaryStage,model);
             primaryStage.setScene(startScene);
             primaryStage.centerOnScreen();
             primaryStage.show();

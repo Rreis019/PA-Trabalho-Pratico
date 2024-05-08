@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.ui.gui.components.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,9 +20,11 @@ class CreateEcosystemScene extends Scene
     private Scene scene;
 
     Button criarButton;
-    public CreateEcosystemScene(Stage primaryStage_)
+    Ecosystem model;
+    public CreateEcosystemScene(Stage primaryStage_,Ecosystem ecosystem)
     {
         super(new VBox());
+        model = ecosystem;
         primaryStage =  primaryStage_;
         createView(primaryStage_);
         registerHandlers();
@@ -118,7 +121,7 @@ class CreateEcosystemScene extends Scene
         criarButton.setOnAction(e -> {
             // Aqui você pode adicionar o código para a ação do botão "Criar"
             System.out.println("Botão 'Criar' foi clicado");
-            MainScene mainscene = new MainScene(primaryStage);
+            MainScene mainscene = new MainScene(primaryStage,model);
             // Criar um novo palco (janela)
             primaryStage.setScene(mainscene);
             primaryStage.show();
