@@ -21,6 +21,15 @@ class CreateEcosystemScene extends Scene
 
     Button criarButton;
     Ecosystem model;
+
+    BlueSpinner SAltura;
+    BlueSpinner Scomprimento;
+    BlueSpinner Sfauna;
+    BlueSpinner Sflora;
+    BlueSpinner Sinanimados;
+    BlueSlider Sunidade;
+
+
     public CreateEcosystemScene(Stage primaryStage_,Ecosystem ecosystem)
     {
         super(new VBox());
@@ -73,12 +82,13 @@ class CreateEcosystemScene extends Scene
         TextField Nome = new TextField();
 
         //Componentes
-        BlueSpinner Slargura = new BlueSpinner("Largura",10,100,5);
-        BlueSpinner Scomprimento = new BlueSpinner("Comprimento",10,100,5);
-        BlueSpinner Sfauna = new BlueSpinner("Quantidade Fauna",10,100,5);
-        BlueSpinner Sflora = new BlueSpinner("Quantidade Flora",10,100,5);
-        BlueSpinner Sinanimados = new BlueSpinner("Quantidade Inanimados",10,100,5);
-        BlueSlider Sunidade = new BlueSlider("Unidade de Tempo", 300, 50, 100);
+        SAltura = new BlueSpinner("Altura",200,500,20);
+        Scomprimento = new BlueSpinner("Comprimento",200,500,5);
+        Sfauna = new BlueSpinner("Quantidade Fauna",10,100,5);
+        Sflora = new BlueSpinner("Quantidade Flora",10,100,5);
+        Sinanimados = new BlueSpinner("Quantidade Inanimados",10,100,5);
+        Sunidade = new BlueSlider("Unidade de Tempo", 300, 50, 100);
+
 
         // Botão de criar
         criarButton = new Button("Criar");
@@ -88,7 +98,7 @@ class CreateEcosystemScene extends Scene
 
 
         HBox hbox1 = new HBox();
-        hbox1.getChildren().addAll(Slargura, Scomprimento);
+        hbox1.getChildren().addAll(SAltura, Scomprimento);
         hbox1.setSpacing(10); // Espaçamento entre os componentes
         hbox1.setAlignment(Pos.CENTER);
 
@@ -119,10 +129,13 @@ class CreateEcosystemScene extends Scene
     private void registerHandlers()
     {
         criarButton.setOnAction(e -> {
-            // Aqui você pode adicionar o código para a ação do botão "Criar"
             System.out.println("Botão 'Criar' foi clicado");
+            
+            model.setWidth(Scomprimento.getNumero());
+            model.setHeight(SAltura.getNumero());
             MainScene mainscene = new MainScene(primaryStage,model);
-            // Criar um novo palco (janela)
+
+
             primaryStage.setScene(mainscene);
             primaryStage.show();
         });

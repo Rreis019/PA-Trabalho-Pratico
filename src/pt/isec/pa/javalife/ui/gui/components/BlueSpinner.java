@@ -80,6 +80,11 @@ public class BlueSpinner extends VBox {
         this.getChildren().addAll(lbTitle,spinner);
     }
 
+    public int getNumero()
+    {
+        return numero;
+    }
+
    public void increaseNumero() {
         try {numero = Integer.parseInt(counter.getText());} catch (NumberFormatException e) {}
         numero += incNumber;

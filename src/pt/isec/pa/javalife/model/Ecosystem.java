@@ -14,7 +14,28 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private static final long serialVersionUID = 1L;
     private transient Set<IElement> elements;
     private final PropertyChangeSupport pcs; // Para o observable
+    private int width = 0;
+    private int height = 0;
 
+    public void setWidth(int w_)
+    {
+        width = w_;
+    }
+
+    public void setHeight(int h_)
+    {
+        height = h_;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
 
     public Ecosystem() { //Facade
         pcs = new PropertyChangeSupport(this);
@@ -28,7 +49,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
         //Só para testar o gameEngine
 
-        System.out.printf("[%d] %d\n",currentTime,++count);
+       // System.out.printf("[%d] %d\n",currentTime,++count);
         //if (count >= 20) gameEngine.stop();
 
         //Depois implementar um "estado" para controlar os eventos da simulação, se está parada ou não ( tipo uma função boolean)

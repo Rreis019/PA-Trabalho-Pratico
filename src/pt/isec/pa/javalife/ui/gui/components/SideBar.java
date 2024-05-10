@@ -184,10 +184,10 @@ public class SideBar extends VBox {
         containerImg.setAlignment(Pos.CENTER);
 
         VBox rectImg = new VBox();
-        rectImg.setPrefWidth(100);
-        rectImg.setPrefHeight(100);
-        rectImg.setMaxWidth(100);
-        rectImg.setMaxHeight(100);
+        rectImg.setPrefWidth(50);
+        rectImg.setPrefHeight(50);
+        rectImg.setMaxWidth(50);
+        rectImg.setMaxHeight(50);
         rectImg.getStyleClass().addAll("primary-background");
         containerImg.getChildren().addAll(rectImg);
         inspectTab.getChildren().addAll(containerImg,containerId,containerType,separate,lbPosicao,containerPos,separate2,lbArea,containerArea,separate3,strenghtSlider,btnDelElement);

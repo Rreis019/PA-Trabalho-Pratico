@@ -16,11 +16,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Scale;
 import javafx.scene.shape.Polygon;
-
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 public class MainScene extends Scene
 {
     Ecosystem model;
+    Canvas canvas;
     Button btninspecionar, btnConfigurar;
     Stage primaryStage;
 
@@ -100,24 +102,34 @@ public class MainScene extends Scene
 
         HBox  content = new HBox (); 
         VBox.setVgrow(content, Priority.ALWAYS);
-        AnchorPane ecosystemPanel = new AnchorPane(); 
-        ecosystemPanel.getStyleClass().add("primary-background");
+        HBox.setHgrow(content, Priority.ALWAYS);
+        HBox ecosystemPanel = new HBox();
+        Canvas canvas = new Canvas(model.getWidth() * 2 , model.getHeight() * 2); 
+        ecosystemPanel.getChildren().addAll(canvas);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        System.out.printf("[%d]\n",model.getWidth()); 
+
+        // Desenhar um retângulo vermelho no canvas
+        gc.setFill(javafx.scene.paint.Color.RED);
+
+
+        // Preencher todo o canvas com a cor definida
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         HBox.setHgrow(ecosystemPanel, Priority.ALWAYS);
         VBox.setVgrow(ecosystemPanel, Priority.ALWAYS);
         HBox.setMargin(ecosystemPanel, new Insets(10));
-
- 
+        
         
         SideBar sidebar = new SideBar();
         content.getChildren().addAll(ecosystemPanel,sidebar);
 
         root.getChildren().addAll(topPanel,content);
+
         primaryStage.setWidth(978);
         primaryStage.setHeight(710);
-        primaryStage.setMinWidth(978);
         primaryStage.setMaxWidth(3000);
-        primaryStage.setMinHeight(710);
         primaryStage.setMaxHeight(3000);
 
 
