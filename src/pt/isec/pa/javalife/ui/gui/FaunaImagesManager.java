@@ -15,17 +15,7 @@ public class FaunaImagesManager { //classe Multiton
         Image image = imagesFaunaMap.get(specie);
         if (image == null) {
             String imagePath = "/images/fauna/";
-
-            switch (specie) {
-                case "Lobo":
-                   // image = loadImage(imagePath + "lobo.png"); ---> Exemplo de como fazer
-                    break;
-                case "Leão":
-                    // image = loadImage(imagePath + "leao.png");
-                    break;
-                default:
-                    break;
-            }
+            image = loadImage(imagePath + specie.toLowerCase() + ".png");
             imagesFaunaMap.put(specie, image);
         }
         return image;
@@ -37,11 +27,11 @@ public class FaunaImagesManager { //classe Multiton
            if (is != null){
                return new Image(is);
            } else {
-               System.out.println("Erro para encontrar imagem");
+               System.out.println("Erro para encontrar imagem" + path);
                return null;
            }
        }catch (Exception e){
-           System.out.println("Erro para carregar imagem");
+           System.out.println("Erro para carregar imagem" + path);
            return null;
        }
     }

@@ -45,13 +45,13 @@ public class MainScene extends Scene
     private void createView(Stage primaryStage)
     {
         getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-        VBox root = (VBox) this.getRoot();
 
+        VBox root = (VBox) this.getRoot();
         root.getStyleClass().add("secondary-background");
 
         primaryStage.setTitle("JavaLife - Ecossistema");
 
-
+        //Ícones SVG
         ClickableSVG svgPlay = new ClickableSVG();
         svgPlay.setContent("M20.7227 10.4813L3.53516 0.320197C2.13867 -0.504998 0 0.295783 0 2.3368V22.6542C0 24.4852 1.9873 25.5888 3.53516 24.6708L20.7227 14.5145C22.2559 13.6112 22.2607 11.3846 20.7227 10.4813Z");
         svgPlay.getStyleClass().add("icon");
@@ -84,8 +84,6 @@ public class MainScene extends Scene
         svgSun.getStyleClass().add("icon");
         Tooltip.install(svgSun,new Tooltip("Aplicar Sol\nDurante 10 unidades de tempo a flora ganha força ao dobro da velocidade e a fauna desloca-se a metade da velocidade."));
 
-
-
         Region spacer = new Region();
         spacer.setMinWidth(0);
         spacer.setMaxWidth(0);
@@ -99,12 +97,21 @@ public class MainScene extends Scene
         topPanel.setAlignment(Pos.CENTER_LEFT);
         topPanel.getChildren().addAll(spacer,svgPlay,svgSnapShot,svgRewind,separateBar,svgApplyStrength,svgHerb,svgSun);
 
+        canvas = new Canvas(model.getWidth() * 2 , model.getHeight() * 2);
 
-        HBox  content = new HBox (); 
+        HBox content = new HBox();
         VBox.setVgrow(content, Priority.ALWAYS);
         HBox.setHgrow(content, Priority.ALWAYS);
+
         HBox ecosystemPanel = new HBox();
-        Canvas canvas = new Canvas(model.getWidth() * 2 , model.getHeight() * 2); 
+        ecosystemPanel.getStyleClass().add("primary-background");
+
+        // Para mudar o tamanho do ecosystemPanel de acordo ao tamanho do canvas
+        ecosystemPanel.setMinWidth(canvas.getWidth());
+        ecosystemPanel.setMinHeight(canvas.getHeight());
+        ecosystemPanel.setMaxWidth(canvas.getWidth());
+        ecosystemPanel.setMaxHeight(canvas.getHeight());
+
         ecosystemPanel.getChildren().addAll(canvas);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -113,25 +120,32 @@ public class MainScene extends Scene
         // Desenhar um retângulo vermelho no canvas
         gc.setFill(javafx.scene.paint.Color.RED);
 
-
         // Preencher todo o canvas com a cor definida
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         HBox.setHgrow(ecosystemPanel, Priority.ALWAYS);
         VBox.setVgrow(ecosystemPanel, Priority.ALWAYS);
         HBox.setMargin(ecosystemPanel, new Insets(10));
-        
-        
+
         SideBar sidebar = new SideBar();
+
+        content.setMinWidth(canvas.getWidth());
+        content.setMinHeight(canvas.getHeight());
+        content.setMaxWidth(canvas.getWidth());
+        content.setMaxHeight(canvas.getHeight());
+
         content.getChildren().addAll(ecosystemPanel,sidebar);
+        content.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        root.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        root.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         root.getChildren().addAll(topPanel,content);
 
-        primaryStage.setWidth(978);
-        primaryStage.setHeight(710);
-        primaryStage.setMaxWidth(3000);
-        primaryStage.setMaxHeight(3000);
-
+       primaryStage.setWidth(root.getWidth());
+        primaryStage.setHeight(root.getHeight());
+       /*  primaryStage.setMaxWidth(content.getWidth());
+        primaryStage.setMaxHeight(content.getHeight());*/
 
     }
 

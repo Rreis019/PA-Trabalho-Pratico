@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
-import pt.isec.pa.javalife.ui.gui.scenes.SplashScreen;
+import pt.isec.pa.javalife.ui.gui.scenes.SplashScene;
 
 public class MainJFX extends Application {
     private Ecosystem model;
@@ -32,7 +32,7 @@ public class MainJFX extends Application {
         Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
         primaryStage.getIcons().add(icon);
 
-        SplashScreen splashScreen = new SplashScreen(primaryStage,model);
+        SplashScene splashScreen = new SplashScene(primaryStage,model);
 
         primaryStage.setScene(splashScreen);
         primaryStage.show();

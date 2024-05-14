@@ -93,7 +93,7 @@
     -fx-fill: -primary-hover;
 }
 
-.button:focused {
+.button:focus {
   -fx-background-insets: 0, 0, 1, 2;
 }
 
@@ -106,7 +106,7 @@
     -fx-background-radius: 0 ;
     -fx-text-fill : white;
 }
-.text-field:focused {
+.text-field:focus {
     -fx-background-color: -primary-color;
 }
 
@@ -206,6 +206,13 @@
 .slider .track {
     -fx-background-color: #373054;
 }
+
+.selected-container { //Para a seleção das imagens da fauna
+    -fx-border-color: dodgerblue;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
 
 .text-bold
 {

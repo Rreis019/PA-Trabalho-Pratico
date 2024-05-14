@@ -1,14 +1,12 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.*;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
@@ -17,8 +15,6 @@ import javafx.scene.shape.Rectangle;
 class CreateEcosystemScene extends Scene
 {
     Stage primaryStage;
-    private Scene scene;
-
     Button criarButton;
     Ecosystem model;
 
@@ -29,10 +25,15 @@ class CreateEcosystemScene extends Scene
     BlueSpinner Sinanimados;
     BlueSlider Sunidade;
 
+    ToggleGroup characterGroup;
+    VBox option1Box, option2Box, option3Box, option4Box;
+    RadioButton option1, option2, option3, option4;
+
+
 
     public CreateEcosystemScene(Stage primaryStage_,Ecosystem ecosystem)
     {
-        super(new VBox());
+        super(new HBox());
         model = ecosystem;
         primaryStage =  primaryStage_;
         createView(primaryStage_);
@@ -43,24 +44,24 @@ class CreateEcosystemScene extends Scene
     {
         //Adiciona o ficheiro de classes de css
         getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-        VBox root = (VBox) this.getRoot();
+        HBox root = (HBox) this.getRoot();
         root.getStyleClass().add("primary-background");
-        root.setPadding(new Insets(10));
-        root.setSpacing(8);
+        root.setSpacing(5);
 
         VBox secondaryBackground = new VBox();
         secondaryBackground.getStyleClass().add("secondary-background");
-        secondaryBackground.setAlignment(Pos.CENTER);
+        secondaryBackground.setAlignment(Pos.TOP_CENTER);
         VBox.setVgrow(secondaryBackground, Priority.ALWAYS);
 
         //Titulo da pagina
-        primaryStage.setTitle("JavaLife-CriarEcossistema");
+        primaryStage.setTitle("JavaLife - Criar Ecossistema");
 
-        //Paa colocar tudo com a cor secundária de fundo
+        //Para colocar tudo com a cor secundária de fundo
         VBox content = new VBox();
         content.getStyleClass().add("secondary-background");
         content.setSpacing(10);
-        content.setMaxWidth(305);
+        content.setMaxWidth(350);
+        VBox.setMargin(content, new Insets(5));
 
         //Texto
         Label Texto = new Label("Criação do ecossistema");
@@ -69,8 +70,7 @@ class CreateEcosystemScene extends Scene
         Texto.getStyleClass().add("heading");
         Texto.setStyle("-fx-text-alignment: left;");
 
-
-        //Barra Branco
+        //Barra Branca
         Rectangle separate = new Rectangle();
         separate.setHeight(2);
         separate.setWidth(305);
@@ -89,13 +89,11 @@ class CreateEcosystemScene extends Scene
         Sinanimados = new BlueSpinner("Quantidade Inanimados",10,100,5);
         Sunidade = new BlueSlider("Unidade de Tempo", 300, 50, 100);
 
-
         // Botão de criar
         criarButton = new Button("Criar");
         criarButton.setMinWidth(150);
         criarButton.setMinHeight(45);
         criarButton.getStyleClass().add("btn-primary");
-
 
         HBox hbox1 = new HBox();
         hbox1.getChildren().addAll(SAltura, Scomprimento);
@@ -110,20 +108,96 @@ class CreateEcosystemScene extends Scene
         HBox hbox3 = new HBox();
         hbox3.getChildren().addAll(Sinanimados);
 
-
-
         Label Erro = new Label("Mensagem de Erro");
         Erro.setStyle("-fx-text-fill: white;-fx-font-size : 15px;");
 
         content.getChildren().addAll(Texto, separate, TextoNome,Nome, hbox1, hbox2,hbox3, Sunidade , Erro, criarButton);
         secondaryBackground.getChildren().addAll(content);
-        root.getChildren().addAll(secondaryBackground);
+
+        //--------- Área de seleção de ícone para a fauna
+        Label lbFauna = new Label("Selecione um ícone para a fauna");
+        lbFauna.getStyleClass().add("text-bold");
+
+        characterGroup = new ToggleGroup();
+
+        option1 = new RadioButton();
+        option1.setToggleGroup(characterGroup);
+        Label lbLobo = new Label("Lobo");
+        lbLobo.getStyleClass().add("text-bold");
+        ImageView loboImage = new ImageView(FaunaImagesManager.getImage("lobo"));
+        loboImage.setFitWidth(100);
+        loboImage.setFitHeight(100);
+
+        option2 = new RadioButton();
+        option2.setToggleGroup(characterGroup);
+        Label lbOvelha = new Label("Ovelha");
+        lbOvelha.getStyleClass().add("text-bold");
+        ImageView ovelhaImage = new ImageView(FaunaImagesManager.getImage("ovelha"));
+        ovelhaImage.setFitWidth(100);
+        ovelhaImage.setFitHeight(100);
+
+        option3 = new RadioButton();
+        option3.setToggleGroup(characterGroup);
+        Label lbUrso = new Label("Urso");
+        lbUrso.getStyleClass().add("text-bold");
+        ImageView ursoImage = new ImageView(FaunaImagesManager.getImage("urso"));
+        ursoImage.setFitWidth(100);
+        ursoImage.setFitHeight(100);
+
+        option4 = new RadioButton();
+        option4.setToggleGroup(characterGroup);
+        Label lbCobra = new Label("Cobra");
+        lbCobra.getStyleClass().add("text-bold");
+        ImageView cobraImage = new ImageView(FaunaImagesManager.getImage("cobra"));
+        cobraImage.setFitWidth(100);
+        cobraImage.setFitHeight(90);
+
+       //Para fazer com que os radio buttons desapareçam
+        option1.setStyle("-fx-opacity: 0");
+        option2.setStyle("-fx-opacity: 0");
+        option3.setStyle("-fx-opacity: 0");
+        option4.setStyle("-fx-opacity: 0");
+
+        option1Box = new VBox();
+        option1Box.setAlignment(Pos.CENTER);
+        option1Box.getChildren().addAll(lbLobo,option1,loboImage);
+
+        option2Box = new VBox();
+        option2Box.setAlignment(Pos.CENTER);
+        option2Box.getChildren().addAll(lbOvelha,option2,ovelhaImage);
+
+        HBox charactersBox1 = new HBox();
+        charactersBox1.getChildren().addAll(option1Box, option2Box);
+        charactersBox1.setSpacing(60);
+        VBox.setMargin(charactersBox1, new Insets(0, 0, 0, 30));
+
+        option3Box = new VBox();
+        option3Box.setAlignment(Pos.CENTER);
+        option3Box.getChildren().addAll(lbUrso,option3,ursoImage);
+
+        option4Box = new VBox();
+        option4Box.setAlignment(Pos.CENTER);
+        option4Box.getChildren().addAll(lbCobra,option4,cobraImage);
+
+        HBox charactersBox2 = new HBox();
+        charactersBox2.getChildren().addAll(option3Box, option4Box);
+        charactersBox2.setSpacing(60);
+        VBox.setMargin(charactersBox2, new Insets(0, 0, 0, 30));
+
+        VBox characterBox = new VBox();
+        characterBox.setAlignment(Pos.CENTER);
+        characterBox.getStyleClass().add("secondary-background");
+        characterBox.setSpacing(20);
+
+        characterBox.getChildren().addAll(lbFauna, charactersBox1, charactersBox2, criarButton);
+        HBox.setHgrow(characterBox, Priority.ALWAYS);
+
+        root.setPadding(new Insets(5));
+        root.getChildren().addAll(secondaryBackground, characterBox);
 
         //Tamanho da janela
-        primaryStage.setMinWidth(400);
-        primaryStage.setMaxWidth(400);
-        primaryStage.setMinHeight(600);
-        primaryStage.setMaxHeight(600);
+        primaryStage.setWidth(700);
+        primaryStage.setHeight(500);
     }
 
     private void registerHandlers()
@@ -134,10 +208,40 @@ class CreateEcosystemScene extends Scene
             model.setWidth(Scomprimento.getNumero());
             model.setHeight(SAltura.getNumero());
             MainScene mainscene = new MainScene(primaryStage,model);
-
-
             primaryStage.setScene(mainscene);
             primaryStage.show();
+        });
+
+        option1Box.setOnMouseClicked(e -> option1.setSelected(true));
+
+        option2Box.setOnMouseClicked(e -> option2.setSelected(true));
+
+        option3Box.setOnMouseClicked(e -> option3.setSelected(true));
+
+        option4Box.setOnMouseClicked(e -> option4.setSelected(true));
+
+        characterGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == option1) {
+                option1Box.getStyleClass().add("selected-container");
+                option2Box.getStyleClass().remove("selected-container");
+                option3Box.getStyleClass().remove("selected-container");
+                option4Box.getStyleClass().remove("selected-container");
+            } else if (newValue == option2) {
+                option2Box.getStyleClass().add("selected-container");
+                option1Box.getStyleClass().remove("selected-container");
+                option3Box.getStyleClass().remove("selected-container");
+                option4Box.getStyleClass().remove("selected-container");
+            } else if (newValue == option3) {
+                option3Box.getStyleClass().add("selected-container");
+                option1Box.getStyleClass().remove("selected-container");
+                option2Box.getStyleClass().remove("selected-container");
+                option4Box.getStyleClass().remove("selected-container");
+            } else if (newValue == option4) {
+                option4Box.getStyleClass().add("selected-container");
+                option1Box.getStyleClass().remove("selected-container");
+                option2Box.getStyleClass().remove("selected-container");
+                option3Box.getStyleClass().remove("selected-container");
+            }
         });
     }
 

@@ -10,7 +10,7 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 /**
  * Fauna
  */
-public final class Fauna extends BaseElement implements IElementWithImage,IElementWithStrength,Serializable
+public final class Fauna extends BaseElement implements IElementWithStrength,Serializable
 {
 	static final long serialVersionUID = 1L;
     Controller controller;
@@ -28,13 +28,4 @@ public final class Fauna extends BaseElement implements IElementWithImage,IEleme
 
     }
 
-    @Override
-    public String getImage() {
-        return null;
-    }
-
-    @Override
-    public void setImage(String image) {
-
-    }
 }

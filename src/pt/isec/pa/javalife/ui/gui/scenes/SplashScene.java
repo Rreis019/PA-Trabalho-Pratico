@@ -16,11 +16,11 @@ import javafx.util.Duration;
 import pt.isec.pa.javalife.model.Ecosystem;
 
 
-public class SplashScreen extends Scene
+public class SplashScene extends Scene
 {
     Stage primaryStage;
     private Ecosystem model;
-    public SplashScreen(Stage primaryStage_,Ecosystem ecosystem)
+    public SplashScene(Stage primaryStage_, Ecosystem ecosystem)
     {
         super(new VBox());
         createView(primaryStage_);
