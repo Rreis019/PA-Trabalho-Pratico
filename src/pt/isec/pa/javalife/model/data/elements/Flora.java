@@ -14,8 +14,8 @@ public final class Flora extends BaseElement  implements IElementWithImage,IElem
 {
 	static final long serialVersionUID = 1L;
 
-	 public Flora(int id, Element type, Area area) {
-        super(id, type, area);
+	 public Flora(int positionX,int positionY,double width,double height) {
+        super(Element.FLORA,positionX,positionY,width,height);
     }
 
     @Override

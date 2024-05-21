@@ -75,8 +75,7 @@ public class StartScene extends Scene {
         bottomPanel.getChildren().addAll(btnImport, lbImport);
 
         root.getChildren().addAll(topPanel, bottomPanel);
-
-        primaryStage.setWidth(671);
+        primaryStage.setWidth(732);
         primaryStage.setHeight(515);
     }
 

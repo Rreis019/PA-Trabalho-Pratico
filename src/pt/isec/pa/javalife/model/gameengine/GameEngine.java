@@ -33,8 +33,9 @@ public final class GameEngine implements IGameEngine {
  
  	@Override
  	public boolean start(long interval) {
-		if (state != GameEngineState.READY)
-		return false;
+		if (state != GameEngineState.READY){
+			return false;
+		}
 		controlThread = new GameEngineThread(interval);
 		setState(GameEngineState.RUNNING);
 		controlThread.start();
@@ -42,22 +43,25 @@ public final class GameEngine implements IGameEngine {
  	}
  	@Override
 	public boolean stop() {
-		if (state == GameEngineState.READY)
-		return false;
+		if (state == GameEngineState.READY){
+			return false;
+		}
 		setState(GameEngineState.READY);
 		return true;
 	}
 	@Override
 	public boolean pause() {
-		if (state != GameEngineState.RUNNING)
-		return false;
+		if (state != GameEngineState.RUNNING){
+			return false;
+		}
 		setState(GameEngineState.PAUSED);
 		return true;
 	}
 	@Override
 	public boolean resume() {
-		if (state != GameEngineState.PAUSED)
-		return false;
+		if (state != GameEngineState.PAUSED){
+			return false;
+		}
 		setState(GameEngineState.RUNNING);
 		return true;
 	}

@@ -25,8 +25,9 @@ public class SideBar extends VBox {
 
     public SideBar()
     {
-        setPrefWidth(200);
-        setMaxWidth(200);
+        int width = 200;
+        setPrefWidth(width);
+        setMaxWidth(width);
         VBox.setMargin(this, new Insets(0));
         setAlignment(Pos.TOP_CENTER);
 
@@ -35,7 +36,7 @@ public class SideBar extends VBox {
 
         ecoTab = new VBox();
         ecoTab.setSpacing(10);
-        ecoTab.setMaxWidth(190);
+        ecoTab.setMaxWidth(width - 10);
 
         //VBox.setMargin(ecoTab, new Insets(5));
 
@@ -43,47 +44,42 @@ public class SideBar extends VBox {
         ComboBox<String> faunaDropdown = new ComboBox<>();
         faunaDropdown.getItems().addAll("Fauna", "Flora","Inanimados"); // Add your options here
         faunaDropdown.setPromptText("Fauna");
-        faunaDropdown.setPrefWidth(190);
+        faunaDropdown.setPrefWidth(width - 10);
         faunaDropdown.setFocusTraversable(false);
         faunaDropdown.setStyle("-fx-border-width: 0;");
 
         Button btnAddElement = new Button("Adicionar Elemento");
         btnAddElement.getStyleClass().add("btn-primary");
-        btnAddElement.setPrefWidth(190);
+        btnAddElement.setPrefWidth(width - 10);
         btnAddElement.setMinHeight(40);
-
-
-
-
-
 
         Button btnCreteEco = new Button("Criar Ecossistema");
         btnCreteEco.getStyleClass().add("btn-primary");
-        btnCreteEco.setPrefWidth(190);
+        btnCreteEco.setPrefWidth(width - 10);
         btnCreteEco.setMinHeight(40);
 
         Button btnImport = new Button("Importar");
         btnImport.getStyleClass().add("btn-primary");
-        btnImport.setPrefWidth(190);
+        btnImport.setPrefWidth(width - 10);
         btnImport.setMinHeight(40);
 
         Button btnExport = new Button("Exportar");
         btnExport.getStyleClass().add("btn-primary");
-        btnExport.setPrefWidth(190);
+        btnExport.setPrefWidth(width - 10);
         btnExport.setMinHeight(40);
 
         Rectangle separate = new Rectangle();
-        separate.setWidth(190);
+        separate.setWidth(width - 10);
         separate.setHeight(2);
         separate.setFill(Color.web("#373054"));
 
          Rectangle separate2 = new Rectangle();
-        separate2.setWidth(190);
+        separate2.setWidth(width - 10);
         separate2.setHeight(2);
         separate2.setFill(Color.web("#373054"));
 
         Rectangle separate3 = new Rectangle();
-        separate3.setWidth(190);
+        separate3.setWidth(width - 10);
         separate3.setHeight(2);
         separate3.setFill(Color.web("#373054"));
 
@@ -92,14 +88,14 @@ public class SideBar extends VBox {
 
         inspectTab = new VBox();
         inspectTab.setSpacing(10);
-        inspectTab.setMaxWidth(190);
+        inspectTab.setMaxWidth(width - 10);
         inspectTab.setVisible(false);
 
         BlueSlider strenghtSlider = new BlueSlider("Força", 190, 0, 100);
 
         Button btnDelElement = new Button("Remover Elemento");
         btnDelElement.getStyleClass().add("btn-primary");
-        btnDelElement.setPrefWidth(190);
+        btnDelElement.setPrefWidth(width - 10);
         btnDelElement.setMinHeight(40);
 
         btnDelElement.setTooltip(new Tooltip("Remove a entidade que esta selecionada"));
@@ -190,7 +186,7 @@ public class SideBar extends VBox {
         rectImg.setMaxHeight(50);
         rectImg.getStyleClass().addAll("primary-background");
         containerImg.getChildren().addAll(rectImg);
-        inspectTab.getChildren().addAll(containerImg,containerId,containerType,separate,lbPosicao,containerPos,separate2,lbArea,containerArea,separate3,strenghtSlider,btnDelElement);
+        inspectTab.getChildren().addAll(containerId,containerType,separate,lbPosicao,containerPos,separate2,lbArea,containerArea,separate3,strenghtSlider,btnDelElement);
 
 
         navbar = new SideBarNavbar(new SideBarNavbar.NavbarCallback() {

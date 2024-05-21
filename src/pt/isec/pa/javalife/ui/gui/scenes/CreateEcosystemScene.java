@@ -80,13 +80,12 @@ class CreateEcosystemScene extends Scene
         Label TextoNome = new Label("Nome");
         TextoNome.setStyle("-fx-text-fill: white; -fx-text-alignment: left; -fx-font-size : 15px;");
         TextField Nome = new TextField();
-
         //Componentes
-        SAltura = new BlueSpinner("Altura",200,500,20);
-        Scomprimento = new BlueSpinner("Comprimento",200,500,5);
-        Sfauna = new BlueSpinner("Quantidade Fauna",10,100,5);
-        Sflora = new BlueSpinner("Quantidade Flora",10,100,5);
-        Sinanimados = new BlueSpinner("Quantidade Inanimados",10,100,5);
+        SAltura = new BlueSpinner("Altura",300,200,500,20);
+        Scomprimento = new BlueSpinner("Comprimento",300,200,500,5);
+        Sfauna = new BlueSpinner("Quantidade Fauna",10,0,100,5);
+        Sflora = new BlueSpinner("Quantidade Flora",10,0,100,5);
+        Sinanimados = new BlueSpinner("Quantidade Inanimados",10,0,100,5);
         Sunidade = new BlueSlider("Unidade de Tempo", 300, 50, 100);
 
         // Botão de criar
@@ -207,6 +206,12 @@ class CreateEcosystemScene extends Scene
             
             model.setWidth(Scomprimento.getNumero());
             model.setHeight(SAltura.getNumero());
+
+            for (int i = 0; i < Sfauna.getNumero();i++ ) {
+                model.addFauna();
+            }
+
+
             MainScene mainscene = new MainScene(primaryStage,model);
             primaryStage.setScene(mainscene);
             primaryStage.show();

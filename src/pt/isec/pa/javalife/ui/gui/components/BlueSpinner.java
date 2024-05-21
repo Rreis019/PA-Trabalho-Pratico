@@ -12,14 +12,16 @@ import javafx.scene.shape.SVGPath;
 public class BlueSpinner extends VBox {
     private int numero = 0;
     private int max = 0;
+    private int min = 0;
     private int incNumber = 1;//O quanto incrementa por clickada xd
     private TextField counter = new TextField();
 
-    public BlueSpinner(String title,int numero_,int max_,int incNumber_) {
+    public BlueSpinner(String title,int numero_,int min_,int max_,int incNumber_) {
         setSpacing(6);
 
     	numero = numero_;
         max = max_;
+        min = min_;
     	incNumber = incNumber_;
         counter.getStyleClass().add("spinner-textfield");
         counter.setMaxWidth(77);
@@ -88,9 +90,8 @@ public class BlueSpinner extends VBox {
    public void increaseNumero() {
         try {numero = Integer.parseInt(counter.getText());} catch (NumberFormatException e) {}
         numero += incNumber;
-        if (numero > max) {
-            numero = max;
-        }
+        if (numero > max) {numero = max;}
+        if(numero < min) {numero = min;}
         counter.setText(Integer.toString(numero));
     }
 
@@ -99,7 +100,9 @@ public class BlueSpinner extends VBox {
 
         if (numero > 0) {
             numero-=incNumber;
+            if(numero < min) {numero = min;}
             counter.setText(Integer.toString(numero));
         }
+
     }
 }

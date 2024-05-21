@@ -3,11 +3,16 @@ package pt.isec.pa.javalife.model;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngineEvolve;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngine;
 import  pt.isec.pa.javalife.model.data.elements.IElement;
-
+import pt.isec.pa.javalife.model.data.Area;
+import  pt.isec.pa.javalife.model.data.elements.Fauna;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
+
+import javax.swing.text.Element;
 
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
@@ -39,6 +44,16 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
     public Ecosystem() { //Facade
         pcs = new PropertyChangeSupport(this);
+        elements = new HashSet<>();
+    }
+
+
+
+    public void addFauna()
+    {
+        Random random = new Random();
+        Fauna fauna = new Fauna(random.nextInt(getWidth()),random.nextInt(getHeight()),32,32);
+        elements.add(fauna);
     }
 
 

@@ -14,20 +14,38 @@ public abstract sealed class BaseElement
     permits Inanimate, Flora, Fauna {
 
     static final long serialVersionUID = 1L;
+    private static int lastId = 0;
 
     protected final int id;
-    protected final Element type;
+
+    protected Element type;
+
     protected transient Area area;
 
-    public BaseElement(int id, Element type, Area area) {
-        this.id = id;
+    public BaseElement(Element type, int positionX,int positionY,double width,double height) {
+        //this.id = id;
+        lastId = lastId + 1;
+        this.id = lastId;
         this.type = type;
-        this.area = area;
+        //this.area = area;
+        setArea(positionX,positionY,width,height);
     }
 
     @Override
     public int getId() {
         return id;
+    }
+
+    public void setPosition(int positionX,int positionY)
+    {
+        double width = area.right() - area.left();
+        double height = area.bottom() - area.top();
+        setArea(positionX, positionY, width, height);
+    }
+
+    public void setArea(int positionX,int positionY,double width,double height)
+    {
+        this.area = new Area(positionY, positionX, positionY + height, positionX + width); 
     }
 
 
@@ -39,6 +57,7 @@ public abstract sealed class BaseElement
     public Area getArea() {
         return area;
     }
+
 
     public void setArea(Area area) {
         this.area = area;

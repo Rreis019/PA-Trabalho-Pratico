@@ -14,9 +14,9 @@ public final class Fauna extends BaseElement implements IElementWithStrength,Ser
 {
 	static final long serialVersionUID = 1L;
     Controller controller;
-	public Fauna(int id, Element tipo, Area area) {
-        super(id, tipo, area);
-    }
+	public Fauna(int positionX,int positionY,double width,double height) {
+        super(Element.FAUNA, positionX,positionY,width,height);
+    }   
 
     @Override
     public double getStrength(){

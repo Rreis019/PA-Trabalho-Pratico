@@ -6,6 +6,7 @@ import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.ui.gui.components.ClickableSVG;
 import pt.isec.pa.javalife.ui.gui.components.SideBar;
 import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -100,52 +101,83 @@ public class MainScene extends Scene
         canvas = new Canvas(model.getWidth() * 2 , model.getHeight() * 2);
 
         HBox content = new HBox();
-        VBox.setVgrow(content, Priority.ALWAYS);
-        HBox.setHgrow(content, Priority.ALWAYS);
-
         HBox ecosystemPanel = new HBox();
-        ecosystemPanel.getStyleClass().add("primary-background");
-
-        // Para mudar o tamanho do ecosystemPanel de acordo ao tamanho do canvas
-        ecosystemPanel.setMinWidth(canvas.getWidth());
-        ecosystemPanel.setMinHeight(canvas.getHeight());
-        ecosystemPanel.setMaxWidth(canvas.getWidth());
-        ecosystemPanel.setMaxHeight(canvas.getHeight());
-
+        //ecosystemPanel.getStyleClass().add("primary-background");
         ecosystemPanel.getChildren().addAll(canvas);
+
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        System.out.printf("[%d]\n",model.getWidth()); 
-
         // Desenhar um retângulo vermelho no canvas
         gc.setFill(javafx.scene.paint.Color.RED);
 
         // Preencher todo o canvas com a cor definida
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.fillRect(0, 0, 50,50);
 
         HBox.setHgrow(ecosystemPanel, Priority.ALWAYS);
         VBox.setVgrow(ecosystemPanel, Priority.ALWAYS);
         HBox.setMargin(ecosystemPanel, new Insets(10));
 
+
         SideBar sidebar = new SideBar();
 
-        content.setMinWidth(canvas.getWidth());
-        content.setMinHeight(canvas.getHeight());
-        content.setMaxWidth(canvas.getWidth());
-        content.setMaxHeight(canvas.getHeight());
-
         content.getChildren().addAll(ecosystemPanel,sidebar);
-        content.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        root.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        root.setPrefHeight(Region.USE_COMPUTED_SIZE);
+       
+
+        //root.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        //root.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         root.getChildren().addAll(topPanel,content);
 
-       primaryStage.setWidth(root.getWidth());
-        primaryStage.setHeight(root.getHeight());
-       /*  primaryStage.setMaxWidth(content.getWidth());
-        primaryStage.setMaxHeight(content.getHeight());*/
+
+        HBox.setHgrow(sidebar, Priority.ALWAYS);
+       
+        System.out.printf("ecosystem width : %d , height : %d\n",model.getWidth(),model.getHeight()); 
+
+        //sidebar margin , sidebar width +  content padding + ecosystem width
+        int newWidth = 18 +  (int)200 + 10*2 + model.getWidth() * 2;
+        //10 + windowsBar + IconsBar + padding + ecosystem height
+        int newHeight = 10 + 30 + 35 + 10 *2 + model.getHeight()*2;
+        primaryStage.setWidth(newWidth);
+        primaryStage.setHeight(newHeight);
+        System.out.printf("newWidth %d %d\n",(int)newWidth,(int)newHeight);
+
+
+        new AnimationTimer() {
+                private static final long ONE_SECOND_NANO = 1_000_000_000L;
+                private static final long FRAME_DURATION = ONE_SECOND_NANO / 60; // 60 fps
+                private long lastTick = 0;
+
+                @Override
+                public void handle(long now) {
+                    if (lastTick == 0) {
+                        lastTick = now;
+                        onUpdate(gc);
+                        return;
+                    }
+
+                    if (now - lastTick > FRAME_DURATION) {
+                        lastTick = now;
+                        onUpdate(gc);
+                    }
+                }
+
+        }.start();
+    }
+
+
+    double teste = 0;
+
+    private void onUpdate(GraphicsContext gc)
+    {
+        //clean background
+        gc.setFill(Color.web("#373054"));
+        gc.fillRect(0, 0,model.getWidth()*2,model.getHeight()*2);
+
+
+           gc.setFill(Color.RED);
+        gc.fillRect(0, (int)teste, 50,50);
+        teste += 0.1;
+
 
     }
 
