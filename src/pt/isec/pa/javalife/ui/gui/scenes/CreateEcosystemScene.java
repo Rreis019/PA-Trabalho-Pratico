@@ -4,6 +4,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.data.elements.Fauna;
+import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.*;
 import javafx.scene.Scene;
@@ -16,7 +18,9 @@ class CreateEcosystemScene extends Scene
 {
     Stage primaryStage;
     Button criarButton;
+
     Ecosystem model;
+    GameEngine gameEngine;
 
     BlueSpinner SAltura;
     BlueSpinner Scomprimento;
@@ -31,13 +35,14 @@ class CreateEcosystemScene extends Scene
 
 
 
-    public CreateEcosystemScene(Stage primaryStage_,Ecosystem ecosystem)
+    public CreateEcosystemScene(Stage primaryStage_,Ecosystem ecosystem,GameEngine gameEngine_)
     {
         super(new HBox());
         model = ecosystem;
         primaryStage =  primaryStage_;
         createView(primaryStage_);
         registerHandlers();
+        gameEngine = gameEngine_;
     }
 
     private void createView(Stage primaryStage)
@@ -86,7 +91,7 @@ class CreateEcosystemScene extends Scene
         Sfauna = new BlueSpinner("Quantidade Fauna",10,0,100,5);
         Sflora = new BlueSpinner("Quantidade Flora",10,0,100,5);
         Sinanimados = new BlueSpinner("Quantidade Inanimados",10,0,100,5);
-        Sunidade = new BlueSlider("Unidade de Tempo", 300, 50, 100);
+        Sunidade = new BlueSlider("Ticks per segundo", 300, 60, 1000);
 
         // Botão de criar
         criarButton = new Button("Criar");
@@ -201,6 +206,8 @@ class CreateEcosystemScene extends Scene
 
     private void registerHandlers()
     {
+        Fauna.setSpecie("lobo");
+
         criarButton.setOnAction(e -> {
             System.out.println("Botão 'Criar' foi clicado");
             
@@ -211,8 +218,8 @@ class CreateEcosystemScene extends Scene
                 model.addFauna();
             }
 
-
-            MainScene mainscene = new MainScene(primaryStage,model);
+            gameEngine.setInterval(1000 / (int)Sunidade.getValue());
+            MainScene mainscene = new MainScene(primaryStage,model,gameEngine);
             primaryStage.setScene(mainscene);
             primaryStage.show();
         });
@@ -231,21 +238,25 @@ class CreateEcosystemScene extends Scene
                 option2Box.getStyleClass().remove("selected-container");
                 option3Box.getStyleClass().remove("selected-container");
                 option4Box.getStyleClass().remove("selected-container");
+                Fauna.setSpecie("lobo");
             } else if (newValue == option2) {
                 option2Box.getStyleClass().add("selected-container");
                 option1Box.getStyleClass().remove("selected-container");
                 option3Box.getStyleClass().remove("selected-container");
                 option4Box.getStyleClass().remove("selected-container");
+                Fauna.setSpecie("ovelha");
             } else if (newValue == option3) {
                 option3Box.getStyleClass().add("selected-container");
                 option1Box.getStyleClass().remove("selected-container");
                 option2Box.getStyleClass().remove("selected-container");
                 option4Box.getStyleClass().remove("selected-container");
+                Fauna.setSpecie("urso");
             } else if (newValue == option4) {
                 option4Box.getStyleClass().add("selected-container");
                 option1Box.getStyleClass().remove("selected-container");
                 option2Box.getStyleClass().remove("selected-container");
                 option3Box.getStyleClass().remove("selected-container");
+                Fauna.setSpecie("cobra");
             }
         });
     }

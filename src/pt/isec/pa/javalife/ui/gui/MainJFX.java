@@ -32,7 +32,7 @@ public class MainJFX extends Application {
         Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
         primaryStage.getIcons().add(icon);
 
-        SplashScene splashScreen = new SplashScene(primaryStage,model);
+        SplashScene splashScreen = new SplashScene(primaryStage,model,gameEngine);
 
         primaryStage.setScene(splashScreen);
         primaryStage.show();

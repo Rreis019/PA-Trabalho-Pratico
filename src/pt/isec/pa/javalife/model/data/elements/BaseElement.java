@@ -5,8 +5,7 @@ import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.data.elements.Inanimate;
 import pt.isec.pa.javalife.model.data.elements.Flora;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
-
-
+import javafx.scene.canvas.GraphicsContext;
 import pt.isec.pa.javalife.model.data.Area;
 
 public abstract sealed class BaseElement
@@ -36,18 +35,20 @@ public abstract sealed class BaseElement
         return id;
     }
 
-    public void setPosition(int positionX,int positionY)
-    {
+    public void setPosition(double positionX,double positionY){
         double width = area.right() - area.left();
         double height = area.bottom() - area.top();
         setArea(positionX, positionY, width, height);
     }
 
-    public void setArea(int positionX,int positionY,double width,double height)
+    public void move(int positionX,int positionY)
     {
-        this.area = new Area(positionY, positionX, positionY + height, positionX + width); 
+        this.setPosition(positionX +  area.left(), positionY + area.top());
     }
 
+    public void setArea(double positionX,double positionY,double width,double height){
+        this.area = new Area(positionY, positionX, positionY + height, positionX + width); 
+    }
 
     public Element getType() {
         return type;
@@ -58,8 +59,9 @@ public abstract sealed class BaseElement
         return area;
     }
 
-
     public void setArea(Area area) {
         this.area = area;
     }
+
+
 }

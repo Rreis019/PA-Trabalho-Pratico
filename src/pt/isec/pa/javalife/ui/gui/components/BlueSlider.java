@@ -44,4 +44,9 @@ public class BlueSlider extends VBox {
     public Label getValueLabel() {
         return valueLabel;
     }
+
+    public double getValue()
+    {
+        return slider.getValue();
+    }
 }

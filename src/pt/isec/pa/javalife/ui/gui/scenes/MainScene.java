@@ -3,9 +3,18 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.data.elements.BaseElement;
+import pt.isec.pa.javalife.model.data.elements.Element;
+import pt.isec.pa.javalife.model.data.elements.Fauna;
+import pt.isec.pa.javalife.model.data.elements.IElement;
+import pt.isec.pa.javalife.model.gameengine.GameEngine;
+import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.ClickableSVG;
 import pt.isec.pa.javalife.ui.gui.components.SideBar;
 import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
+
+import java.util.Set;
+
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,6 +32,8 @@ import javafx.scene.canvas.GraphicsContext;
 public class MainScene extends Scene
 {
     Ecosystem model;
+    GameEngine gameEngine;
+    
     Canvas canvas;
     Button btninspecionar, btnConfigurar;
     Stage primaryStage;
@@ -34,13 +45,14 @@ public class MainScene extends Scene
     Button btnPlay,btnSnapShot,btnRewind;
 
 
-    public MainScene(Stage primaryStage__,Ecosystem ecosystem)
+    public MainScene(Stage primaryStage__,Ecosystem ecosystem,GameEngine gameEngine_)
     {
         super(new VBox());
         primaryStage =  primaryStage__;
         model = ecosystem;
         createView(primaryStage);
         registerHandlers();
+        gameEngine = gameEngine_;
     }
 
     private void createView(Stage primaryStage)
@@ -131,7 +143,7 @@ public class MainScene extends Scene
 
         HBox.setHgrow(sidebar, Priority.ALWAYS);
        
-        System.out.printf("ecosystem width : %d , height : %d\n",model.getWidth(),model.getHeight()); 
+        //System.out.printf("ecosystem width : %d , height : %d\n",model.getWidth(),model.getHeight()); 
 
         //sidebar margin , sidebar width +  content padding + ecosystem width
         int newWidth = 18 +  (int)200 + 10*2 + model.getWidth() * 2;
@@ -139,7 +151,7 @@ public class MainScene extends Scene
         int newHeight = 10 + 30 + 35 + 10 *2 + model.getHeight()*2;
         primaryStage.setWidth(newWidth);
         primaryStage.setHeight(newHeight);
-        System.out.printf("newWidth %d %d\n",(int)newWidth,(int)newHeight);
+        //System.out.printf("newWidth %d %d\n",(int)newWidth,(int)newHeight);
 
 
         new AnimationTimer() {
@@ -151,34 +163,39 @@ public class MainScene extends Scene
                 public void handle(long now) {
                     if (lastTick == 0) {
                         lastTick = now;
-                        onUpdate(gc);
+                        onRender(gc);
                         return;
                     }
 
                     if (now - lastTick > FRAME_DURATION) {
                         lastTick = now;
-                        onUpdate(gc);
+                        onRender(gc);
                     }
                 }
 
         }.start();
     }
 
-
-    double teste = 0;
-
-    private void onUpdate(GraphicsContext gc)
+    private void onRender(GraphicsContext gc)
     {
         //clean background
         gc.setFill(Color.web("#373054"));
         gc.fillRect(0, 0,model.getWidth()*2,model.getHeight()*2);
 
 
-           gc.setFill(Color.RED);
-        gc.fillRect(0, (int)teste, 50,50);
-        teste += 0.1;
-
-
+        Set<BaseElement> elements = model.getElements();
+        for (BaseElement element : elements) {
+           if(element.getType() == Element.FAUNA){
+                //System.out.printf("Fauna %f %f", element.getArea().left(),element.getArea().top());
+                Fauna f = (Fauna)(element);
+                gc.drawImage(f.getImage(), 
+                    f.getArea().top(),
+                    f.getArea().left(),
+                    f.getArea().right() - f.getArea().left(),
+                    f.getArea().bottom() - f.getArea().top()
+                );
+           }
+        }
     }
 
     private void registerHandlers()

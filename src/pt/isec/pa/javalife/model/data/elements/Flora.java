@@ -3,6 +3,7 @@ package pt.isec.pa.javalife.model.data.elements;
 
 import java.io.Serializable;
 
+import javafx.scene.image.Image;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
@@ -18,14 +19,15 @@ public final class Flora extends BaseElement  implements IElementWithImage,IElem
         super(Element.FLORA,positionX,positionY,width,height);
     }
 
+
     @Override
-    public String getImage() {
+    public Image getImage() {
         // TODO : Retorna o caminho da imagem
         return null;
     }
 
     @Override
-    public void setImage(String image) {
+    public void setImage(Image image) {
 
     }
 
