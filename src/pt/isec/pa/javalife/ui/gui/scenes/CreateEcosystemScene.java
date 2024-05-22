@@ -91,7 +91,7 @@ class CreateEcosystemScene extends Scene
         Sfauna = new BlueSpinner("Quantidade Fauna",10,0,100,5);
         Sflora = new BlueSpinner("Quantidade Flora",10,0,100,5);
         Sinanimados = new BlueSpinner("Quantidade Inanimados",10,0,100,5);
-        Sunidade = new BlueSlider("Ticks per segundo", 300, 60, 1000);
+        Sunidade = new BlueSlider("Unidade de tempo", 300,10,100, 1000);
 
         // Botão de criar
         criarButton = new Button("Criar");
@@ -211,14 +211,12 @@ class CreateEcosystemScene extends Scene
         criarButton.setOnAction(e -> {
             System.out.println("Botão 'Criar' foi clicado");
             
-            model.setWidth(Scomprimento.getNumero());
-            model.setHeight(SAltura.getNumero());
+            model.setNumUnitsX(Scomprimento.getNumero());
+            model.setNumUnitsY(SAltura.getNumero());
 
-            for (int i = 0; i < Sfauna.getNumero();i++ ) {
-                model.addFauna();
-            }
+            for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addFauna();}
 
-            gameEngine.setInterval(1000 / (int)Sunidade.getValue());
+            gameEngine.setInterval((int)Sunidade.getValue());
             MainScene mainscene = new MainScene(primaryStage,model,gameEngine);
             primaryStage.setScene(mainscene);
             primaryStage.show();

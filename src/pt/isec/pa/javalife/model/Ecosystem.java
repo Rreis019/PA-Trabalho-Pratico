@@ -4,11 +4,13 @@ import  pt.isec.pa.javalife.model.gameengine.IGameEngineEvolve;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngine;
 import  pt.isec.pa.javalife.model.data.elements.IElement;
+import pt.isec.pa.javalife.model.fsm.FaunaDirection;
 import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 import pt.isec.pa.javalife.model.fsm.IFaunaState;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
+import pt.isec.pa.javalife.model.data.elements.Element;
 import  pt.isec.pa.javalife.model.data.elements.Fauna;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -20,13 +22,16 @@ import java.util.Random;
 import java.util.Set;
 
 
+
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private static final long serialVersionUID = 1L;
     private transient Set<BaseElement> elements;
     private Map<Fauna, FaunaStateContext> faunaStates;
     private final PropertyChangeSupport pcs; // Para o observable
-    private int width = 0;
-    private int height = 0;
+
+    private int unitScale = 2;
+    private int numUnitsX = 0;
+    private int numUnitsY = 0;
 
 
 
@@ -36,33 +41,15 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         faunaStates = new HashMap<>();
     }
 
-
-    public void setWidth(int w_)
-    {
-        width = w_;
-    }
+    public int getWidth(){return unitScale*numUnitsX;}
+    public int getHeight(){return unitScale*numUnitsY;}
+    public void setNumUnitsX(int numUnits_){numUnitsX = numUnits_;}
+    public void setNumUnitsY(int numUnits_){numUnitsY = numUnits_;}
 
     public Set<BaseElement> getElements()
     {
         return elements;
     }
-
-    public void setHeight(int h_)
-    {
-        height = h_;
-    }
-
-    public int getWidth()
-    {
-        return width;
-    }
-
-    public int getHeight()
-    {
-        return height;
-    }
-
-
 
 
     public void addFauna()
@@ -77,10 +64,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     int count = 0;
     @Override
     public void evolve(IGameEngine gameEngine, long currentTime) {
-        for (FaunaStateContext fsm: faunaStates.values()) {
-            fsm.execute();
-        }
-
+        for (FaunaStateContext fsm: faunaStates.values()) {fsm.execute();}
+        handleColisions();
         //Só para testar o gameEngine
 
        // System.out.printf("[%d] %d\n",currentTime,++count);
@@ -88,6 +73,41 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
         //Depois implementar um "estado" para controlar os eventos da simulação, se está parada ou não ( tipo uma função boolean)
         //Isso vai permitir parar e continuar a simulação (através do gameEngine)
+
+    }
+
+    private void handleIfOutBounds(Fauna element_){
+        Area area = element_.getArea();
+
+        if(area.left() < 0){
+            element_.setPositionX(0);
+            element_.setDirection(FaunaDirection.RIGHT);
+        }
+        else if(area.right() > getWidth())
+        {
+            element_.setPositionX(getWidth() - (area.right() - area.left())   );
+            element_.setDirection(FaunaDirection.LEFT);
+        }
+
+        if(area.top() < 0)
+        {
+            element_.setPositionY(0);
+            element_.setDirection(FaunaDirection.DOWN);
+        }
+        else if(area.bottom() > getHeight()) {
+            element_.setPositionY(getHeight() - (area.bottom() - area.top()));
+            element_.setDirection(FaunaDirection.UP);
+        }
+    } 
+
+    private void handleColisions()
+    {
+        for (BaseElement element_ : elements) {
+            if(element_.getType() == Element.FAUNA){handleIfOutBounds((Fauna)element_);}
+
+
+        }
+
 
     }
 

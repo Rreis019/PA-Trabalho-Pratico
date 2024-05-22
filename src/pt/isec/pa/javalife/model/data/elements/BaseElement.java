@@ -30,38 +30,32 @@ public abstract sealed class BaseElement
         setArea(positionX,positionY,width,height);
     }
 
-    @Override
-    public int getId() {
-        return id;
+    public void move(int positionX,int positionY){
+        this.setPosition(positionX +  area.left(), positionY + area.top());
     }
 
+    @Override
+    public int getId() {return id;}
+    public Element getType() {return type;}
+
+
+    public void setPositionX(double position){setPosition(position, area.top());}
+    public void setPositionY(double position){setPosition(area.left(), position);}
     public void setPosition(double positionX,double positionY){
         double width = area.right() - area.left();
         double height = area.bottom() - area.top();
         setArea(positionX, positionY, width, height);
     }
 
-    public void move(int positionX,int positionY)
-    {
-        this.setPosition(positionX +  area.left(), positionY + area.top());
-    }
+    @Override
+    public Area getArea() {return area;}
+    public void setArea(Area area) {this.area = area;}
 
+    
     public void setArea(double positionX,double positionY,double width,double height){
         this.area = new Area(positionY, positionX, positionY + height, positionX + width); 
     }
 
-    public Element getType() {
-        return type;
-    }
-
-    @Override
-    public Area getArea() {
-        return area;
-    }
-
-    public void setArea(Area area) {
-        this.area = area;
-    }
 
 
 }

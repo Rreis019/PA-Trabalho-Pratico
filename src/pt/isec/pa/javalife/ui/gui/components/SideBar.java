@@ -91,7 +91,7 @@ public class SideBar extends VBox {
         inspectTab.setMaxWidth(width - 10);
         inspectTab.setVisible(false);
 
-        BlueSlider strenghtSlider = new BlueSlider("Força", 190, 0, 100);
+        BlueSlider strenghtSlider = new BlueSlider("Força", 190,0, 0, 100);
 
         Button btnDelElement = new Button("Remover Elemento");
         btnDelElement.getStyleClass().add("btn-primary");

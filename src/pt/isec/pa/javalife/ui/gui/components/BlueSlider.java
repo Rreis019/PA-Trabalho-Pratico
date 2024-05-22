@@ -12,8 +12,8 @@ public class BlueSlider extends VBox {
     private Slider slider;
     private Label valueLabel;
 
-    public BlueSlider(String title, double width, double value,double max) {
-        this.slider = new Slider(0, max, value);
+    public BlueSlider(String title, double width, double min, double value,double max) {
+        this.slider = new Slider(min, max, value);
         this.slider.setPrefWidth(width);
         this.slider.setMaxWidth(width);
 

@@ -8,10 +8,13 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
+import pt.isec.pa.javalife.model.gameengine.GameEngineState;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.ClickableSVG;
 import pt.isec.pa.javalife.ui.gui.components.SideBar;
 import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
+
+import javafx.scene.input.MouseEvent;
 
 import java.util.Set;
 
@@ -42,9 +45,11 @@ public class MainScene extends Scene
     VBox mainpanel;//sidebar;
 
 
-    Button btnPlay,btnSnapShot,btnRewind;
+    ClickableSVG svgPlay;
 
 
+    private final String svgStopContent = "M7.03125 21.875H2.34375C1.0498 21.875 0 20.8252 0 19.5312V2.34375C0 1.0498 1.0498 0 2.34375 0H7.03125C8.3252 0 9.375 1.0498 9.375 2.34375V19.5312C9.375 20.8252 8.3252 21.875 7.03125 21.875ZM21.875 19.5312V2.34375C21.875 1.0498 20.8252 0 19.5312 0H14.8438C13.5498 0 12.5 1.0498 12.5 2.34375V19.5312C12.5 20.8252 13.5498 21.875 14.8438 21.875H19.5312C20.8252 21.875 21.875 20.8252 21.875 19.5312Z";
+    private final String svgPlayContent = "M20.7227 10.4813L3.53516 0.320197C2.13867 -0.504998 0 0.295783 0 2.3368V22.6542C0 24.4852 1.9873 25.5888 3.53516 24.6708L20.7227 14.5145C22.2559 13.6112 22.2607 11.3846 20.7227 10.4813Z";
     public MainScene(Stage primaryStage__,Ecosystem ecosystem,GameEngine gameEngine_)
     {
         super(new VBox());
@@ -65,8 +70,8 @@ public class MainScene extends Scene
         primaryStage.setTitle("JavaLife - Ecossistema");
 
         //Ícones SVG
-        ClickableSVG svgPlay = new ClickableSVG();
-        svgPlay.setContent("M20.7227 10.4813L3.53516 0.320197C2.13867 -0.504998 0 0.295783 0 2.3368V22.6542C0 24.4852 1.9873 25.5888 3.53516 24.6708L20.7227 14.5145C22.2559 13.6112 22.2607 11.3846 20.7227 10.4813Z");
+        svgPlay = new ClickableSVG();
+        svgPlay.setContent(svgStopContent);
         svgPlay.getStyleClass().add("icon");
         Tooltip.install(svgPlay,new Tooltip("Pausar/Continuar simulação"));
 
@@ -110,7 +115,7 @@ public class MainScene extends Scene
         topPanel.setAlignment(Pos.CENTER_LEFT);
         topPanel.getChildren().addAll(spacer,svgPlay,svgSnapShot,svgRewind,separateBar,svgApplyStrength,svgHerb,svgSun);
 
-        canvas = new Canvas(model.getWidth() * 2 , model.getHeight() * 2);
+        canvas = new Canvas(model.getWidth(), model.getHeight());
 
         HBox content = new HBox();
         HBox ecosystemPanel = new HBox();
@@ -146,9 +151,9 @@ public class MainScene extends Scene
         //System.out.printf("ecosystem width : %d , height : %d\n",model.getWidth(),model.getHeight()); 
 
         //sidebar margin , sidebar width +  content padding + ecosystem width
-        int newWidth = 18 +  (int)200 + 10*2 + model.getWidth() * 2;
+        int newWidth = 18 +  (int)200 + 10*2 + model.getWidth();
         //10 + windowsBar + IconsBar + padding + ecosystem height
-        int newHeight = 10 + 30 + 35 + 10 *2 + model.getHeight()*2;
+        int newHeight = 10 + 30 + 35 + 10 *2 + model.getHeight();
         primaryStage.setWidth(newWidth);
         primaryStage.setHeight(newHeight);
         //System.out.printf("newWidth %d %d\n",(int)newWidth,(int)newHeight);
@@ -180,8 +185,7 @@ public class MainScene extends Scene
     {
         //clean background
         gc.setFill(Color.web("#373054"));
-        gc.fillRect(0, 0,model.getWidth()*2,model.getHeight()*2);
-
+        gc.fillRect(0, 0,model.getWidth(),model.getHeight());
 
         Set<BaseElement> elements = model.getElements();
         for (BaseElement element : elements) {
@@ -189,8 +193,8 @@ public class MainScene extends Scene
                 //System.out.printf("Fauna %f %f", element.getArea().left(),element.getArea().top());
                 Fauna f = (Fauna)(element);
                 gc.drawImage(f.getImage(), 
-                    f.getArea().top(),
                     f.getArea().left(),
+                    f.getArea().top(),
                     f.getArea().right() - f.getArea().left(),
                     f.getArea().bottom() - f.getArea().top()
                 );
@@ -200,6 +204,15 @@ public class MainScene extends Scene
 
     private void registerHandlers()
     {
-       
+        svgPlay.setOnMouseClicked((MouseEvent event) -> {
+            if(gameEngine.getCurrentState() == GameEngineState.RUNNING){
+                gameEngine.pause();
+                svgPlay.setContent(svgPlayContent);
+            }
+            else if(gameEngine.getCurrentState() == GameEngineState.PAUSED){
+                gameEngine.resume();
+                svgPlay.setContent(svgStopContent);
+            }
+        });       
     }
 }
