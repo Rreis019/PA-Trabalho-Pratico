@@ -3,9 +3,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
+import pt.isec.pa.javalife.model.data.elements.Flora;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
@@ -13,7 +15,7 @@ import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.ClickableSVG;
 import pt.isec.pa.javalife.ui.gui.components.SideBar;
 import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
-
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 import java.util.Set;
@@ -32,6 +34,10 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 public class MainScene extends Scene
 {
     Ecosystem model;
@@ -43,9 +49,12 @@ public class MainScene extends Scene
 
     HBox topPanel; 
     VBox mainpanel;//sidebar;
+    SideBar sidebar;
 
 
     ClickableSVG svgPlay;
+    int currentElementIDSelected = -1; 
+    GraphicsContext gc;
 
 
     private final String svgStopContent = "M7.03125 21.875H2.34375C1.0498 21.875 0 20.8252 0 19.5312V2.34375C0 1.0498 1.0498 0 2.34375 0H7.03125C8.3252 0 9.375 1.0498 9.375 2.34375V19.5312C9.375 20.8252 8.3252 21.875 7.03125 21.875ZM21.875 19.5312V2.34375C21.875 1.0498 20.8252 0 19.5312 0H14.8438C13.5498 0 12.5 1.0498 12.5 2.34375V19.5312C12.5 20.8252 13.5498 21.875 14.8438 21.875H19.5312C20.8252 21.875 21.875 20.8252 21.875 19.5312Z";
@@ -116,35 +125,23 @@ public class MainScene extends Scene
         topPanel.getChildren().addAll(spacer,svgPlay,svgSnapShot,svgRewind,separateBar,svgApplyStrength,svgHerb,svgSun);
 
         canvas = new Canvas(model.getWidth(), model.getHeight());
+        gc = canvas.getGraphicsContext2D();
 
         HBox content = new HBox();
         HBox ecosystemPanel = new HBox();
         //ecosystemPanel.getStyleClass().add("primary-background");
         ecosystemPanel.getChildren().addAll(canvas);
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        // Desenhar um retângulo vermelho no canvas
-        gc.setFill(javafx.scene.paint.Color.RED);
-
-        // Preencher todo o canvas com a cor definida
-        gc.fillRect(0, 0, 50,50);
 
         HBox.setHgrow(ecosystemPanel, Priority.ALWAYS);
         VBox.setVgrow(ecosystemPanel, Priority.ALWAYS);
         HBox.setMargin(ecosystemPanel, new Insets(10));
 
 
-        SideBar sidebar = new SideBar();
+        sidebar = new SideBar();
 
         content.getChildren().addAll(ecosystemPanel,sidebar);
-
-       
-
-        //root.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        //root.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
         root.getChildren().addAll(topPanel,content);
-
 
         HBox.setHgrow(sidebar, Priority.ALWAYS);
        
@@ -158,6 +155,104 @@ public class MainScene extends Scene
         primaryStage.setHeight(newHeight);
         //System.out.printf("newWidth %d %d\n",(int)newWidth,(int)newHeight);
 
+    }
+
+
+    void drawCornerBox(GraphicsContext gc,double x, double y, double w, double h)
+    {
+        gc.fillRect(x, y, 1, h / 4);// left up
+        gc.fillRect(x, (y + h) - (h / 4), 1, h / 4);//left bottom
+
+        gc.fillRect(x + w, y, 1, h / 4);// right up
+        gc.fillRect(x + w, (y + h) - (h / 4), 1, h / 4);//right bottom
+
+        gc.fillRect(x, y, w / 4, 1);// ---top left
+        gc.fillRect(x + w - (w / 4), y, w / 4, 1);// ---top right
+
+        gc.fillRect(x, y + h, w / 4, 1);// ---bot left
+        gc.fillRect(x + w - (w / 4) + 1, y + h, w / 4, 1);// ---bot right
+    }
+
+
+    private void onRender(GraphicsContext gc)
+    {
+        //clean background
+        gc.setFill(Color.web("#373054"));
+        gc.fillRect(0, 0,model.getWidth(),model.getHeight());
+
+        Set<BaseElement> elements = model.getElements();
+
+
+        for (BaseElement element : elements) {
+           if(element.getType() == Element.FAUNA){
+                //System.out.printf("Fauna %f %f", element.getArea().left(),element.getArea().top());
+                Fauna f = (Fauna)(element);
+                Area area = f.getArea();
+                gc.drawImage(f.getImage(), 
+                    f.getArea().left(),
+                    f.getArea().top(),
+                    f.getArea().right() - f.getArea().left(),
+                    f.getArea().bottom() - f.getArea().top()
+                );
+
+                if(currentElementIDSelected == element.getId())
+                {
+                    gc.setFill(Color.WHITE);
+
+                    drawCornerBox(gc,
+                        f.getArea().left(), 
+                        f.getArea().top() ,
+                        f.getArea().right() - f.getArea().left(),
+                        f.getArea().bottom() - f.getArea().top()); 
+
+
+                    if(gameEngine.getCurrentState() == GameEngineState.RUNNING)
+                    {
+                        //sidebar.getTxtId().setText(String.valueOf(f.getId()));
+                        //sidebar.getTxtType().setText(f.getTypeString());
+                        
+                        sidebar.getTxtX().setText(String.valueOf((int)area.left()));
+                        sidebar.getTxtY().setText(String.valueOf((int)area.top()));
+
+
+                        sidebar.getTxtEsq().setText(String.valueOf((int)area.left()));
+                        sidebar.getTxtDir().setText(String.valueOf((int)area.right()));
+                        sidebar.getTxtCima().setText(String.valueOf((int)area.top()));
+                        sidebar.getTxtBaixo().setText(String.valueOf((int)area.bottom()));
+
+                        sidebar.getStrenghtSlider().setValue(f.getStrength());
+
+
+
+                    }
+                    /* ... so um retangulo
+                    gc.setStroke(Color.WHITE);
+                    gc.setLineWidth(1);
+                     gc.strokeRect(f.getArea().left(), 
+                        f.getArea().top() ,
+                        f.getArea().right() - f.getArea().left(),
+                        f.getArea().bottom() - f.getArea().top()); 
+                    */
+
+                }
+           }
+        }
+    }
+
+
+
+    private void registerHandlers()
+    {
+        svgPlay.setOnMouseClicked((MouseEvent event) -> {
+            if(gameEngine.getCurrentState() == GameEngineState.RUNNING){
+                gameEngine.pause();
+                svgPlay.setContent(svgPlayContent);
+            }
+            else if(gameEngine.getCurrentState() == GameEngineState.PAUSED){
+                gameEngine.resume();
+                svgPlay.setContent(svgStopContent);
+            }
+        }); 
 
         new AnimationTimer() {
                 private static final long ONE_SECOND_NANO = 1_000_000_000L;
@@ -179,40 +274,102 @@ public class MainScene extends Scene
                 }
 
         }.start();
-    }
 
-    private void onRender(GraphicsContext gc)
-    {
-        //clean background
-        gc.setFill(Color.web("#373054"));
-        gc.fillRect(0, 0,model.getWidth(),model.getHeight());
 
-        Set<BaseElement> elements = model.getElements();
-        for (BaseElement element : elements) {
-           if(element.getType() == Element.FAUNA){
-                //System.out.printf("Fauna %f %f", element.getArea().left(),element.getArea().top());
-                Fauna f = (Fauna)(element);
-                gc.drawImage(f.getImage(), 
-                    f.getArea().left(),
-                    f.getArea().top(),
-                    f.getArea().right() - f.getArea().left(),
-                    f.getArea().bottom() - f.getArea().top()
-                );
-           }
-        }
-    }
+        //Quando clico em um elemento abre o inspecionar
+        canvas.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.SECONDARY) { 
+                double mouseX = event.getX();
+                double mouseY = event.getY();
 
-    private void registerHandlers()
-    {
-        svgPlay.setOnMouseClicked((MouseEvent event) -> {
-            if(gameEngine.getCurrentState() == GameEngineState.RUNNING){
-                gameEngine.pause();
-                svgPlay.setContent(svgPlayContent);
+                Set<BaseElement> elements = model.getElements();
+                for (BaseElement element : elements) {
+                    if (element.getType() == Element.FAUNA) {
+                        Fauna f = (Fauna) element;
+                        if (mouseX >= f.getArea().left() && mouseX <= f.getArea().right() &&
+                                mouseY >= f.getArea().top() && mouseY <= f.getArea().bottom()) {
+                            
+                            currentElementIDSelected = element.getId();
+                            sidebar.showInspectTab();
+
+                            BaseElement ent = model.getElement(currentElementIDSelected);
+
+
+
+                            sidebar.getTxtId().setText(String.valueOf((int)ent.getId()));
+                            sidebar.getTxtType().setText(ent.getTypeString());
+                            sidebar.getTxtX().setText(String.valueOf((int)ent.getArea().left()));
+                            sidebar.getTxtY().setText(String.valueOf((int)ent.getArea().top()));
+
+
+                            sidebar.getTxtEsq().setText(String.valueOf((int)ent.getArea().left()));
+                            sidebar.getTxtDir().setText(String.valueOf((int)ent.getArea().right()));
+                            sidebar.getTxtCima().setText(String.valueOf((int)ent.getArea().top()));
+                            sidebar.getTxtBaixo().setText(String.valueOf((int)ent.getArea().bottom()));
+
+                            sidebar.getStrenghtSlider().setValue((int)f.getStrength());
+
+                            //System.out.println("Olá mundo!"); // Imprime "Olá mundo!" se o mouse estiver sobre o elemento
+                            break; // Pode parar de verificar os outros elementos após encontrar um colisão
+                        }
+                    }
+                }
             }
-            else if(gameEngine.getCurrentState() == GameEngineState.PAUSED){
-                gameEngine.resume();
-                svgPlay.setContent(svgStopContent);
+        });
+
+        sidebar.getTxtX().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                BaseElement ent = model.getElement(currentElementIDSelected);
+                if(ent == null){return;}
+                ent.setPositionX(Integer.valueOf(sidebar.getTxtX().getText()));
             }
-        });       
+        });
+
+        sidebar.getTxtY().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                BaseElement ent = model.getElement(currentElementIDSelected);
+                if(ent == null){return;}
+                ent.setPositionY(Integer.valueOf(sidebar.getTxtY().getText()));
+            }
+        });
+
+        sidebar.getTxtEsq().textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                BaseElement ent = model.getElement(currentElementIDSelected);
+                if(ent == null){return;}
+                ent.setPositionX(Integer.valueOf(sidebar.getTxtEsq().getText()));
+            }
+        });
+
+
+        sidebar.getStrenghtSlider().getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                BaseElement ent = model.getElement(currentElementIDSelected);
+                if(ent == null){return;}
+                if(ent.getType() == Element.FAUNA){
+                    ((Fauna)ent).setStrength(Double.valueOf(sidebar.getStrenghtSlider().getValue()));
+                }
+                else if(ent.getType() == Element.FLORA){
+                    ((Flora)ent).setStrength(Double.valueOf(sidebar.getStrenghtSlider().getValue()));
+                }
+
+            }
+        });
+        
+
+        sidebar.getBtnDelElement().setOnAction(event -> {
+            BaseElement element_ = model.getElement(currentElementIDSelected);
+            if(element_ == null){return;}
+            model.removeElement(element_);
+        //    onRender(gc);
+        });
     }
 }

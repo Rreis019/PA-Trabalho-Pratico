@@ -9,10 +9,13 @@ import javafx.scene.shape.Rectangle;
 public class SideBarNavbar extends AnchorPane {
     
     private NavbarCallback callback;
+    Rectangle backgroundInspect;
+    Polygon backgroundEcossistema;
 
-    public SideBarNavbar(NavbarCallback callback,double width_,double height_,String firstButtonText,String secondButtonText) {
+    public SideBarNavbar(NavbarCallback callback_,double width_,double height_,String firstButtonText,String secondButtonText) {
 
         //setWidth(width_);
+        callback = callback_;
 
            setPrefSize(width_, height_);
         setMaxSize(width_, height_);
@@ -21,7 +24,7 @@ public class SideBarNavbar extends AnchorPane {
         double firstButtonWidth = width_ / 2;
         double firstButtonHeight = height_;
 
-        Polygon backgroundEcossistema = new Polygon();
+        backgroundEcossistema = new Polygon();
         //(firstButtonWidth / 5) -> width do triangulo
         backgroundEcossistema.getPoints().addAll(new Double[]{
                 0.0, 0.0,
@@ -46,7 +49,7 @@ public class SideBarNavbar extends AnchorPane {
         lbInspecionar.setDisable(true);
         lbInspecionar.getStyleClass().add("disabled-label");
 
-        Rectangle backgroundInspect = new Rectangle();
+        backgroundInspect = new Rectangle();
         backgroundInspect.setWidth(width_);
         backgroundInspect.setHeight(height_);
         backgroundInspect.setLayoutX(0);
@@ -63,6 +66,7 @@ public class SideBarNavbar extends AnchorPane {
         });
 
 
+
          backgroundEcossistema.setOnMouseClicked(event -> {
             backgroundEcossistema.getStyleClass().clear();
             backgroundEcossistema.getStyleClass().add("btn-primary");
@@ -74,9 +78,19 @@ public class SideBarNavbar extends AnchorPane {
         this.getChildren().addAll(backgroundInspect, backgroundEcossistema, lbEcossistema, lbInspecionar);
     }
 
+
+
     public interface NavbarCallback {
         void onFirstButtonClicked();
         void onSecondButtonClicked();
     }
 
+    public void simulateFirstButtonClick() {
+        backgroundEcossistema.fireEvent(new javafx.scene.input.MouseEvent(javafx.scene.input.MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, javafx.scene.input.MouseButton.PRIMARY, 1, false, false, false, false, false, false, false, false, false, false, null));
+    }
+
+    // Método para simular um clique do mouse no backgroundInspect
+    public void simulateSecondButtonClick() {
+        backgroundInspect.fireEvent(new javafx.scene.input.MouseEvent(javafx.scene.input.MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, javafx.scene.input.MouseButton.PRIMARY, 1, false, false, false, false, false, false, false, false, false, false, null));
+    }
 }

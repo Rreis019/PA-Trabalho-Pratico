@@ -37,16 +37,10 @@ public class BlueSlider extends VBox {
         setMaxWidth(width);
     }
 
-    public Slider getSlider() {
-        return slider;
-    }
+    public void setValue(double value){slider.setValue(value);}
+    public double getValue(){ return slider.getValue();}
 
-    public Label getValueLabel() {
-        return valueLabel;
-    }
+    public Slider getSlider() {return slider;}
+    public Label getValueLabel() {return valueLabel;}
 
-    public double getValue()
-    {
-        return slider.getValue();
-    }
 }

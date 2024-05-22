@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-
+import java.util.Iterator;
 
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
@@ -32,8 +32,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private int unitScale = 2;
     private int numUnitsX = 0;
     private int numUnitsY = 0;
-
-
 
     public Ecosystem() { //Facade
         pcs = new PropertyChangeSupport(this);
@@ -51,6 +49,18 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return elements;
     }
 
+    public BaseElement getElement(int id)
+    {
+        for(BaseElement ent : elements){
+            if(ent.getId() == id){ return ent;}
+        }
+
+        return null;
+    }
+
+    public void removeElement(BaseElement element_) {
+        elements.remove(element_);
+    }
 
     public void addFauna()
     {
@@ -67,6 +77,15 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         for (FaunaStateContext fsm: faunaStates.values()) {fsm.execute();}
         handleColisions();
         //Só para testar o gameEngine
+
+        Iterator<BaseElement> iterator = elements.iterator();
+        while (iterator.hasNext()) {
+            BaseElement element_ = iterator.next();
+            if (element_.getType() == Element.FAUNA && ((Fauna) element_).getStrength() <= 0) {
+                iterator.remove(); // Remover o elemento de maneira segura
+                faunaStates.remove((Fauna) element_);
+            }
+        }
 
        // System.out.printf("[%d] %d\n",currentTime,++count);
         //if (count >= 20) gameEngine.stop();
