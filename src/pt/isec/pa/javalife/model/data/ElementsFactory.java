@@ -9,7 +9,7 @@ import pt.isec.pa.javalife.model.data.elements.BaseElement;
 public class ElementsFactory
 {
 
-	public static BaseElement CreateElement(Element type,int x,int y,double w,double h)
+	public static BaseElement CreateElement(Element type,int x,int y)
 	{
 		switch(type)
 		{
