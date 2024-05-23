@@ -22,11 +22,12 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
     private FaunaDirection direction = FaunaDirection.RIGHT;
     private double strength = 50;
     private int velocity = 32;
+    private static final int size = 32;
 
     public static double descreaseEnergy = 0.5;
 
-	public Fauna(int positionX,int positionY,double width,double height) {
-        super(Element.FAUNA, positionX,positionY,width,height);
+	public Fauna(int positionX,int positionY) {
+        super(Element.FAUNA, positionX,positionY,size,size);
         setImage(FaunaImagesManager.getImage(specie));
     }   
 

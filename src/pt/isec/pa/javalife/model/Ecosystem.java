@@ -65,7 +65,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     public void addFauna()
     {
         Random random = new Random();
-        Fauna fauna = new Fauna(random.nextInt(getWidth()),random.nextInt(getHeight()),32,32);
+        Fauna fauna = new Fauna(random.nextInt(getWidth()),random.nextInt(getHeight()));
         elements.add(fauna);
         faunaStates.put(fauna, new FaunaStateContext(this, fauna));
     }
