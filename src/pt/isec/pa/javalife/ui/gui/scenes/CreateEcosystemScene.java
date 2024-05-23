@@ -4,6 +4,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
@@ -214,7 +215,10 @@ class CreateEcosystemScene extends Scene
             model.setNumUnitsX(Scomprimento.getNumero());
             model.setNumUnitsY(SAltura.getNumero());
 
-            for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addFauna();}
+            for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElement(Element.FAUNA);}
+            for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElement(Element.FLORA);}
+            for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElement(Element.INANIMATE);}
+
 
             gameEngine.setInterval((int)Sunidade.getValue());
             MainScene mainscene = new MainScene(primaryStage,model,gameEngine);

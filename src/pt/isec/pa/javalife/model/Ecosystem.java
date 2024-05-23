@@ -9,6 +9,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 import pt.isec.pa.javalife.model.fsm.IFaunaState;
 import pt.isec.pa.javalife.model.data.Area;
+import pt.isec.pa.javalife.model.data.ElementsFactory;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import  pt.isec.pa.javalife.model.data.elements.Fauna;
@@ -62,12 +63,25 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         elements.remove(element_);
     }
 
+    /*
     public void addFauna()
     {
         Random random = new Random();
         Fauna fauna = new Fauna(random.nextInt(getWidth()),random.nextInt(getHeight()));
         elements.add(fauna);
         faunaStates.put(fauna, new FaunaStateContext(this, fauna));
+    }
+    */
+
+    public void addElement(Element type)
+    {
+        Random random = new Random();
+        BaseElement ent = ElementsFactory.CreateElement(type, random.nextInt(getWidth()),random.nextInt(getHeight()));
+
+        if(ent.getType() == Element.FAUNA){
+            faunaStates.put((Fauna)ent, new FaunaStateContext(this, (Fauna)ent));
+        }
+        elements.add(ent);
     }
 
     //área para o gameEngine

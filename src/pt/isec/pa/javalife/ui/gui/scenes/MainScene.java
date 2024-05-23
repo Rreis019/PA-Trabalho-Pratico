@@ -184,10 +184,10 @@ public class MainScene extends Scene
 
 
         for (BaseElement element : elements) {
-           if(element.getType() == Element.FAUNA){
+            Area area = element.getArea();
+            if(element.getType() == Element.FAUNA){
                 //System.out.printf("Fauna %f %f", element.getArea().left(),element.getArea().top());
                 Fauna f = (Fauna)(element);
-                Area area = f.getArea();
                 gc.drawImage(f.getImage(), 
                     f.getArea().left(),
                     f.getArea().top(),
@@ -195,47 +195,70 @@ public class MainScene extends Scene
                     f.getArea().bottom() - f.getArea().top()
                 );
 
-                if(currentElementIDSelected == element.getId())
-                {
-                    gc.setFill(Color.WHITE);
-
-                    drawCornerBox(gc,
-                        f.getArea().left(), 
-                        f.getArea().top() ,
-                        f.getArea().right() - f.getArea().left(),
-                        f.getArea().bottom() - f.getArea().top()); 
-
-
-                    if(gameEngine.getCurrentState() == GameEngineState.RUNNING)
-                    {
-                        //sidebar.getTxtId().setText(String.valueOf(f.getId()));
-                        //sidebar.getTxtType().setText(f.getTypeString());
-                        
-                        sidebar.getTxtX().setText(String.valueOf((int)area.left()));
-                        sidebar.getTxtY().setText(String.valueOf((int)area.top()));
-
-
-                        sidebar.getTxtEsq().setText(String.valueOf((int)area.left()));
-                        sidebar.getTxtDir().setText(String.valueOf((int)area.right()));
-                        sidebar.getTxtCima().setText(String.valueOf((int)area.top()));
-                        sidebar.getTxtBaixo().setText(String.valueOf((int)area.bottom()));
-
-                        sidebar.getStrenghtSlider().setValue(f.getStrength());
-
-
-
-                    }
-                    /* ... so um retangulo
-                    gc.setStroke(Color.WHITE);
-                    gc.setLineWidth(1);
-                     gc.strokeRect(f.getArea().left(), 
-                        f.getArea().top() ,
-                        f.getArea().right() - f.getArea().left(),
-                        f.getArea().bottom() - f.getArea().top()); 
-                    */
-
-                }
+                
+            }
+           else if(element.getType() == Element.FLORA)
+           {
+                gc.setFill(Color.GREENYELLOW);
+                gc.fillRect(area.left(),
+                    area.top(),
+                    area.right() - area.left(),
+                    area.bottom() - area.top());
            }
+           else if(element.getType() == Element.INANIMATE)
+           {
+                gc.setFill(Color.GRAY);
+                gc.fillRect(area.left(),
+                    area.top(),
+                    area.right() - area.left(),
+                    area.bottom() - area.top());
+           }
+        }
+
+
+        BaseElement currentElement = model.getElement(currentElementIDSelected);
+        if(currentElement != null)
+        {
+            Area area = currentElement.getArea();
+            gc.setFill(Color.WHITE);
+
+            drawCornerBox(gc,
+                area.left(), 
+                area.top() ,
+                area.right() - area.left(),
+                area.bottom() - area.top()); 
+
+
+            if(gameEngine.getCurrentState() == GameEngineState.RUNNING)
+            {
+                //sidebar.getTxtId().setText(String.valueOf(f.getId()));
+                //sidebar.getTxtType().setText(f.getTypeString());
+                
+                sidebar.getTxtX().setText(String.valueOf((int)area.left()));
+                sidebar.getTxtY().setText(String.valueOf((int)area.top()));
+
+
+                sidebar.getTxtEsq().setText(String.valueOf((int)area.left()));
+                sidebar.getTxtDir().setText(String.valueOf((int)area.right()));
+                sidebar.getTxtCima().setText(String.valueOf((int)area.top()));
+                sidebar.getTxtBaixo().setText(String.valueOf((int)area.bottom()));
+
+                if(currentElement.getType() == Element.FAUNA){
+                    sidebar.getStrenghtSlider().setValue(((Fauna)currentElement).getStrength());
+                }
+
+
+
+            }
+            /* ... so um retangulo
+            gc.setStroke(Color.WHITE);
+            gc.setLineWidth(1);
+             gc.strokeRect(f.getArea().left(), 
+                f.getArea().top() ,
+                f.getArea().right() - f.getArea().left(),
+                f.getArea().bottom() - f.getArea().top()); 
+            */
+
         }
     }
 
