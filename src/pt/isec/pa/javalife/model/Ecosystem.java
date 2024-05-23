@@ -29,6 +29,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private transient Set<BaseElement> elements;
     private Map<Fauna, FaunaStateContext> faunaStates;
     private final PropertyChangeSupport pcs; // Para o observable
+    public static final String PROP_GAME_RENDER = "info_property";
 
     private int unitScale = 2;
     private int numUnitsX = 0;
@@ -91,6 +92,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         for (FaunaStateContext fsm: faunaStates.values()) {fsm.execute();}
         handleColisions();
         //Só para testar o gameEngine
+
+        pcs.firePropertyChange(PROP_GAME_RENDER,null,null);
 
         Iterator<BaseElement> iterator = elements.iterator();
         while (iterator.hasNext()) {

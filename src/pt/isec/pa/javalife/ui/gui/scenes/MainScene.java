@@ -38,7 +38,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
-public class MainScene extends Scene
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+
+public class MainScene extends Scene implements PropertyChangeListener
 {
     Ecosystem model;
     GameEngine gameEngine;
@@ -262,6 +266,12 @@ public class MainScene extends Scene
         }
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (Ecosystem.PROP_GAME_RENDER.equals(evt.getPropertyName())) {
+            onRender(gc);
+        }
+    }
 
 
     private void registerHandlers()
@@ -276,6 +286,18 @@ public class MainScene extends Scene
                 svgPlay.setContent(svgStopContent);
             }
         }); 
+
+
+        /*
+        model.addObserver(Ecosystem.PROP_GAME_RENDER, evt -> {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    onRender(gc);
+                }
+            });
+        });
+    */
 
         new AnimationTimer() {
                 private static final long ONE_SECOND_NANO = 1_000_000_000L;
