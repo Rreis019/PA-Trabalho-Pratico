@@ -6,41 +6,41 @@
 			"name": "RunJavaFX",
 			"selector": "source.java",
 			"shell_cmd": "xcopy /s /e /y src\\pt\\isec\\pa\\javalife\\ui\\gui\\resources\\* bin\\  && cd bin && java --module-path %JAVAFX% --add-modules ALL-MODULE-PATH pt.isec.pa.javalife.Main",
-			"working_dir": "${project_path:${folder}}"
+			"working_dir": "${project_path:${folder}}",
 		},
 		{
 			"file_regex": "^(...*?):([0-9]*):?([0-9]*)",
 			"name": "RunTest",
 			"selector": "source.java",
 			"shell_cmd": "cd bin && java -cp ../lib/junit/junit-4.13.2.jar;../lib/junit/hamcrest-core-1.3.jar;. org.junit.runner.JUnitCore pt.isec.pa.javalife.tests.${file_base_name}",
-			"working_dir": "${project_path:${folder}}"
+			"working_dir": "${project_path:${folder}}",
 		}
 	],
 	"folders":
 	[
 		{
-			"path": "C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico"
+			"path": ".",
 		}
 	],
 	"javatar":
 	{
 		"dependencies":
 		[
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx-swt.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.base.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.controls.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.fxml.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.fxml.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.graphics.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.media.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.swing.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.web.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\javafx",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\junit\\hamcrest-core-1.3.jar",
-			"C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\junit\\junit-4.13.2.jar"
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx-swt.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.base.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.controls.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.fxml.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.fxml.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.graphics.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.media.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.swing.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx\\javafx.web.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\javafx",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\junit\\hamcrest-core-1.3.jar",
+			"C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\junit\\junit-4.13.2.jar"
 		],
-		"dependencies_path": "C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\lib\\junit",
-		"source_folder": "C:\\Users\\Rodrigo\\Documents\\isec\\PA\\paaa\\PA-Trabalho-Pratico\\src"
-	}
+		"dependencies_path": "C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\junit",
+		"source_folder": "C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\src",
+	},
 }
