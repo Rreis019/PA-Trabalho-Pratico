@@ -21,8 +21,8 @@ public final class FaunaStateContext {
 	}
 
 
-	void changeState(FaunaState newState){
-		this.state = IFaunaState.createState(FaunaState.MOVING,this, this.ecosystem,data);
+	void changeState(IFaunaState iFaunaState){
+		this.state = iFaunaState;
 	}
 
 	public boolean execute()

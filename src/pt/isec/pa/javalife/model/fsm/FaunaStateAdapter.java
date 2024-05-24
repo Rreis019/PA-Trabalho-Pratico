@@ -9,6 +9,11 @@ public abstract class FaunaStateAdapter implements IFaunaState {
 	protected Ecosystem ecosystem;
 	protected Fauna fauna;
 
+    protected void changeState(FaunaState newState){
+        context.changeState(IFaunaState.createState(newState, context, ecosystem, fauna));
+    }
+
+
 	public FaunaStateAdapter(FaunaStateContext context, Ecosystem eco,Fauna fauna_)
 	{
 		this.context = context;

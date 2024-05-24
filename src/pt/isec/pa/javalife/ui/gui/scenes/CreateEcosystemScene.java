@@ -214,16 +214,19 @@ class CreateEcosystemScene extends Scene
             
             model.setNumUnitsX(Scomprimento.getNumero());
             model.setNumUnitsY(SAltura.getNumero());
+            model.makeWallOfChina();
+            for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElement(Element.INANIMATE);}
+
+
 
             for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElement(Element.FAUNA);}
             for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElement(Element.FLORA);}
-            for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElement(Element.INANIMATE);}
-
 
             gameEngine.setInterval((int)Sunidade.getValue());
             MainScene mainscene = new MainScene(primaryStage,model,gameEngine);
             primaryStage.setScene(mainscene);
             primaryStage.show();
+
         });
 
         option1Box.setOnMouseClicked(e -> option1.setSelected(true));

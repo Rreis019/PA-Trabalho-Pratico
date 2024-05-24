@@ -12,7 +12,7 @@ public interface IFaunaState {
 
 
 	//TODO : Da alguma formar passar os dados da apliocação
-	static IFaunaState createState(FaunaState type, FaunaStateContext context, Ecosystem ecosystem,Fauna fauna_)
+	public static IFaunaState createState(FaunaState type, FaunaStateContext context, Ecosystem ecosystem,Fauna fauna_)
 	{
 		return switch (type) {
             case MOVING -> new MovingState(context,ecosystem,fauna_);

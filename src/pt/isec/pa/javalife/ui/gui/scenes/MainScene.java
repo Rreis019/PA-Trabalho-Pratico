@@ -64,6 +64,8 @@ public class MainScene extends Scene
 
     private final String svgStopContent = "M7.03125 21.875H2.34375C1.0498 21.875 0 20.8252 0 19.5312V2.34375C0 1.0498 1.0498 0 2.34375 0H7.03125C8.3252 0 9.375 1.0498 9.375 2.34375V19.5312C9.375 20.8252 8.3252 21.875 7.03125 21.875ZM21.875 19.5312V2.34375C21.875 1.0498 20.8252 0 19.5312 0H14.8438C13.5498 0 12.5 1.0498 12.5 2.34375V19.5312C12.5 20.8252 13.5498 21.875 14.8438 21.875H19.5312C20.8252 21.875 21.875 20.8252 21.875 19.5312Z";
     private final String svgPlayContent = "M20.7227 10.4813L3.53516 0.320197C2.13867 -0.504998 0 0.295783 0 2.3368V22.6542C0 24.4852 1.9873 25.5888 3.53516 24.6708L20.7227 14.5145C22.2559 13.6112 22.2607 11.3846 20.7227 10.4813Z";
+    
+
     public MainScene(Stage primaryStage__,Ecosystem ecosystem,GameEngine gameEngine_)
     {
         super(new VBox());
@@ -185,44 +187,39 @@ public class MainScene extends Scene
         gc.setFill(Color.web("#373054"));
         gc.fillRect(0, 0,model.getWidth(),model.getHeight());
 
-        Set<BaseElement> elements = model.getElements();
+        Set<IElement> elements = model.getElements();
 
 
-        BaseElement currentElement = null;
+        IElement currentElement = null;
 
-        for (BaseElement element : elements) {
-            Area area = element.getArea();
-            if(currentElementIDSelected == element.getId()){currentElement = element;}
-            if(element.getType() == Element.FAUNA){
-                //System.out.printf("Fauna %f %f", element.getArea().left(),element.getArea().top());
-                Fauna f = (Fauna)(element);
-                gc.drawImage(f.getImage(), 
-                    f.getArea().left(),
-                    f.getArea().top(),
-                    f.getArea().right() - f.getArea().left(),
-                    f.getArea().bottom() - f.getArea().top()
-                );
-
-                
-            }
-           else if(element.getType() == Element.FLORA)
-           {
+        for (IElement element : elements) {
+            if (element.getType() == Element.FLORA) {
                 gc.setFill(Color.GREENYELLOW);
-                gc.fillRect(area.left(),
-                    area.top(),
-                    area.right() - area.left(),
-                    area.bottom() - area.top());
-           }
-           else if(element.getType() == Element.INANIMATE)
-           {
+            } else if (element.getType() == Element.INANIMATE) {
                 gc.setFill(Color.GRAY);
+            }
+            
+            if (element.getType() != Element.FAUNA) {
+                Area area = element.getArea();
                 gc.fillRect(area.left(),
-                    area.top(),
-                    area.right() - area.left(),
-                    area.bottom() - area.top());
-           }
+                            area.top(),
+                            area.right() - area.left(),
+                            area.bottom() - area.top());
+            }
         }
 
+        for (IElement element : elements) {
+            if(element.getId() == currentElementIDSelected){currentElement = element;}
+            if (element.getType() == Element.FAUNA) {
+                Fauna f = (Fauna) element;
+                gc.drawImage(f.getImage(),
+                             f.getArea().left(),
+                             f.getArea().top(),
+                             f.getArea().right() - f.getArea().left(),
+                             f.getArea().bottom() - f.getArea().top()
+                );
+            }
+        }
 
         if(currentElement != null)
         {
@@ -230,10 +227,10 @@ public class MainScene extends Scene
             gc.setFill(Color.WHITE);
 
             drawCornerBox(gc,
-                area.left(), 
-                area.top() ,
-                area.right() - area.left(),
-                area.bottom() - area.top()); 
+                area.left() - 2 , //-2 PARA TER ESPAÇAMENTO da entidade e cornerbox 
+                area.top()  - 2 ,
+                area.right() - area.left() + 3,
+                area.bottom() - area.top() + 3); 
 
 
             if(gameEngine.getCurrentState() == GameEngineState.RUNNING)
@@ -252,6 +249,9 @@ public class MainScene extends Scene
 
                 if(currentElement.getType() == Element.FAUNA){
                     sidebar.getStrenghtSlider().setValue(((Fauna)currentElement).getStrength());
+                }
+                else if(currentElement.getType() == Element.FLORA){
+                    sidebar.getStrenghtSlider().setValue(((Flora)currentElement).getStrength());
                 }
 
 
@@ -338,17 +338,16 @@ public class MainScene extends Scene
                 double mouseX = event.getX();
                 double mouseY = event.getY();
 
-                Set<BaseElement> elements = model.getElements();
-                for (BaseElement element : elements) {
-                    if (element.getType() == Element.FAUNA) {
-                        Fauna f = (Fauna) element;
-                        if (mouseX >= f.getArea().left() && mouseX <= f.getArea().right() &&
-                                mouseY >= f.getArea().top() && mouseY <= f.getArea().bottom()) {
+                Set<IElement> elements = model.getElements();
+                for (IElement element : elements) {
+                    //if (element.getType() == Element.FAUNA) {
+                        if (mouseX >= element.getArea().left() && mouseX <= element.getArea().right() &&
+                                mouseY >= element.getArea().top() && mouseY <= element.getArea().bottom()) {
                             
                             currentElementIDSelected = element.getId();
                             sidebar.showInspectTab();
 
-                            BaseElement ent = model.getElement(currentElementIDSelected);
+                            IElement ent = model.getElement(currentElementIDSelected);
 
 
 
@@ -363,13 +362,22 @@ public class MainScene extends Scene
                             sidebar.getTxtCima().setText(String.valueOf((int)ent.getArea().top()));
                             sidebar.getTxtBaixo().setText(String.valueOf((int)ent.getArea().bottom()));
 
-                            sidebar.getStrenghtSlider().setValue((int)f.getStrength());
+                            if(element.getType() == Element.FAUNA)
+                            {
+                                sidebar.getStrenghtSlider().setValue((int)((Fauna)element).getStrength());
+                            }
+                            else if(element.getType() == Element.FLORA)
+                            {
+                                sidebar.getStrenghtSlider().setValue((int)((Flora)element).getStrength());
+                            }
+
 
                             //System.out.println("Olá mundo!"); // Imprime "Olá mundo!" se o mouse estiver sobre o elemento
                             break; // Pode parar de verificar os outros elementos após encontrar um colisão
                         }
                     }
-                }
+                
+                //}
             }
         });
 
@@ -377,7 +385,7 @@ public class MainScene extends Scene
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
-                BaseElement ent = model.getElement(currentElementIDSelected);
+                IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 ent.setPositionX(Integer.valueOf(sidebar.getTxtX().getText()));
             }
@@ -387,7 +395,7 @@ public class MainScene extends Scene
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
-                BaseElement ent = model.getElement(currentElementIDSelected);
+                IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 ent.setPositionY(Integer.valueOf(sidebar.getTxtY().getText()));
             }
@@ -397,7 +405,7 @@ public class MainScene extends Scene
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
-                BaseElement ent = model.getElement(currentElementIDSelected);
+                IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 ent.setPositionX(Integer.valueOf(sidebar.getTxtEsq().getText()));
             }
@@ -408,7 +416,7 @@ public class MainScene extends Scene
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
-                BaseElement ent = model.getElement(currentElementIDSelected);
+                IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 if(ent.getType() == Element.FAUNA){
                     ((Fauna)ent).setStrength(Double.valueOf(sidebar.getStrenghtSlider().getValue()));
@@ -422,7 +430,7 @@ public class MainScene extends Scene
         
 
         sidebar.getBtnDelElement().setOnAction(event -> {
-            BaseElement element_ = model.getElement(currentElementIDSelected);
+            IElement element_ = model.getElement(currentElementIDSelected);
             if(element_ == null){return;}
             model.removeElement(element_);
         //    onRender(gc);

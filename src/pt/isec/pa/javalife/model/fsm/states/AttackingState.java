@@ -21,7 +21,33 @@ public class AttackingState extends FaunaStateAdapter {
 
 	@Override
 	public boolean execute() {
-		//TODO : Fazer AttackingState
+	 	Fauna targetFauna = (Fauna) ecosystem.getWeakestFauna(fauna.getId());  
+	 	if(targetFauna == null){changeState(FaunaState.MOVING); return false;}
+	    fauna.setStrength(fauna.getStrength() - 10);
+
+	    FaunaState tState = ecosystem.getState(targetFauna); 
+	    if(tState == FaunaState.SEARCH_FOOD || tState == FaunaState.EATING || tState == FaunaState.ATTACKING)
+	    {
+	    	if(fauna.getStrength() < targetFauna.getStrength())
+	    	{
+	    		targetFauna.setStrength(targetFauna.getStrength() + fauna.getStrength());
+	    		fauna.setStrength(0);
+	    	}else{
+				fauna.setStrength(targetFauna.getStrength() + fauna.getStrength());
+	    		targetFauna.setStrength(0);
+	    	}
+	    }
+	    if (fauna.getStrength() > 0) {
+	        // Fauna atacante sobreviveu
+	        fauna.setStrength(fauna.getStrength() + targetFauna.getStrength());
+	        targetFauna.setStrength(0); 
+	    } else {
+	        // Fauna atacante morreu
+	        targetFauna.setStrength(targetFauna.getStrength() + fauna.getStrength() + 10);
+	        ecosystem.removeElement(fauna);  // Remove a fauna atacante do ecossistema
+	    }
+
+	    changeState(FaunaState.MOVING);
 		return false;
 	}
 

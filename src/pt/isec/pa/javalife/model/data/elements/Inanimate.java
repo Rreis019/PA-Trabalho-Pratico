@@ -11,10 +11,14 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 public final class Inanimate extends BaseElement implements Serializable
 {
 	static final long serialVersionUID = 1L;
-	private static final int size = 16;
+	public static final int size = 16;
 
  	public Inanimate(int positionX,int positionY) {
         super(Element.INANIMATE,positionX,positionY,size,size);
     }
 	
+
+	
+    @Override
+    public int getSize(){return Inanimate.size;}
 }

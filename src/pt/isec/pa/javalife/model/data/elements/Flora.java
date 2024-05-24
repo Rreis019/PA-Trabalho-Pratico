@@ -15,6 +15,7 @@ public final class Flora extends BaseElement  implements IElementWithImage,IElem
 {
 	static final long serialVersionUID = 1L;
     private static final int size = 10;
+    double strenght = 100;
 
 	 public Flora(int positionX,int positionY) {
         super(Element.FLORA,positionX,positionY,size,size);
@@ -34,11 +35,16 @@ public final class Flora extends BaseElement  implements IElementWithImage,IElem
 
     @Override
     public double getStrength(){
-    	return 0;
+    	return strenght;
     }
     
     @Override
-    public void setStrength(double strength){
-
+    public void setStrength(double strength_){
+        strenght = strength_;
+        if(strenght > 100){strenght = 100;}
     }
+
+    @Override
+    public int getSize(){return Flora.size;}
+
 }

@@ -36,7 +36,14 @@ public abstract sealed class BaseElement
 
     @Override
     public int getId() {return id;}
+
+    @Override
     public Element getType() {return type;}
+
+    @Override
+    public int getSize(){return 0;}
+    
+    @Override
     public String getTypeString()
     {
         switch(type){

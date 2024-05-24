@@ -8,6 +8,13 @@ public sealed interface IElement
     extends Serializable
     permits BaseElement {
     int getId(); // returns the identifier
-    Area getArea(); // returns the occupied area
+    int getSize();
+    Area getArea(); // returns the occupied area+
+    Element getType();
+    String getTypeString();
+
+    void setPositionX(double position);
+    void setPositionY(double position);
+    void setPosition(double positionX,double positionY);
 }
 

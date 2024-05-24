@@ -43,4 +43,14 @@
 		"dependencies_path": "C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\lib\\junit",
 		"source_folder": "C:\\Users\\Eu\\Documents\\isec\\PA\\PA-Trabalho-Pratico\\src",
 	},
+	"settings":
+	{
+		"LSP":
+		{
+			"jdtls":
+			{
+				"enabled": true,
+			},
+		},
+	},
 }
