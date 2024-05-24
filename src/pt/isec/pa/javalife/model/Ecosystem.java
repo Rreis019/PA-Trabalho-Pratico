@@ -30,6 +30,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private Map<Fauna, FaunaStateContext> faunaStates;
     private final PropertyChangeSupport pcs; // Para o observable
     public static final String PROP_GAME_RENDER = "info_property";
+    public static final String PROP_INSPECT = "inspect";
 
     private int unitScale = 2;
     private int numUnitsX = 0;
@@ -53,6 +54,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
     public BaseElement getElement(int id)
     {
+        pcs.firePropertyChange(PROP_INSPECT,null,null);
+        System.out.printf("GetElement\n");
         for(BaseElement ent : elements){
             if(ent.getId() == id){ return ent;}
         }
@@ -104,6 +107,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
             }
         }
 
+
        // System.out.printf("[%d] %d\n",currentTime,++count);
         //if (count >= 20) gameEngine.stop();
 
@@ -147,14 +151,16 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
     }
 
+
+
     //área para o Observable
     @Override
-    public void addObserver(PropertyChangeListener listener) {
-        pcs.addPropertyChangeListener(listener);
+    public void addPropertyChangeListener(String prop,PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(prop,listener);
     }
 
     @Override
-    public void removeObserver(PropertyChangeListener listener) {
+    public void removeObserver(String prop,PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(listener);
 
     }

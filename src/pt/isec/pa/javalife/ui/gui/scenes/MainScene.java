@@ -17,6 +17,7 @@ import pt.isec.pa.javalife.ui.gui.components.SideBar;
 import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.application.Platform;
 
 import java.util.Set;
 
@@ -42,7 +43,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 
-public class MainScene extends Scene implements PropertyChangeListener
+public class MainScene extends Scene
 {
     Ecosystem model;
     GameEngine gameEngine;
@@ -187,8 +188,11 @@ public class MainScene extends Scene implements PropertyChangeListener
         Set<BaseElement> elements = model.getElements();
 
 
+        BaseElement currentElement = null;
+
         for (BaseElement element : elements) {
             Area area = element.getArea();
+            if(currentElementIDSelected == element.getId()){currentElement = element;}
             if(element.getType() == Element.FAUNA){
                 //System.out.printf("Fauna %f %f", element.getArea().left(),element.getArea().top());
                 Fauna f = (Fauna)(element);
@@ -220,7 +224,6 @@ public class MainScene extends Scene implements PropertyChangeListener
         }
 
 
-        BaseElement currentElement = model.getElement(currentElementIDSelected);
         if(currentElement != null)
         {
             Area area = currentElement.getArea();
@@ -266,16 +269,11 @@ public class MainScene extends Scene implements PropertyChangeListener
         }
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (Ecosystem.PROP_GAME_RENDER.equals(evt.getPropertyName())) {
-            onRender(gc);
-        }
-    }
-
+   
 
     private void registerHandlers()
     {
+
         svgPlay.setOnMouseClicked((MouseEvent event) -> {
             if(gameEngine.getCurrentState() == GameEngineState.RUNNING){
                 gameEngine.pause();
@@ -288,8 +286,9 @@ public class MainScene extends Scene implements PropertyChangeListener
         }); 
 
 
-        /*
-        model.addObserver(Ecosystem.PROP_GAME_RENDER, evt -> {
+
+        
+        model.addPropertyChangeListener(Ecosystem.PROP_GAME_RENDER, evt -> {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -297,8 +296,20 @@ public class MainScene extends Scene implements PropertyChangeListener
                 }
             });
         });
-    */
 
+        model.addPropertyChangeListener(Ecosystem.PROP_INSPECT, evt -> {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    onRender(gc);
+                }
+            });
+        });
+    
+        
+    
+
+        /*
         new AnimationTimer() {
                 private static final long ONE_SECOND_NANO = 1_000_000_000L;
                 private static final long FRAME_DURATION = ONE_SECOND_NANO / 60; // 60 fps
@@ -319,7 +330,7 @@ public class MainScene extends Scene implements PropertyChangeListener
                 }
 
         }.start();
-
+    */
 
         //Quando clico em um elemento abre o inspecionar
         canvas.setOnMouseClicked(event -> {
