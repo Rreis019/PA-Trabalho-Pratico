@@ -5,16 +5,16 @@ import pt.isec.pa.javalife.model.fsm.Direction;
 
 public record Area(double top, double left, double bottom, double right) {
 
+
+	public boolean intersects(Area other) {
+        return !(this.right <= other.left || this.left >= other.right || 
+                 this.bottom <= other.top || this.top >= other.bottom);
+    }
     public static double distance(Area a1,Area a2)
     {
         double deltaX = a1.left() - a2.left();
         double deltaY = a2.top() - a2.top();
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    }
-
-	public boolean intersects(Area other) {
-        return !(this.right < other.left || this.left > other.right || 
-                 this.bottom < other.top || this.top > other.bottom);
     }
     //Retorna area com posição corrigada do objeto que esta em movimento
     public Area solveColision(Direction dir,Area other)

@@ -1,6 +1,7 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
@@ -21,12 +22,11 @@ import javafx.application.Platform;
 
 import java.util.Set;
 
-import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
@@ -41,6 +41,7 @@ import javafx.beans.value.ObservableValue;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 
 
 public class MainScene extends Scene
@@ -212,7 +213,7 @@ public class MainScene extends Scene
             if(element.getId() == currentElementIDSelected){currentElement = element;}
             if (element.getType() == Element.FAUNA) {
                 Fauna f = (Fauna) element;
-                gc.drawImage(f.getImage(),
+                gc.drawImage(FaunaImagesManager.getImage(f.getImage()),
                              f.getArea().left(),
                              f.getArea().top(),
                              f.getArea().right() - f.getArea().left(),
@@ -437,9 +438,47 @@ public class MainScene extends Scene
         });
 
 
+        sidebar.getBtnImport().setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+            if (selectedFile != null) {
+                if(model.loadGame(selectedFile.getAbsolutePath())){
+                    model.updateRender();
+                    
+                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi importado com sucesso.");
+                }else{
+                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao importar o arquivo.");
+                }
+            }
+        }); 
+
         sidebar.getBtnCreteEco().setOnAction(event -> {
             CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model,gameEngine);
             primaryStage.setScene(createEcoSystemScene);
+        });
+
+
+        sidebar.getBtnExport().setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Salvar Arquivo");
+            fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Arquivos de simulação", "*.csv")
+            );
+
+            File file = fileChooser.showSaveDialog(primaryStage);
+            if (file != null) {
+                String filePath = file.getAbsolutePath(); // Obtém o caminho absoluto do arquivo como String
+                if(model.saveGame(filePath)){
+                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi salvo com sucesso.");
+                }
+                else{
+                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao salvar o arquivo.");
+                }
+
+                //System.out.println("Arquivo será salvo em: " + filePath);
+            }
         });
 
 
@@ -474,4 +513,13 @@ public class MainScene extends Scene
         });
 
     }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }

@@ -21,8 +21,7 @@ import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 public final class Fauna extends BaseElement implements IElementWithStrength,IElementWithImage,Serializable
 {
 	static final long serialVersionUID = 1L;
-    private static Image image = null;
-    private static String specie = "";
+    private static String image = "lobo";
     private Direction direction = Direction.RIGHT;
     private double strength = 50;
     private int velocity = 32;
@@ -31,9 +30,9 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
     public static double descreaseEnergy = 0.5;
     private FaunaStateContext ctx;
 
+
 	public Fauna(Ecosystem ecosystem,double positionX,double positionY) {
         super(Element.FAUNA, positionX,positionY,size,size);
-        setImage(FaunaImagesManager.getImage(specie));
         ctx = new FaunaStateContext(ecosystem, this);
     }   
 
@@ -149,20 +148,15 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
         return false;
     }
 
-
-
     public void decreaseEnergy(){strength-=descreaseEnergy;}
-
-    public static void setSpecie(String s){specie = s;}
-    public String getSpecie(){return specie;}
 
     public Direction getDirection(){return direction;}
     public void setDirection(Direction direction_){ direction = direction_;}
 
     @Override
-    public Image getImage(){return image;}
+    public String getImage(){return image;}
     @Override
-    public void setImage(Image img_){image = img_;}
+    public void setImage(String img_){image = img_;}
 
     @Override
     public double getStrength(){return strength;}

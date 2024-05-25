@@ -1,8 +1,10 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
+import java.io.Serializable;
 import java.lang.annotation.ElementType;
 
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.fsm.FaunaState;
@@ -10,7 +12,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 
-public class ReproduceState extends FaunaStateAdapter {
+public class ReproduceState extends FaunaStateAdapter implements Serializable {
 
 	int targetFaunaID = -1;
 	int ticks = 0;
@@ -28,6 +30,15 @@ public class ReproduceState extends FaunaStateAdapter {
 	@Override
 	public boolean execute() {
 		Fauna strongestFauna = ecosystem.getStrongestFauna(fauna.getId()); 
+		if(strongestFauna == null){
+			changeState(FaunaState.MOVING);
+			return false;
+		}
+
+		if(Area.distance(fauna.getArea(),strongestFauna.getArea()) > 32){
+			changeState(FaunaState.MOVING);
+			return false;
+		}
 
 		if(fauna.moveTo(ecosystem.getElements(), strongestFauna))
 		{

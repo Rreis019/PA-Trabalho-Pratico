@@ -58,6 +58,7 @@ public abstract sealed class BaseElement
         return "None";
     }
 
+    
     public void setPositionX(double position){setPosition(position, area.top());}
     public void setPositionY(double position){setPosition(area.left(), position);}
 
@@ -67,6 +68,8 @@ public abstract sealed class BaseElement
         double height = area.bottom() - area.top();
         setArea(positionX, positionY, width, height);
     }
+
+
     public void setArea(double positionX,double positionY,double width,double height){
         this.area = new Area(positionY, positionX, positionY + height, positionX + width); 
     }

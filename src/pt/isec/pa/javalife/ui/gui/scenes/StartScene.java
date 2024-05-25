@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import javafx.stage.FileChooser;
 import java.io.File;
@@ -99,11 +100,15 @@ public class StartScene extends Scene {
             File selectedFile = fileChooser.showOpenDialog(primaryStage);
             if (selectedFile != null) {
                 System.out.println("Arquivo CSV selecionado: " + selectedFile.getName());
-                // Aqui você pode adicionar o código para ler o arquivo CSV
-                MainScene mainscene = new MainScene(primaryStage,model,gameEngine);
-                // Criar um novo palco (janela)
-                primaryStage.setScene(mainscene);
-                primaryStage.show();
+                if(model.loadGame(selectedFile.getAbsolutePath())){
+
+                    MainScene mainscene = new MainScene(primaryStage,model,gameEngine);
+                    primaryStage.setScene(mainscene);
+                    primaryStage.show();
+
+                }else{
+                    model.clearElements();
+                }
             }
         });
     }

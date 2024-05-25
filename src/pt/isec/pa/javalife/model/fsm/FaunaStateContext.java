@@ -1,8 +1,10 @@
 package pt.isec.pa.javalife.model.fsm;
+import java.io.Serializable;
+
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 
-public final class FaunaStateContext {
+public final class FaunaStateContext implements Serializable {
 	private Fauna data;
 	private IFaunaState state;
 	private Ecosystem ecosystem;

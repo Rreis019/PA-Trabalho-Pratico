@@ -207,7 +207,7 @@ class CreateEcosystemScene extends Scene
 
     private void registerHandlers()
     {
-        Fauna.setSpecie("lobo");
+        Fauna temp = new Fauna(null, 0, 0);
 
         criarButton.setOnAction(e -> {
             System.out.println("Botão 'Criar' foi clicado");
@@ -245,25 +245,25 @@ class CreateEcosystemScene extends Scene
                 option2Box.getStyleClass().remove("selected-container");
                 option3Box.getStyleClass().remove("selected-container");
                 option4Box.getStyleClass().remove("selected-container");
-                Fauna.setSpecie("lobo");
+                temp.setImage("lobo");
             } else if (newValue == option2) {
                 option2Box.getStyleClass().add("selected-container");
                 option1Box.getStyleClass().remove("selected-container");
                 option3Box.getStyleClass().remove("selected-container");
                 option4Box.getStyleClass().remove("selected-container");
-                Fauna.setSpecie("ovelha");
+                temp.setImage("ovelha");
             } else if (newValue == option3) {
                 option3Box.getStyleClass().add("selected-container");
                 option1Box.getStyleClass().remove("selected-container");
                 option2Box.getStyleClass().remove("selected-container");
                 option4Box.getStyleClass().remove("selected-container");
-                Fauna.setSpecie("urso");
+                temp.setImage("urso");
             } else if (newValue == option4) {
                 option4Box.getStyleClass().add("selected-container");
                 option1Box.getStyleClass().remove("selected-container");
                 option2Box.getStyleClass().remove("selected-container");
                 option3Box.getStyleClass().remove("selected-container");
-                Fauna.setSpecie("cobra");
+                temp.setImage("cobra");
             }
         });
     }

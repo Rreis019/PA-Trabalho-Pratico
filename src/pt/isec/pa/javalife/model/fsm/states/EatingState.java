@@ -1,5 +1,7 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
+import java.io.Serializable;
+
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
@@ -14,7 +16,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 //TODO : Fazer EatingState
  
-public class EatingState extends FaunaStateAdapter {
+public class EatingState extends FaunaStateAdapter implements Serializable {
 
 	public EatingState(FaunaStateContext context, Ecosystem ecosystem, Fauna fauna_)
 	{

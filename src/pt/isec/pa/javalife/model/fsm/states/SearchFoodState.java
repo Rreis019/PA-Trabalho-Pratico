@@ -1,5 +1,6 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
+import java.io.Serializable;
 import java.lang.annotation.Target;
 import java.util.Random;
 
@@ -17,7 +18,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 
-public class SearchFoodState extends FaunaStateAdapter {
+public class SearchFoodState extends FaunaStateAdapter implements Serializable {
 
 
 	public SearchFoodState(FaunaStateContext context, Ecosystem ecosystem, Fauna fauna_)

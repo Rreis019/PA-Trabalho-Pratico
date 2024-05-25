@@ -37,12 +37,22 @@ public class BlueSpinner extends VBox {
         minus.setContent("M19.9911 0.505173H2.19578C1.37691 0.505173 0.71283 1.27993 0.71283 2.23528V3.96538C0.71283 4.92072 1.37691 5.69548 2.19578 5.69548H19.9911C20.81 5.69548 21.4741 4.92072 21.4741 3.96538V2.23528C21.4741 1.27993 20.81 0.505173 19.9911 0.505173Z");
         minus.setFill(Color.web("#5A508C"));
 
-        counter.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                counter.setText(newValue.replaceAll("[^\\d]", ""));
+         counter.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                counter.setText(newValue.replaceAll("[^-\\d]", ""));
+            }
+            try {
+                int newNumero = Integer.parseInt(counter.getText());
+                if (newNumero < min) {
+                    newNumero = min;
+                } else if (newNumero > max) {
+                    newNumero = max;
+                }
+                numero = newNumero;
+            } catch (NumberFormatException e) {
+                counter.setText(Integer.toString(numero));
             }
         });
-
 
         counter.setOnAction(e -> {
             try {
@@ -52,6 +62,7 @@ public class BlueSpinner extends VBox {
                 counter.setText(Integer.toString(numero)); // Restaura o valor anterior
             }
         });
+
 
         Button btnIncrease = new Button();
         btnIncrease.getStylesheets().clear();

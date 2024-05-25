@@ -17,6 +17,15 @@ import  pt.isec.pa.javalife.model.data.elements.Fauna;
 import  pt.isec.pa.javalife.model.data.elements.Flora;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.sql.Array;
 import java.util.ArrayList;
@@ -31,6 +40,7 @@ import javax.swing.text.StyledEditorKit.BoldAction;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Locale;
 
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
@@ -45,8 +55,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
 
     private int unitScale = 2;
-    private int numUnitsX = 0;
-    private int numUnitsY = 0;
+    private int numUnitsX = 300;
+    private int numUnitsY = 300;
 
     @SuppressWarnings("this-escape")
     public Ecosystem() { //Facade
@@ -188,6 +198,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         while (iterator.hasNext()) {
             IElement element = iterator.next();
             if(element.getType() == Element.FAUNA){((Fauna)element).getFSM().execute();}
+            if(element.getType() == Element.FLORA){ ((Flora)element).evolve(this,currentTime);}
         }
 
 
@@ -216,9 +227,10 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
         int wallThickness = 4;
 
-        top.setArea(0, 0, this.getWidth(), wallThickness);
-        left.setArea(0, 0, wallThickness, this.getWidth());
-        right.setArea(this.getWidth() - wallThickness,0, wallThickness, getHeight());
+        top.setArea(0, 0, this.getWidth(), wallThickness);//----
+        left.setArea(0,wallThickness, wallThickness, this.getHeight() - wallThickness*2);
+
+        right.setArea(this.getWidth() - wallThickness,wallThickness, wallThickness, getHeight() - wallThickness*2);
         bottom.setArea(0,this.getHeight() - wallThickness, getWidth(), wallThickness);
 
         elements.add(top);
@@ -228,6 +240,18 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         
     }
 
+
+    private boolean isOutBounds(Area area){
+
+        if(area.left() < 0){return true;}
+        else if(area.right() > getWidth()){return true;}
+        if(area.top() < 0){return true;}
+        else if(area.bottom() > getHeight()) {return true;}
+
+        return false;
+    }
+
+    /*
     private void handleIfOutBounds(Fauna element_){
         Area area = element_.getArea();
 
@@ -251,6 +275,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
             element_.setDirection(Direction.UP);
         }
     } 
+    */
 
 
 
@@ -289,6 +314,112 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
     }
 
+
+    public boolean saveGame(String filepath) {
+        BufferedWriter writer = null;
+            try {
+                writer = new BufferedWriter(new FileWriter(filepath));
+                writer.write("Type,Strength,PositionX,PositionY,Bottom,Right\n");
+                for (IElement element : elements) {
+                    String type = element.getType().toString();
+                    double strength = 0;
+                    if (element instanceof Fauna) {
+                        strength = ((Fauna) element).getStrength();
+                    } else if (element instanceof Flora) {
+                        strength = ((Flora) element).getStrength();
+                    }
+                    Area area = element.getArea();
+                    //Locale.US -> para o float serem com ponto ex: 1.4
+                    writer.write(String.format(Locale.US, "%s;%.2f;%.0f;%.0f;%.0f;%.0f\n", type, strength, area.left(), area.top(),area.bottom(),area.right()));
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            } finally {
+                if (writer != null) {
+                    try {
+                        writer.close();
+                    } catch (IOException e) {
+                        // Erro fechar o arquivo
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public boolean loadGame(String filepath) {
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(filepath));
+            // Ignora a primeira linha, que é o cabeçalho
+            reader.readLine();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+                if (parts.length == 6) {
+                    String typeStr = parts[0];
+                    double strength = Double.parseDouble(parts[1]);
+                    double positionX = Double.parseDouble(parts[2]);
+                    double positionY = Double.parseDouble(parts[3]);
+                    double bottom = Double.parseDouble(parts[4]);
+                    double right = Double.parseDouble(parts[5]);
+                    Element type = Element.valueOf(typeStr);
+                    Area area = new Area(positionY, positionX, bottom, right);
+
+                    System.out.println("fauna " + type + "\n");
+
+                    // Verifica se a área está dentro dos limites da simulação
+                    if (!isOutBounds(area)) {
+                        // Verifica se a área do elemento se sobrepõe a algum elemento existente
+                        boolean overlap = false;
+                        for (IElement existingElement : elements) {
+                            if (existingElement.getArea().intersects(area)) {
+                                if(type == Element.FAUNA){
+
+                                }else{
+                                    overlap = true;
+                                    break;
+                                }
+                            }
+                        }
+                        // Se não houver sobreposição, adiciona o elemento à simulação
+                        if (!overlap) {
+                            IElement element = ElementsFactory.CreateElement(this, type, positionX, positionY); // Aqui você precisa substituir o "null" pelo contexto correto
+                            ((BaseElement)element).setArea(area);
+
+
+                            if (element.getType() == Element.FAUNA) {
+                                ((Fauna) element).setStrength(strength);
+
+                            } else if (element.getType() == Element.FLORA) {
+                                ((Flora) element).setStrength(strength);
+                            }
+                            this.elements.add(element);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+    
 
 
     //área para o Observable

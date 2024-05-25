@@ -65,10 +65,10 @@ public class SideBar extends VBox {
 
         faunaDropdown = new ComboBox<>();
         faunaDropdown.getItems().addAll("Fauna", "Flora","Inanimados"); // Add your options here
-        faunaDropdown.setPromptText("Fauna");
         faunaDropdown.setPrefWidth(width - 10);
         faunaDropdown.setFocusTraversable(false);
         faunaDropdown.setStyle("-fx-border-width: 0;");
+        faunaDropdown.getSelectionModel().selectFirst();
 
         btnAddElement = new Button("Adicionar Elemento");
         btnAddElement.getStyleClass().add("btn-primary");

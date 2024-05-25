@@ -42,7 +42,7 @@ public class MainJFX extends Application {
     @Override
     public void init() throws Exception {
         gameEngine.registerClient(model);
-        gameEngine.start(250);
+        gameEngine.start(100);
     }
 
     @Override
