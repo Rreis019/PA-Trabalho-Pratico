@@ -4,24 +4,144 @@
 		"selected_items":
 		[
 			[
-				"elemen",
-				"elementSelected : BaseElement"
+				"Fauna",
+				"Fauna - pt.isec.pa.javalife.model.data.elements"
+			],
+			[
+				"faun",
+				"FaunaState - pt.isec.pa.javalife.model.fsm"
+			],
+			[
+				"FAUN",
+				"FaunaState - pt.isec.pa.javalife.model.fsm"
+			],
+			[
+				"Faun",
+				"FaunaState - pt.isec.pa.javalife.model.fsm"
+			],
+			[
+				"FaunState",
+				"FaunaStateAdapter - pt.isec.pa.javalife.model.fsm"
+			],
+			[
+				"handle",
+				"handleEating(Flora closestFlora) : void"
+			],
+			[
+				"targe",
+				"targetFauna : Fauna"
+			],
+			[
+				"target",
+				"targetFauna : Fauna"
+			],
+			[
+				"targ",
+				"targetFauna : Fauna"
+			],
+			[
+				"gets",
+				"getStrength() : double"
+			],
+			[
+				"tar",
+				"targetFauna : Fauna"
+			],
+			[
+				"getdi",
+				"getId() : int"
+			],
+			[
+				"gett",
+				"getElements() : Set<IElement>"
+			],
+			[
+				"Direction",
+				"Direction - pt.isec.pa.javalife.model.fsm"
+			],
+			[
+				"ins",
+				"intersects(Area other) : boolean"
+			],
+			[
+				"IEEment",
+				"elements : Set<pt.isec.pa.javalife.model.data.elements.IElement>"
+			],
+			[
+				"Ina",
+				"right : Inanimate"
+			],
+			[
+				"eleme",
+				"elements : Set<pt.isec.pa.javalife.model.data.elements.IElement>"
 			],
 			[
 				"Area",
 				"Area - pt.isec.pa.javalife.model.data"
 			],
 			[
+				"stren",
+				"strength : double"
+			],
+			[
+				"setg",
+				"setStrength(double strength_) : void"
+			],
+			[
+				"EL",
+				"Element - pt.isec.pa.javalife.model.data.elements"
+			],
+			[
+				"stre",
+				"strenght : double"
+			],
+			[
+				"get",
+				"getArea() : Area"
+			],
+			[
+				"abs",
+				"abs(double a) : double"
+			],
+			[
+				"getele",
+				"getElements() : Set<BaseElement>"
+			],
+			[
+				"top",
+				"top() : double"
+			],
+			[
+				"setp",
+				"setPosition"
+			],
+			[
+				"bot",
+				"bottom() : double"
+			],
+			[
+				"left",
+				"left() : double"
+			],
+			[
+				"lef",
+				"left() : double"
+			],
+			[
+				"curren",
+				"currentElementIDSelected : int"
+			],
+			[
+				"add",
+				"addPropertyChangeListener(String prop, PropertyChangeListener listener) : void"
+			],
+			[
+				"elemen",
+				"elementSelected : BaseElement"
+			],
+			[
 				"GREE",
 				"GREENYELLOW : Color"
-			],
-			[
-				"Fauna",
-				"Fauna - pt.isec.pa.javalife.model.data.elements"
-			],
-			[
-				"FAUN",
-				"faunaStates : Map<pt.isec.pa.javalife.model.data.elements.Fauna,pt.isec.pa.javalife.model.fsm.FaunaStateContext>"
 			],
 			[
 				"S",
@@ -32,20 +152,12 @@
 				"Element - pt.isec.pa.javalife.model.data.elements"
 			],
 			[
-				"Ina",
-				"Inanimate - pt.isec.pa.javalife.model.data.elements"
-			],
-			[
 				"set",
 				"setArea(double positionX, double positionY, double width, double height) : void"
 			],
 			[
 				"getxt",
 				"getTxtCima() : TextField"
-			],
-			[
-				"get",
-				"getText"
 			],
 			[
 				"getText",
@@ -116,10 +228,6 @@
 				"LEFT : FaunaDirection"
 			],
 			[
-				"Faun",
-				"FaunaDirection - pt.isec.pa.javalife.model.fsm"
-			],
-			[
 				"setposit",
 				"setPosition(double positionX, double positionY) : void"
 			],
@@ -130,10 +238,6 @@
 			[
 				"dire",
 				"direction : FaunaDirection"
-			],
-			[
-				"stre",
-				"strength_ : double"
 			],
 			[
 				"move",
@@ -154,10 +258,6 @@
 			[
 				"EC",
 				"Ecosystem - pt.isec.pa.javalife.model"
-			],
-			[
-				"faun",
-				"faunaStates : Map<pt.isec.pa.javalife.model.data.elements.Fauna,pt.isec.pa.javalife.model.fsm.FaunaStateContext>"
 			],
 			[
 				"Faunasta",
@@ -244,12 +344,46 @@
 	"buffers":
 	[
 		{
-			"file": "src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
+			"file": "src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
 			"settings":
 			{
-				"buffer_size": 604,
+				"buffer_size": 1619,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "src/pt/isec/pa/javalife/model/fsm/states/ReproduceState.java",
+			"settings":
+			{
+				"buffer_size": 676,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "package pt.isec.pa.javalife.model.fsm.states;\n\nimport java.lang.annotation.Target;\nimport java.util.Random;\n\nimport pt.isec.pa.javalife.model.Ecosystem;\nimport pt.isec.pa.javalife.model.data.Area;\nimport pt.isec.pa.javalife.model.data.elements.BaseElement;\nimport pt.isec.pa.javalife.model.data.elements.Element;\nimport pt.isec.pa.javalife.model.data.elements.Fauna;\nimport pt.isec.pa.javalife.model.data.elements.Flora;\nimport pt.isec.pa.javalife.model.data.elements.IElement;\nimport pt.isec.pa.javalife.model.data.elements.Inanimate;\nimport pt.isec.pa.javalife.model.fsm.Direction;\nimport pt.isec.pa.javalife.model.fsm.FaunaState;\nimport pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;\nimport pt.isec.pa.javalife.model.fsm.FaunaStateContext;\n\n\npublic class SearchFoodState extends FaunaStateAdapter {\n\n\n\tpublic SearchFoodState(FaunaStateContext context, Ecosystem ecosystem, Fauna fauna_)\n\t{\n\t\tsuper(context,ecosystem, fauna_);\n\t}\n\n \t@Override\n    public FaunaState getState() {\n        return FaunaState.SEARCH_FOOD;\n    }\n\n\t@Override\n\tpublic boolean execute() {\n\t\tIElement closestFlora = ecosystem.getClossestElement(fauna.getArea(), Element.FLORA);\n\t    Fauna weakestFauna = null;\n\n\t    if (closestFlora != null) {\n\t        if (moveTo(closestFlora)) {changeState(FaunaState.EATING);}\n\t    } else {\n\t        weakestFauna = ecosystem.getWeakestFauna(fauna.getId());\n\t        if (weakestFauna != null && moveTo(weakestFauna)) {changeState(FaunaState.ATTACKING);}\n\t    }\n\n\t    changeState(FaunaState.MOVING);\n\t    return true;\n\t}\n\n\n\tprivate Direction getAlternativeDirection(Direction currentDirection) {\n        switch (currentDirection) {\n            case LEFT:\n            case RIGHT:\n                return (Math.random() > 0.5) ? Direction.UP : Direction.DOWN;\n            case UP:\n            case DOWN:\n                return (Math.random() > 0.5) ? Direction.LEFT : Direction.RIGHT;\n            default:\n                return Direction.RIGHT;\n        }\n    }\n\n\n    //true -> ja chegou ao alvo\n\tprivate boolean moveTo(IElement target) {\n\t    double deltaX = target.getArea().left() - fauna.getArea().left();\n\t    double deltaY = target.getArea().top() - fauna.getArea().top();\n\n\t    Direction dirX = (deltaX > 0) ? Direction.RIGHT : Direction.LEFT;\n\t    Direction dirY = (deltaY > 0) ? Direction.DOWN : Direction.UP;\n\n\t    if (Math.abs(deltaX) > Math.abs(deltaY)) {\n\t        fauna.setDirection(dirX);\n\t    } else {\n\t        fauna.setDirection(dirY);\n\t    }\n\n\t    if (faunaHaveObstacleAhead()) {  \n\t        Direction dirRandom = getAlternativeDirection(fauna.getDirection());\n\t        fauna.setDirection(dirRandom);\n\t    }\n\n\t    if(!fauna.getArea().intersects(target.getArea())){\n        \tfauna.moveForward();\n        \treturn false;\n        }\n\n        return true;\n\t}\n\n\n\tprivate boolean faunaHaveObstacleAhead() {\n\t    Area futureArea = null;\n\t    switch (fauna.getDirection()) {\n\t        case LEFT:\n\t            futureArea = new Area(fauna.getArea().top(), fauna.getArea().left() - fauna.getVelocity(), fauna.getArea().bottom(), fauna.getArea().right() - fauna.getVelocity());\n\t            break;\n\t        case RIGHT:\n\t            futureArea = new Area(fauna.getArea().top(), fauna.getArea().left() + fauna.getVelocity(), fauna.getArea().bottom(), fauna.getArea().right() + fauna.getVelocity());\n\t            break;\n\t        case UP:\n\t            futureArea = new Area(fauna.getArea().top() - fauna.getVelocity(), fauna.getArea().left(), fauna.getArea().bottom() - fauna.getVelocity(), fauna.getArea().right());\n\t            break;\n\t        case DOWN:\n\t            futureArea = new Area(fauna.getArea().top() + fauna.getVelocity(), fauna.getArea().left(), fauna.getArea().bottom() + fauna.getVelocity(), fauna.getArea().right());\n\t            break;\n\t    }\n\n\t    for (IElement element : ecosystem.getElements()) {\n\t        if (element.getType() == Element.INANIMATE && futureArea.intersects(element.getArea())) {\n\t            return true;\n\t        }\n\t    }\n\n    \treturn false;\n\t}\n}",
+			"file": "src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
+			"file_size": 2032,
+			"file_write_time": 133610543267750008,
+			"redo_stack":
+			[
+				[
+					8,
+					1,
+					"left_delete",
+					null,
+					"BQAAALEHAAAAAAAAsgcAAAAAAAAAAAAAsgcAAAAAAACzBwAAAAAAAAAAAACzBwAAAAAAALQHAAAAAAAAAAAAALQHAAAAAAAAtQcAAAAAAAAAAAAAtQcAAAAAAACVDwAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsQcAAAAAAACxBwAAAAAAAAAAAAAAAPC/"
+				]
+			],
+			"settings":
+			{
+				"buffer_size": 3991,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+			]
 		}
 	],
 	"build_system": "",
@@ -264,7 +398,7 @@
 		"selected_items":
 		[
 			[
-				"ter",
+				"term",
 				"Terminus: Toggle Panel"
 			],
 			[
@@ -272,7 +406,59 @@
 				"Javatar: Builds..."
 			],
 			[
-				"term",
+				"close",
+				"File: Close All"
+			],
+			[
+				"b",
+				"Javatar: Builds..."
+			],
+			[
+				"clo",
+				"File: Close All"
+			],
+			[
+				"bu",
+				"Javatar: Builds..."
+			],
+			[
+				"ena",
+				"LSP: Enable Language Server in Project"
+			],
+			[
+				"disa",
+				"LSP: Disable Language Server in Project"
+			],
+			[
+				"enable",
+				"LSP: Enable Language Server in Project"
+			],
+			[
+				"disabl",
+				"LSP: Disable Language Server in Project"
+			],
+			[
+				"javatar",
+				"Javatar: Operations..."
+			],
+			[
+				"BUI",
+				"Javatar: Builds..."
+			],
+			[
+				"renam",
+				"Rename File"
+			],
+			[
+				"enabl",
+				"LSP: Enable Language Server in Project"
+			],
+			[
+				"B",
+				"Javatar: Builds..."
+			],
+			[
+				"ter",
 				"Terminus: Toggle Panel"
 			],
 			[
@@ -284,24 +470,8 @@
 				"Javatar: Calls..."
 			],
 			[
-				"close",
-				"File: Close All"
-			],
-			[
-				"b",
-				"Javatar: Builds..."
-			],
-			[
-				"renam",
-				"Rename File"
-			],
-			[
 				"CALL",
 				"Javatar: Calls..."
-			],
-			[
-				"ena",
-				"LSP: Enable Language Server in Project"
 			],
 			[
 				"disab",
@@ -310,10 +480,6 @@
 			[
 				"enable ",
 				"LSP: Enable Language Server Globally"
-			],
-			[
-				"BUI",
-				"Javatar: Builds..."
 			],
 			[
 				"vbui",
@@ -404,10 +570,6 @@
 				"Javatar: Builds..."
 			],
 			[
-				"javatar",
-				"Javatar: Builds..."
-			],
-			[
 				"lspc",
 				"Preferences: LSP-clangd Settings"
 			],
@@ -453,45 +615,51 @@
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/tests",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui"
 	],
 	"file_history":
 	[
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/tp.sublime-project",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Flora.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Inanimate.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaDirection.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/AttackingState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/MovingState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/Ecosystem.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/IEcosystem.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/IGameEngineEvolve.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateAdapter.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/IElement.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/Area.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/BlueSlider.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/BaseElement.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Inanimate.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Flora.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/Direction.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/tp.sublime-project",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/.gitignore",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/IEcosystem.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaDirection.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/IGameEngineEvolve.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Element.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
 		"/C/Users/Eu/Downloads/Ex30_Completo/src/pt/isec/pa/ex30/Main.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/MovingState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/BaseElement.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/BlueSlider.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBarNavbar.java",
 		"/C/ValoraHelp/ValoraHelp/Drawings.cpp",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"JavaFX Application Thread\" java.lang.NullPointerException",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/BlueSpinner.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/GameEngine.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/GameEngineState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateAdapter.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/resources/style.css",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/bin/style.css",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"Thread-1106\" java.lang.NullPointerException",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"Thread-383\" java.lang.NullPointerException",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/AttackingState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/ReproduceState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/Controller.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
@@ -547,11 +715,11 @@
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 48.0
 	},
 	"find_in_files":
 	{
-		"height": 131.0,
+		"height": 146.0,
 		"where_history":
 		[
 			""
@@ -562,6 +730,54 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"handleEating",
+			"//",
+			"element_",
+			"solveColision",
+			"handleIfOutBounds",
+			"handle",
+			"-1",
+			"1 +",
+			"+ 1",
+			"solveColision",
+			"solveColision\n",
+			"solveColision",
+			"handleIfOutBounds",
+			"handleIfOutBounds\n",
+			"handleIfOutBounds",
+			"handleIfOutBounds\n",
+			"handleIfOutBounds",
+			"handle",
+			"makeWallOfChina",
+			"Inanimate.size",
+			"BaseElement",
+			"CreateElement",
+			"BaseElement",
+			"elements",
+			"delta.y",
+			"delta.x",
+			"onrender",
+			"drawCornerBox",
+			"();\n",
+			"f.",
+			"f",
+			"0",
+			"()",
+			"PROP_GAME_RENDER",
+			"FaunaDirection",
+			"import pt.isec.pa.javalife.model.fsm.;\n",
+			"FaunaDirection",
+			"Direction",
+			"FaunaDirection",
+			"getElement(",
+			"ConcurrentModificationException\n",
+			"onRender",
+			"PROP_INSPECT",
+			"getelement",
+			"PROP_GAME_RENDER",
+			"getElement(",
+			"getElement",
+			"addPropertyChangeListener",
 			"onrender",
 			"f.getArea()",
 			"onrender",
@@ -621,12 +837,12 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
+					"file": "src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
 					"selected": true,
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 604,
+						"buffer_size": 1619,
 						"regions":
 						{
 						},
@@ -651,23 +867,124 @@
 								},
 								{
 									"characters": ".@#* ",
-									"registration_id": "4578f6d1-dcd5-4206-b943-9b9ea89db60d",
+									"registration_id": "d981863b-4531-4ed9-bcd1-91ea3c62df3c",
 									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
 									"server": "jdtls"
 								}
 							],
 							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
+							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
 							"show_definitions": false,
 							"syntax": "Packages/Java/Java.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 831.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/pt/isec/pa/javalife/model/fsm/states/ReproduceState.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 676,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html, text.xml"
+								},
+								{
+									"rhs_empty": true,
+									"selector": "punctuation.accessor"
+								},
+								{
+									"characters": ".@#* ",
+									"registration_id": "d981863b-4531-4ed9-bcd1-91ea3c62df3c",
+									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
+									"server": "jdtls"
+								}
+							],
+							"lsp_active": true,
+							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/ReproduceState.java",
+							"show_definitions": false,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 138.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3991,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3989,
+								1973
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html, text.xml"
+								},
+								{
+									"rhs_empty": true,
+									"selector": "punctuation.accessor"
+								},
+								{
+									"characters": ".@#* ",
+									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
+									"server": "jdtls"
+								}
+							],
+							"lsp_active": true,
+							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
+							"show_definitions": false,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 899.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"stack_multiselect": false,
 					"type": "text"
 				}
@@ -676,7 +993,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 36.0
 	},
 	"input":
 	{
@@ -719,7 +1036,7 @@
 	},
 	"output.exec":
 	{
-		"height": 384.0
+		"height": 391.0
 	},
 	"output.find_results":
 	{
@@ -733,7 +1050,7 @@
 	"project": "tp.sublime-project",
 	"replace":
 	{
-		"height": 58.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -743,16 +1060,176 @@
 		"selected_items":
 		[
 			[
-				"mainscen",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+				"rep",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\ReproduceState.java"
+			],
+			[
+				"eatin",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\EatingState.java"
+			],
+			[
+				"movin",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
+			],
+			[
+				"sear",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
+			],
+			[
+				"ata",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\AttackingState.java"
+			],
+			[
+				"EAT",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\EatingState.java"
 			],
 			[
 				"ec",
 				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
 			],
 			[
+				"attac",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\AttackingState.java"
+			],
+			[
+				"eat",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\EatingState.java"
+			],
+			[
+				"eco",
+				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
+			],
+			[
+				"eating",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\EatingState.java"
+			],
+			[
+				"searc",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
+			],
+			[
+				"fan",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"area",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\Area.java"
+			],
+			[
+				"movi",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
+			],
+			[
+				"fa",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"fauna",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"mainscen",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"main",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"create",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
+			],
+			[
+				"close",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\BlueSlider.java"
+			],
+			[
+				"crea",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
+			],
+			[
+				"iel",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\IElement.java"
+			],
+			[
+				"ina",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Inanimate.java"
+			],
+			[
+				"mainsce",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"cer",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
+			],
+			[
+				"flora",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Flora.java"
+			],
+			[
 				"EC",
 				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
+			],
+			[
+				"base",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\BaseElement.java"
+			],
+			[
+				"faun",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"ear",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
+			],
+			[
+				"search",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
+			],
+			[
+				"ifa",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\IFaunaState.java"
+			],
+			[
+				"moving",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
+			],
+			[
+				"scen",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"bas",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\BaseElement.java"
+			],
+			[
+				"inam",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Inanimate.java"
+			],
+			[
+				"DI",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\Direction.java"
+			],
+			[
+				"fau",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"dire",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\Direction.java"
+			],
+			[
+				"mainscne",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"E",
+				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
+			],
+			[
+				"MAIN",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
 				"MA",
@@ -763,48 +1240,12 @@
 				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
 			],
 			[
-				"eco",
-				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
-			],
-			[
-				"main",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
 				"ele",
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\ElementsFactory.java"
 			],
 			[
 				"elem",
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\ElementsFactory.java"
-			],
-			[
-				"flora",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Flora.java"
-			],
-			[
-				"fauna",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
-			],
-			[
-				"crea",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
-			],
-			[
-				"MAIN",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"mainsce",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"ina",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Inanimate.java"
-			],
-			[
-				"create",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
 			],
 			[
 				"e",
@@ -817,10 +1258,6 @@
 			[
 				"side",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
-			],
-			[
-				"base",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\BaseElement.java"
 			],
 			[
 				"mai",
@@ -855,24 +1292,8 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
-				"bas",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\BaseElement.java"
-			],
-			[
 				"mainsc",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"movin",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
-			],
-			[
-				"moving",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
-			],
-			[
-				"faun",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
 			],
 			[
 				"blusid",
@@ -939,16 +1360,8 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\MainJFX.java"
 			],
 			[
-				"fa",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
-			],
-			[
 				"faunaima",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\FaunaImagesManager.java"
-			],
-			[
-				"fan",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
 			],
 			[
 				"Fua",

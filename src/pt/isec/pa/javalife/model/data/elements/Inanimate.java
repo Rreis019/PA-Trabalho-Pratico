@@ -13,7 +13,7 @@ public final class Inanimate extends BaseElement implements Serializable
 	static final long serialVersionUID = 1L;
 	public static final int size = 16;
 
- 	public Inanimate(int positionX,int positionY) {
+ 	public Inanimate(double positionX,double positionY) {
         super(Element.INANIMATE,positionX,positionY,size,size);
     }
 	

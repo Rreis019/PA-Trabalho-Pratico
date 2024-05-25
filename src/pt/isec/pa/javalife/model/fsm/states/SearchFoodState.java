@@ -35,28 +35,16 @@ public class SearchFoodState extends FaunaStateAdapter {
 		IElement closestFlora = ecosystem.getClossestElement(fauna.getArea(), Element.FLORA);
 	    Fauna weakestFauna = null;
 
-	    if (closestFlora != null) {
-	        if (moveTo(closestFlora)) {changeState(FaunaState.EATING);}
+	    if (closestFlora != null) 
+	    {
+	        if (fauna.moveTo(ecosystem.getElements(),closestFlora) == true) {
+	        	changeState(FaunaState.EATING);
+	        }
 	    } else {
 	        weakestFauna = ecosystem.getWeakestFauna(fauna.getId());
-	        if (weakestFauna != null && moveTo(weakestFauna)) {changeState(FaunaState.ATTACKING);}
+	        if (weakestFauna != null && fauna.moveTo(ecosystem.getElements(),weakestFauna)) {changeState(FaunaState.ATTACKING);}
 	    }
 
-	    changeState(FaunaState.MOVING);
 	    return true;
 	}
-
-
-	private Direction getAlternativeDirection(Direction currentDirection) {
-        switch (currentDirection) {
-            case LEFT:
-            case RIGHT:
-                return (Math.random() > 0.5) ? Direction.UP : Direction.DOWN;
-            case UP:
-            case DOWN:
-                return (Math.random() > 0.5) ? Direction.LEFT : Direction.RIGHT;
-            default:
-                return Direction.RIGHT;
-        }
-    }
 }

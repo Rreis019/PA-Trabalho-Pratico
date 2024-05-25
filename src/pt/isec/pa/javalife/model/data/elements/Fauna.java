@@ -2,13 +2,17 @@ package pt.isec.pa.javalife.model.data.elements;
 
 import java.io.Serializable;
 import java.lang.ModuleLayer.Controller;
+import java.util.Set;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.fsm.Direction;
+import pt.isec.pa.javalife.model.fsm.FaunaState;
+import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 
 /**
@@ -25,12 +29,17 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
     private static final int size = 32;
 
     public static double descreaseEnergy = 0.5;
+    private FaunaStateContext ctx;
 
-	public Fauna(int positionX,int positionY) {
+	public Fauna(Ecosystem ecosystem,double positionX,double positionY) {
         super(Element.FAUNA, positionX,positionY,size,size);
         setImage(FaunaImagesManager.getImage(specie));
+        ctx = new FaunaStateContext(ecosystem, this);
     }   
 
+
+    public FaunaState getState(){return ctx.getState();}
+    public FaunaStateContext getFSM(){return ctx;}
     public int getVelocity(){return velocity;}
 
     public void moveForward() {
@@ -70,6 +79,77 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
                 break;
         }
     }
+
+
+
+    private Direction getAlternativeDirection(Direction currentDirection) {
+        switch (currentDirection) {
+            case LEFT:
+            case RIGHT:
+                return (Math.random() > 0.5) ? Direction.UP : Direction.DOWN;
+            case UP:
+            case DOWN:
+                return (Math.random() > 0.5) ? Direction.LEFT : Direction.RIGHT;
+            default:
+                return Direction.RIGHT;
+        }
+    }
+
+
+    //true -> ja chegou ao alvo
+    public boolean moveTo(Set<IElement> elements,IElement target) {
+        double deltaX = target.getArea().left() - getArea().left();
+        double deltaY = target.getArea().top() - getArea().top();
+
+        Direction dirX = (deltaX > 0) ? Direction.RIGHT : Direction.LEFT;
+        Direction dirY = (deltaY > 0) ? Direction.DOWN : Direction.UP;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {setDirection(dirX);
+        } else {setDirection(dirY);}
+
+
+        if (this.haveObstacleAhead(elements)) {  
+            Direction dirRandom = getAlternativeDirection(getDirection());
+            setDirection(dirRandom);
+        }
+
+
+        if(!getArea().intersects(target.getArea())){
+            moveForward();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private boolean haveObstacleAhead(Set<IElement> elements) {
+        Area futureArea = null;
+        switch (this.getDirection()) {
+            case LEFT:
+                futureArea = new Area(this.getArea().top(), this.getArea().left() - this.getVelocity(), this.getArea().bottom(), this.getArea().right() - this.getVelocity());
+                break;
+            case RIGHT:
+                futureArea = new Area(this.getArea().top(), this.getArea().left() + this.getVelocity(), this.getArea().bottom(), this.getArea().right() + this.getVelocity());
+                break;
+            case UP:
+                futureArea = new Area(this.getArea().top() - this.getVelocity(), this.getArea().left(), this.getArea().bottom() - this.getVelocity(), this.getArea().right());
+                break;
+            case DOWN:
+                futureArea = new Area(this.getArea().top() + this.getVelocity(), this.getArea().left(), this.getArea().bottom() + this.getVelocity(), this.getArea().right());
+                break;
+        }
+
+        for (IElement element : elements) {
+            if (element.getType() == Element.INANIMATE && futureArea.intersects(element.getArea())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 
     public void decreaseEnergy(){strength-=descreaseEnergy;}
 

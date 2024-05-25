@@ -23,21 +23,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
 
 import javax.swing.text.StyledEditorKit.BoldAction;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private static final long serialVersionUID = 1L;
     private Set<IElement> elements;
-    private Map<Fauna, FaunaStateContext> faunaStates;
+    //private Map<Fauna, FaunaStateContext> faunaStates;
+
+
     private final PropertyChangeSupport pcs; // Para o observable
     public static final String PROP_GAME_RENDER = "info_property";
     public static final String PROP_INSPECT = "inspect";
+
 
     private int unitScale = 2;
     private int numUnitsX = 0;
@@ -47,7 +52,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     public Ecosystem() { //Facade
         this.pcs = new PropertyChangeSupport(this);
         elements = new HashSet<>();
-        faunaStates = new HashMap<>();
+        //faunaStates = new HashMap<>();
     }
 
 
@@ -80,13 +85,44 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
     public Fauna getWeakestFauna(int ignoreID)
     {
+        double str = 1000;
+        Fauna weakestFauna = null;
         for (IElement e : getElements()) {
             if(e.getType() == Element.FAUNA && e.getId() != ignoreID){
-                return (Fauna)e;
+                Fauna f = (Fauna)e;
+                if(f.getStrength() < str){
+                    str = f.getStrength();
+                    weakestFauna = f;
+                }
+
+
             }
         }
-        return null;
+        return weakestFauna;
     }
+
+    public void clearElements()
+    {
+        elements.clear();
+    }
+    public Fauna getStrongestFauna(int ignoreID)
+    {
+        double str = 0;
+        Fauna strongestFauna = null;
+        for (IElement e : getElements()) {
+            if(e.getType() == Element.FAUNA && e.getId() != ignoreID){
+                Fauna f = (Fauna)e;
+                if(f.getStrength() > str){
+                    str = f.getStrength();
+                    strongestFauna = f;
+                }
+
+
+            }
+        }
+        return strongestFauna;
+    }
+
     public IElement getElement(int id)
     {
         pcs.firePropertyChange(PROP_INSPECT,null,null);
@@ -98,23 +134,25 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return null;
     }
 
+
+    public void updateRender()
+    {
+        pcs.firePropertyChange(PROP_GAME_RENDER,null,null);
+    }
+
     public void removeElement(IElement element_) {
         elements.remove(element_);
     }
 
-    /*
-    public void addFauna()
+    public void addElement(Element type,double positionX,double positionY)
     {
-        Random random = new Random();
-        Fauna fauna = new Fauna(random.nextInt(getWidth()),random.nextInt(getHeight()));
-        elements.add(fauna);
-        faunaStates.put(fauna, new FaunaStateContext(this, fauna));
+        IElement ent = ElementsFactory.CreateElement(this,type, positionX, positionY);
+        elements.add(ent);
     }
-    */
 
-    public void addElement(Element type) {
+    public void addElementToRandomFreePosition(Element type) {
         Random random = new Random();
-        IElement ent = ElementsFactory.CreateElement(type, 0, 0);
+        IElement ent = ElementsFactory.CreateElement(this,type, 0, 0);
 
         int maxWidth = getWidth() - ent.getSize();
         int maxHeight = getHeight() - ent.getSize();
@@ -136,57 +174,37 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
             if (!intersects_) {foundEmptyPosition = true;}
         }
 
-        if (ent.getType() == Element.FAUNA) {
-            faunaStates.put((Fauna) ent, new FaunaStateContext(this, (Fauna) ent));
-        }
+        //if (ent.getType() == Element.FAUNA) {
+         //   faunaStates.put((Fauna) ent, new FaunaStateContext(this, (Fauna) ent));
+        //}
 
         elements.add(ent);
     }
 
     @Override
-    public void evolve(IGameEngine gameEngine, long currentTime) {
-        for (FaunaStateContext fsm: faunaStates.values()) {fsm.execute();}
-        handleColisions();
-        //Só para testar o gameEngine
-
-        pcs.firePropertyChange(PROP_GAME_RENDER,null,null);
-
+     public void evolve(IGameEngine gameEngine, long currentTime) {
+        // Iterar sobre os estados da fauna usando um iterador
         Iterator<IElement> iterator = elements.iterator();
         while (iterator.hasNext()) {
-            IElement element_ = iterator.next();
-            if (element_.getType() == Element.FAUNA) {
-                if(((Fauna) element_).getStrength() <= 0)
-                {
-                    iterator.remove(); // Remover o elemento de maneira segura
-                    faunaStates.remove((Fauna) element_);
-                }
-            }
-            else if (element_.getType() == Element.FLORA) {
-                if(((Flora)element_).getStrength() <= 0)
-                {
-                    iterator.remove(); // Remover o elemento de maneira segura
-                    faunaStates.remove((Flora)element_);
-                }
-            }
+            IElement element = iterator.next();
+            if(element.getType() == Element.FAUNA){((Fauna)element).getFSM().execute();}
         }
 
 
-       // System.out.printf("[%d] %d\n",currentTime,++count);
-        //if (count >= 20) gameEngine.stop();
-
-        //Depois implementar um "estado" para controlar os eventos da simulação, se está parada ou não ( tipo uma função boolean)
-        //Isso vai permitir parar e continuar a simulação (através do gameEngine)
-
-    }
-
-    public FaunaState getState(Fauna fauna) {
-        FaunaStateContext context = faunaStates.get(fauna);
-        if (context != null) {
-            return context.getState();
+        // Iterar sobre os elementos usando um iterador
+        Iterator<IElement> elementIterator = elements.iterator();
+        while (elementIterator.hasNext()) {
+            IElement element = elementIterator.next();
+            if (element.getType() == Element.FAUNA) {
+                if (((Fauna) element).getStrength() <= 0) {elementIterator.remove(); }
+            } else if (element.getType() == Element.FLORA) {
+                if (((Flora) element).getStrength() <= 0) {elementIterator.remove(); }
+            }
         }
-        return null;  // Ou um estado padrão, se preferir
-    }
 
+        handleColisions();
+        pcs.firePropertyChange(PROP_GAME_RENDER, null, null);
+    }
 
     public void makeWallOfChina()
     {
@@ -209,9 +227,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         elements.add(bottom);
         
     }
-
-
-
 
     private void handleIfOutBounds(Fauna element_){
         Area area = element_.getArea();

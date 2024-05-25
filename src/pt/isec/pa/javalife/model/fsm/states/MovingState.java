@@ -40,7 +40,10 @@ public class MovingState extends FaunaStateAdapter {
 
 
 		fauna.moveForward();
-		if(fauna.getStrength() < 35){
+		if(fauna.getStrength() > 50){
+			changeState(FaunaState.REPRODUCE);
+		}
+		else if(fauna.getStrength() < 35){
 			changeState(FaunaState.SEARCH_FOOD);
 		}
 		return false;

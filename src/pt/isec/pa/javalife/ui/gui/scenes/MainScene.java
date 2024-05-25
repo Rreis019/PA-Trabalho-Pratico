@@ -435,5 +435,43 @@ public class MainScene extends Scene
             model.removeElement(element_);
         //    onRender(gc);
         });
+
+
+        sidebar.getBtnCreteEco().setOnAction(event -> {
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model,gameEngine);
+            primaryStage.setScene(createEcoSystemScene);
+        });
+
+
+        sidebar.getBtnAddElement().setOnAction(event -> {
+            String selectedType = sidebar.getFaunaDropdown().getSelectionModel().getSelectedItem();
+
+            // Dependendo do tipo selecionado, adicione o tipo correspondente de elemento
+            if (selectedType != null) {
+                Element elementType;
+                switch (selectedType) {
+                    case "Fauna":
+                        elementType = Element.FAUNA;
+                        break;
+                    case "Flora":
+                        elementType = Element.FLORA;
+                        break;
+                    case "Inanimados":
+                        elementType = Element.INANIMATE;
+                        break;
+                    default:
+                        // Trate qualquer outro caso aqui, se necessário
+                        elementType = null;
+                        break;
+                }
+
+                // Adicione o elemento com o tipo determinado
+                if (elementType != null) {
+                    model.addElementToRandomFreePosition(elementType);
+                    model.updateRender();
+                }
+            }
+        });
+
     }
 }

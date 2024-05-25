@@ -21,7 +21,7 @@ public abstract sealed class BaseElement
 
     protected transient Area area;
 
-    public BaseElement(Element type, int positionX,int positionY,double width,double height) {
+    public BaseElement(Element type, double positionX,double positionY,double width,double height) {
         //this.id = id;
         lastId = lastId + 1;
         this.id = lastId;

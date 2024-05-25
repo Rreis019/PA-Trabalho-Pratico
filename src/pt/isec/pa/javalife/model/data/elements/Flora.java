@@ -14,10 +14,10 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 public final class Flora extends BaseElement  implements IElementWithImage,IElementWithStrength,Serializable  
 {
 	static final long serialVersionUID = 1L;
-    private static final int size = 10;
+    private static final int size = 13;
     double strenght = 100;
 
-	 public Flora(int positionX,int positionY) {
+	 public Flora(double positionX,double positionY) {
         super(Element.FLORA,positionX,positionY,size,size);
     }
 

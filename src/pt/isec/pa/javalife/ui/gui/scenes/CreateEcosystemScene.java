@@ -212,17 +212,19 @@ class CreateEcosystemScene extends Scene
         criarButton.setOnAction(e -> {
             System.out.println("Botão 'Criar' foi clicado");
             
+            model.clearElements();
             model.setNumUnitsX(Scomprimento.getNumero());
             model.setNumUnitsY(SAltura.getNumero());
             model.makeWallOfChina();
-            for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElement(Element.INANIMATE);}
+            for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.INANIMATE);}
 
 
 
-            for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElement(Element.FAUNA);}
-            for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElement(Element.FLORA);}
+            for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FAUNA);}
+            for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FLORA);}
 
             gameEngine.setInterval((int)Sunidade.getValue());
+            gameEngine.resume();
             MainScene mainscene = new MainScene(primaryStage,model,gameEngine);
             primaryStage.setScene(mainscene);
             primaryStage.show();
