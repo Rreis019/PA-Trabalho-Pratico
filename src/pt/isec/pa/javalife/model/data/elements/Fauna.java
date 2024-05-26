@@ -32,31 +32,37 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
 
     public static double descreaseEnergy = 0.5;
     private FaunaStateContext ctx;
-
+    private Ecosystem eco;
 
 	public Fauna(Ecosystem ecosystem,double positionX,double positionY) {
         super(Element.FAUNA, positionX,positionY,size,size);
         ctx = new FaunaStateContext(ecosystem, this);
+        this.eco = ecosystem;
     }   
 
 
     public FaunaState getState(){return ctx.getState();}
     public FaunaStateContext getFSM(){return ctx;}
-    public int getVelocity(){return velocity;}
+    public int getVelocity()
+    {
+        if(eco.isSunEventActive()){return velocity/2;}
+        return velocity;
+
+    }
 
     public void moveForward() {
         switch (direction) {
             case LEFT:
-                move(-velocity,0);
+                move(-getVelocity(),0);
                 break;
             case RIGHT:
-                move(velocity,0);
+                move(getVelocity(),0);
                 break;
             case DOWN:
-                move(0,velocity);
+                move(0,getVelocity());
                 break;
             case UP:
-                move(0,-velocity);
+                move(0,-getVelocity());
                 break;
         }
         decreaseEnergy();

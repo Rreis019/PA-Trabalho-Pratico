@@ -49,7 +49,6 @@ public class ReproduceState extends FaunaStateAdapter implements Serializable {
 			{
 				fauna.setStrength(fauna.getStrength() - 25);
 				
-				//TODO : Fix ConcurrentModificationException
 				ecosystem.addElement(Element.FAUNA,fauna.getArea().left(),fauna.getArea().top());				
 				changeState(FaunaState.SEARCH_FOOD);
 			}

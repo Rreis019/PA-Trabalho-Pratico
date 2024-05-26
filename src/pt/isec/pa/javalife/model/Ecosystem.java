@@ -57,6 +57,9 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     public static final String PROP_INSPECT = "inspect";
 
 
+    private static boolean sunEventEffect = false;
+    private int sunEventTick = 0;
+
     private int unitScale = 2;
     private int numUnitsX = 300;
     private int numUnitsY = 300;
@@ -235,7 +238,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
             if(element.getType() == Element.FLORA){ ((Flora)element).evolve(this,currentTime);}
         }
 
-
         //Iterator<IElement> elementIterator = elements.iterator();
         //while (elementIterator.hasNext()) {
          //   IElement element = elementIterator.next();
@@ -247,9 +249,45 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
             }
         }
 
+        if (sunEventEffect && sunEventTick == 10){sunEventEffect = false; sunEventTick = 0;}
+        else if(sunEventEffect){
+            sunEventTick = sunEventTick + 1;
+            System.out.println("SunEveentAffect\n");
+        }
+
         handleColisions();
         pcs.firePropertyChange(PROP_GAME_RENDER, null, null);
     }
+
+    public void applyStrenghtEvent(IElement element)
+    {
+        if(element.getType() == Element.FAUNA)
+        {
+            Fauna f = (Fauna)element; 
+            f.setStrength(f.getStrength() + 50);
+        }
+    }
+
+    public void applyHerbicideEvent(IElement element)
+    {
+        if(element.getType() == Element.FLORA)
+        {
+            Flora f = (Flora)element; 
+            f.setStrength(-1337);
+        }
+    }
+
+    public void applySunEvent(IElement element)
+    {
+        sunEventTick = 0;
+        sunEventEffect = true;
+    }
+
+    public boolean isSunEventActive()
+    {
+        return sunEventEffect;
+    }
+
 
     public void makeWallOfChina()
     {

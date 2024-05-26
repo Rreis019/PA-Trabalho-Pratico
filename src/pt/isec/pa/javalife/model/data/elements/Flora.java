@@ -14,12 +14,18 @@ import pt.isec.pa.javalife.model.data.elements.Element;
  */
 public final class Flora extends BaseElement  implements IElementWithImage,IElementWithStrength,Serializable  
 {
-	static final long serialVersionUID = 1L;
-    private static final int size = 13;
+    //config
     private static final double initialStrength = 50;
+	private static final double incEnergy = 0.5;
+
+
+    static final long serialVersionUID = 1L;
+    private static final int size = 13;
     double strenght = initialStrength;
     private int reproductionCount = 0;
     private boolean attemptedReproduction = false;
+    
+
 
 
 	 public Flora(double positionX,double positionY) {
@@ -34,7 +40,9 @@ public final class Flora extends BaseElement  implements IElementWithImage,IElem
     }
 
     public void evolve(Ecosystem eco, long currentTime) {
-        this.setStrength(getStrength() + 0.5);
+        if(getStrength() == 0){return;}
+        if(eco.isSunEventActive()){this.setStrength(getStrength() + incEnergy * 2);}
+        else{this.setStrength(getStrength() + incEnergy);}
 
         //"reproductionCount < 2 -> Este tipo de elemento apenas se pode  reproduzir duas vezes durante a sua vida"
         if (getStrength() >= 90 && reproductionCount < 2) {

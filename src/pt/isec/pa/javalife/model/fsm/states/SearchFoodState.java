@@ -44,6 +44,9 @@ public class SearchFoodState extends FaunaStateAdapter implements Serializable {
 	    } else {
 	        weakestFauna = ecosystem.getWeakestFauna(fauna.getId());
 	        if (weakestFauna != null && fauna.moveTo(ecosystem.getElements(),weakestFauna)) {changeState(FaunaState.ATTACKING);}
+	    	else{
+	    		changeState(FaunaState.MOVING);
+	    	}
 	    }
 
 	    return true;

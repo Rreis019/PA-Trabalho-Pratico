@@ -14,7 +14,6 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 
-//TODO : Fazer EatingState
  
 public class EatingState extends FaunaStateAdapter implements Serializable {
 
