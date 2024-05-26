@@ -4,6 +4,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
@@ -47,8 +48,7 @@ import java.io.File;
 
 public class MainScene extends Scene
 {
-    Ecosystem model;
-    GameEngine gameEngine;
+    EcosystemManager model;
     
     Canvas canvas;
     Button btninspecionar, btnConfigurar;
@@ -73,14 +73,13 @@ public class MainScene extends Scene
     private final String svgPlayContent = "M20.7227 10.4813L3.53516 0.320197C2.13867 -0.504998 0 0.295783 0 2.3368V22.6542C0 24.4852 1.9873 25.5888 3.53516 24.6708L20.7227 14.5145C22.2559 13.6112 22.2607 11.3846 20.7227 10.4813Z";
     
 
-    public MainScene(Stage primaryStage__,Ecosystem ecosystem,GameEngine gameEngine_)
+    public MainScene(Stage primaryStage__,EcosystemManager manager_)
     {
         super(new VBox());
         primaryStage =  primaryStage__;
-        model = ecosystem;
+        model = manager_;
         createView(primaryStage);
         registerHandlers();
-        gameEngine = gameEngine_;
     }
 
     private void createView(Stage primaryStage)
@@ -240,7 +239,7 @@ public class MainScene extends Scene
                 area.bottom() - area.top() + 3); 
 
 
-            if(gameEngine.getCurrentState() == GameEngineState.RUNNING)
+            if(model.getCurrentState() == GameEngineState.RUNNING)
             {
                 //sidebar.getTxtId().setText(String.valueOf(f.getId()));
                 //sidebar.getTxtType().setText(f.getTypeString());
@@ -282,12 +281,12 @@ public class MainScene extends Scene
     {
 
         svgPlay.setOnMouseClicked((MouseEvent event) -> {
-            if(gameEngine.getCurrentState() == GameEngineState.RUNNING){
-                gameEngine.pause();
+            if(model.getCurrentState() == GameEngineState.RUNNING){
+                model.pauseGame();
                 svgPlay.setContent(svgPlayContent);
             }
-            else if(gameEngine.getCurrentState() == GameEngineState.PAUSED){
-                gameEngine.resume();
+            else if(model.getCurrentState() == GameEngineState.PAUSED){
+                model.resumeGame();
                 svgPlay.setContent(svgStopContent);
             }
         }); 
@@ -296,17 +295,17 @@ public class MainScene extends Scene
 
         svgApplyStrength.setOnMouseClicked((MouseEvent event) -> {
             IElement element = model.getElement(currentElementIDSelected);
-            if(element != null){model.applyStrenghtEvent(element);      model.updateRender();}
+            if(element != null){model.applyStrengthEvent(element);      model.renderUpdated();}
         }); 
 
         svgApplyHerb.setOnMouseClicked((MouseEvent event) -> {
             IElement element = model.getElement(currentElementIDSelected);
-            if(element != null){model.applyHerbicideEvent(element); model.updateRender();}
+            if(element != null){model.applyHerbicideEvent(element); model.renderUpdated();}
         }); 
 
         svgApplySun.setOnMouseClicked((MouseEvent event) -> {
             IElement element = model.getElement(currentElementIDSelected);
-            if(element != null){model.applySunEvent(element); model.updateRender();}
+            if(element != null){model.applySunEvent(element); model.renderUpdated();}
             System.out.println("SunEvent\n");
 
         }); 
@@ -413,7 +412,7 @@ public class MainScene extends Scene
         sidebar.getTxtX().textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
                 IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 ent.setPositionX(Integer.valueOf(sidebar.getTxtX().getText()));
@@ -423,7 +422,7 @@ public class MainScene extends Scene
         sidebar.getTxtY().textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
                 IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 ent.setPositionY(Integer.valueOf(sidebar.getTxtY().getText()));
@@ -433,7 +432,7 @@ public class MainScene extends Scene
         sidebar.getTxtEsq().textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
                 IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 ent.setPositionX(Integer.valueOf(sidebar.getTxtEsq().getText()));
@@ -444,7 +443,7 @@ public class MainScene extends Scene
         sidebar.getStrenghtSlider().getSlider().valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if(gameEngine.getCurrentState() != GameEngineState.PAUSED){return;}
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
                 IElement ent = model.getElement(currentElementIDSelected);
                 if(ent == null){return;}
                 if(ent.getType() == Element.FAUNA){
@@ -473,7 +472,7 @@ public class MainScene extends Scene
             File selectedFile = fileChooser.showOpenDialog(primaryStage);
             if (selectedFile != null) {
                 if(model.loadGame(selectedFile.getAbsolutePath())){
-                    model.updateRender();
+                    model.renderUpdated();
                     
                     showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi importado com sucesso.");
                 }else{
@@ -483,7 +482,7 @@ public class MainScene extends Scene
         }); 
 
         sidebar.getBtnCreteEco().setOnAction(event -> {
-            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model,gameEngine);
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
             primaryStage.setScene(createEcoSystemScene);
         });
 
@@ -535,7 +534,7 @@ public class MainScene extends Scene
                 // Adicione o elemento com o tipo determinado
                 if (elementType != null) {
                     model.addElementToRandomFreePosition(elementType);
-                    model.updateRender();
+                    model.renderUpdated();
                 }
             }
         });

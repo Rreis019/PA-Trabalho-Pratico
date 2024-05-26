@@ -4,6 +4,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
@@ -20,8 +21,7 @@ class CreateEcosystemScene extends Scene
     Stage primaryStage;
     Button criarButton;
 
-    Ecosystem model;
-    GameEngine gameEngine;
+    EcosystemManager model;
 
     BlueSpinner SAltura;
     BlueSpinner Scomprimento;
@@ -36,14 +36,13 @@ class CreateEcosystemScene extends Scene
 
 
 
-    public CreateEcosystemScene(Stage primaryStage_,Ecosystem ecosystem,GameEngine gameEngine_)
+    public CreateEcosystemScene(Stage primaryStage_,EcosystemManager manager_)
     {
         super(new HBox());
-        model = ecosystem;
+        model = manager_;
         primaryStage =  primaryStage_;
         createView(primaryStage_);
         registerHandlers();
-        gameEngine = gameEngine_;
     }
 
     private void createView(Stage primaryStage)
@@ -213,9 +212,9 @@ class CreateEcosystemScene extends Scene
             System.out.println("Botão 'Criar' foi clicado");
             
             model.clearElements();
-            model.setNumUnitsX(Scomprimento.getNumero());
-            model.setNumUnitsY(SAltura.getNumero());
-            model.makeWallOfChina();
+            model.setWidth(Scomprimento.getNumero());
+            model.setHeight(SAltura.getNumero());
+            model.makeWall();
             for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.INANIMATE);}
 
 
@@ -223,9 +222,9 @@ class CreateEcosystemScene extends Scene
             for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FAUNA);}
             for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FLORA);}
 
-            gameEngine.setInterval((int)Sunidade.getValue());
-            gameEngine.resume();
-            MainScene mainscene = new MainScene(primaryStage,model,gameEngine);
+            model.setGameInterval((int)Sunidade.getValue());
+            model.resumeGame();
+            MainScene mainscene = new MainScene(primaryStage,model);
             primaryStage.setScene(mainscene);
             primaryStage.show();
 

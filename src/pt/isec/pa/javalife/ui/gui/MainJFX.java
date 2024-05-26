@@ -5,16 +5,18 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.scenes.SplashScene;
 
 public class MainJFX extends Application {
-    private Ecosystem model;
-    private GameEngine gameEngine;
+    //private Ecosystem model;
+    //private GameEngine gameEngine;
+    private EcosystemManager model;
+
 
     public MainJFX(){
-        this.model = new Ecosystem();
-        gameEngine = new GameEngine();
+        this.model = new EcosystemManager();
     }
 
     public static void main(String[] args) {
@@ -32,7 +34,7 @@ public class MainJFX extends Application {
         Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
         primaryStage.getIcons().add(icon);
 
-        SplashScene splashScreen = new SplashScene(primaryStage,model,gameEngine);
+        SplashScene splashScreen = new SplashScene(primaryStage,model);
 
         primaryStage.setScene(splashScreen);
         primaryStage.show();
@@ -41,13 +43,12 @@ public class MainJFX extends Application {
 
     @Override
     public void init() throws Exception {
-        gameEngine.registerClient(model);
-        gameEngine.start(100);
+        model.startGame(100);
     }
 
     @Override
     public void stop() throws Exception {
-        gameEngine.stop();
-        gameEngine.waitForTheEnd();
+        model.stopGame();
+        model.waitForTheEnd();
     }
 }
