@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.application.Platform;
 
 import java.util.Set;
+import java.util.concurrent.ConcurrentMap;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -188,12 +189,12 @@ public class MainScene extends Scene
         gc.setFill(Color.web("#373054"));
         gc.fillRect(0, 0,model.getWidth(),model.getHeight());
 
-        Set<IElement> elements = model.getElements();
-
+        //Set<IElement> elements = model.getElements();
+        ConcurrentMap<Integer, IElement> elements = model.getElements();
 
         IElement currentElement = null;
 
-        for (IElement element : elements) {
+        for (IElement element : elements.values()) {
             if (element.getType() == Element.FLORA) {
                 gc.setFill(Color.GREENYELLOW);
             } else if (element.getType() == Element.INANIMATE) {
@@ -209,7 +210,7 @@ public class MainScene extends Scene
             }
         }
 
-        for (IElement element : elements) {
+        for (IElement element : elements.values()) {
             if(element.getId() == currentElementIDSelected){currentElement = element;}
             if (element.getType() == Element.FAUNA) {
                 Fauna f = (Fauna) element;
@@ -339,8 +340,9 @@ public class MainScene extends Scene
                 double mouseX = event.getX();
                 double mouseY = event.getY();
 
-                Set<IElement> elements = model.getElements();
-                for (IElement element : elements) {
+                //Set<IElement> elements = model.getElements();
+                ConcurrentMap<Integer, IElement> elements = model.getElements();
+                for (IElement element : elements.values()) {
                     //if (element.getType() == Element.FAUNA) {
                         if (mouseX >= element.getArea().left() && mouseX <= element.getArea().right() &&
                                 mouseY >= element.getArea().top() && mouseY <= element.getArea().bottom()) {

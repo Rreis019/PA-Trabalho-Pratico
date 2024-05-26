@@ -35,6 +35,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.swing.text.StyledEditorKit.BoldAction;
 
@@ -45,8 +47,9 @@ import java.util.Locale;
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private static final long serialVersionUID = 1L;
-    private Set<IElement> elements;
-    //private Map<Fauna, FaunaStateContext> faunaStates;
+    //private Set<IElement> elements;
+    private ConcurrentMap<Integer, IElement> elements;
+
 
 
     private final PropertyChangeSupport pcs; // Para o observable
@@ -61,7 +64,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     @SuppressWarnings("this-escape")
     public Ecosystem() { //Facade
         this.pcs = new PropertyChangeSupport(this);
-        elements = new HashSet<>();
+        //elements = new HashSet<>();
+        elements = new ConcurrentHashMap<>();
         //faunaStates = new HashMap<>();
     }
 
@@ -75,7 +79,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     {
         IElement ret = null;
         double maxDistance = 99999.0f;
-        for (IElement ent : getElements() ) {
+        for (IElement ent : getElements().values() ) {
             if(ent.getType() == type){
                 double distance = Area.distance(origin, ent.getArea());
                 if(distance < maxDistance){
@@ -88,7 +92,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return ret;
     }
 
-    public Set<IElement> getElements()
+    //public Set<IElement> getElements()
+    public ConcurrentMap<Integer, IElement> getElements()
     {
         return elements;
     }
@@ -97,7 +102,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     {
         double str = 1000;
         Fauna weakestFauna = null;
-        for (IElement e : getElements()) {
+        for (IElement e : getElements().values()) {
             if(e.getType() == Element.FAUNA && e.getId() != ignoreID){
                 Fauna f = (Fauna)e;
                 if(f.getStrength() < str){
@@ -119,7 +124,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     {
         double str = 0;
         Fauna strongestFauna = null;
-        for (IElement e : getElements()) {
+        for (IElement e : getElements().values()) {
             if(e.getType() == Element.FAUNA && e.getId() != ignoreID){
                 Fauna f = (Fauna)e;
                 if(f.getStrength() > str){
@@ -133,31 +138,61 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return strongestFauna;
     }
 
-    public IElement getElement(int id)
-    {
-        pcs.firePropertyChange(PROP_INSPECT,null,null);
-        System.out.printf("GetElement\n");
-        for(IElement ent : elements){
-            if(ent.getId() == id){ return ent;}
-        }
-
-        return null;
-    }
-
 
     public void updateRender()
     {
         pcs.firePropertyChange(PROP_GAME_RENDER,null,null);
     }
 
+
+    /*
     public void removeElement(IElement element_) {
         elements.remove(element_);
     }
-
     public void addElement(Element type,double positionX,double positionY)
     {
         IElement ent = ElementsFactory.CreateElement(this,type, positionX, positionY);
         elements.add(ent);
+    }
+    public IElement getElement(int id)
+    {
+        pcs.firePropertyChange(PROP_INSPECT,null,null);
+        System.out.printf("GetElement\n");
+        for(IElement ent : getElements()){
+            if(ent.getId() == id){ return ent;}
+        }
+
+        return null;
+    }
+
+    */
+    public IElement getElement(int id) {
+        pcs.firePropertyChange(PROP_INSPECT, null, null);
+        return elements.get(id);
+    }
+
+
+    public void removeElement(IElement element_) {
+        elements.remove(element_.getId());
+    }
+
+    private void addElement(IElement element_){
+        elements.put(element_.getId(), element_);
+    }
+
+    public void addElement(Element type, double positionX, double positionY) {
+        IElement ent = ElementsFactory.CreateElement(this, type, positionX, positionY);
+        //elements.put(ent.getId(), ent);
+        addElement(ent);
+    }
+
+    public boolean isAreaFree(Area area) {
+        for (IElement element : elements.values()) {
+            if (element.getArea().intersects(area)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void addElementToRandomFreePosition(Element type) {
@@ -174,7 +209,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
             boolean intersects_ = false;
 
-            for (IElement e : elements) {
+            //for (IElement e : elements) {
+            for (IElement e : elements.values()) {
                 if (e.getType() == Element.INANIMATE && ent.getArea().intersects(e.getArea())) {
                     intersects_ = true;
                     break; // Saia do loop assim que encontrar uma interseção
@@ -188,28 +224,26 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
          //   faunaStates.put((Fauna) ent, new FaunaStateContext(this, (Fauna) ent));
         //}
 
-        elements.add(ent);
+        elements.put(ent.getId(),ent);
     }
 
     @Override
      public void evolve(IGameEngine gameEngine, long currentTime) {
         // Iterar sobre os estados da fauna usando um iterador
-        Iterator<IElement> iterator = elements.iterator();
-        while (iterator.hasNext()) {
-            IElement element = iterator.next();
+        for (IElement element : elements.values()) {
             if(element.getType() == Element.FAUNA){((Fauna)element).getFSM().execute();}
             if(element.getType() == Element.FLORA){ ((Flora)element).evolve(this,currentTime);}
         }
 
 
-        // Iterar sobre os elementos usando um iterador
-        Iterator<IElement> elementIterator = elements.iterator();
-        while (elementIterator.hasNext()) {
-            IElement element = elementIterator.next();
+        //Iterator<IElement> elementIterator = elements.iterator();
+        //while (elementIterator.hasNext()) {
+         //   IElement element = elementIterator.next();
+        for (IElement element : elements.values()) {
             if (element.getType() == Element.FAUNA) {
-                if (((Fauna) element).getStrength() <= 0) {elementIterator.remove(); }
+                if (((Fauna) element).getStrength() <= 0) { removeElement(element); }
             } else if (element.getType() == Element.FLORA) {
-                if (((Flora) element).getStrength() <= 0) {elementIterator.remove(); }
+                if (((Flora) element).getStrength() <= 0) { removeElement(element); }//elementIterator.remove(); }
             }
         }
 
@@ -233,15 +267,20 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         right.setArea(this.getWidth() - wallThickness,wallThickness, wallThickness, getHeight() - wallThickness*2);
         bottom.setArea(0,this.getHeight() - wallThickness, getWidth(), wallThickness);
 
+        addElement(top);
+        addElement(left);
+        addElement(right);
+        addElement(bottom);
+        /*
         elements.add(top);
         elements.add(left);
         elements.add(right);
         elements.add(bottom);
-        
+        */
     }
 
 
-    private boolean isOutBounds(Area area){
+    public boolean isOutBounds(Area area){
 
         if(area.left() < 0){return true;}
         else if(area.right() > getWidth()){return true;}
@@ -284,13 +323,15 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private void handleColisions()
     {
         ArrayList<Inanimate> inanimates = new ArrayList<>(); 
-        for (IElement element_ : elements) {
+        //for (IElement element_ : elements) {
+        for (IElement element_ : elements.values()) {
             if(element_.getType() == Element.INANIMATE){
                 inanimates.add((Inanimate)element_);
             }
         }
 
-        for (IElement element_ : elements) {
+        //for (IElement element_ : elements) {
+        for (IElement element_ : elements.values()) {
             if(element_.getType() == Element.FAUNA){
 
                 Fauna f = (Fauna)element_;
@@ -320,7 +361,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
             try {
                 writer = new BufferedWriter(new FileWriter(filepath));
                 writer.write("Type,Strength,PositionX,PositionY,Bottom,Right\n");
-                for (IElement element : elements) {
+                //for (IElement element : elements) {
+                for (IElement element : elements.values()) {
                     String type = element.getType().toString();
                     double strength = 0;
                     if (element instanceof Fauna) {
@@ -375,7 +417,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
                     if (!isOutBounds(area)) {
                         // Verifica se a área do elemento se sobrepõe a algum elemento existente
                         boolean overlap = false;
-                        for (IElement existingElement : elements) {
+                        //for (IElement existingElement : elements) {
+                        for (IElement existingElement : elements.values()) {
                             if (existingElement.getArea().intersects(area)) {
                                 if(type == Element.FAUNA){
 
@@ -397,7 +440,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
                             } else if (element.getType() == Element.FLORA) {
                                 ((Flora) element).setStrength(strength);
                             }
-                            this.elements.add(element);
+                            //this.elements.add(element);
+                            addElement(element);
                         }
                     }
                 }

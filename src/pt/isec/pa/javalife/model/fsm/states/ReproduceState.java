@@ -11,6 +11,9 @@ import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
 
 public class ReproduceState extends FaunaStateAdapter implements Serializable {
 
@@ -47,7 +50,7 @@ public class ReproduceState extends FaunaStateAdapter implements Serializable {
 				fauna.setStrength(fauna.getStrength() - 25);
 				
 				//TODO : Fix ConcurrentModificationException
-				//ecosystem.addElement(Element.FAUNA,fauna.getArea().left(),fauna.getArea().top());				
+				ecosystem.addElement(Element.FAUNA,fauna.getArea().left(),fauna.getArea().top());				
 				changeState(FaunaState.SEARCH_FOOD);
 			}
 			if(targetFaunaID == strongestFauna.getId())

@@ -15,6 +15,9 @@ import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
 /**
  * Fauna
  */
@@ -96,7 +99,8 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
 
 
     //true -> ja chegou ao alvo
-    public boolean moveTo(Set<IElement> elements,IElement target) {
+    //public boolean moveTo(Set<IElement> elements,IElement target) {
+     public boolean moveTo(ConcurrentMap<Integer, IElement> elements,IElement target) {
         double deltaX = target.getArea().left() - getArea().left();
         double deltaY = target.getArea().top() - getArea().top();
 
@@ -122,7 +126,8 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
     }
 
 
-    private boolean haveObstacleAhead(Set<IElement> elements) {
+    //private boolean haveObstacleAhead(Set<IElement> elements) {
+    private boolean haveObstacleAhead(ConcurrentMap<Integer, IElement> elements) {    
         Area futureArea = null;
         switch (this.getDirection()) {
             case LEFT:
@@ -138,8 +143,8 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
                 futureArea = new Area(this.getArea().top() + this.getVelocity(), this.getArea().left(), this.getArea().bottom() + this.getVelocity(), this.getArea().right());
                 break;
         }
-
-        for (IElement element : elements) {
+        
+        for (IElement element : elements.values()) {
             if (element.getType() == Element.INANIMATE && futureArea.intersects(element.getArea())) {
                 return true;
             }
