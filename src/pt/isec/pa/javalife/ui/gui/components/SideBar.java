@@ -261,7 +261,10 @@ public class SideBar extends VBox {
         makeNumeric( txtDir);
         makeNumeric( txtBaixo);
         this.getChildren().addAll(navbar,space,ecoTab,inspectTab);
-    
+        
+        sUnitTimer.setValue(model.getGameInterval());
+        sEnergyMovement.setValue(Fauna.decMovementEnergy);
+        sDamageFauna.setValue(Fauna.damageToFlora);
         registerHandlers();
     }
 
@@ -269,7 +272,9 @@ public class SideBar extends VBox {
     {
         sUnitTimer.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {model.setGameInterval((long)sUnitTimer.getValue());}
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                model.setGameInterval((long)sUnitTimer.getValue());
+            }
         });
     
         sEnergyMovement.getSlider().valueProperty().addListener(new ChangeListener<Number>() {

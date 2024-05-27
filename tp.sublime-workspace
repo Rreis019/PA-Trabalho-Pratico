@@ -4,6 +4,82 @@
 		"selected_items":
 		[
 			[
+				"L",
+				"Label(String text)"
+			],
+			[
+				"Ecos",
+				"EcosystemManager - pt.isec.pa.javalife.model"
+			],
+			[
+				"to",
+				"totalTicks : int"
+			],
+			[
+				"tick",
+				"totalTicks : int"
+			],
+			[
+				"Faua",
+				"Fauna - pt.isec.pa.javalife.model.data.elements"
+			],
+			[
+				"s",
+				"sEnergyMovement : BlueSlider"
+			],
+			[
+				"Ecosys",
+				"EcosystemManager - pt.isec.pa.javalife.model"
+			],
+			[
+				"BlueS",
+				"BlueSlider"
+			],
+			[
+				"setpos",
+				"setPosition(double positionX, double positionY) : void"
+			],
+			[
+				"geel",
+				"getElements() : ConcurrentMap<Integer,IElement>"
+			],
+			[
+				"Area",
+				"Area - pt.isec.pa.javalife.model.data"
+			],
+			[
+				"FAUN",
+				"faunaAttacked : boolean"
+			],
+			[
+				"Faun",
+				"faunaAttacked : boolean"
+			],
+			[
+				"Elemen",
+				"Element - pt.isec.pa.javalife.model.data.elements"
+			],
+			[
+				"Flo",
+				"Flora(double positionX, double positionY)"
+			],
+			[
+				"getelem",
+				"getElements() : ConcurrentMap<Integer,IElement>"
+			],
+			[
+				"asser",
+				"assertEquals(double expected, double actual) : void"
+			],
+			[
+				"IGAME",
+				"IGameEngine - pt.isec.pa.javalife.model.gameengine"
+			],
+			[
+				"Field",
+				"Field - java.lang.reflect"
+			],
+			[
 				"Ecosyste",
 				"EcosystemManager - pt.isec.pa.javalife.model"
 			],
@@ -33,14 +109,6 @@
 			],
 			[
 				"Eco",
-				"EcosystemManager - pt.isec.pa.javalife.model"
-			],
-			[
-				"Ecos",
-				"EcosystemManager - pt.isec.pa.javalife.model"
-			],
-			[
-				"Ecosys",
 				"EcosystemManager - pt.isec.pa.javalife.model"
 			],
 			[
@@ -124,10 +192,6 @@
 				"getElements() : Set<IElement>"
 			],
 			[
-				"Area",
-				"Area - pt.isec.pa.javalife.model.data"
-			],
-			[
 				"FaunaSta",
 				"FaunaImagesManager - pt.isec.pa.javalife.ui.gui"
 			],
@@ -168,10 +232,6 @@
 				"sidebar : SideBar"
 			],
 			[
-				"Elemen",
-				"Element - pt.isec.pa.javalife.model.data.elements"
-			],
-			[
 				"getst",
 				"getState() : FaunaState"
 			],
@@ -182,10 +242,6 @@
 			[
 				"eleme",
 				"elements : Set<pt.isec.pa.javalife.model.data.elements.IElement>"
-			],
-			[
-				"Faun",
-				"Fauna - pt.isec.pa.javalife.model.data.elements"
 			],
 			[
 				"fa",
@@ -217,10 +273,6 @@
 			],
 			[
 				"faun",
-				"FaunaState - pt.isec.pa.javalife.model.fsm"
-			],
-			[
-				"FAUN",
 				"FaunaState - pt.isec.pa.javalife.model.fsm"
 			],
 			[
@@ -462,1140 +514,28 @@
 			[
 				"drawi",
 				"drawImage(Image arg0, double arg1, double arg2, double arg3, double arg4) : void"
-			],
-			[
-				"elem",
-				"elements : Set<pt.isec.pa.javalife.model.data.elements.IElement>"
-			],
-			[
-				"Hash",
-				"HashSet - java.util"
-			],
-			[
-				"Anima",
-				"AnimationTimer()  Anonymous Inner Type"
-			],
-			[
-				"posi",
-				"positionY : int"
-			],
-			[
-				"pos",
-				"positionY : int"
-			],
-			[
-				"setare",
-				"setArea(int positionX, int positionY, int width, int height) : void"
-			],
-			[
-				"posit",
-				"positionY"
-			],
-			[
-				"posiT",
-				"positionX"
-			],
-			[
-				"po",
-				"positionX : int"
-			],
-			[
-				"F",
-				"Fauna"
-			],
-			[
-				"num",
-				"numbones"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "src/pt/isec/pa/javalife/tests/FaunaStateMachineTest.java",
+			"contents": "não",
 			"settings":
 			{
-				"buffer_size": 846,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
+				"buffer_size": 3,
+				"line_ending": "Windows",
+				"name": "não"
 			},
 			"undo_stack":
 			[
-				[
-					2,
-					1,
-					"insert",
-					{
-						"characters": "packa"
-					},
-					"BQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAFAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					3,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":0,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							0,
-							2,
-							1
-						],
-						"trigger": "package"
-					},
-					"BgAAAAQAAAAAAAAABAAAAAAAAAABAAAAYQMAAAAAAAAAAwAAAAAAAAABAAAAawIAAAAAAAAAAgAAAAAAAAABAAAAYwEAAAAAAAAAAQAAAAAAAAABAAAAYQAAAAAAAAAAAAAAAAAAAAABAAAAcAAAAAAAAAAABwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABQAAAAAAAAAFAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					4,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAAcAAAAAAAAACAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABwAAAAAAAAAHAAAAAAAAAAAAAAAAAPC/"
-				],
 				[
 					5,
 					1,
-					"javatar_call",
-					{
-						"call_type": "package_name"
-					},
-					"AQAAAAgAAAAAAAAAIQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAACAAAAAAAAAAIAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					6,
-					1,
-					"insert",
-					{
-						"characters": ";"
-					},
-					"AQAAACEAAAAAAAAAIgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIQAAAAAAAAAhAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					8,
-					1,
-					"run_macro_file",
-					{
-						"file": "res://Packages/Default/Add Line.sublime-macro"
-					},
-					"AQAAACIAAAAAAAAAIwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIgAAAAAAAAAiAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					14,
-					1,
-					"insert",
-					{
-						"characters": "\n\n\n"
-					},
-					"AwAAACMAAAAAAAAAJAAAAAAAAAAAAAAAJAAAAAAAAAAlAAAAAAAAAAAAAAAlAAAAAAAAACYAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIwAAAAAAAAAjAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					15,
-					1,
 					"paste",
 					null,
-					"AQAAACYAAAAAAAAASgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAJgAAAAAAAAAmAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					17,
-					1,
-					"insert",
-					{
-						"characters": "\n\n\n}"
-					},
-					"CwAAAEoAAAAAAAAASwAAAAAAAAAAAAAASwAAAAAAAABMAAAAAAAAAAAAAABMAAAAAAAAAE0AAAAAAAAAAAAAAE0AAAAAAAAATgAAAAAAAAAAAAAASwAAAAAAAABLAAAAAAAAAAEAAAAJTQAAAAAAAABOAAAAAAAAAAAAAABOAAAAAAAAAE8AAAAAAAAAAAAAAEwAAAAAAAAATAAAAAAAAAABAAAACU4AAAAAAAAATwAAAAAAAAAAAAAATQAAAAAAAABNAAAAAAAAAAEAAAAJTQAAAAAAAABNAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASgAAAAAAAABKAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					20,
-					1,
-					"insert",
-					{
-						"characters": "\n\n"
-					},
-					"AgAAAEwAAAAAAAAATQAAAAAAAAAAAAAATQAAAAAAAABOAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAACRA"
-				],
-				[
-					22,
-					1,
-					"reindent",
-					null,
-					"AQAAAE0AAAAAAAAATgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					24,
-					1,
-					"paste",
-					null,
-					"AQAAAE4AAAAAAAAA2wAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATgAAAAAAAABOAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					30,
-					1,
-					"reindent",
-					null,
-					"AQAAAEwAAAAAAAAATQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					31,
-					1,
-					"insert",
-					{
-						"characters": "Ecosyste"
-					},
-					"CQAAAE0AAAAAAAAATgAAAAAAAAAAAAAATwAAAAAAAABPAAAAAAAAAAEAAAAJTgAAAAAAAABPAAAAAAAAAAAAAABPAAAAAAAAAFAAAAAAAAAAAAAAAFAAAAAAAAAAUQAAAAAAAAAAAAAAUQAAAAAAAABSAAAAAAAAAAAAAABSAAAAAAAAAFMAAAAAAAAAAAAAAFMAAAAAAAAAVAAAAAAAAAAAAAAAVAAAAAAAAABVAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					33,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":168,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							16,
-							31,
-							2
-						],
-						"trigger": "EcosystemManager - pt.isec.pa.javalife.model"
-					},
-					"CgAAAFQAAAAAAAAAVAAAAAAAAAABAAAAZVMAAAAAAAAAUwAAAAAAAAABAAAAdFIAAAAAAAAAUgAAAAAAAAABAAAAc1EAAAAAAAAAUQAAAAAAAAABAAAAeVAAAAAAAAAAUAAAAAAAAAABAAAAc08AAAAAAAAATwAAAAAAAAABAAAAb04AAAAAAAAATgAAAAAAAAABAAAAY00AAAAAAAAATQAAAAAAAAABAAAARU0AAAAAAAAAXQAAAAAAAAAAAAAAIgAAAAAAAABYAAAAAAAAAAQAAAAKCgoK",
-					"AQAAAAAAAAABAAAAVQAAAAAAAABVAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					34,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAI8AAAAAAAAAkAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjwAAAAAAAACPAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					35,
-					1,
-					"left_delete",
-					null,
-					"AQAAAI8AAAAAAAAAjwAAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAAkAAAAAAAAACQAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					36,
-					1,
-					"insert",
-					{
-						"characters": "mo"
-					},
-					"AgAAAI8AAAAAAAAAkAAAAAAAAAAAAAAAkAAAAAAAAACRAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjwAAAAAAAACPAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					37,
-					2,
-					"left_delete",
-					null,
-					"AgAAAJAAAAAAAAAAkAAAAAAAAAABAAAAb48AAAAAAAAAjwAAAAAAAAABAAAAbQ",
-					"AQAAAAAAAAABAAAAkQAAAAAAAACRAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					38,
-					1,
-					"insert",
-					{
-						"characters": " model"
-					},
-					"BgAAAI8AAAAAAAAAkAAAAAAAAAAAAAAAkAAAAAAAAACRAAAAAAAAAAAAAACRAAAAAAAAAJIAAAAAAAAAAAAAAJIAAAAAAAAAkwAAAAAAAAAAAAAAkwAAAAAAAACUAAAAAAAAAAAAAACUAAAAAAAAAJUAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjwAAAAAAAACPAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					40,
-					1,
-					"insert",
-					{
-						"characters": ";"
-					},
-					"AQAAAJUAAAAAAAAAlgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAlQAAAAAAAACVAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					48,
-					1,
-					"cut",
-					null,
-					"AQAAALsAAAAAAAAAuwAAAAAAAAAhAAAAICAgICAgICBmYXVuYSA9IG5ldyBGYXVuYSgwLCAwKTsK",
-					"AQAAAAAAAAABAAAA1QAAAAAAAADVAAAAAAAAAAAAAAAAAHFA"
-				],
-				[
-					49,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AQAAALsAAAAAAAAAvAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAuwAAAAAAAAC7AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					51,
-					1,
-					"reindent",
-					null,
-					"AQAAALsAAAAAAAAAwAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAuwAAAAAAAAC7AAAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					53,
-					1,
-					"insert",
-					{
-						"characters": "model"
-					},
-					"BQAAAMAAAAAAAAAAwQAAAAAAAAAAAAAAwQAAAAAAAADCAAAAAAAAAAAAAADCAAAAAAAAAMMAAAAAAAAAAAAAAMMAAAAAAAAAxAAAAAAAAAAAAAAAxAAAAAAAAADFAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAwAAAAAAAAADAAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					55,
-					1,
-					"insert",
-					{
-						"characters": " ="
-					},
-					"AgAAAMUAAAAAAAAAxgAAAAAAAAAAAAAAxgAAAAAAAADHAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAxQAAAAAAAADFAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					56,
-					1,
-					"insert",
-					{
-						"characters": " new"
-					},
-					"BAAAAMcAAAAAAAAAyAAAAAAAAAAAAAAAyAAAAAAAAADJAAAAAAAAAAAAAADJAAAAAAAAAMoAAAAAAAAAAAAAAMoAAAAAAAAAywAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAxwAAAAAAAADHAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					57,
-					1,
-					"insert",
-					{
-						"characters": " Eco"
-					},
-					"BAAAAMsAAAAAAAAAzAAAAAAAAAAAAAAAzAAAAAAAAADNAAAAAAAAAAAAAADNAAAAAAAAAM4AAAAAAAAAAAAAAM4AAAAAAAAAzwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAywAAAAAAAADLAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					58,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":0,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							37,
-							57,
-							1
-						],
-						"trigger": "EcosystemManager()"
-					},
-					"BAAAAM4AAAAAAAAAzgAAAAAAAAABAAAAb80AAAAAAAAAzQAAAAAAAAABAAAAY8wAAAAAAAAAzAAAAAAAAAABAAAARcwAAAAAAAAA3gAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAzwAAAAAAAADPAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					59,
-					1,
-					"insert",
-					{
-						"characters": ";"
-					},
-					"AQAAAN4AAAAAAAAA3wAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA3gAAAAAAAADeAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					63,
-					1,
-					"cut",
-					null,
-					"AQAAAOAAAAAAAAAA4AAAAAAAAABDAAAAICAgICAgICAvLyBDb25maWd1cmFyIGEgZmF1bmEgY29uZm9ybWUgbmVjZXNzw6FyaW8gcGFyYSBjYWRhIHRlc3RlCg",
-					"AQAAAAAAAAABAAAABwEAAAAAAAAHAQAAAAAAAAAAAAAAcHlA"
-				],
-				[
-					66,
-					1,
-					"insert",
-					{
-						"characters": "\n\n"
-					},
-					"AgAAAOcAAAAAAAAA6AAAAAAAAAAAAAAA6AAAAAAAAADpAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA5wAAAAAAAADnAAAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					68,
-					1,
-					"reindent",
-					null,
-					"AQAAAOgAAAAAAAAA7AAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA6AAAAAAAAADoAAAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					70,
-					1,
-					"paste",
-					null,
-					"AQAAAOwAAAAAAAAANAIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA7AAAAAAAAADsAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					74,
-					1,
-					"cut",
-					null,
-					"AQAAAOcAAAAAAAAA5wAAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAA5wAAAAAAAADnAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					78,
-					1,
-					"lsp_apply_document_edit",
-					{
-						"changes":
-						[
-							{
-								"newText": "package pt.isec.pa.javalife.tests;\r\n\r\nimport org.junit.Test;\r\n\r\n",
-								"range":
-								{
-									"end":
-									{
-										"character": 0,
-										"line": 2
-									},
-									"start":
-									{
-										"character": 0,
-										"line": 0
-									}
-								}
-							}
-						],
-						"process_placeholders": false,
-						"required_view_version": null
-					},
-					"AQAAAAAAAAAAAAAAPAAAAAAAAAAkAAAAcGFja2FnZSBwdC5pc2VjLnBhLmphdmFsaWZlLnRlc3RzOwoK",
-					"AQAAAAAAAAABAAAA7AAAAAAAAADsAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					81,
-					1,
-					"lsp_apply_document_edit",
-					{
-						"changes":
-						[
-							{
-								"newText": "import org.junit.Before;\nimport org.junit.Test;\n\nimport pt.isec.pa.javalife.model.EcosystemManager;\r\n\r\npublic class FaunaStateMachineTest {\r\n\r\n\tEcosystemManager model;\r\n\r\n    @Before",
-								"range":
-								{
-									"end":
-									{
-										"character": 15,
-										"line": 10
-									},
-									"start":
-									{
-										"character": 0,
-										"line": 2
-									}
-								}
-							}
-						],
-						"process_placeholders": false,
-						"required_view_version": null
-					},
-					"AQAAACQAAAAAAAAA1AAAAAAAAACbAAAAaW1wb3J0IG9yZy5qdW5pdC5UZXN0OwoKaW1wb3J0IHB0LmlzZWMucGEuamF2YWxpZmUubW9kZWwuRWNvc3lzdGVtTWFuYWdlcjsKCnB1YmxpYyBjbGFzcyBGYXVuYVN0YXRlTWFjaGluZVRlc3QgewoKCUVjb3N5c3RlbU1hbmFnZXIgbW9kZWw7CgogICAgQEJlZm9yZUVhY2g",
-					"AQAAAAAAAAABAAAAugAAAAAAAAC6AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					98,
-					1,
-					"insert",
-					{
-						"characters": "\n\n"
-					},
-					"BQAAAEEBAAAAAAAAQgEAAAAAAAAAAAAAQgEAAAAAAABKAQAAAAAAAAAAAABKAQAAAAAAAEsBAAAAAAAAAAAAAEsBAAAAAAAAUwEAAAAAAAAAAAAAQgEAAAAAAABCAQAAAAAAAAgAAAAgICAgICAgIA",
-					"AQAAAAAAAAABAAAAQQEAAAAAAABBAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					100,
-					1,
-					"insert",
-					{
-						"characters": "\t"
-					},
-					"AQAAAEEBAAAAAAAAQgEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAQQEAAAAAAABBAQAAAAAAAAAAAAAAAFVA"
-				],
-				[
-					101,
-					1,
-					"left_delete",
-					null,
-					"AQAAAEEBAAAAAAAAQQEAAAAAAAABAAAACQ",
-					"AQAAAAAAAAABAAAAQgEAAAAAAABCAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					103,
-					1,
-					"insert",
-					{
-						"characters": "model.add"
-					},
-					"CQAAAEEBAAAAAAAAQgEAAAAAAAAAAAAAQgEAAAAAAABDAQAAAAAAAAAAAABDAQAAAAAAAEQBAAAAAAAAAAAAAEQBAAAAAAAARQEAAAAAAAAAAAAARQEAAAAAAABGAQAAAAAAAAAAAABGAQAAAAAAAEcBAAAAAAAAAAAAAEcBAAAAAAAASAEAAAAAAAAAAAAASAEAAAAAAABJAQAAAAAAAAAAAABJAQAAAAAAAEoBAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAQQEAAAAAAABBAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					104,
-					1,
-					"insert",
-					{
-						"characters": "E"
-					},
-					"AQAAAEoBAAAAAAAASwEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASgEAAAAAAABKAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					105,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":0,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							64,
-							103,
-							9
-						],
-						"trigger": "addElementToRandomFreePosition(Element type) : void"
-					},
-					"AwAAAEoBAAAAAAAASgEAAAAAAAABAAAARUcBAAAAAAAARwEAAAAAAAADAAAAYWRkRwEAAAAAAABsAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASwEAAAAAAABLAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					117,
-					1,
-					"insert",
-					{
-						"characters": "F"
-					},
-					"AgAAAGYBAAAAAAAAZwEAAAAAAAAAAAAAZwEAAAAAAABnAQAAAAAAAAQAAAB0eXBl",
-					"AQAAAAAAAAABAAAAZgEAAAAAAABqAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					118,
-					1,
-					"left_delete",
-					null,
-					"AQAAAGYBAAAAAAAAZgEAAAAAAAABAAAARg",
-					"AQAAAAAAAAABAAAAZwEAAAAAAABnAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					119,
-					1,
-					"insert",
-					{
-						"characters": "FAUNA"
-					},
-					"BQAAAGYBAAAAAAAAZwEAAAAAAAAAAAAAZwEAAAAAAABoAQAAAAAAAAAAAABoAQAAAAAAAGkBAAAAAAAAAAAAAGkBAAAAAAAAagEAAAAAAAAAAAAAagEAAAAAAABrAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAZgEAAAAAAABmAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					120,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":0,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							74,
-							119,
-							1
-						],
-						"trigger": "FAUNA : Element"
-					},
-					"BwAAAGoBAAAAAAAAagEAAAAAAAABAAAAQWkBAAAAAAAAaQEAAAAAAAABAAAATmgBAAAAAAAAaAEAAAAAAAABAAAAVWcBAAAAAAAAZwEAAAAAAAABAAAAQWYBAAAAAAAAZgEAAAAAAAABAAAARmYBAAAAAAAAcwEAAAAAAAAAAAAAhwAAAAAAAAC/AAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAawEAAAAAAABrAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					133,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AQAAAAABAAAAAAAAAQEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAFVA"
-				],
-				[
-					135,
-					1,
-					"reindent",
-					null,
-					"AQAAAAABAAAAAAAAAQEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					136,
-					1,
-					"insert",
-					{
-						"characters": "f"
-					},
-					"AQAAAAEBAAAAAAAAAgEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					137,
-					1,
-					"left_delete",
-					null,
-					"AQAAAAEBAAAAAAAAAQEAAAAAAAABAAAAZg",
-					"AQAAAAAAAAABAAAAAgEAAAAAAAACAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					138,
-					1,
-					"insert",
-					{
-						"characters": "Fauna"
-					},
-					"BQAAAAEBAAAAAAAAAgEAAAAAAAAAAAAAAgEAAAAAAAADAQAAAAAAAAAAAAADAQAAAAAAAAQBAAAAAAAAAAAAAAQBAAAAAAAABQEAAAAAAAAAAAAABQEAAAAAAAAGAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					139,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":1,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							90,
-							138,
-							3
-						],
-						"trigger": "Fauna - pt.isec.pa.javalife.model.data.elements"
-					},
-					"BQAAAAUBAAAAAAAABQEAAAAAAAABAAAAYQQBAAAAAAAABAEAAAAAAAABAAAAbgEBAAAAAAAAAQEAAAAAAAADAAAARmF1AQEAAAAAAAAGAQAAAAAAAAAAAAC/AAAAAAAAAPUAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABgEAAAAAAAAGAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					141,
-					1,
-					"insert",
-					{
-						"characters": " fauna;"
-					},
-					"BwAAADwBAAAAAAAAPQEAAAAAAAAAAAAAPQEAAAAAAAA+AQAAAAAAAAAAAAA+AQAAAAAAAD8BAAAAAAAAAAAAAD8BAAAAAAAAQAEAAAAAAAAAAAAAQAEAAAAAAABBAQAAAAAAAAAAAABBAQAAAAAAAEIBAAAAAAAAAAAAAEIBAAAAAAAAQwEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAPAEAAAAAAAA8AQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					145,
-					4,
-					"swap_line_up",
-					null,
-					"CAAAALUBAAAAAAAAtQEAAAAAAAA9AAAAICAgICAgICBtb2RlbC5hZGRFbGVtZW50VG9SYW5kb21GcmVlUG9zaXRpb24oRWxlbWVudC5GQVVOQSk7CpoBAAAAAAAA1wEAAAAAAAAAAAAAmgEAAAAAAACaAQAAAAAAAD0AAAAgICAgICAgIG1vZGVsLmFkZEVsZW1lbnRUb1JhbmRvbUZyZWVQb3NpdGlvbihFbGVtZW50LkZBVU5BKTsKkAEAAAAAAADNAQAAAAAAAAAAAACQAQAAAAAAAJABAAAAAAAAPQAAACAgICAgICAgbW9kZWwuYWRkRWxlbWVudFRvUmFuZG9tRnJlZVBvc2l0aW9uKEVsZW1lbnQuRkFVTkEpOwqPAQAAAAAAAMwBAAAAAAAAAAAAAI8BAAAAAAAAjwEAAAAAAAA9AAAAICAgICAgICBtb2RlbC5hZGRFbGVtZW50VG9SYW5kb21GcmVlUG9zaXRpb24oRWxlbWVudC5GQVVOQSk7CokBAAAAAAAAxgEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAvQEAAAAAAAC9AQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					146,
-					1,
-					"insert",
-					{
-						"characters": "fauna"
-					},
-					"BQAAAJEBAAAAAAAAkgEAAAAAAAAAAAAAkgEAAAAAAACTAQAAAAAAAAAAAACTAQAAAAAAAJQBAAAAAAAAAAAAAJQBAAAAAAAAlQEAAAAAAAAAAAAAlQEAAAAAAACWAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkQEAAAAAAACRAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					147,
-					1,
-					"insert",
-					{
-						"characters": " ="
-					},
-					"AgAAAJYBAAAAAAAAlwEAAAAAAAAAAAAAlwEAAAAAAACYAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAlgEAAAAAAACWAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					148,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAJgBAAAAAAAAmQEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAmAEAAAAAAACYAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					162,
-					1,
-					"insert",
-					{
-						"characters": "()"
-					},
-					"AgAAAJkBAAAAAAAAmgEAAAAAAAAAAAAAmgEAAAAAAACbAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAmQEAAAAAAACZAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					164,
-					1,
-					"insert",
-					{
-						"characters": "Fauna"
-					},
-					"BQAAAJoBAAAAAAAAmwEAAAAAAAAAAAAAmwEAAAAAAACcAQAAAAAAAAAAAACcAQAAAAAAAJ0BAAAAAAAAAAAAAJ0BAAAAAAAAngEAAAAAAAAAAAAAngEAAAAAAACfAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAmgEAAAAAAACaAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					165,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":1,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							108,
-							164,
-							1
-						],
-						"trigger": "Fauna - pt.isec.pa.javalife.model.data.elements"
-					},
-					"BgAAAJ4BAAAAAAAAngEAAAAAAAABAAAAYZ0BAAAAAAAAnQEAAAAAAAABAAAAbpwBAAAAAAAAnAEAAAAAAAABAAAAdZsBAAAAAAAAmwEAAAAAAAABAAAAYZoBAAAAAAAAmgEAAAAAAAABAAAARpoBAAAAAAAAnwEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAnwEAAAAAAACfAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					175,
-					1,
-					"reindent",
-					null,
-					"AQAAAAECAAAAAAAABgIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAQIAAAAAAAABAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					176,
-					1,
-					"insert",
-					{
-						"characters": "fauna"
-					},
-					"BQAAAAYCAAAAAAAABwIAAAAAAAAAAAAABwIAAAAAAAAIAgAAAAAAAAAAAAAIAgAAAAAAAAkCAAAAAAAAAAAAAAkCAAAAAAAACgIAAAAAAAAAAAAACgIAAAAAAAALAgAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABgIAAAAAAAAGAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					177,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":0,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							115,
-							176,
-							1
-						],
-						"trigger": "fauna : Fauna"
-					},
-					"BgAAAAoCAAAAAAAACgIAAAAAAAABAAAAYQkCAAAAAAAACQIAAAAAAAABAAAAbggCAAAAAAAACAIAAAAAAAABAAAAdQcCAAAAAAAABwIAAAAAAAABAAAAYQYCAAAAAAAABgIAAAAAAAABAAAAZgYCAAAAAAAACwIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAACwIAAAAAAAALAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					179,
-					1,
-					"insert",
-					{
-						"characters": ".set"
-					},
-					"BAAAAAsCAAAAAAAADAIAAAAAAAAAAAAADAIAAAAAAAANAgAAAAAAAAAAAAANAgAAAAAAAA4CAAAAAAAAAAAAAA4CAAAAAAAADwIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAACwIAAAAAAAALAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					182,
-					1,
-					"paste",
-					null,
-					"AgAAAAwCAAAAAAAAEgIAAAAAAAAAAAAAEgIAAAAAAAASAgAAAAAAAAMAAABzZXQ",
-					"AQAAAAAAAAABAAAADwIAAAAAAAAMAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					183,
-					1,
-					"insert_snippet",
-					{
-						"contents": "($0)"
-					},
-					"AQAAABICAAAAAAAAFAIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAEgIAAAAAAAASAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					185,
-					1,
-					"insert",
-					{
-						"characters": ".change"
-					},
-					"BwAAABQCAAAAAAAAFQIAAAAAAAAAAAAAFQIAAAAAAAAWAgAAAAAAAAAAAAAWAgAAAAAAABcCAAAAAAAAAAAAABcCAAAAAAAAGAIAAAAAAAAAAAAAGAIAAAAAAAAZAgAAAAAAAAAAAAAZAgAAAAAAABoCAAAAAAAAAAAAABoCAAAAAAAAGwIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAFAIAAAAAAAAUAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					187,
-					2,
-					"left_delete",
-					null,
-					"AgAAABUCAAAAAAAAFQIAAAAAAAAGAAAAY2hhbmdlFAIAAAAAAAAUAgAAAAAAAAEAAAAu",
-					"AQAAAAAAAAABAAAAGwIAAAAAAAAVAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					188,
-					1,
-					"insert",
-					{
-						"characters": "."
-					},
-					"AQAAABQCAAAAAAAAFQIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAFAIAAAAAAAAUAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					189,
-					1,
-					"insert",
-					{
-						"characters": "sets"
-					},
-					"BAAAABUCAAAAAAAAFgIAAAAAAAAAAAAAFgIAAAAAAAAXAgAAAAAAAAAAAAAXAgAAAAAAABgCAAAAAAAAAAAAABgCAAAAAAAAGQIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAFQIAAAAAAAAVAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					195,
-					1,
-					"insert",
-					{
-						"characters": "change"
-					},
-					"BwAAABUCAAAAAAAAFgIAAAAAAAAAAAAAFgIAAAAAAAAWAgAAAAAAAAQAAABzZXRzFgIAAAAAAAAXAgAAAAAAAAAAAAAXAgAAAAAAABgCAAAAAAAAAAAAABgCAAAAAAAAGQIAAAAAAAAAAAAAGQIAAAAAAAAaAgAAAAAAAAAAAAAaAgAAAAAAABsCAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAFQIAAAAAAAAZAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					196,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":0,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							129,
-							195,
-							3
-						],
-						"trigger": "changeState(IFaunaState iFaunaState) : void"
-					},
-					"BgAAABoCAAAAAAAAGgIAAAAAAAABAAAAZRkCAAAAAAAAGQIAAAAAAAABAAAAZxgCAAAAAAAAGAIAAAAAAAABAAAAbhcCAAAAAAAAFwIAAAAAAAABAAAAYRUCAAAAAAAAFQIAAAAAAAACAAAAY2gVAgAAAAAAAC4CAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAGwIAAAAAAAAbAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					198,
-					1,
-					"insert",
-					{
-						"characters": "MOVING"
-					},
-					"BwAAACECAAAAAAAAIgIAAAAAAAAAAAAAIgIAAAAAAAAiAgAAAAAAAAsAAABpRmF1bmFTdGF0ZSICAAAAAAAAIwIAAAAAAAAAAAAAIwIAAAAAAAAkAgAAAAAAAAAAAAAkAgAAAAAAACUCAAAAAAAAAAAAACUCAAAAAAAAJgIAAAAAAAAAAAAAJgIAAAAAAAAnAgAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIQIAAAAAAAAsAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					200,
-					6,
-					"left_delete",
-					null,
-					"BgAAACYCAAAAAAAAJgIAAAAAAAABAAAARyUCAAAAAAAAJQIAAAAAAAABAAAATiQCAAAAAAAAJAIAAAAAAAABAAAASSMCAAAAAAAAIwIAAAAAAAABAAAAViICAAAAAAAAIgIAAAAAAAABAAAATyECAAAAAAAAIQIAAAAAAAABAAAATQ",
-					"AQAAAAAAAAABAAAAJwIAAAAAAAAnAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					201,
-					1,
-					"insert",
-					{
-						"characters": ","
-					},
-					"AQAAACECAAAAAAAAIgIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIQIAAAAAAAAhAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					202,
-					1,
-					"left_delete",
-					null,
-					"AQAAACECAAAAAAAAIQIAAAAAAAABAAAALA",
-					"AQAAAAAAAAABAAAAIgIAAAAAAAAiAgAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
-			"settings":
-			{
-				"buffer_size": 5851,
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
-			"redo_stack":
-			[
-				[
-					8,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAEQCAAAAAAAARAIAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAARQIAAAAAAABFAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					7,
-					1,
-					"insert",
-					{
-						"characters": "public"
-					},
-					"BgAAAEMCAAAAAAAAQwIAAAAAAAABAAAAY0ICAAAAAAAAQgIAAAAAAAABAAAAaUECAAAAAAAAQQIAAAAAAAABAAAAbEACAAAAAAAAQAIAAAAAAAABAAAAYj8CAAAAAAAAPwIAAAAAAAABAAAAdT4CAAAAAAAAPgIAAAAAAAABAAAAcA",
-					"AQAAAAAAAAABAAAARAIAAAAAAABEAgAAAAAAAAAAAAAAAPC/"
-				]
-			],
-			"settings":
-			{
-				"buffer_size": 716,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
-			"settings":
-			{
-				"buffer_size": 913,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/model/fsm/Direction.java",
-			"settings":
-			{
-				"buffer_size": 94,
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/model/data/Area.java",
-			"settings":
-			{
-				"buffer_size": 1458,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/model/Ecosystem.java",
-			"settings":
-			{
-				"buffer_size": 16742,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					8,
-					1,
-					"insert",
-					{
-						"characters": "IElem"
-					},
-					"BgAAABEXAAAAAAAAEhcAAAAAAAAAAAAAEhcAAAAAAAASFwAAAAAAAAQAAAB2b2lkEhcAAAAAAAATFwAAAAAAAAAAAAATFwAAAAAAABQXAAAAAAAAAAAAABQXAAAAAAAAFRcAAAAAAAAAAAAAFRcAAAAAAAAWFwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAERcAAAAAAAAVFwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					9,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":1,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							5,
-							8,
-							3
-						],
-						"trigger": "IElement - pt.isec.pa.javalife.model.data.elements"
-					},
-					"BQAAABUXAAAAAAAAFRcAAAAAAAABAAAAbRQXAAAAAAAAFBcAAAAAAAABAAAAZRMXAAAAAAAAExcAAAAAAAABAAAAbBEXAAAAAAAAERcAAAAAAAACAAAASUURFwAAAAAAABkXAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAFhcAAAAAAAAWFwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					16,
-					1,
-					"insert",
-					{
-						"characters": "return"
-					},
-					"BgAAACgbAAAAAAAAKRsAAAAAAAAAAAAAKRsAAAAAAAAqGwAAAAAAAAAAAAAqGwAAAAAAACsbAAAAAAAAAAAAACsbAAAAAAAALBsAAAAAAAAAAAAALBsAAAAAAAAtGwAAAAAAAAAAAAAtGwAAAAAAAC4bAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAKBsAAAAAAAAoGwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					17,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAC4bAAAAAAAALxsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAALhsAAAAAAAAuGwAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/model/EcosystemManager.java",
-			"settings":
-			{
-				"buffer_size": 2985,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					13,
-					1,
-					"insert",
-					{
-						"characters": "i"
-					},
-					"AgAAAAcKAAAAAAAACAoAAAAAAAAAAAAACAoAAAAAAAAICgAAAAAAAAQAAAB2b2lk",
-					"AQAAAAAAAAABAAAABwoAAAAAAAALCgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					14,
-					1,
-					"left_delete",
-					null,
-					"AQAAAAcKAAAAAAAABwoAAAAAAAABAAAAaQ",
-					"AQAAAAAAAAABAAAACAoAAAAAAAAICgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					15,
-					1,
-					"insert",
-					{
-						"characters": "IEle"
-					},
-					"BAAAAAcKAAAAAAAACAoAAAAAAAAAAAAACAoAAAAAAAAJCgAAAAAAAAAAAAAJCgAAAAAAAAoKAAAAAAAAAAAAAAoKAAAAAAAACwoAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABwoAAAAAAAAHCgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					16,
-					1,
-					"insert_completion",
-					{
-						"completion": "lsp_select_completion {\"index\":1,\"session_name\":\"jdtls\"}",
-						"format": "command",
-						"keep_prefix": true,
-						"must_insert": false,
-						"query_change_id":
-						[
-							10,
-							15,
-							1
-						],
-						"trigger": "IElement - pt.isec.pa.javalife.model.data.elements"
-					},
-					"BQAAAAoKAAAAAAAACgoAAAAAAAABAAAAZQkKAAAAAAAACQoAAAAAAAABAAAAbAgKAAAAAAAACAoAAAAAAAABAAAARQcKAAAAAAAABwoAAAAAAAABAAAASQcKAAAAAAAADwoAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAACwoAAAAAAAALCgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					21,
-					1,
-					"insert",
-					{
-						"characters": "return"
-					},
-					"BgAAAEcKAAAAAAAASAoAAAAAAAAAAAAASAoAAAAAAABJCgAAAAAAAAAAAABJCgAAAAAAAEoKAAAAAAAAAAAAAEoKAAAAAAAASwoAAAAAAAAAAAAASwoAAAAAAABMCgAAAAAAAAAAAABMCgAAAAAAAE0KAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARwoAAAAAAABHCgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					22,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAE0KAAAAAAAATgoAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATQoAAAAAAABNCgAAAAAAAAAAAAAAAPC/"
+					"AQAAAAAAAAAAAAAAAwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
 				]
 			]
 		}
@@ -1612,16 +552,8 @@
 		"selected_items":
 		[
 			[
-				"call",
-				"Javatar: Calls..."
-			],
-			[
 				"term",
 				"Terminus: Toggle Panel"
-			],
-			[
-				"bui",
-				"Javatar: Builds..."
 			],
 			[
 				"close",
@@ -1632,12 +564,40 @@
 				"Javatar: Builds..."
 			],
 			[
-				"javatar",
+				"bui",
 				"Javatar: Builds..."
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"them",
+				"UI: Select Theme"
 			],
 			[
 				"instal",
 				"Package Control: Install Package"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"sideba",
+				"View: Toggle Side Bar"
+			],
+			[
+				"call",
+				"Javatar: Calls..."
+			],
+			[
+				"javatar",
+				"Javatar: Builds..."
 			],
 			[
 				"buid",
@@ -1806,10 +766,6 @@
 			[
 				"INSTAL",
 				"Package Control: Install Package"
-			],
-			[
-				"theme",
-				"UI: Select Theme"
 			]
 		],
 		"width": 0.0
@@ -1839,36 +795,43 @@
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/tests",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui"
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/tests"
 	],
 	"file_history":
 	[
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/bin/style.css",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/resources/style.css",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/Ecosystem.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/EcosystemManager.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/tests/FaunaStateMachineTest.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Flora.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/MovingState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/Area.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/BlueSlider.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/ReproduceState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"JavaFX Application Thread\" java.lang.NoSuchMethodError",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/java.lang.AssertionError",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/GameEngine.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/IGameEngine.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/IGameEngineEvolve.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/MainJFX.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/SplashScene.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/GameEngine.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Flora.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/INFO",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/ClickableSVG.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/Area.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/ReproduceState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/.gitignore",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Element.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/tp.sublime-project",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/\tat pt.isec.pa.javalife.model.fsm.states.ReproduceState.execute(ReproduceState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/IElementWithImage.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/FaunaImagesManager.java",
@@ -1878,27 +841,21 @@
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/AddElementComand.java",
 		"/C/Users/Eu/Desktop/teste.csv",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/java.io.NotSerializableException",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/AttackingState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/MovingState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/\tat java.base/java.lang.Thread.run(Thread.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"Thread-75\" java.lang.NullPointerException",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Inanimate.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/CommandManager.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateAdapter.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/BlueSlider.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/Direction.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/IEcosystem.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaDirection.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/IGameEngineEvolve.java",
 		"/C/Users/Eu/Downloads/Ex30_Completo/src/pt/isec/pa/ex30/Main.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBarNavbar.java",
 		"/C/ValoraHelp/ValoraHelp/Drawings.cpp",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"JavaFX Application Thread\" java.lang.NullPointerException",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/GameEngineState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/resources/style.css",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/bin/style.css",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"Thread-1106\" java.lang.NullPointerException",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"Thread-383\" java.lang.NullPointerException",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/Controller.java",
@@ -1950,7 +907,7 @@
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 48.0
 	},
 	"find_in_files":
 	{
@@ -1965,6 +922,42 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"characterBox",
+			"Texto",
+			"hbox2",
+			"sUnitTimer",
+			"sUnittIMER",
+			"hbox3",
+			"Sinanimados",
+			"Texto",
+			"secondaryBackground",
+			"VGROW",
+			"characterGroup",
+			"option1Box",
+			"text-regular",
+			"ticks",
+			"Label",
+			"lbTicks",
+			"error",
+			"sidebar.getTxtId()",
+			"ticks",
+			"evolve",
+			"ChangeListener",
+			"descreaseEnergy",
+			"sUnitTimer",
+			"sUnitTimer\n",
+			"ecoTab",
+			"sunit",
+			"onrender",
+			"sUnit",
+			"TextoNome",
+			"slider",
+			"Erro",
+			"canvas",
+			"error",
+			"evolve",
+			"eolve",
+			"evolve",
 			"removeElement",
 			"gameEngine",
 			"PropertyChangeListener",
@@ -2056,43 +1049,7 @@
 			"0",
 			"()",
 			"PROP_GAME_RENDER",
-			"FaunaDirection",
-			"import pt.isec.pa.javalife.model.fsm.;\n",
-			"FaunaDirection",
-			"Direction",
-			"FaunaDirection",
-			"getElement(",
-			"ConcurrentModificationException\n",
-			"onRender",
-			"PROP_INSPECT",
-			"getelement",
-			"PROP_GAME_RENDER",
-			"getElement(",
-			"getElement",
-			"addPropertyChangeListener",
-			"onrender",
-			"f.getArea()",
-			"onrender",
-			"error",
-			"Sinanimados",
-			"onrender",
-			"CreateElement",
-			"addFauna",
-			"getElement(",
-			"getElement",
-			"fauna",
-			"gc",
-			"canvas",
-			"gc",
-			" sidebar.getTxtEsq",
-			"private TextField",
-			"f",
-			"currentFaunaIDSelected",
-			"txtX",
-			"sidebar",
-			"fillRect",
-			"strokeRect",
-			"FU"
+			"FaunaDirection"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -2116,294 +1073,26 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/pt/isec/pa/javalife/tests/FaunaStateMachineTest.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 846,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								545,
-								545
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/tests/FaunaStateMachineTest.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5851,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1497,
-								1514
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 396.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 716,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								187,
-								204
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 913,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								263,
-								263
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/pt/isec/pa/javalife/model/fsm/Direction.java",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 94,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								94,
-								94
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/Direction.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/pt/isec/pa/javalife/model/data/Area.java",
 					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1458,
+						"buffer_size": 3,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								3,
+								3
 							]
 						],
 						"settings":
 						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/Area.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"auto_name": "não",
+							"lsp_uri": "buffer:1517",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -2412,113 +1101,13 @@
 					"stack_index": 0,
 					"stack_multiselect": false,
 					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/pt/isec/pa/javalife/model/Ecosystem.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16742,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5914,
-								5944
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/Ecosystem.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3989.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "src/pt/isec/pa/javalife/model/EcosystemManager.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2985,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2653,
-								2653
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/EcosystemManager.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1848.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"stack_multiselect": false,
-					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 36.0
 	},
 	"input":
 	{
@@ -2561,7 +1150,7 @@
 	},
 	"output.exec":
 	{
-		"height": 147.0
+		"height": 40.0
 	},
 	"output.find_results":
 	{
@@ -2575,7 +1164,7 @@
 	"project": "tp.sublime-project",
 	"replace":
 	{
-		"height": 58.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -2585,12 +1174,132 @@
 		"selected_items":
 		[
 			[
-				"area",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\Area.java"
+				"main",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"create",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
+			],
+			[
+				"reate",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
+			],
+			[
+				"start",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\StartScene.java"
+			],
+			[
+				"css",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\resources\\style.css"
+			],
+			[
+				"sty",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\resources\\style.css"
+			],
+			[
+				"m",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"eco",
+				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
+			],
+			[
+				"sideb",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
+			],
+			[
+				"sidebar",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
 			],
 			[
 				"fauna",
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"flora",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Flora.java"
+			],
+			[
+				"eatin",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\EatingState.java"
+			],
+			[
+				"faun",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"movin",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
+			],
+			[
+				"cre",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
+			],
+			[
+				"side",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
+			],
+			[
+				"mainsce",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"blues",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\BlueSlider.java"
+			],
+			[
+				"area",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\Area.java"
+			],
+			[
+				"fa",
+				"src\\pt\\isec\\pa\\javalife\\tests\\FaunaStateMachineTest.java"
+			],
+			[
+				"ecos",
+				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
+			],
+			[
+				"sear",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
+			],
+			[
+				"repr",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\ReproduceState.java"
+			],
+			[
+				"fam",
+				"src\\pt\\isec\\pa\\javalife\\tests\\FaunaStateMachineTest.java"
+			],
+			[
+				"rep",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\ReproduceState.java"
+			],
+			[
+				"teste",
+				"src\\pt\\isec\\pa\\javalife\\tests\\FaunaStateMachineTest.java"
+			],
+			[
+				"gameen",
+				"src\\pt\\isec\\pa\\javalife\\model\\gameengine\\GameEngine.java"
+			],
+			[
+				"ECO",
+				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
+			],
+			[
+				"faunstate",
+				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\FaunaStateContext.java"
+			],
+			[
+				"ecosys",
+				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
+			],
+			[
+				"faunastat",
+				"src\\pt\\isec\\pa\\javalife\\tests\\FaunaStateMachineTest.java"
 			],
 			[
 				"ecosyste",
@@ -2603,18 +1312,6 @@
 			[
 				"mainf",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\MainJFX.java"
-			],
-			[
-				"main",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"start",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\StartScene.java"
-			],
-			[
-				"eco",
-				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
 			],
 			[
 				"crea",
@@ -2637,16 +1334,8 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
-				"gameen",
-				"src\\pt\\isec\\pa\\javalife\\model\\gameengine\\GameEngine.java"
-			],
-			[
 				"mainscne",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"faun",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
 			],
 			[
 				"ec",
@@ -2657,18 +1346,6 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
-				"flora",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Flora.java"
-			],
-			[
-				"sear",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
-			],
-			[
-				"repr",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\ReproduceState.java"
-			],
-			[
 				"ele",
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Element.java"
 			],
@@ -2677,24 +1354,12 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
-				"fa",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
-			],
-			[
 				"repro",
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\ReproduceState.java"
 			],
 			[
 				"EC",
 				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
-			],
-			[
-				"rep",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\ReproduceState.java"
-			],
-			[
-				"sidebar",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
 			],
 			[
 				"re",
@@ -2725,10 +1390,6 @@
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\ElementsFactory.java"
 			],
 			[
-				"create",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
-			],
-			[
 				"mainsc",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
@@ -2737,20 +1398,12 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\BlueSpinner.java"
 			],
 			[
-				"faunstate",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\FaunaStateContext.java"
-			],
-			[
 				"Funasta",
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\FaunaStateContext.java"
 			],
 			[
 				"e",
 				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
-			],
-			[
-				"side",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
 			],
 			[
 				"attac",
@@ -2769,20 +1422,12 @@
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\AttackingState.java"
 			],
 			[
-				"movin",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
-			],
-			[
 				"searc",
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
 			],
 			[
 				"saer",
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\SearchFoodState.java"
-			],
-			[
-				"eatin",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\EatingState.java"
 			],
 			[
 				"eat",
@@ -2823,10 +1468,6 @@
 			[
 				"ina",
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Inanimate.java"
-			],
-			[
-				"mainsce",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
 				"cer",
@@ -2885,24 +1526,12 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
-				"ECO",
-				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
-			],
-			[
 				"elem",
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\ElementsFactory.java"
 			],
 			[
-				"m",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
 				"mais",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"sideb",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
 			],
 			[
 				"MAINS",
@@ -2937,15 +1566,7 @@
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
-				"ecos",
-				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
-			],
-			[
 				"stl",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\resources\\style.css"
-			],
-			[
-				"sty",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\resources\\style.css"
 			],
 			[
@@ -2955,10 +1576,6 @@
 			[
 				"bluesp",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\BlueSpinner.java"
-			],
-			[
-				"reate",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\CreateEcosystemScene.java"
 			],
 			[
 				"contro",
@@ -3041,7 +1658,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 338.0,
+	"side_bar_width": 255.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

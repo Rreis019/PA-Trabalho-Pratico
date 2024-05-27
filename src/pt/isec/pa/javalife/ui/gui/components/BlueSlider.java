@@ -38,7 +38,6 @@ public class BlueSlider extends VBox {
         });
 
         HBox hbox = new HBox(titleLabel, pane, valueLabel);
-        hbox.setSpacing(14);
 
         getChildren().addAll(hbox, slider);
         setMaxWidth(width);

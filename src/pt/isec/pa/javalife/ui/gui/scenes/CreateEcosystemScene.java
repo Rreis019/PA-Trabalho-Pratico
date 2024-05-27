@@ -99,7 +99,7 @@ class CreateEcosystemScene extends Scene
         Sfauna = new BlueSpinner("Quantidade Fauna",10,0,100,5);
         Sflora = new BlueSpinner("Quantidade Flora",10,0,100,5);
         Sinanimados = new BlueSpinner("Quantidade Inanimados",10,0,100,5);
-        sUnitTimer = new BlueSpinner("Unidade de tempo", 300,10,100, 1000);
+        sUnitTimer = new BlueSpinner("Unidade de tempo", 100,10,100, 1000);
 
         sEnergyMovement = new BlueSlider("EnergiaMovimento(Fauna)", 300,0.1,0.5, 5);
         sDamageFauna = new BlueSlider("Dano da Fauna", 300,0.1,1, 5);
@@ -250,7 +250,7 @@ class CreateEcosystemScene extends Scene
             for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FAUNA);}
             for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FLORA);}
 
-            model.setGameInterval((int)sUnitTimer.getNumero());
+            model.setGameInterval((long)sUnitTimer.getNumero());
             model.resumeGame();
             MainScene mainscene = new MainScene(primaryStage,model);
             primaryStage.setScene(mainscene);

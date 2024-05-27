@@ -45,6 +45,10 @@ public class EcosystemManager
         gameEngine.setInterval(newInterval);
 	}
 
+    public long getGameInterval() {
+        return gameEngine.getInterval();
+    }
+
 	public GameEngineState getCurrentState() {
 		return gameEngine.getCurrentState();
 	}

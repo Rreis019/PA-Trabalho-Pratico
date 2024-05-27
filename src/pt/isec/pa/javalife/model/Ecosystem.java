@@ -259,8 +259,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
         handleColisions();
         pcs.firePropertyChange(PROP_GAME_RENDER, null, null);   
-        totalTicks = totalTicks + 1;
-
+        //totalTicks = totalTicks + 1;
+        
     }
 
     public void applyStrenghtEvent(IElement element)
