@@ -197,7 +197,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return true;
     }
 
-    public void addElementToRandomFreePosition(Element type) {
+    public IElement addElementToRandomFreePosition(Element type) {
         Random random = new Random();
         IElement ent = ElementsFactory.CreateElement(this,type, 0, 0);
 
@@ -227,6 +227,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         //}
 
         elements.put(ent.getId(),ent);
+        return ent;
     }
 
     @Override

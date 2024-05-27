@@ -9,6 +9,7 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import pt.isec.pa.javalife.model.gameengine.IGameEngine;
 //Classe Facade 
 public class EcosystemManager
 {
@@ -25,6 +26,8 @@ public class EcosystemManager
 	public boolean startGame(long interval) {
 		return gameEngine.start(interval);
 	}
+
+
 
     public void stopGame() {
         gameEngine.stop();
@@ -59,6 +62,12 @@ public class EcosystemManager
 
     public IElement getElement(int id) {
         return ecosystem.getElement(id);
+    }
+
+    //Para testes unitarios
+    public void evolve() {
+        long time = System.nanoTime();
+        ecosystem.evolve(gameEngine, time);
     }
 
     public void makeWall()
@@ -105,8 +114,8 @@ public class EcosystemManager
         ecosystem.clearElements();
     }
 
-    public void addElementToRandomFreePosition(Element type) {
-        ecosystem.addElementToRandomFreePosition(type);
+    public IElement addElementToRandomFreePosition(Element type) {
+        return ecosystem.addElementToRandomFreePosition(type);
     }
 
     public void addPropertyChangeListener(String prop,PropertyChangeListener listener) {

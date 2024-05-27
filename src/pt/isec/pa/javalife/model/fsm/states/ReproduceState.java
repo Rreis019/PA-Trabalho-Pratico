@@ -34,11 +34,13 @@ public class ReproduceState extends FaunaStateAdapter implements Serializable {
 	public boolean execute() {
 		Fauna strongestFauna = ecosystem.getStrongestFauna(fauna.getId()); 
 		if(strongestFauna == null){
+			ticks = 0;
 			changeState(FaunaState.MOVING);
 			return false;
 		}
 
 		if(Area.distance(fauna.getArea(),strongestFauna.getArea()) > 32){
+			ticks = 0;
 			changeState(FaunaState.MOVING);
 			return false;
 		}

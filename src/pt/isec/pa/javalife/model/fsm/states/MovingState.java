@@ -40,13 +40,14 @@ public class MovingState extends FaunaStateAdapter implements Serializable {
 		}
 
 
-		fauna.moveForward();
 		if(fauna.getStrength() > 50){
 			changeState(FaunaState.REPRODUCE);
 		}
 		else if(fauna.getStrength() < 35){
 			changeState(FaunaState.SEARCH_FOOD);
 		}
+		
+		fauna.moveForward();
 		return false;
 	}
 
