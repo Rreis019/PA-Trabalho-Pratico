@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.shape.Rectangle;
+import pt.isec.pa.javalife.model.EcosystemManager;
+import pt.isec.pa.javalife.model.data.elements.Fauna;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 
@@ -45,8 +47,15 @@ public class SideBar extends VBox {
     private TextField txtDir;
     private TextField txtBaixo;
 
-    public SideBar()
+    BlueSlider sUnitTimer;
+    BlueSlider sEnergyMovement;
+    BlueSlider sDamageFauna;
+
+    EcosystemManager model;
+
+    public SideBar(EcosystemManager manager_)
     {
+        model = manager_;
         int width = 200;
         setPrefWidth(width);
         setMaxWidth(width);
@@ -95,7 +104,7 @@ public class SideBar extends VBox {
         separate.setHeight(2);
         separate.setFill(Color.web("#373054"));
 
-         Rectangle separate2 = new Rectangle();
+        Rectangle separate2 = new Rectangle();
         separate2.setWidth(width - 10);
         separate2.setHeight(2);
         separate2.setFill(Color.web("#373054"));
@@ -105,7 +114,15 @@ public class SideBar extends VBox {
         separate3.setHeight(2);
         separate3.setFill(Color.web("#373054"));
 
-        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate, btnCreteEco, btnImport, btnExport);
+        sUnitTimer = new BlueSlider("UnitTempo", 300,10,100, 1000);
+        sEnergyMovement = new BlueSlider("EnergiaMovimento", 300,0.1,0.5, 5);
+        sDamageFauna = new BlueSlider("DanoDaFauna", 300,0.1,1, 5);
+
+        sEnergyMovement.setFloat(true);
+        sDamageFauna.setFloat(true);
+
+
+        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate, btnCreteEco, btnImport, btnExport,sUnitTimer,sEnergyMovement,sDamageFauna);
 
 
         inspectTab = new VBox();
@@ -244,9 +261,32 @@ public class SideBar extends VBox {
         makeNumeric( txtDir);
         makeNumeric( txtBaixo);
         this.getChildren().addAll(navbar,space,ecoTab,inspectTab);
+    
+        registerHandlers();
     }
 
-
+    void registerHandlers()
+    {
+        sUnitTimer.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {model.setGameInterval((long)sUnitTimer.getValue());}
+        });
+    
+        sEnergyMovement.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                Fauna.decMovementEnergy = sEnergyMovement.getValue();
+            }
+        });
+    
+        sDamageFauna.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                Fauna.damageToFlora = sDamageFauna.getValue();
+            }
+        });
+    
+    }
 
     public void showEcoTab()
     {

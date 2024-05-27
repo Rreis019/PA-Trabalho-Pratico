@@ -30,7 +30,10 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
     private int velocity = 32;
     private static final int size = 32;
 
-    public static double descreaseEnergy = 0.5;
+    public static double decMovementEnergy = 0.5;
+    public static double damageToFlora = 1;
+
+
     private FaunaStateContext ctx;
     private Ecosystem eco;
 
@@ -159,7 +162,7 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
         return false;
     }
 
-    public void decreaseEnergy(){strength-=descreaseEnergy;}
+    public void decreaseEnergy(){strength-=decMovementEnergy;}
 
     public Direction getDirection(){return direction;}
     public void setDirection(Direction direction_){ direction = direction_;}

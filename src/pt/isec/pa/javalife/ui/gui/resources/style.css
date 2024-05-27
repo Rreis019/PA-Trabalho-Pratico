@@ -228,3 +228,8 @@
     -fx-font-size:14px;
     -fx-text-fill: white; 
 }
+
+.text-purple
+{
+    -fx-text-fill: -secondary-color;
+}

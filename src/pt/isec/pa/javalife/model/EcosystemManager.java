@@ -94,6 +94,10 @@ public class EcosystemManager
         ecosystem.applySunEvent(element);
     }
 
+    public int getTicks(){return ecosystem.getTicks();}
+    public void resetTicksCounter(){ecosystem.resetTicksCounter();}
+
+
     public ConcurrentMap<Integer, IElement> getElements() {
         return ecosystem.getElements();
     }

@@ -40,7 +40,6 @@ import java.util.concurrent.ConcurrentMap;
 
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Locale;
 
 
@@ -48,7 +47,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private static final long serialVersionUID = 1L;
     //private Set<IElement> elements;
     private ConcurrentMap<Integer, IElement> elements;
-
+    int totalTicks = 0;
 
 
     private final PropertyChangeSupport pcs; // Para o observable
@@ -99,6 +98,10 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     {
         return elements;
     }
+
+
+    public int getTicks(){return totalTicks;}
+    public void resetTicksCounter(){totalTicks = 0;}
 
     public Fauna getWeakestFauna(int ignoreID)
     {
@@ -252,11 +255,12 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         if (sunEventEffect && sunEventTick == 10){sunEventEffect = false; sunEventTick = 0;}
         else if(sunEventEffect){
             sunEventTick = sunEventTick + 1;
-            System.out.println("SunEveentAffect\n");
         }
 
         handleColisions();
-        pcs.firePropertyChange(PROP_GAME_RENDER, null, null);
+        pcs.firePropertyChange(PROP_GAME_RENDER, null, null);   
+        totalTicks = totalTicks + 1;
+
     }
 
     public void applyStrenghtEvent(IElement element)
@@ -499,9 +503,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
         return true;
     }
-
-
-    
 
 
     //área para o Observable

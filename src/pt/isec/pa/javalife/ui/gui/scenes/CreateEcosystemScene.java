@@ -12,6 +12,10 @@ import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -28,7 +32,9 @@ class CreateEcosystemScene extends Scene
     BlueSpinner Sfauna;
     BlueSpinner Sflora;
     BlueSpinner Sinanimados;
-    BlueSlider Sunidade;
+    BlueSpinner sUnitTimer;
+    BlueSlider sEnergyMovement;
+    BlueSlider sDamageFauna;
 
     ToggleGroup characterGroup;
     VBox option1Box, option2Box, option3Box, option4Box;
@@ -71,7 +77,7 @@ class CreateEcosystemScene extends Scene
         //Texto
         Label Texto = new Label("Criação do ecossistema");
         Texto.setWrapText(true);
-        Texto.setAlignment(Pos.CENTER_RIGHT);
+        Texto.setAlignment(Pos.CENTER_LEFT);
         Texto.getStyleClass().add("heading");
         Texto.setStyle("-fx-text-alignment: left;");
 
@@ -82,16 +88,27 @@ class CreateEcosystemScene extends Scene
         separate.setFill(Color.WHITE);
 
         // Campos de texto
-        Label TextoNome = new Label("Nome");
-        TextoNome.setStyle("-fx-text-fill: white; -fx-text-alignment: left; -fx-font-size : 15px;");
-        TextField Nome = new TextField();
+        //Label TextoNome = new Label("Nome");
+        //TextoNome.setStyle("-fx-text-fill: white; -fx-text-alignment: left; -fx-font-size : 15px;");
+        //TextField Nome = new TextField();
+        
+
         //Componentes
         SAltura = new BlueSpinner("Altura",300,200,500,20);
         Scomprimento = new BlueSpinner("Comprimento",300,200,500,5);
         Sfauna = new BlueSpinner("Quantidade Fauna",10,0,100,5);
         Sflora = new BlueSpinner("Quantidade Flora",10,0,100,5);
         Sinanimados = new BlueSpinner("Quantidade Inanimados",10,0,100,5);
-        Sunidade = new BlueSlider("Unidade de tempo", 300,10,100, 1000);
+        sUnitTimer = new BlueSpinner("Unidade de tempo", 300,10,100, 1000);
+
+        sEnergyMovement = new BlueSlider("EnergiaMovimento(Fauna)", 300,0.1,0.5, 5);
+        sDamageFauna = new BlueSlider("Dano da Fauna", 300,0.1,1, 5);
+
+
+
+        sEnergyMovement.setFloat(true);
+        sDamageFauna.setFloat(true);
+
 
         // Botão de criar
         criarButton = new Button("Criar");
@@ -110,12 +127,16 @@ class CreateEcosystemScene extends Scene
         hbox2.setAlignment(Pos.CENTER);
 
         HBox hbox3 = new HBox();
-        hbox3.getChildren().addAll(Sinanimados);
+        hbox3.getChildren().addAll(Sinanimados,sUnitTimer);
+        hbox3.setSpacing(10); // Espaçamento entre os componentes
+        hbox3.setAlignment(Pos.CENTER);
 
-        Label Erro = new Label("Mensagem de Erro");
-        Erro.setStyle("-fx-text-fill: white;-fx-font-size : 15px;");
 
-        content.getChildren().addAll(Texto, separate, TextoNome,Nome, hbox1, hbox2,hbox3, Sunidade , Erro, criarButton);
+        VBox title = new VBox();
+        title.getChildren().addAll(Texto,separate);
+        //Label Erro = new Label("Mensagem de Erro");
+        //Erro.setStyle("-fx-text-fill: white;-fx-font-size : 15px;");
+        content.getChildren().addAll(title, hbox1, hbox2,hbox3,sDamageFauna,sEnergyMovement, criarButton);
         secondaryBackground.getChildren().addAll(content);
 
         //--------- Área de seleção de ícone para a fauna
@@ -173,8 +194,7 @@ class CreateEcosystemScene extends Scene
         HBox charactersBox1 = new HBox();
         charactersBox1.getChildren().addAll(option1Box, option2Box);
         charactersBox1.setSpacing(60);
-        VBox.setMargin(charactersBox1, new Insets(0, 0, 0, 30));
-
+        charactersBox1.setAlignment(Pos.CENTER);
         option3Box = new VBox();
         option3Box.setAlignment(Pos.CENTER);
         option3Box.getChildren().addAll(lbUrso,option3,ursoImage);
@@ -186,7 +206,7 @@ class CreateEcosystemScene extends Scene
         HBox charactersBox2 = new HBox();
         charactersBox2.getChildren().addAll(option3Box, option4Box);
         charactersBox2.setSpacing(60);
-        VBox.setMargin(charactersBox2, new Insets(0, 0, 0, 30));
+         charactersBox2.setAlignment(Pos.CENTER);
 
         VBox characterBox = new VBox();
         characterBox.setAlignment(Pos.CENTER);
@@ -194,14 +214,17 @@ class CreateEcosystemScene extends Scene
         characterBox.setSpacing(20);
 
         characterBox.getChildren().addAll(lbFauna, charactersBox1, charactersBox2, criarButton);
+        characterBox.setAlignment(Pos.CENTER);
+
+
         HBox.setHgrow(characterBox, Priority.ALWAYS);
 
         root.setPadding(new Insets(5));
         root.getChildren().addAll(secondaryBackground, characterBox);
 
         //Tamanho da janela
-        primaryStage.setWidth(700);
-        primaryStage.setHeight(500);
+        primaryStage.setWidth(732);
+        primaryStage.setHeight(515);
     }
 
     private void registerHandlers()
@@ -215,6 +238,11 @@ class CreateEcosystemScene extends Scene
             model.setWidth(Scomprimento.getNumero());
             model.setHeight(SAltura.getNumero());
             model.makeWall();
+
+            Fauna.decMovementEnergy = sEnergyMovement.getValue();
+            Fauna.damageToFlora = sDamageFauna.getValue();
+            model.resetTicksCounter();
+
             for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.INANIMATE);}
 
 
@@ -222,13 +250,14 @@ class CreateEcosystemScene extends Scene
             for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FAUNA);}
             for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FLORA);}
 
-            model.setGameInterval((int)Sunidade.getValue());
+            model.setGameInterval((int)sUnitTimer.getNumero());
             model.resumeGame();
             MainScene mainscene = new MainScene(primaryStage,model);
             primaryStage.setScene(mainscene);
             primaryStage.show();
 
         });
+
 
         option1Box.setOnMouseClicked(e -> option1.setSelected(true));
 

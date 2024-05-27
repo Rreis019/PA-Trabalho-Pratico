@@ -69,6 +69,7 @@ public class MainScene extends Scene
 
 
 
+
     private final String svgStopContent = "M7.03125 21.875H2.34375C1.0498 21.875 0 20.8252 0 19.5312V2.34375C0 1.0498 1.0498 0 2.34375 0H7.03125C8.3252 0 9.375 1.0498 9.375 2.34375V19.5312C9.375 20.8252 8.3252 21.875 7.03125 21.875ZM21.875 19.5312V2.34375C21.875 1.0498 20.8252 0 19.5312 0H14.8438C13.5498 0 12.5 1.0498 12.5 2.34375V19.5312C12.5 20.8252 13.5498 21.875 14.8438 21.875H19.5312C20.8252 21.875 21.875 20.8252 21.875 19.5312Z";
     private final String svgPlayContent = "M20.7227 10.4813L3.53516 0.320197C2.13867 -0.504998 0 0.295783 0 2.3368V22.6542C0 24.4852 1.9873 25.5888 3.53516 24.6708L20.7227 14.5145C22.2559 13.6112 22.2607 11.3846 20.7227 10.4813Z";
     
@@ -130,6 +131,17 @@ public class MainScene extends Scene
 
         Rectangle separateBar = new Rectangle(2, 35, Color.web("#5A508C"));
 
+
+        /*
+        Rectangle separateBar2 = new Rectangle(2, 35, Color.web("#5A508C"));
+
+        Label lbTicks = new Label("Ticks : 0");
+        lbTicks.getStyleClass().addAll("text-bold","text-purple");
+        lbTicks.setTextFill(Color.web("#373054"));
+    */
+
+        //#373054
+
         topPanel = new HBox();
         topPanel.setMinHeight(35);
         topPanel.setSpacing(10);
@@ -151,7 +163,7 @@ public class MainScene extends Scene
         HBox.setMargin(ecosystemPanel, new Insets(10));
 
 
-        sidebar = new SideBar();
+        sidebar = new SideBar(model);
 
         content.getChildren().addAll(ecosystemPanel,sidebar);
         root.getChildren().addAll(topPanel,content);

@@ -1,9 +1,11 @@
 package pt.isec.pa.javalife.model.data;
 
 
+import java.io.Serializable;
+
 import pt.isec.pa.javalife.model.fsm.Direction;
 
-public record Area(double top, double left, double bottom, double right) {
+public record Area(double top, double left, double bottom, double right) implements Serializable {
 
 
     public static double distance(Area a1,Area a2)

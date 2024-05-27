@@ -44,7 +44,7 @@ public class EatingState extends FaunaStateAdapter implements Serializable {
 	 	
 	 	Flora flora = (Flora)closestFlora;
 		
-		double str = flora.getStrength() >= 10 ? 10 : flora.getStrength();
+		double str = flora.getStrength() >= Fauna.damageToFlora ? Fauna.damageToFlora : flora.getStrength();
 
 		flora.setStrength(flora.getStrength() - str);
 		fauna.setStrength(fauna.getStrength() + str);
