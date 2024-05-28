@@ -94,12 +94,12 @@ public class StartScene extends Scene {
 
         btnImport.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.dat"));
 
             File selectedFile = fileChooser.showOpenDialog(primaryStage);
             if (selectedFile != null) {
                 System.out.println("Arquivo CSV selecionado: " + selectedFile.getName());
-                if(model.loadGame(selectedFile.getAbsolutePath())){
+                if(model.load(selectedFile.getAbsolutePath())){
 
                     MainScene mainscene = new MainScene(primaryStage,model);
                     primaryStage.setScene(mainscene);

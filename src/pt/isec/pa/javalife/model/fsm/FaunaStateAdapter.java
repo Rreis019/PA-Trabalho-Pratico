@@ -1,9 +1,11 @@
 package pt.isec.pa.javalife.model.fsm;
 
+import java.io.Serializable;
+
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 
-public abstract class FaunaStateAdapter implements IFaunaState {
+public abstract class FaunaStateAdapter implements IFaunaState,Serializable {
 
 	protected FaunaStateContext context; 
 	protected Ecosystem ecosystem;

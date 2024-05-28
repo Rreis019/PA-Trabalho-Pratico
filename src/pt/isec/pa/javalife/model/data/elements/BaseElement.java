@@ -11,15 +11,14 @@ import pt.isec.pa.javalife.model.data.Area;
 public abstract sealed class BaseElement
     implements IElement
     permits Inanimate, Flora, Fauna {
-
-    static final long serialVersionUID = 1L;
-    private static int lastId = 0;
+    private static final long serialVersionUID = 1L;
+    public static int lastId = 0;
 
     protected final int id;
 
     protected Element type;
 
-    protected transient Area area;
+    protected Area area;
 
     public BaseElement(Element type, double positionX,double positionY,double width,double height) {
         //this.id = id;

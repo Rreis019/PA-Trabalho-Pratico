@@ -18,7 +18,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 
-public class SearchFoodState extends FaunaStateAdapter implements Serializable {
+public class SearchFoodState extends FaunaStateAdapter{
 
 
 	public SearchFoodState(FaunaStateContext context, Ecosystem ecosystem, Fauna fauna_)

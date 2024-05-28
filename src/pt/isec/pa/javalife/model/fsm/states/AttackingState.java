@@ -9,7 +9,8 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 
-public class AttackingState extends FaunaStateAdapter implements Serializable {
+public class AttackingState extends FaunaStateAdapter{
+
 
 	public AttackingState(FaunaStateContext context, Ecosystem ecosystem, Fauna fauna_)
 	{

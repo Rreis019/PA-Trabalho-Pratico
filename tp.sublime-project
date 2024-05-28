@@ -14,7 +14,14 @@
 			"selector": "source.java",
 			"shell_cmd": "cd bin && java -cp ../lib/junit/junit-4.13.2.jar;../lib/junit/hamcrest-core-1.3.jar;. org.junit.runner.JUnitCore pt.isec.pa.javalife.tests.${file_base_name}",
 			"working_dir": "${project_path:${folder}}",
-		}
+		},
+		{
+            "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+            "name": "GenerateJavadoc",
+            "selector": "source.java",
+            "shell_cmd": "javadoc -d docs -sourcepath src -cp \"C:\\javafx\\lib\\*;lib\\junit\\*\" -subpackages pt.isec.pa.javalife",
+            "working_dir": "${project_path:${folder}}"
+        }
 	],
 	"folders":
 	[

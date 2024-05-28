@@ -1,0 +1,12 @@
+pt.isec.pa.javalife
+pt.isec.pa.javalife.model
+pt.isec.pa.javalife.model.command
+pt.isec.pa.javalife.model.data
+pt.isec.pa.javalife.model.data.elements
+pt.isec.pa.javalife.model.fsm
+pt.isec.pa.javalife.model.fsm.states
+pt.isec.pa.javalife.model.gameengine
+pt.isec.pa.javalife.tests
+pt.isec.pa.javalife.ui.gui
+pt.isec.pa.javalife.ui.gui.components
+pt.isec.pa.javalife.ui.gui.scenes

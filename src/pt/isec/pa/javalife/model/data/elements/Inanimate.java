@@ -8,9 +8,8 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 /**
  * Inanimate
  */
-public final class Inanimate extends BaseElement implements Serializable
+public final class Inanimate extends BaseElement
 {
-	static final long serialVersionUID = 1L;
 	public static final int size = 16;
 
  	public Inanimate(double positionX,double positionY) {

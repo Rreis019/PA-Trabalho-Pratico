@@ -21,9 +21,8 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Fauna
  */
-public final class Fauna extends BaseElement implements IElementWithStrength,IElementWithImage,Serializable
+public final class Fauna extends BaseElement implements IElementWithStrength,IElementWithImage
 {
-	static final long serialVersionUID = 1L;
     private static String image = "lobo";
     private Direction direction = Direction.RIGHT;
     private double strength = 50;

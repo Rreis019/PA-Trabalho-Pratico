@@ -27,7 +27,7 @@ public record Area(double top, double left, double bottom, double right) impleme
         double x = this.left;
         double y = this.top;
 
-         final double MARGIN = 1.0;
+        final double MARGIN = 1.0;
 
         if(dir == Direction.LEFT){
             x = other.right + MARGIN;

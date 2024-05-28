@@ -12,14 +12,13 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 /**
  * Flora
  */
-public final class Flora extends BaseElement  implements IElementWithImage,IElementWithStrength,Serializable  
+public final class Flora extends BaseElement  implements IElementWithImage,IElementWithStrength  
 {
     //config
     private static final double initialStrength = 50;
 	private static final double incEnergy = 0.5;
 
 
-    static final long serialVersionUID = 1L;
     private static final int size = 13;
     double strenght = initialStrength;
     private int reproductionCount = 0;

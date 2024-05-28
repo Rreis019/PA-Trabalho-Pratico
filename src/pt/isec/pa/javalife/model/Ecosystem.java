@@ -44,9 +44,25 @@ import java.util.Locale;
 
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
-    private static final long serialVersionUID = 1L;
     //private Set<IElement> elements;
     private ConcurrentMap<Integer, IElement> elements;
+    int cacheLastElementId = -1;
+    
+    public int getLastElementId() { return cacheLastElementId;}    
+    public int updateLastElementId() {
+        int maxId = -1;
+
+        for (Integer key : elements.keySet()) {
+            if (key > maxId) {
+                maxId = key;
+            }
+        }
+
+        cacheLastElementId = maxId;
+        return cacheLastElementId;
+    }
+
+
     int totalTicks = 0;
 
 
@@ -76,6 +92,12 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     public void setNumUnitsX(int numUnits_){numUnitsX = numUnits_;}
     public void setNumUnitsY(int numUnits_){numUnitsY = numUnits_;}
 
+    /**
+     * Retorna entidade mais proxima do elemento origem
+     * @param origin A área de origem a partir da qual a proximidade é medida.
+     * @param type Tipo de Elemento queremos procurar
+     * @return IElement
+     */
     public IElement getClossestElement(Area origin,Element type)
     {
         IElement ret = null;
@@ -394,46 +416,49 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
         }
 
-
     }
 
 
-    public boolean saveGame(String filepath) {
-        BufferedWriter writer = null;
-            try {
-                writer = new BufferedWriter(new FileWriter(filepath));
-                writer.write("Type,Strength,PositionX,PositionY,Bottom,Right\n");
-                //for (IElement element : elements) {
-                for (IElement element : elements.values()) {
-                    String type = element.getType().toString();
-                    double strength = 0;
-                    if (element instanceof Fauna) {
-                        strength = ((Fauna) element).getStrength();
-                    } else if (element instanceof Flora) {
-                        strength = ((Flora) element).getStrength();
-                    }
-                    Area area = element.getArea();
-                    //Locale.US -> para o float serem com ponto ex: 1.4
-                    writer.write(String.format(Locale.US, "%s;%.2f;%.0f;%.0f;%.0f;%.0f\n", type, strength, area.left(), area.top(),area.bottom(),area.right()));
 
+    public boolean exportToCSV(String filepath) 
+    {
+        BufferedWriter writer = null;
+        try 
+        {
+            writer = new BufferedWriter(new FileWriter(filepath));
+            writer.write("Type,Strength,PositionX,PositionY,Bottom,Right\n");
+            //for (IElement element : elements) {
+            for (IElement element : elements.values()) 
+            {
+                String type = element.getType().toString();
+                double strength = 0;
+                if (element instanceof Fauna) {
+                    strength = ((Fauna) element).getStrength();
+                } else if (element instanceof Flora) {
+                    strength = ((Flora) element).getStrength();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            } finally {
-                if (writer != null) {
-                    try {
-                        writer.close();
-                    } catch (IOException e) {
-                        // Erro fechar o arquivo
-                        return false;
-                    }
+                Area area = element.getArea();
+                //Locale.US -> para o float serem com ponto ex: 1.4
+                writer.write(String.format(Locale.US, "%s;%.2f;%.0f;%.0f;%.0f;%.0f\n", type, strength, area.left(), area.top(),area.bottom(),area.right()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    // Erro fechar o arquivo
+                    return false;
                 }
             }
-            return true;
         }
+        return true;
+    }
 
-        public boolean loadGame(String filepath) {
+    public boolean importToCSV(String filepath) 
+    {
         BufferedReader reader = null;
 
         try {

@@ -4,17 +4,23 @@ import java.util.concurrent.ConcurrentMap;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
+import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import pt.isec.pa.javalife.model.gameengine.IGameEngine;
 //Classe Facade 
 public class EcosystemManager
 {
 	private final GameEngine gameEngine;
-    private final Ecosystem ecosystem;
+    private Ecosystem ecosystem;
 
 
     public EcosystemManager() {
@@ -106,12 +112,42 @@ public class EcosystemManager
         return ecosystem.getElements();
     }
 
-    public boolean loadGame(String filepath) {
-        return ecosystem.loadGame(filepath);
+    public boolean save(String filepath) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filepath))) {
+            ecosystem.updateLastElementId();
+            oos.writeObject(ecosystem);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    public boolean saveGame(String filepath) {
-        return ecosystem.saveGame(filepath);
+    public boolean load(String filepath)
+    {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath))) {
+            gameEngine.unregisterClient(ecosystem);
+            ecosystem = (Ecosystem)ois.readObject();
+            gameEngine.registerClient(ecosystem);
+            gameEngine.resume();
+            BaseElement.lastId = ecosystem.getLastElementId();
+           //
+            //_pcs.firePropertyChange(PROP_STATE_CHANGE, null, null);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }   
+        
+        return true; 
+    }
+
+
+    public boolean importGame(String filepath) {
+        return ecosystem.importToCSV(filepath);
+    }
+
+    public boolean exportGame(String filepath) {
+        return ecosystem.exportToCSV(filepath);
     }
 
     public void renderUpdated() {

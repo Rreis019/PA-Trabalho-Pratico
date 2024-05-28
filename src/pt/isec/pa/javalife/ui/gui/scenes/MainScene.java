@@ -67,6 +67,8 @@ public class MainScene extends Scene
     ClickableSVG svgApplyHerb;
     ClickableSVG svgApplySun;
 
+    ClickableSVG svgImportCsv,svgExportCsv;
+    ClickableSVG svgLoadGame,svgSaveGame;
 
 
 
@@ -125,11 +127,47 @@ public class MainScene extends Scene
         svgApplySun.getStyleClass().add("icon");
         Tooltip.install(svgApplySun,new Tooltip("Aplicar Sol\nDurante 10 unidades de tempo a flora ganha força ao dobro da velocidade e a fauna desloca-se a metade da velocidade."));
 
+        svgExportCsv = new ClickableSVG();
+        svgExportCsv.setContent("M12.1548 7.17188V0H1.7381C1.04539 0 0.488098 0.564258 0.488098 1.26562V25.7344C0.488098 26.4357 1.04539 27 1.7381 27H19.2381C19.9308 27 20.4881 26.4357 20.4881 25.7344V8.4375H13.4048C12.7173 8.4375 12.1548 7.86797 12.1548 7.17188ZM7.15476 14.7656C7.15476 14.9987 6.96831 15.1875 6.7381 15.1875H6.32143C5.86101 15.1875 5.4881 15.5651 5.4881 16.0312V17.7188C5.4881 18.1849 5.86101 18.5625 6.32143 18.5625H6.7381C6.96831 18.5625 7.15476 18.7513 7.15476 18.9844V19.8281C7.15476 20.0612 6.96831 20.25 6.7381 20.25H6.32143C4.9407 20.25 3.82143 19.1167 3.82143 17.7188V16.0312C3.82143 14.6333 4.9407 13.5 6.32143 13.5H6.7381C6.96831 13.5 7.15476 13.6888 7.15476 13.9219V14.7656ZM9.46049 20.25H8.82143C8.59122 20.25 8.40476 20.0612 8.40476 19.8281V18.9844C8.40476 18.7513 8.59122 18.5625 8.82143 18.5625H9.46049C9.77039 18.5625 10.0027 18.3779 10.0027 18.2134C10.0027 18.1448 9.96362 18.0731 9.89226 18.0109L8.75216 17.0211C8.31101 16.6403 8.05789 16.0993 8.05789 15.5371C8.05789 14.4139 9.04851 13.5005 10.2667 13.5005H10.9048C11.135 13.5005 11.3214 13.6893 11.3214 13.9224V14.7662C11.3214 14.9992 11.135 15.188 10.9048 15.188H10.2657C9.95581 15.188 9.72351 15.3726 9.72351 15.5371C9.72351 15.6057 9.76258 15.6774 9.83393 15.7396L10.974 16.7295C11.4152 17.1102 11.6683 17.6513 11.6683 18.2134C11.6688 19.3361 10.6787 20.25 9.46049 20.25ZM13.8214 13.9219V15.0187C13.8214 16.0877 14.1183 17.1371 14.6548 18.0183C15.1912 17.1376 15.4881 16.0877 15.4881 15.0187V13.9219C15.4881 13.6888 15.6746 13.5 15.9048 13.5H16.7381C16.9683 13.5 17.1548 13.6888 17.1548 13.9219V15.0187C17.1548 16.8898 16.4839 18.6516 15.2652 19.9805C15.1079 20.1519 14.8865 20.25 14.6548 20.25C14.423 20.25 14.2016 20.1519 14.0443 19.9805C12.8256 18.6516 12.1548 16.8898 12.1548 15.0187V13.9219C12.1548 13.6888 12.3412 13.5 12.5714 13.5H13.4048C13.635 13.5 13.8214 13.6888 13.8214 13.9219ZM20.1235 5.53711L15.0246 0.369141C14.7902 0.131836 14.4725 0 14.1391 0H13.8214V6.75H20.4881V6.42832C20.4881 6.09609 20.3579 5.77441 20.1235 5.53711Z");
+        svgExportCsv.setFill(Color.web("#5A508C"));
+        svgExportCsv.getStyleClass().add("icon");
+        Tooltip.install(svgExportCsv,new Tooltip("Exportar para csv\nGuarda os atuais elementos da simulação"));
+
+        svgImportCsv = new ClickableSVG();
+        svgImportCsv.setContent("M1.3006 14.0625C0.853723 14.0625 0.488098 14.4141 0.488098 14.8438V16.4062C0.488098 16.8359 0.853723 17.1875 1.3006 17.1875H6.9881V14.0625H1.3006ZM26.1326 5.12695L21.1611 0.341797C20.9326 0.12207 20.6229 0 20.2979 0H19.9881V6.25H26.4881V5.95215C26.4881 5.64453 26.3611 5.34668 26.1326 5.12695ZM18.3631 6.64062V0H8.20685C7.53146 0 6.9881 0.522461 6.9881 1.17188V14.0625H13.4881V10.8789C13.4881 10.1807 14.3666 9.83398 14.8795 10.3271L19.7342 15.0391C20.0693 15.3662 20.0693 15.8887 19.7342 16.2109L14.8744 20.918C14.3615 21.4111 13.483 21.0645 13.483 20.3662V17.1875H6.9881V23.8281C6.9881 24.4775 7.53146 25 8.20685 25H25.2693C25.9447 25 26.4881 24.4775 26.4881 23.8281V7.8125H19.5818C18.9115 7.8125 18.3631 7.28516 18.3631 6.64062Z");
+        svgImportCsv.setFill(Color.web("#5A508C"));
+        svgImportCsv.getStyleClass().add("icon");
+        Tooltip.install(svgImportCsv,new Tooltip("Importar para csv\nGuarda os atuais elementos da simulação"));
+
+        svgSaveGame = new ClickableSVG();
+        svgSaveGame.setContent("M1.15493 0.640287C0.990502 0.715108 0.771271 0.91151 0.67079 1.07985C0.488098 1.38849 0.488098 1.51942 0.488098 13.5C0.488098 25.3496 0.488098 25.6209 0.67079 25.9108C1.03618 26.5374 0.497232 26.5 9.9881 26.5C19.479 26.5 18.94 26.5374 19.3054 25.9108C19.479 25.6209 19.4881 25.3777 19.4881 17.1288V8.64604L15.8891 8.61798L12.29 8.58993L12.0434 8.35611C11.5501 7.89784 11.541 7.80432 11.541 4.00719V0.5H6.49868C2.36983 0.509353 1.39243 0.528057 1.15493 0.640287ZM5.51214 13.9676V15.5576H5.14675H4.78137V14.3885V13.2194L4.54387 13.3129C4.16021 13.4719 4.0506 13.4252 4.0506 13.1353C4.0506 12.8921 4.10541 12.8453 4.67175 12.6302C5.00973 12.4993 5.33858 12.387 5.40252 12.387C5.48473 12.3777 5.51214 12.7518 5.51214 13.9676ZM8.17944 12.6489C8.48089 12.9201 8.48089 12.9388 8.50829 13.8554C8.54483 14.9216 8.43521 15.2676 7.96021 15.5201C7.56743 15.7259 7.01935 15.6417 6.70877 15.3331C6.48954 15.1086 6.47127 15.0151 6.44387 14.1453C6.41646 13.5468 6.453 13.1072 6.51694 12.9295C6.76358 12.3309 7.66791 12.1813 8.17944 12.6489ZM10.4448 13.9676V15.5576H10.0794H9.71406V14.3885V13.2194L9.47656 13.3129C9.09291 13.4719 8.98329 13.4252 8.98329 13.1353C8.98329 12.8921 9.0381 12.8453 9.60444 12.6302C9.94243 12.4993 10.2713 12.387 10.3352 12.387C10.4174 12.3777 10.4448 12.7518 10.4448 13.9676ZM12.9112 13.9676V15.5576H12.5458H12.1804V14.3885V13.2194L11.9429 13.3129C11.5593 13.4719 11.4496 13.4252 11.4496 13.1353C11.4496 12.8921 11.5044 12.8453 12.0708 12.6302C12.4088 12.4993 12.7376 12.387 12.8016 12.387C12.8838 12.3777 12.9112 12.7518 12.9112 13.9676ZM15.4597 12.5273C15.5785 12.6115 15.7246 12.8266 15.7977 12.995C15.9621 13.4065 15.9621 14.6317 15.7977 15.0432C15.5328 15.6885 14.6102 15.8381 14.1078 15.3331C13.8886 15.1086 13.8703 15.0151 13.8429 14.1453C13.8064 13.0885 13.8977 12.7237 14.2722 12.518C14.5919 12.3403 15.1948 12.3403 15.4597 12.5273ZM5.7131 17.8863C6.01454 18.1576 6.01454 18.1763 6.04194 19.0928C6.07848 20.1496 5.96887 20.505 5.51214 20.7482C5.17416 20.9259 4.84531 20.9259 4.50733 20.7482C4.08714 20.5237 3.95925 20.1683 3.95925 19.2518C3.95925 17.9986 4.20589 17.6338 5.028 17.6245C5.33858 17.6151 5.48473 17.6712 5.7131 17.8863ZM7.97848 19.205V20.795H7.6131H7.24771V19.6259V18.4568L7.01021 18.5504C6.62656 18.7094 6.51694 18.6626 6.51694 18.3727C6.51694 18.1295 6.57175 18.0827 7.1381 17.8676C7.47608 17.7367 7.80493 17.6245 7.86887 17.6245C7.95108 17.6151 7.97848 17.9892 7.97848 19.205ZM10.6458 17.8863C10.9381 18.1576 10.9472 18.1856 10.9746 19.0367C11.0112 20.0935 10.8833 20.5144 10.4357 20.7482C10.0338 20.9633 9.48569 20.8791 9.17512 20.5705C8.95589 20.346 8.93762 20.2525 8.91021 19.3827C8.88281 18.7842 8.91935 18.3446 8.98329 18.1669C9.22993 17.5683 10.1343 17.4187 10.6458 17.8863ZM12.9934 17.7647C13.1121 17.8489 13.2583 18.064 13.3314 18.2324C13.4958 18.6439 13.4958 19.8691 13.3314 20.2806C13.0665 20.9259 12.1439 21.0755 11.6415 20.5705C11.4222 20.346 11.404 20.2525 11.3766 19.3827C11.34 18.3259 11.4314 17.9612 11.8059 17.7554C12.1256 17.5777 12.7285 17.5777 12.9934 17.7647ZM15.3775 19.205V20.795H15.0121H14.6468V19.6259V18.4568L14.4093 18.5504C14.0165 18.7094 13.916 18.6626 13.916 18.3727C13.916 18.1295 13.9708 18.0734 14.4001 17.9144C14.6559 17.8115 14.9391 17.7086 15.0121 17.6806C15.3684 17.5403 15.3775 17.5683 15.3775 19.205ZM7.21119 13.1446C7.04676 13.3878 7.01023 14.3791 7.15638 14.7626C7.22946 14.959 7.30253 15.0058 7.49436 14.9777C7.70446 14.959 7.75926 14.8842 7.82321 14.5755C7.86888 14.3698 7.87801 13.977 7.85061 13.7058C7.78667 12.9576 7.50349 12.7144 7.21119 13.1446ZM14.6468 13.0324C14.5554 13.0885 14.5006 13.3316 14.4823 13.8554C14.4367 14.7439 14.5463 15.0245 14.9025 14.9777C15.1492 14.9496 15.1492 14.9496 15.1766 14.0705C15.204 13.0324 15.067 12.7611 14.6468 13.0324ZM4.74485 18.382C4.64437 18.5223 4.5987 18.7842 4.60783 19.1583C4.61697 20 4.69004 20.1871 5.00975 20.1871C5.22899 20.1871 5.28379 20.1403 5.35687 19.8597C5.45735 19.4576 5.38427 18.4943 5.23812 18.3166C5.0737 18.1202 4.90927 18.1389 4.74485 18.382ZM9.6775 18.382C9.51307 18.6252 9.47653 19.6165 9.62269 20C9.69576 20.1964 9.76884 20.2432 9.96067 20.2151C10.1708 20.1964 10.2256 20.1216 10.2895 19.8129C10.3809 19.3734 10.2986 18.4755 10.1525 18.2978C10.0063 18.1201 9.83278 18.1482 9.6775 18.382ZM12.1439 18.382C12.0434 18.5223 11.9977 18.8029 11.9977 19.2518C11.9977 20.0093 12.1256 20.2712 12.4545 20.2151C12.7285 20.1777 12.8564 19.6727 12.7742 18.9338C12.7011 18.1856 12.4362 17.9518 12.1439 18.382ZM13.1852 3.77339V7.04677H16.3367H19.4881V6.77555C19.4881 6.6259 19.4425 6.38274 19.3876 6.2331C19.278 5.93382 14.3636 0.836696 13.9891 0.630941C13.8521 0.556121 13.6146 0.500005 13.4593 0.500005H13.1852V3.77339Z");
+        svgSaveGame.setFill(Color.web("#5A508C"));
+        svgSaveGame.getStyleClass().add("icon");
+        Tooltip.install(svgSaveGame,new Tooltip("Gravar\nPermite gravar o estado atual da simulação, indicando o nome do ficheiro"));
+
+        svgLoadGame = new ClickableSVG();
+        svgLoadGame.setContent("M1.3006 14.0625C0.853723 14.0625 0.488098 14.4141 0.488098 14.8438V16.4062C0.488098 16.8359 0.853723 17.1875 1.3006 17.1875H6.9881V14.0625H1.3006ZM26.1326 5.12695L21.1611 0.341797C20.9326 0.12207 20.6229 0 20.2979 0H19.9881V6.25H26.4881V5.95215C26.4881 5.64453 26.3611 5.34668 26.1326 5.12695ZM18.3631 6.64062V0H8.20685C7.53146 0 6.9881 0.522461 6.9881 1.17188V14.0625H13.4881V10.8789C13.4881 10.1807 14.3666 9.83398 14.8795 10.3271L19.7342 15.0391C20.0693 15.3662 20.0693 15.8887 19.7342 16.2109L14.8744 20.918C14.3615 21.4111 13.483 21.0645 13.483 20.3662V17.1875H6.9881V23.8281C6.9881 24.4775 7.53146 25 8.20685 25H25.2693C25.9447 25 26.4881 24.4775 26.4881 23.8281V7.8125H19.5818C18.9115 7.8125 18.3631 7.28516 18.3631 6.64062Z");
+        svgLoadGame.setFill(Color.web("#5A508C"));
+        svgLoadGame.getStyleClass().add("icon");
+        Tooltip.install(svgLoadGame,new Tooltip("Abrir\nPermite abrir e continuar uma simulação previamente gravada"));
+
+
+
+
+
+
+
+
+
+
+
+
         Region spacer = new Region();
         spacer.setMinWidth(0);
         spacer.setMaxWidth(0);
 
         Rectangle separateBar = new Rectangle(2, 35, Color.web("#5A508C"));
+        Rectangle separateBar2 = new Rectangle(2, 35, Color.web("#5A508C"));
 
 
         /*
@@ -147,7 +185,7 @@ public class MainScene extends Scene
         topPanel.setSpacing(10);
         topPanel.getStyleClass().add("primary-background");
         topPanel.setAlignment(Pos.CENTER_LEFT);
-        topPanel.getChildren().addAll(spacer,svgPlay,svgSnapShot,svgRewind,separateBar,svgApplyStrength,svgApplyHerb,svgApplySun);
+        topPanel.getChildren().addAll(spacer,svgPlay,svgSnapShot,svgRewind,separateBar,svgApplyStrength,svgApplyHerb,svgApplySun,separateBar2,svgImportCsv,svgExportCsv,svgLoadGame,svgSaveGame);
 
         canvas = new Canvas(model.getWidth(), model.getHeight());
         gc = canvas.getGraphicsContext2D();
@@ -323,6 +361,89 @@ public class MainScene extends Scene
         }); 
 
 
+        svgImportCsv.setOnMouseClicked((MouseEvent event) -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Importar Arquivo CSV");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+            if (selectedFile != null) {
+                if(model.importGame(selectedFile.getAbsolutePath())){
+                    model.renderUpdated();
+                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi importado com sucesso.");
+                }else{
+                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao importar o arquivo.");
+                }
+            }
+        }); 
+
+        svgExportCsv.setOnMouseClicked((MouseEvent event) -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Exportar Arquivo CSV");
+            fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Arquivos de simulação", "*.csv")
+            );
+
+            File file = fileChooser.showSaveDialog(primaryStage);
+            if (file != null) {
+                String filePath = file.getAbsolutePath(); // Obtém o caminho absoluto do arquivo como String
+                if(model.exportGame(filePath)){
+                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi exportado com sucesso.");
+                }
+                else{
+                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao exportar o arquivo.");
+                }
+            }
+        });
+
+        svgSaveGame.setOnMouseClicked((MouseEvent event) -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Salvar Simulação");
+            fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Arquivos de simulação", "*.dat")
+            );
+
+            File file = fileChooser.showSaveDialog(primaryStage);
+            if (file != null) {
+                String filePath = file.getAbsolutePath(); // Obtém o caminho absoluto do arquivo como String
+                if(model.save(filePath)){
+                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi salvo com sucesso.");
+                }
+                else{
+                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao salvar o arquivo.");
+                }
+            }
+        });
+
+        svgLoadGame.setOnMouseClicked((MouseEvent event) -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Carregar Simulação");
+            fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Arquivos de simulação", "*.dat")
+            );
+
+            File file = fileChooser.showOpenDialog(primaryStage);
+            if (file != null) {
+                String filePath = file.getAbsolutePath(); // Obtém o caminho absoluto do arquivo como String
+                if(model.load(filePath)){
+                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi carregado com sucesso.");
+                }
+                else{
+                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao carregar o arquivo.");
+                }
+            }
+
+        });
+
+
+
+        sidebar.getBtnCreteEco().setOnAction(event -> {
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
+            primaryStage.setScene(createEcoSystemScene);
+        });
+
+
+
 
 
 
@@ -474,50 +595,6 @@ public class MainScene extends Scene
             if(element_ == null){return;}
             model.removeElement(element_);
         //    onRender(gc);
-        });
-
-
-        sidebar.getBtnImport().setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-
-            File selectedFile = fileChooser.showOpenDialog(primaryStage);
-            if (selectedFile != null) {
-                if(model.loadGame(selectedFile.getAbsolutePath())){
-                    model.renderUpdated();
-                    
-                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi importado com sucesso.");
-                }else{
-                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao importar o arquivo.");
-                }
-            }
-        }); 
-
-        sidebar.getBtnCreteEco().setOnAction(event -> {
-            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
-            primaryStage.setScene(createEcoSystemScene);
-        });
-
-
-        sidebar.getBtnExport().setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Salvar Arquivo");
-            fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Arquivos de simulação", "*.csv")
-            );
-
-            File file = fileChooser.showSaveDialog(primaryStage);
-            if (file != null) {
-                String filePath = file.getAbsolutePath(); // Obtém o caminho absoluto do arquivo como String
-                if(model.saveGame(filePath)){
-                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi salvo com sucesso.");
-                }
-                else{
-                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao salvar o arquivo.");
-                }
-
-                //System.out.println("Arquivo será salvo em: " + filePath);
-            }
         });
 
 

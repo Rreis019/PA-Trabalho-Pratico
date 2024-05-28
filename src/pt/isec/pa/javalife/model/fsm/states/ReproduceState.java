@@ -15,8 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 
-public class ReproduceState extends FaunaStateAdapter implements Serializable {
-
+public class ReproduceState extends FaunaStateAdapter{
 	int targetFaunaID = -1;
 	int ticks = 0;
 

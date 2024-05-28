@@ -12,7 +12,8 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 
 
-public class MovingState extends FaunaStateAdapter implements Serializable {
+public class MovingState extends FaunaStateAdapter {
+
 
 	public MovingState(FaunaStateContext context, Ecosystem ecosystem,Fauna fauna_)
 	{

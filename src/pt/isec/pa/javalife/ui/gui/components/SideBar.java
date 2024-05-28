@@ -34,8 +34,6 @@ public class SideBar extends VBox {
     private ComboBox<String> faunaDropdown;
     private Button btnAddElement;
     private Button btnCreteEco;
-    private Button btnImport;
-    private Button btnExport;
     private BlueSlider strenghtSlider;
     private Button btnDelElement;
     private TextField txtId;
@@ -89,16 +87,6 @@ public class SideBar extends VBox {
         btnCreteEco.setPrefWidth(width - 10);
         btnCreteEco.setMinHeight(40);
 
-        btnImport = new Button("Importar");
-        btnImport.getStyleClass().add("btn-primary");
-        btnImport.setPrefWidth(width - 10);
-        btnImport.setMinHeight(40);
-
-        btnExport = new Button("Exportar");
-        btnExport.getStyleClass().add("btn-primary");
-        btnExport.setPrefWidth(width - 10);
-        btnExport.setMinHeight(40);
-
         Rectangle separate = new Rectangle();
         separate.setWidth(width - 10);
         separate.setHeight(2);
@@ -114,15 +102,20 @@ public class SideBar extends VBox {
         separate3.setHeight(2);
         separate3.setFill(Color.web("#373054"));
 
-        sUnitTimer = new BlueSlider("UnitTempo", 300,10,100, 1000);
-        sEnergyMovement = new BlueSlider("EnergiaMovimento", 300,0.1,0.5, 5);
+                Rectangle separate4 = new Rectangle();
+        separate4.setWidth(width - 10);
+        separate4.setHeight(2);
+        separate4.setFill(Color.web("#373054"));
+
+        sUnitTimer = new BlueSlider("UnidadeTempo", 300,10,100, 1000);
+        sEnergyMovement = new BlueSlider("DecEnergia", 300,0.1,0.5, 5);
         sDamageFauna = new BlueSlider("DanoDaFauna", 300,0.1,1, 5);
 
         sEnergyMovement.setFloat(true);
         sDamageFauna.setFloat(true);
 
 
-        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate, btnCreteEco, btnImport, btnExport,sUnitTimer,sEnergyMovement,sDamageFauna);
+        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreteEco,sUnitTimer,sEnergyMovement,sDamageFauna);
 
 
         inspectTab = new VBox();
@@ -306,8 +299,6 @@ public class SideBar extends VBox {
     public ComboBox<String> getFaunaDropdown() {return faunaDropdown;}
     public Button getBtnAddElement() {return btnAddElement;}
     public Button getBtnCreteEco() {return btnCreteEco;}
-    public Button getBtnImport() {return btnImport;}
-    public Button getBtnExport() {return btnExport;}
     public BlueSlider getStrenghtSlider() {return strenghtSlider;}
     public Button getBtnDelElement() {return btnDelElement;}
     public TextField getTxtId() {return txtId;}
