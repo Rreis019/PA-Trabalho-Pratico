@@ -206,11 +206,9 @@ class CreateEcosystemScene extends Scene
         root.getChildren().addAll(secondaryBackground, characterBox);
 
         //Tamanho da janela
-        //primaryStage.setWidth(732);
-        //primaryStage.setHeight(515);
+        primaryStage.setWidth(732);
+        primaryStage.setHeight(515);
 
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
     }
 
     private void registerHandlers()
