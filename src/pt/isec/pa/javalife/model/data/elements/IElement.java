@@ -17,5 +17,8 @@ public sealed interface IElement
     void setPosition(double positionX,double positionY);
 
     IElement clone();
+
+    boolean isReadOnly();
+    void setReadonly(boolean inv);
 }
 

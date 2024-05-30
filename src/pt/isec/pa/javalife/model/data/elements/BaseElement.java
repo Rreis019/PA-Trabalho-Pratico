@@ -18,6 +18,8 @@ public abstract sealed class BaseElement
 
     protected Element type;
 
+    private  boolean readonly = false;
+
     protected Area area;
 
     public BaseElement(Element type, double positionX,double positionY,double width,double height) {
@@ -29,6 +31,13 @@ public abstract sealed class BaseElement
 
     public void move(int positionX,int positionY){
         this.setPosition(positionX +  area.left(), positionY + area.top());
+    }
+
+    public boolean isReadOnly(){
+        return readonly;
+    }
+    public void setReadonly(boolean inv){
+        readonly = inv;
     }
 
     @Override

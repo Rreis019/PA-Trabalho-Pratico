@@ -210,6 +210,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
 
     public void removeElement(IElement element_) {
+        if(element_.isReadOnly()){return;}
         elements.remove(element_.getId());
     }
 
@@ -356,6 +357,10 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         Inanimate left = new Inanimate(0, 0);
         Inanimate right = new Inanimate(0, 0);
         Inanimate bottom = new Inanimate(0, 0);
+        top.setReadonly(true);
+        left.setReadonly(true);
+        right.setReadonly(true);
+        bottom.setReadonly(true);
 
         int wallThickness = 4;
 

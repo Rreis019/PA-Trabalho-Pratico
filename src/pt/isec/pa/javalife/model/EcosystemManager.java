@@ -110,6 +110,7 @@ public class EcosystemManager implements Serializable
 
     public boolean setElementPos(IElement el,double posX,double posY)
     {
+        if(el.isReadOnly()){return false;}
         boolean result = command.invokeCommand(new SetElementPos(ecosystem,el,posX,posY));
         pcs.firePropertyChange(PROP_STATE, null, null); 
         return result;
@@ -117,6 +118,7 @@ public class EcosystemManager implements Serializable
 
     public boolean setElementStrenght(IElement el,double strenght_)
     {
+        if(el.isReadOnly()){return false;}
         boolean result = command.invokeCommand(new SetElementStrenght(ecosystem,el,strenght_));
         pcs.firePropertyChange(PROP_DATA, null, null); 
         return result;
