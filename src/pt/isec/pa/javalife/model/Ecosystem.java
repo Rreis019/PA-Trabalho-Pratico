@@ -11,6 +11,9 @@ import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import  pt.isec.pa.javalife.model.data.elements.Fauna;
 import  pt.isec.pa.javalife.model.data.elements.Flora;
+import pt.isec.pa.javalife.model.memento.IMemento;
+import pt.isec.pa.javalife.model.memento.Memento;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
@@ -28,6 +31,7 @@ import java.util.Locale;
 
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
+    private static final long serialVersionUID = 1L;
     private ConcurrentMap<Integer, IElement> elements;
     int cacheLastElementId = -1;
     public int getLastElementId() { return cacheLastElementId;}    
@@ -447,6 +451,19 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return true;
     }
 
+
+    @Override
+    public IMemento save() {
+        return new Memento(this);
+    }
+
+    @Override
+    public void restore(IMemento memento) {
+        Object snapshot = memento.getSnapShot();
+        if (snapshot instanceof Ecosystem) {
+            Ecosystem ecosystem = (Ecosystem) snapshot;
+        }
+    }
 
     //área para o Observable
     @Override

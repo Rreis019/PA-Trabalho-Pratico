@@ -7,6 +7,7 @@ import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
+import pt.isec.pa.javalife.model.memento.MementoManager;
 
 import java.beans.PropertyChangeListener;
 import java.io.FileInputStream;
@@ -21,12 +22,14 @@ public class EcosystemManager
 	private final GameEngine gameEngine;
     private Ecosystem ecosystem;
     private CommandManager commandManager;
+    private MementoManager mementoManager;
 
 
     public EcosystemManager() {
         gameEngine = new GameEngine();
         ecosystem = new Ecosystem();
         commandManager = new CommandManager();
+        mementoManager = new MementoManager(ecosystem);
         gameEngine.registerClient(ecosystem);
     }
 
@@ -212,6 +215,31 @@ public class EcosystemManager
     public void clearElements() {
         ecosystem.clearElements();
     }
+
+    public void undoMemento() {
+        mementoManager.undo();
+    }
+
+    public void redoMemento() {
+        mementoManager.redo();
+    }
+
+    public void saveState() {
+        mementoManager.save();
+    }
+
+    public void resetHistory() {
+        mementoManager.reset();
+    }
+
+    public boolean canUndo() {
+        return mementoManager.hasUndo();
+    }
+
+    public boolean canRedo() {
+        return mementoManager.hasRedo();
+    }
+
 
     public void addPropertyChangeListener(String prop,PropertyChangeListener listener) {
         ecosystem.addPropertyChangeListener(prop,listener);
