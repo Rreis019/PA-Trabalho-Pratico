@@ -1,14 +1,10 @@
 package pt.isec.pa.javalife.model;
 
 import  pt.isec.pa.javalife.model.gameengine.IGameEngineEvolve;
-import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngine;
 import  pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.data.elements.Inanimate;
 import pt.isec.pa.javalife.model.fsm.Direction;
-import pt.isec.pa.javalife.model.fsm.FaunaState;
-import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
-import pt.isec.pa.javalife.model.fsm.IFaunaState;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.ElementsFactory;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
@@ -19,27 +15,15 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Queue;
 import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-
-import java.util.Iterator;
 import java.util.Locale;
 
 
@@ -47,7 +31,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     //private Set<IElement> elements;
     private ConcurrentMap<Integer, IElement> elements;
     int cacheLastElementId = -1;
-    
+    private IElement removedElement;
     public int getLastElementId() { return cacheLastElementId;}    
     public int updateLastElementId() {
         int maxId = -1;
@@ -79,7 +63,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     private int numUnitsY = 300;
 
     @SuppressWarnings("this-escape")
-    public Ecosystem() { //Facade
+    public Ecosystem() {
         this.pcs = new PropertyChangeSupport(this);
         //elements = new HashSet<>();
         elements = new ConcurrentHashMap<>();
@@ -199,11 +183,19 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
     }
 
 
-    public void removeElement(IElement element_) {
+   public void removeElement(IElement element_) {
         elements.remove(element_.getId());
     }
 
-    private void addElement(IElement element_){
+    public void setRemovedElement(IElement element) {
+        this.removedElement = element;
+    }
+
+    public IElement getRemovedElement() {
+        return removedElement;
+    }
+
+    void addElement(IElement element_){
         elements.put(element_.getId(), element_);
     }
 
@@ -213,6 +205,16 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         addElement(ent);
     }
 
+    public void editElement(int elementId, double oldStrength) {
+        IElement element = getElement(elementId);
+        if (element != null) {
+            if (element instanceof Fauna) {
+                ((Fauna) element).setStrength(oldStrength);
+            } else if (element instanceof Flora) {
+                ((Flora) element).setStrength(oldStrength);
+            }
+        }
+    }
     public boolean isAreaFree(Area area) {
         for (IElement element : elements.values()) {
             if (element.getArea().intersects(area)) {
@@ -240,7 +242,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
             for (IElement e : elements.values()) {
                 if (e.getType() == Element.INANIMATE && ent.getArea().intersects(e.getArea())) {
                     intersects_ = true;
-                    break; // Saia do loop assim que encontrar uma interseção
+                    break; // Sai do loop assim que encontra uma interseção
                 }
             }
 
@@ -251,7 +253,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
          //   faunaStates.put((Fauna) ent, new FaunaStateContext(this, (Fauna) ent));
         //}
 
-        elements.put(ent.getId(),ent);
+       // elements.put(ent.getId(),ent);
+        addElement(ent);
         return ent;
     }
 

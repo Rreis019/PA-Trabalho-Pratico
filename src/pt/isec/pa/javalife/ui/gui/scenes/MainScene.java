@@ -5,6 +5,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
+import pt.isec.pa.javalife.model.command.*;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
@@ -48,7 +49,8 @@ import java.io.File;
 
 public class MainScene extends Scene
 {
-    EcosystemManager model;
+    private EcosystemManager model;
+    private CommandManager commandManager;
     
     Canvas canvas;
     Button btninspecionar, btnConfigurar;
@@ -76,11 +78,12 @@ public class MainScene extends Scene
     private final String svgPlayContent = "M20.7227 10.4813L3.53516 0.320197C2.13867 -0.504998 0 0.295783 0 2.3368V22.6542C0 24.4852 1.9873 25.5888 3.53516 24.6708L20.7227 14.5145C22.2559 13.6112 22.2607 11.3846 20.7227 10.4813Z";
     
 
-    public MainScene(Stage primaryStage__,EcosystemManager manager_)
+    public MainScene(Stage primaryStage__,EcosystemManager manager_, CommandManager commandManager_)
     {
         super(new VBox());
         primaryStage =  primaryStage__;
         model = manager_;
+        commandManager = commandManager_;
         createView(primaryStage);
         registerHandlers();
     }
@@ -150,16 +153,6 @@ public class MainScene extends Scene
         svgLoadGame.setFill(Color.web("#5A508C"));
         svgLoadGame.getStyleClass().add("icon");
         Tooltip.install(svgLoadGame,new Tooltip("Abrir\nPermite abrir e continuar uma simulação previamente gravada"));
-
-
-
-
-
-
-
-
-
-
 
 
         Region spacer = new Region();
@@ -341,11 +334,9 @@ public class MainScene extends Scene
             }
         }); 
 
-
-
         svgApplyStrength.setOnMouseClicked((MouseEvent event) -> {
             IElement element = model.getElement(currentElementIDSelected);
-            if(element != null){model.applyStrengthEvent(element);      model.renderUpdated();}
+            if(element != null){model.applyStrengthEvent(element); model.renderUpdated();}
         }); 
 
         svgApplyHerb.setOnMouseClicked((MouseEvent event) -> {
@@ -438,15 +429,9 @@ public class MainScene extends Scene
 
 
         sidebar.getBtnCreteEco().setOnAction(event -> {
-            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model,commandManager);
             primaryStage.setScene(createEcoSystemScene);
         });
-
-
-
-
-
-
         
         model.addPropertyChangeListener(Ecosystem.PROP_GAME_RENDER, evt -> {
             Platform.runLater(new Runnable() {
@@ -531,9 +516,6 @@ public class MainScene extends Scene
                             {
                                 sidebar.getStrenghtSlider().setValue((int)((Flora)element).getStrength());
                             }
-
-
-                            //System.out.println("Olá mundo!"); // Imprime "Olá mundo!" se o mouse estiver sobre o elemento
                             break; // Pode parar de verificar os outros elementos após encontrar um colisão
                         }
                     }
@@ -573,7 +555,7 @@ public class MainScene extends Scene
         });
 
 
-        sidebar.getStrenghtSlider().getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+       /* sidebar.getStrenghtSlider().getSlider().valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 if(model.getCurrentState() != GameEngineState.PAUSED){return;}
@@ -588,20 +570,33 @@ public class MainScene extends Scene
 
             }
         });
-        
+        */
+
+        sidebar.getStrenghtSlider().getSlider().valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (model.getCurrentState() != GameEngineState.PAUSED) {
+                return;
+            }
+            IElement ent = model.getElement(currentElementIDSelected);
+            if (ent != null) {
+                ICommand editCommand = new EditElementCommand(model, ent.getId(), newValue.doubleValue());
+                commandManager.invokeCommand(editCommand);
+            }
+        });
+
 
         sidebar.getBtnDelElement().setOnAction(event -> {
             IElement element_ = model.getElement(currentElementIDSelected);
             if(element_ == null){return;}
-            model.removeElement(element_);
+            //model.removeElement(element_);
         //    onRender(gc);
+            ICommand removecommand = new RemoveElementCommand(model, element_);
+            commandManager.invokeCommand(removecommand);
         });
 
 
         sidebar.getBtnAddElement().setOnAction(event -> {
             String selectedType = sidebar.getFaunaDropdown().getSelectionModel().getSelectedItem();
 
-            // Dependendo do tipo selecionado, adicione o tipo correspondente de elemento
             if (selectedType != null) {
                 Element elementType;
                 switch (selectedType) {
@@ -615,15 +610,15 @@ public class MainScene extends Scene
                         elementType = Element.INANIMATE;
                         break;
                     default:
-                        // Trate qualquer outro caso aqui, se necessário
                         elementType = null;
                         break;
                 }
 
-                // Adicione o elemento com o tipo determinado
                 if (elementType != null) {
-                    model.addElementToRandomFreePosition(elementType);
-                    model.renderUpdated();
+                    //model.addElementToRandomFreePosition(elementType);
+                    //model.renderUpdated();
+                    ICommand addcommand = new AddElementCommand(model, elementType);
+                    commandManager.invokeCommand(addcommand);
                 }
             }
         });

@@ -13,22 +13,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
-import pt.isec.pa.javalife.model.gameengine.GameEngine;
+import pt.isec.pa.javalife.model.command.CommandManager;
 
 
 public class SplashScene extends Scene
 {
     Stage primaryStage;
     private EcosystemManager model;
-    public SplashScene(Stage primaryStage_, EcosystemManager manager_)
+    private CommandManager commandManager;
+    public SplashScene(Stage primaryStage_, EcosystemManager manager_, CommandManager commandManager_)
     {
         super(new VBox());
         createView(primaryStage_);
         registerHandlers();
         primaryStage = primaryStage_;
         model = manager_;
+        commandManager = commandManager_;
     }
 
     private void createView( Stage primaryStage)
@@ -118,7 +119,7 @@ public class SplashScene extends Scene
 
     private void registerHandlers(){
         setOnKeyPressed(event -> {
-            StartScene startScene = new StartScene(primaryStage,model);
+            StartScene startScene = new StartScene(primaryStage,model,commandManager);
             primaryStage.setScene(startScene);
             primaryStage.centerOnScreen();
             primaryStage.show();

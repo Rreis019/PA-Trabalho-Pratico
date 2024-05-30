@@ -3,18 +3,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
+import pt.isec.pa.javalife.model.command.CommandManager;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
-import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
@@ -22,11 +18,10 @@ import javafx.scene.shape.Rectangle;
 
 class CreateEcosystemScene extends Scene
 {
+    private EcosystemManager model;
+    private CommandManager commandManager;
     Stage primaryStage;
     Button criarButton;
-
-    EcosystemManager model;
-
     BlueSpinner SAltura;
     BlueSpinner Scomprimento;
     BlueSpinner Sfauna;
@@ -42,11 +37,12 @@ class CreateEcosystemScene extends Scene
 
 
 
-    public CreateEcosystemScene(Stage primaryStage_,EcosystemManager manager_)
+    public CreateEcosystemScene(Stage primaryStage_,EcosystemManager manager_, CommandManager commandManager_)
     {
         super(new HBox());
         model = manager_;
         primaryStage =  primaryStage_;
+        commandManager = commandManager_;
         createView(primaryStage_);
         registerHandlers();
     }
@@ -252,7 +248,7 @@ class CreateEcosystemScene extends Scene
 
             model.setGameInterval((long)sUnitTimer.getNumero());
             model.resumeGame();
-            MainScene mainscene = new MainScene(primaryStage,model);
+            MainScene mainscene = new MainScene(primaryStage,model,commandManager);
             primaryStage.setScene(mainscene);
             primaryStage.show();
 

@@ -33,8 +33,6 @@ public class EcosystemManager
 		return gameEngine.start(interval);
 	}
 
-
-
     public void stopGame() {
         gameEngine.stop();
     }
@@ -89,8 +87,22 @@ public class EcosystemManager
    		gameEngine.waitForTheEnd();
    	}
 
+    public IElement addElementToRandomFreePosition(Element type) {
+        return ecosystem.addElementToRandomFreePosition(type);
+    }
+
+    public void addElement(IElement element_) {
+        ecosystem.addElement(element_);
+    }
     public void removeElement(IElement element_) {
     	ecosystem.removeElement(element_);
+    }
+    //Para o undo:
+    public void setRemovedElement(IElement element_) {
+        ecosystem.setRemovedElement(element_);
+    }
+    public IElement getRemovedElement() {
+       return ecosystem.getRemovedElement();
     }
     public void applyStrengthEvent(IElement element) {
         ecosystem.applyStrenghtEvent(element);
@@ -158,10 +170,6 @@ public class EcosystemManager
         ecosystem.clearElements();
     }
 
-    public IElement addElementToRandomFreePosition(Element type) {
-        return ecosystem.addElementToRandomFreePosition(type);
-    }
-
     public void addPropertyChangeListener(String prop,PropertyChangeListener listener) {
         ecosystem.addPropertyChangeListener(prop,listener);
     }
@@ -171,4 +179,7 @@ public class EcosystemManager
     }
 
 
+    public void editElement(int elementId, double oldStrength) {
+        ecosystem.editElement(elementId, oldStrength);
+    }
 }

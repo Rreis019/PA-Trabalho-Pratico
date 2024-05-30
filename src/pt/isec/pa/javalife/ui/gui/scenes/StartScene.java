@@ -8,27 +8,27 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
-import pt.isec.pa.javalife.model.data.elements.Fauna;
-import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import javafx.stage.FileChooser;
+import pt.isec.pa.javalife.model.command.CommandManager;
+
 import java.io.File;
 
 public class StartScene extends Scene {
 
     Button btnCreate,btnImport;
     Stage primaryStage;
-    EcosystemManager model;
+    private EcosystemManager model;
+    private CommandManager commandManager;
 
-    public StartScene(Stage primaryStage_,EcosystemManager manager_) {
+    public StartScene(Stage primaryStage_, EcosystemManager manager_, CommandManager commandManager_) {
         super(new VBox());
-        createView(primaryStage_);
-        registerHandlers();
         primaryStage =  primaryStage_;
         model = manager_;
+        commandManager = commandManager_;
+        createView(primaryStage_);
+        registerHandlers();
     }
 
     private void createView(Stage primaryStage) {
@@ -78,15 +78,16 @@ public class StartScene extends Scene {
         bottomPanel.getChildren().addAll(btnImport, lbImport);
 
         root.getChildren().addAll(topPanel, bottomPanel);
-        primaryStage.setWidth(732);
-        primaryStage.setHeight(515);
+        //primaryStage.setWidth(732);
+        // primaryStage.setHeight(515);
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(600);
     }
 
     private void registerHandlers() {
         btnCreate.setOnAction(e -> {
-            // Aqui você pode adicionar o código para a ação do botão "Criar"
             System.out.println("Botão 'Criar' foi clicado");
-            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model,commandManager);
             // Criar um novo palco (janela)
             primaryStage.setScene(createEcoSystemScene);
             primaryStage.show();
@@ -101,7 +102,7 @@ public class StartScene extends Scene {
                 System.out.println("Arquivo CSV selecionado: " + selectedFile.getName());
                 if(model.load(selectedFile.getAbsolutePath())){
 
-                    MainScene mainscene = new MainScene(primaryStage,model);
+                    MainScene mainscene = new MainScene(primaryStage,model,commandManager);
                     primaryStage.setScene(mainscene);
                     primaryStage.show();
 

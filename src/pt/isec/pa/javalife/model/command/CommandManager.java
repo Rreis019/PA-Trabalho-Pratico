@@ -3,7 +3,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 
-class CommandManager {
+public class CommandManager {
     private Deque<ICommand> history;
     private Deque<ICommand> redoCmds;
 

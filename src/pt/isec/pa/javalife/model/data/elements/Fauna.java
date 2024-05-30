@@ -23,25 +23,22 @@ import java.util.concurrent.ConcurrentMap;
  */
 public final class Fauna extends BaseElement implements IElementWithStrength,IElementWithImage
 {
+    private FaunaStateContext ctx;
+    private Ecosystem eco;
     private static String image = "lobo";
     private Direction direction = Direction.RIGHT;
     private double strength = 50;
     private int velocity = 32;
     private static final int size = 32;
-
     public static double decMovementEnergy = 0.5;
     public static double damageToFlora = 1;
 
-
-    private FaunaStateContext ctx;
-    private Ecosystem eco;
 
 	public Fauna(Ecosystem ecosystem,double positionX,double positionY) {
         super(Element.FAUNA, positionX,positionY,size,size);
         ctx = new FaunaStateContext(ecosystem, this);
         this.eco = ecosystem;
     }   
-
 
     public FaunaState getState(){return ctx.getState();}
     public FaunaStateContext getFSM(){return ctx;}
@@ -69,9 +66,6 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
         }
         decreaseEnergy();
     }
-
-
-   
     
     public void reverseDirection() {
         switch (direction) {
@@ -90,8 +84,6 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
         }
     }
 
-
-
     private Direction getAlternativeDirection(Direction currentDirection) {
         switch (currentDirection) {
             case LEFT:
@@ -104,7 +96,6 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
                 return Direction.RIGHT;
         }
     }
-
 
     //true -> ja chegou ao alvo
     //public boolean moveTo(Set<IElement> elements,IElement target) {
@@ -123,7 +114,6 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
             Direction dirRandom = getAlternativeDirection(getDirection());
             setDirection(dirRandom);
         }
-
 
         if(!getArea().intersects(target.getArea())){
             moveForward();
