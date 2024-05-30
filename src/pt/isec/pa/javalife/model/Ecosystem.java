@@ -40,7 +40,11 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.Iterator;
 import java.util.Locale;
 
-
+/**
+ * Representa um ecossistema que contém vários elementos (fauna, flora, inanimados).
+ * Implementa Serializable, IGameEngineEvolve e IMementoOriginator para suportar 
+ * funcionalidades de serialização, evolução do jogo e memento.
+ */
 public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOriginator {
     //private Set<IElement> elements;
     private ConcurrentMap<Integer, IElement> elements;
@@ -51,12 +55,40 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
     private final PropertyChangeSupport pcs; // Para o observable
 
-
+    /**
+     * Retorna o valor do dano que fauna provoca à flora.
+     * @return Valor do dano à flora.
+     */
     public double getDamageToFlora(){return damageToFlora;}
+
+
+    /**
+     * Retorna a energia de movimento gasta por tick pela fauna
+     * @return Gasto de Energia movimento da fauna.
+     */
     public double getFaunaMovementEnergy() {return faunaMovementEnergy;}
+
+
+
+    /**
+     * Define um novo valor para o dano que fauna provoca à flora..
+     * @param newValue Novo valor para o dano à flora.
+     */
     public void setDamageToFlora(double newValue){damageToFlora = newValue;}
+
+
+
+    /**
+     * Define um novo valor para a energia gasta movimento da fauna.
+     * @param newValue Novo valor para a energia de movimento da fauna.
+     */
     public void setFaunaMovementEnergy(double newValue){faunaMovementEnergy = newValue;}
     
+
+     /**
+     * Obtém o ID do último elemento adicionado ao ecossistema.
+     * @return ID do último elemento.
+     */
     public int getLastElementId() {
         int maxId = -1;
 
@@ -101,17 +133,26 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         pcs = pcs_;
     }
 
-
+    /**
+     * Obtém a largura do ecossistema.
+     * @return Largura do ecossistema.
+     */
     public int getWidth(){return unitScale*numUnitsX;}
+
+    /**
+     * Obtém a altura do ecossistema.
+     * @return Altura do ecossistema.
+     */
     public int getHeight(){return unitScale*numUnitsY;}
+
     public void setNumUnitsX(int numUnits_){numUnitsX = numUnits_;}
     public void setNumUnitsY(int numUnits_){numUnitsY = numUnits_;}
 
-    /**
-     * Retorna entidade mais proxima do elemento origem
+     /**
+     * Retorna a entidade mais próxima do elemento de origem.
      * @param origin A área de origem a partir da qual a proximidade é medida.
-     * @param type Tipo de Elemento queremos procurar
-     * @return IElement
+     * @param type Tipo de elemento que queremos procurar.
+     * @return Elemento mais próximo do tipo especificado.
      */
     public IElement getClossestElement(Area origin,Element type)
     {
@@ -130,16 +171,21 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         return ret;
     }
 
-    //public Set<IElement> getElements()
+    /**
+     * Obtém os elementos do ecossistema.
+     * @return Mapa dos elementos do ecossistema.
+     */
     public ConcurrentMap<Integer, IElement> getElements()
     {
         return elements;
     }
 
 
-    public int getTicks(){return totalTicks;}
-    public void resetTicksCounter(){totalTicks = 0;}
-
+    /**
+     * Obtém a fauna mais fraca, ignorando o ID especificado.
+     * @param ignoreID ID a ser ignorado.
+     * @return A fauna mais fraca.
+     */
     public Fauna getWeakestFauna(int ignoreID)
     {
         double str = 1000;
@@ -158,10 +204,19 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         return weakestFauna;
     }
 
+    /**
+     * Remove todos os elementos do ecossistema.
+     */
     public void clearElements()
     {
         elements.clear();
     }
+
+     /**
+     * Obtém a fauna mais forte, ignorando o ID especificado.
+     * @param ignoreID O ID a ser ignorado.
+     * @return A fauna mais forte.
+     */
     public Fauna getStrongestFauna(int ignoreID)
     {
         double str = 0;
@@ -204,21 +259,38 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
     }
 
     */
+   
+    /**
+     * Obtém um elemento pelo seu ID.
+     * @param id ID do elemento.
+     * @return Elemento correspondente ao ID.
+     */
     public IElement getElement(int id) {
         return elements.get(id);
     }
 
-
+     /**
+     * Remove um elemento do ecossistema.
+     * @param element_ Elemento a ser removido.
+     */
     public void removeElement(IElement element_) {
         if(element_.isReadOnly()){return;}
         elements.remove(element_.getId());
     }
 
+     /**
+     * Remove um elemento pelo seu ID.
+     * @param id ID do elemento a ser removido.
+     */
     public void removeElement(int id) {
         elements.remove(id);
     }
 
-
+     /**
+     * Adiciona um elemento ao ecossistema.
+     * @param element Elemento a ser adicionado.
+     * @return true se o elemento foi adicionado, false caso contrário.
+     */
     public void addElement(IElement element_){
         elements.put(element_.getId(), element_);
     }
@@ -289,8 +361,15 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         return ent;
     }
 
+
+    /**
+     * Chamado a cada X tempo definido no game engine
+     * Atualiza todos os eventos e remove os elementos mortos e lida com as colissoes
+     * @param gameEngine Motor do jogo utilizado para a evolução.
+     * @param currentTime Tempo atual do jogo.
+     */
     @Override
-     public void evolve(IGameEngine gameEngine, long currentTime) {
+    public void evolve(IGameEngine gameEngine, long currentTime) {
         // Iterar sobre os estados da fauna usando um iterador
         for (IElement element : elements.values()) {
             if(element.getType() == Element.FAUNA){((Fauna)element).getFSM().execute();}
@@ -319,6 +398,11 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         
     }
 
+    /**
+     * Aplica um evento de aumento de força a um elemento.
+     * 
+     * @param element Elemento ao qual o evento será aplicado.
+     */
     public void applyStrenghtEvent(IElement element)
     {
         if(element.getType() == Element.FAUNA)
@@ -328,6 +412,11 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         }
     }
 
+    /**
+     * Aplica um evento de herbicida a um elemento.
+     * 
+     * @param element Elemento ao qual o evento será aplicado.
+     */
     public void applyHerbicideEvent(IElement element)
     {
         if(element.getType() == Element.FLORA)
@@ -337,6 +426,11 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         }
     }
 
+    /**
+     * Aplica um evento de sol a um elemento.
+     * 
+     * @param element Elemento ao qual o evento será aplicado.
+     */
     public void applySunEvent(IElement element)
     {
         sunEventTick = 0;
@@ -344,12 +438,19 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
     }
 
+    /**
+     * Verifica se o evento de sol está ativo.
+     * 
+     * @return true se o evento de sol estiver ativo, false caso contrário.
+     */
     public boolean isSunEventActive()
     {
         return sunEventEffect;
     }
 
-
+    /**
+     * Cria uma muralha a volta do ecossistema
+     */
     public void makeWallOfChina()
     {
         
@@ -382,7 +483,12 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         */
     }
 
-
+    /**
+     * Verifica se uma área está fora dos limites do ecossistema.
+     * 
+     * @param area Área a ser verificada.
+     * @return true se a área estiver fora dos limites, false caso contrário.
+     */
     public boolean isOutBounds(Area area){
 
         if(area.left() < 0){return true;}
@@ -422,7 +528,9 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
 
 
-
+    /**
+     * Lida com colisões entre elementos do ecossistema.
+     */
     private void handleColisions()
     {
         ArrayList<Inanimate> inanimates = new ArrayList<>(); 
@@ -458,7 +566,12 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
     }
 
 
-
+    /**
+     * Exporta os a tipo,força e area dos elementos do ecossistema para um ficheiro CSV.
+     * 
+     * @param filepath Caminho do ficheiro CSV.
+     * @return true se a exportação foi bem-sucedida, false caso contrário.
+     */
     public boolean exportToCSV(String filepath) 
     {
         BufferedWriter writer = null;
@@ -496,6 +609,12 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         return true;
     }
 
+    /**
+     * Importa elementos para o ecossistema a partir de um ficheiro CSV.
+     * 
+     * @param filepath Caminho do ficheiro CSV.
+     * @return true se a importação foi bem-sucedida, false caso contrário.
+     */
     public boolean importToCSV(String filepath) 
     {
         BufferedReader reader = null;
