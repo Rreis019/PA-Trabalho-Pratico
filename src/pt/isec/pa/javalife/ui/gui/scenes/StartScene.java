@@ -8,27 +8,27 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
+import pt.isec.pa.javalife.model.data.elements.Fauna;
+import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import javafx.stage.FileChooser;
-import pt.isec.pa.javalife.model.command.CommandManager;
-
 import java.io.File;
 
 public class StartScene extends Scene {
 
     Button btnCreate,btnImport;
     Stage primaryStage;
-    private EcosystemManager model;
-    //private CommandManager commandManager;
+    EcosystemManager model;
 
-    public StartScene(Stage primaryStage_, EcosystemManager manager_) {
+    public StartScene(Stage primaryStage_,EcosystemManager manager_) {
         super(new VBox());
-        primaryStage =  primaryStage_;
-        model = manager_;
-        //commandManager = commandManager_;
         createView(primaryStage_);
         registerHandlers();
+        primaryStage =  primaryStage_;
+        model = manager_;
     }
 
     private void createView(Stage primaryStage) {
@@ -78,14 +78,13 @@ public class StartScene extends Scene {
         bottomPanel.getChildren().addAll(btnImport, lbImport);
 
         root.getChildren().addAll(topPanel, bottomPanel);
-        //primaryStage.setWidth(732);
-        // primaryStage.setHeight(515);
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
+        primaryStage.setWidth(732);
+        primaryStage.setHeight(515);
     }
 
     private void registerHandlers() {
         btnCreate.setOnAction(e -> {
+            // Aqui você pode adicionar o código para a ação do botão "Criar"
             System.out.println("Botão 'Criar' foi clicado");
             CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
             // Criar um novo palco (janela)

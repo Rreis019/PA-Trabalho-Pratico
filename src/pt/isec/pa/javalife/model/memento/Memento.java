@@ -1,18 +1,34 @@
 package pt.isec.pa.javalife.model.memento;
+import java.io.*;
 
-import pt.isec.pa.javalife.model.Ecosystem;
+public class Memento implements Serializable {
+    private final byte[] snapshot;
 
-public class Memento implements IMemento{
+    public Memento(Object obj) throws IOException{
+        ByteArrayOutputStream baos;
+        ObjectOutputStream oos = null;
 
-    private byte[] snapshot;
-    public Memento(Ecosystem ecosystem) {
+        try{
+            baos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(baos);
+            oos.writeObject(obj);
+            snapshot = baos.toByteArray();
+        }finally {
+            if (oos!=null)
+                oos.close();
+        }
     }
 
-    @Override
-    public Object getSnapShot() {
-        if (snapshot == null) return null;
-
-        return IMemento.super.getSnapShot();
+    public Object getSnapShot() throws IOException, ClassNotFoundException{
+        ObjectInputStream ois = null;
+        if (snapshot==null)
+            return null;
+        try{
+            ois = new ObjectInputStream(new ByteArrayInputStream(snapshot));
+            return ois.readObject();
+        }finally {
+            if (ois!=null)
+                ois.close();
+        }
     }
-
 }

@@ -6,18 +6,22 @@ import javafx.stage.Stage;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.data.Area;
+import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.data.elements.Flora;
 import pt.isec.pa.javalife.model.data.elements.IElement;
+import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.ClickableSVG;
 import pt.isec.pa.javalife.ui.gui.components.SideBar;
+import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.application.Platform;
 
+import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
 import javafx.geometry.Insets;
@@ -27,7 +31,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Scale;
+import javafx.scene.shape.Polygon;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -35,13 +41,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
 
 
 public class MainScene extends Scene
 {
-    private EcosystemManager model;
-   // private CommandManager commandManager;
+    EcosystemManager model;
     
     Canvas canvas;
     Button btninspecionar, btnConfigurar;
@@ -53,7 +61,6 @@ public class MainScene extends Scene
 
 
     ClickableSVG svgPlay;
-    int currentElementIDSelected = -1; 
     GraphicsContext gc;
 
     ClickableSVG svgApplyStrength;
@@ -62,7 +69,7 @@ public class MainScene extends Scene
 
     ClickableSVG svgImportCsv,svgExportCsv;
     ClickableSVG svgLoadGame,svgSaveGame;
-
+    ClickableSVG svgSnapShot,svgRewind;
 
 
     private final String svgStopContent = "M7.03125 21.875H2.34375C1.0498 21.875 0 20.8252 0 19.5312V2.34375C0 1.0498 1.0498 0 2.34375 0H7.03125C8.3252 0 9.375 1.0498 9.375 2.34375V19.5312C9.375 20.8252 8.3252 21.875 7.03125 21.875ZM21.875 19.5312V2.34375C21.875 1.0498 20.8252 0 19.5312 0H14.8438C13.5498 0 12.5 1.0498 12.5 2.34375V19.5312C12.5 20.8252 13.5498 21.875 14.8438 21.875H19.5312C20.8252 21.875 21.875 20.8252 21.875 19.5312Z";
@@ -74,7 +81,6 @@ public class MainScene extends Scene
         super(new VBox());
         primaryStage =  primaryStage__;
         model = manager_;
-       // commandManager = commandManager_;
         createView(primaryStage);
         registerHandlers();
     }
@@ -82,6 +88,10 @@ public class MainScene extends Scene
     private void createView(Stage primaryStage)
     {
         getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        
+
+
+        
 
         VBox root = (VBox) this.getRoot();
         root.getStyleClass().add("secondary-background");
@@ -94,12 +104,12 @@ public class MainScene extends Scene
         svgPlay.getStyleClass().add("icon");
         Tooltip.install(svgPlay,new Tooltip("Pausar/Continuar simulação"));
 
-        ClickableSVG svgSnapShot = new ClickableSVG();
+        svgSnapShot = new ClickableSVG();
         svgSnapShot.setContent("M3.21814 0.5625C1.92419 0.5625 0.87439 1.6123 0.87439 2.90625V20.0938C0.87439 21.3877 1.92419 22.4375 3.21814 22.4375H23.5306C24.8246 22.4375 25.8744 21.3877 25.8744 20.0938V2.90625C25.8744 1.6123 24.8246 0.5625 23.5306 0.5625H3.21814ZM3.21814 2.125H8.39392C8.55505 2.125 8.68689 2.25684 8.68689 2.41797V3.39453C8.68689 3.55566 8.55505 3.6875 8.39392 3.6875H2.72986C2.56873 3.6875 2.43689 3.55566 2.43689 3.39453V2.90625C2.43689 2.47656 2.78845 2.125 3.21814 2.125ZM24.0189 6.8125H2.72986C2.56873 6.8125 2.43689 6.68066 2.43689 6.51953V4.76172C2.43689 4.60059 2.56873 4.46875 2.72986 4.46875H9.46814L10.9427 2.25684C10.9965 2.17383 11.0892 2.125 11.1869 2.125H23.5306C23.9603 2.125 24.3119 2.47656 24.3119 2.90625V6.51953C24.3119 6.68066 24.1801 6.8125 24.0189 6.8125ZM13.3744 19.7031C10.142 19.7031 7.51501 17.0762 7.51501 13.8438C7.51501 10.6113 10.142 7.98438 13.3744 7.98438C16.6068 7.98438 19.2338 10.6113 19.2338 13.8438C19.2338 17.0762 16.6068 19.7031 13.3744 19.7031ZM13.3744 9.54688C11.0062 9.54688 9.07751 11.4756 9.07751 13.8438C9.07751 16.2119 11.0062 18.1406 13.3744 18.1406C15.7426 18.1406 17.6713 16.2119 17.6713 13.8438C17.6713 11.4756 15.7426 9.54688 13.3744 9.54688ZM11.0306 14.625C10.601 14.625 10.2494 14.2734 10.2494 13.8438C10.2494 12.1201 11.6508 10.7188 13.3744 10.7188C13.8041 10.7188 14.1556 11.0703 14.1556 11.5C14.1556 11.9297 13.8041 12.2812 13.3744 12.2812C12.515 12.2812 11.8119 12.9844 11.8119 13.8438C11.8119 14.2734 11.4603 14.625 11.0306 14.625Z");
         svgSnapShot.getStyleClass().add("icon");
         Tooltip.install(svgSnapShot,new Tooltip("Gravar snapshot\nPermite registar o momento atual da simulação.\nEsta informação nunca é gravada para ficheiro."));
         
-        ClickableSVG svgRewind = new ClickableSVG();
+        svgRewind = new ClickableSVG();
         svgRewind.setContent("M9.29148 0.209423C8.4151 0.418084 8.33163 1.54485 9.08281 2.58816C9.91746 3.71493 11.0442 3.00548 11.0442 1.33619C11.0442 -0.0827022 10.8356 -0.207899 9.29148 0.209423ZM13.2142 1.41967C13.3812 3.38109 14.0906 3.67321 14.8001 2.00392C15.3843 0.585028 15.3843 0.543296 14.0489 0.125974C13.1308 -0.12442 13.0891 -0.0409555 13.2142 1.41967ZM4.78434 2.33776L3.90796 3.04721L4.90953 4.00705C5.78591 4.84169 6.07803 4.92516 6.78748 4.4661C7.49693 4.04878 7.53866 3.75665 7.2048 2.75508C6.74575 1.41965 6.07803 1.29445 4.78434 2.33776ZM16.9702 2.83855C16.3859 4.50783 17.0536 4.88342 18.3891 3.63146C19.3489 2.71335 19.3906 2.62988 18.7229 2.1291C17.6379 1.33619 17.4292 1.46138 16.9702 2.83855ZM2.15523 4.96689C-1.05815 9.84956 -0.640827 15.8173 3.1568 20.1574C6.16152 23.5377 11.7536 24.7062 16.5111 22.87L18.6812 22.0771L19.3906 22.9952C19.808 23.496 20.2253 23.8298 20.3505 23.7047C20.7261 23.3291 22.7709 17.3196 22.604 17.1527C22.4788 17.0692 20.7678 17.0275 18.7647 17.111L15.1339 17.2362L16.0103 18.3629L16.9284 19.4897L15.6765 20.1574C14.967 20.4913 13.3812 20.7834 11.9623 20.7834C8.70719 20.7834 6.28672 19.5314 4.49224 16.8606C3.282 15.1078 3.11507 14.5236 3.11507 12.0614C3.11507 10.0582 3.36547 8.84799 3.99145 7.67949L4.86783 6.05193L3.82452 5.00862L2.78121 4.00705L2.15523 4.96689ZM20.2671 5.50943C19.0151 6.84486 19.3072 7.22045 21.0183 6.511C22.1868 6.01021 22.2702 5.88502 21.8112 5.2173C21.2687 4.50785 21.1852 4.50785 20.2671 5.50943ZM22.0197 9.0984C20.726 9.64092 20.8095 9.93304 22.3119 9.93304C23.1465 9.93304 23.5638 9.72438 23.5638 9.30706C23.5638 8.59761 23.3552 8.55588 22.0197 9.0984Z");
         svgRewind.getStyleClass().add("icon");
         Tooltip.install(svgRewind,new Tooltip("Restaurar snapshot\nPermite retomar a simulação num ponto salvaguardado anteriormente."));
@@ -145,12 +155,34 @@ public class MainScene extends Scene
         svgLoadGame.getStyleClass().add("icon");
         Tooltip.install(svgLoadGame,new Tooltip("Abrir\nPermite abrir e continuar uma simulação previamente gravada"));
 
+
+
+
+
+
+
+
+
+
+
+
         Region spacer = new Region();
         spacer.setMinWidth(0);
         spacer.setMaxWidth(0);
 
         Rectangle separateBar = new Rectangle(2, 35, Color.web("#5A508C"));
         Rectangle separateBar2 = new Rectangle(2, 35, Color.web("#5A508C"));
+
+
+        /*
+        Rectangle separateBar2 = new Rectangle(2, 35, Color.web("#5A508C"));
+
+        Label lbTicks = new Label("Ticks : 0");
+        lbTicks.getStyleClass().addAll("text-bold","text-purple");
+        lbTicks.setTextFill(Color.web("#373054"));
+    */
+
+        //#373054
 
         topPanel = new HBox();
         topPanel.setMinHeight(35);
@@ -164,11 +196,14 @@ public class MainScene extends Scene
 
         HBox content = new HBox();
         HBox ecosystemPanel = new HBox();
+        //ecosystemPanel.getStyleClass().add("primary-background");
         ecosystemPanel.getChildren().addAll(canvas);
+
 
         HBox.setHgrow(ecosystemPanel, Priority.ALWAYS);
         VBox.setVgrow(ecosystemPanel, Priority.ALWAYS);
         HBox.setMargin(ecosystemPanel, new Insets(10));
+
 
         sidebar = new SideBar(model);
 
@@ -176,11 +211,17 @@ public class MainScene extends Scene
         root.getChildren().addAll(topPanel,content);
 
         HBox.setHgrow(sidebar, Priority.ALWAYS);
+       
+        //System.out.printf("ecosystem width : %d , height : %d\n",model.getWidth(),model.getHeight()); 
 
+        //sidebar margin , sidebar width +  content padding + ecosystem width
         int newWidth = 18 +  (int)200 + 10*2 + model.getWidth();
+        //10 + windowsBar + IconsBar + padding + ecosystem height
         int newHeight = 10 + 30 + 35 + 10 *2 + model.getHeight();
         primaryStage.setWidth(newWidth);
         primaryStage.setHeight(newHeight);
+        //System.out.printf("newWidth %d %d\n",(int)newWidth,(int)newHeight);
+
     }
 
 
@@ -206,6 +247,7 @@ public class MainScene extends Scene
         gc.setFill(Color.web("#373054"));
         gc.fillRect(0, 0,model.getWidth(),model.getHeight());
 
+        //Set<IElement> elements = model.getElements();
         ConcurrentMap<Integer, IElement> elements = model.getElements();
 
         IElement currentElement = null;
@@ -227,7 +269,7 @@ public class MainScene extends Scene
         }
 
         for (IElement element : elements.values()) {
-            if(element.getId() == currentElementIDSelected){currentElement = element;}
+            if(element.getId() == model.getInspectTargetId()){currentElement = element;}
             if (element.getType() == Element.FAUNA) {
                 Fauna f = (Fauna) element;
                 gc.drawImage(FaunaImagesManager.getImage(f.getImage()),
@@ -251,29 +293,53 @@ public class MainScene extends Scene
                 area.bottom() - area.top() + 3); 
 
 
-            if(model.getCurrentState() == GameEngineState.RUNNING) {
-                sidebar.getTxtX().setText(String.valueOf((int) area.left()));
-                sidebar.getTxtY().setText(String.valueOf((int) area.top()));
+            if(model.getCurrentState() == GameEngineState.RUNNING)
+            {
+                //sidebar.getTxtId().setText(String.valueOf(f.getId()));
+                //sidebar.getTxtType().setText(f.getTypeString());
+                
+                sidebar.getTxtX().setText(String.valueOf((int)area.left()));
+                sidebar.getTxtY().setText(String.valueOf((int)area.top()));
 
-                sidebar.getTxtEsq().setText(String.valueOf((int) area.left()));
-                sidebar.getTxtDir().setText(String.valueOf((int) area.right()));
 
-                sidebar.getTxtCima().setText(String.valueOf((int) area.top()));
-                sidebar.getTxtBaixo().setText(String.valueOf((int) area.bottom()));
+                sidebar.getTxtEsq().setText(String.valueOf((int)area.left()));
+                sidebar.getTxtDir().setText(String.valueOf((int)area.right()));
+                sidebar.getTxtCima().setText(String.valueOf((int)area.top()));
+                sidebar.getTxtBaixo().setText(String.valueOf((int)area.bottom()));
 
-                if (currentElement.getType() == Element.FAUNA) {
-                    sidebar.getStrenghtSlider().setValue(((Fauna) currentElement).getStrength());
-                } else if (currentElement.getType() == Element.FLORA) {
-                    sidebar.getStrenghtSlider().setValue(((Flora) currentElement).getStrength());
+                if(currentElement.getType() == Element.FAUNA){
+                    sidebar.getStrenghtSlider().setValue(((Fauna)currentElement).getStrength());
                 }
+                else if(currentElement.getType() == Element.FLORA){
+                    sidebar.getStrenghtSlider().setValue(((Flora)currentElement).getStrength());
+                }
+
+
+
             }
+            /* ... so um retangulo
+            gc.setStroke(Color.WHITE);
+            gc.setLineWidth(1);
+             gc.strokeRect(f.getArea().left(), 
+                f.getArea().top() ,
+                f.getArea().right() - f.getArea().left(),
+                f.getArea().bottom() - f.getArea().top()); 
+            */
+
         }
     }
 
-   
+
 
     private void registerHandlers()
     {
+        sidebar.getBtnCreteEco().setOnAction(event -> {
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
+            primaryStage.setScene(createEcoSystemScene);
+        });
+
+
+        model.addPropertyChangeListener(EcosystemManager.PROP_DATA, evt -> { sidebar.update(); });
 
         svgPlay.setOnMouseClicked((MouseEvent event) -> {
             if(model.getCurrentState() == GameEngineState.RUNNING){
@@ -286,19 +352,41 @@ public class MainScene extends Scene
             }
         }); 
 
+
+        
+        svgSnapShot.setOnMouseClicked((MouseEvent event) -> {
+            try {
+                model.saveSnapshot();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }); 
+
+        svgRewind.setOnMouseClicked((MouseEvent event) -> {
+            try {
+                model.restoreSnapshot();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }); 
+
+
+
         svgApplyStrength.setOnMouseClicked((MouseEvent event) -> {
-            IElement element = model.getElement(currentElementIDSelected);
-            if(element != null){model.applyStrengthEvent(element); model.renderUpdated();}
+            IElement element = model.getElement(model.getInspectTargetId());
+            if(element != null){model.applyStrengthEvent(element);}
         }); 
 
         svgApplyHerb.setOnMouseClicked((MouseEvent event) -> {
-            IElement element = model.getElement(currentElementIDSelected);
-            if(element != null){model.applyHerbicideEvent(element); model.renderUpdated();}
+            IElement element = model.getElement(model.getInspectTargetId());
+            if(element != null){model.applyHerbicideEvent(element);}
         }); 
 
         svgApplySun.setOnMouseClicked((MouseEvent event) -> {
-            IElement element = model.getElement(currentElementIDSelected);
-            if(element != null){model.applySunEvent(element); model.renderUpdated();}
+            IElement element = model.getElement(model.getInspectTargetId());
+            if(element != null){model.applySunEvent(element); }
             System.out.println("SunEvent\n");
 
         }); 
@@ -312,7 +400,7 @@ public class MainScene extends Scene
             File selectedFile = fileChooser.showOpenDialog(primaryStage);
             if (selectedFile != null) {
                 if(model.importGame(selectedFile.getAbsolutePath())){
-                    model.renderUpdated();
+            
                     showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi importado com sucesso.");
                 }else{
                     showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao importar o arquivo.");
@@ -377,36 +465,19 @@ public class MainScene extends Scene
             }
 
         });
+        
+        model.addPropertyChangeListener(EcosystemManager.PROP_STATE, evt -> {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    onRender(gc);
+                }
+            });
+        });
 
-        sidebar.getBtnCreateEco().setOnAction(event -> {
+        sidebar.getBtnCreteEco().setOnAction(event -> {
             CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
             primaryStage.setScene(createEcoSystemScene);
-        });
-
-        sidebar.getBtnRedo().setOnAction(event -> {
-           model.redo();
-        });
-
-        sidebar.getBtnUndo().setOnAction(event -> {
-            model.undo();
-        });
-        
-        model.addPropertyChangeListener(Ecosystem.PROP_GAME_RENDER, evt -> {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    onRender(gc);
-                }
-            });
-        });
-
-        model.addPropertyChangeListener(Ecosystem.PROP_INSPECT, evt -> {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    onRender(gc);
-                }
-            });
         });
 
         //Quando clico em um elemento abre o inspecionar
@@ -415,141 +486,27 @@ public class MainScene extends Scene
                 double mouseX = event.getX();
                 double mouseY = event.getY();
 
+                //Set<IElement> elements = model.getElements();
                 ConcurrentMap<Integer, IElement> elements = model.getElements();
                 for (IElement element : elements.values()) {
-
-                    if (mouseX >= element.getArea().left() && mouseX <= element.getArea().right() &&
-                            mouseY >= element.getArea().top() && mouseY <= element.getArea().bottom()) {
-
-                        currentElementIDSelected = element.getId();
-                        //sidebar.showInspectTab();
-
-                        IElement ent = model.getElement(currentElementIDSelected);
-                        showInspect(ent);
-
-/*
-                        sidebar.getTxtId().setText(String.valueOf((int)ent.getId()));
-                        sidebar.getTxtType().setText(ent.getTypeString());
-                        sidebar.getTxtX().setText(String.valueOf((int)ent.getArea().left()));
-                        sidebar.getTxtY().setText(String.valueOf((int)ent.getArea().top()));
-
-
-                        sidebar.getTxtEsq().setText(String.valueOf((int)ent.getArea().left()));
-                        sidebar.getTxtDir().setText(String.valueOf((int)ent.getArea().right()));
-                        sidebar.getTxtCima().setText(String.valueOf((int)ent.getArea().top()));
-                        sidebar.getTxtBaixo().setText(String.valueOf((int)ent.getArea().bottom()));
-
-                        if(element.getType() == Element.FAUNA)
-                        {
-                            sidebar.getStrenghtSlider().setValue((int)((Fauna)element).getStrength());
+                    //if (element.getType() == Element.FAUNA) {
+                        if (mouseX >= element.getArea().left() && mouseX <= element.getArea().right() &&
+                                mouseY >= element.getArea().top() && mouseY <= element.getArea().bottom()) {
+                            
+                            model.setInspectTarget(element.getId());
+                            sidebar.update();
+                            sidebar.showInspectTab();
+                            
+                            break;
                         }
-                        else if(element.getType() == Element.FLORA)
-                        {
-                            sidebar.getStrenghtSlider().setValue((int)((Flora)element).getStrength());
-                        }*/
-                        break; // Pode parar de verificar os outros elementos após encontrar um colisão
                     }
-                }
+                
+                //}
             }
         });
 
+    
 
-
-        //__________________________ Esta função ainda é necessária?
-        sidebar.getTxtEsq().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
-                IElement ent = model.getElement(currentElementIDSelected);
-                if(ent == null){return;}
-                ent.setPositionX(Integer.valueOf(sidebar.getTxtEsq().getText()));
-            }
-        });
-        //------------------------------------------------------
-
-
-        //Adicionar elemento
-        sidebar.getBtnAddElement().setOnAction(event -> {
-            String selectedType = sidebar.getFaunaDropdown().getSelectionModel().getSelectedItem();
-
-            if (selectedType != null) {
-                Element elementType;
-                switch (selectedType) {
-                    case "Fauna":
-                        elementType = Element.FAUNA;
-                        break;
-                    case "Flora":
-                        elementType = Element.FLORA;
-                        break;
-                    case "Inanimados":
-                        elementType = Element.INANIMATE;
-                        break;
-                    default:
-                        elementType = null;
-                        break;
-                }
-                if (model.getCurrentState() != GameEngineState.PAUSED) {
-                    return;
-                }
-                if (elementType != null) {
-                    model.addElementCommand(elementType);
-
-                    // Abre a aba de inspeção do último elemento adicionado
-                    model.updateLastElementId();
-                    IElement ent = model.getElement(model.getLastElementId());
-                    showInspect(ent);
-                }
-
-            }
-        });
-
-        //Apagar elemento
-        sidebar.getBtnDelElement().setOnAction(event -> {
-            if (model.getCurrentState() != GameEngineState.PAUSED) {
-                return;
-            }
-            IElement element_ = model.getElement(currentElementIDSelected);
-            if(element_ == null){return;}
-            model.removeElementCommand(element_);
-        });
-
-        //Edit da força do elemento
-        sidebar.getStrenghtSlider().getSlider().valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (model.getCurrentState() != GameEngineState.PAUSED) {
-                return;
-            }
-            IElement ent = model.getElement(currentElementIDSelected);
-            if (ent != null) {
-                model.setStrengthElementCommand(ent.getId(), newValue.doubleValue());
-            }
-        });
-
-        //Editar Posição do elemento
-        sidebar.getTxtX().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
-                IElement ent = model.getElement(currentElementIDSelected);
-                if(ent == null){return;}
-                try {
-                    int newX = Integer.parseInt(newValue);
-                    model.setPositionElementCommand(ent.getId(), newX, ent.getPositionY());
-                } catch (NumberFormatException e) {}
-            }
-        });
-
-        sidebar.getTxtY().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
-                IElement ent = model.getElement(currentElementIDSelected);
-                if(ent == null){return;}
-                try {
-                    int newY = Integer.parseInt(newValue);
-                    model.setPositionElementCommand(ent.getId(), ent.getPositionX(), newY);
-                } catch (NumberFormatException e) {}
-            }
-        });
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -560,20 +517,4 @@ public class MainScene extends Scene
         alert.showAndWait();
     }
 
-    private void showInspect(IElement element) {
-        sidebar.showInspectTab();
-        sidebar.getTxtId().setText(String.valueOf((int) element.getId()));
-        sidebar.getTxtType().setText(element.getTypeString());
-        sidebar.getTxtX().setText(String.valueOf((int) element.getArea().left()));
-        sidebar.getTxtY().setText(String.valueOf((int) element.getArea().top()));
-        sidebar.getTxtEsq().setText(String.valueOf((int) element.getArea().left()));
-        sidebar.getTxtDir().setText(String.valueOf((int) element.getArea().right()));
-        sidebar.getTxtCima().setText(String.valueOf((int) element.getArea().top()));
-        sidebar.getTxtBaixo().setText(String.valueOf((int) element.getArea().bottom()));
-        if (element.getType() == Element.FAUNA) {
-            sidebar.getStrenghtSlider().setValue((int) ((Fauna) element).getStrength());
-        } else if (element.getType() == Element.FLORA) {
-            sidebar.getStrenghtSlider().setValue((int) ((Flora) element).getStrength());
-        }
-    }
 }

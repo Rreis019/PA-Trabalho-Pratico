@@ -19,6 +19,11 @@ public record Area(double top, double left, double bottom, double right) impleme
         return !(this.right <= other.left || this.left >= other.right || 
                  this.bottom <= other.top || this.top >= other.bottom);
     }
+
+
+
+
+
     //Retorna area com posição corrigada do objeto que esta em movimento
     public Area solveColision(Direction dir,Area other)
     {

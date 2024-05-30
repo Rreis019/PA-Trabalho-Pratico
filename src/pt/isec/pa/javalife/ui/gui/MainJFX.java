@@ -6,18 +6,17 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
-import pt.isec.pa.javalife.model.command.CommandManager;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.scenes.SplashScene;
 
 public class MainJFX extends Application {
+    //private Ecosystem model;
+    //private GameEngine gameEngine;
     private EcosystemManager model;
-    //private CommandManager commandManager;
 
 
     public MainJFX(){
         this.model = new EcosystemManager();
-        //this.commandManager = new CommandManager();
     }
 
     public static void main(String[] args) {

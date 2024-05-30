@@ -44,7 +44,7 @@ public class EatingState extends FaunaStateAdapter {
 	 	
 	 	Flora flora = (Flora)closestFlora;
 		
-		double str = flora.getStrength() >= Fauna.damageToFlora ? Fauna.damageToFlora : flora.getStrength();
+		double str = flora.getStrength() >= ecosystem.getDamageToFlora() ? ecosystem.getDamageToFlora() : flora.getStrength();
 
 		flora.setStrength(flora.getStrength() - str);
 		fauna.setStrength(fauna.getStrength() + str);

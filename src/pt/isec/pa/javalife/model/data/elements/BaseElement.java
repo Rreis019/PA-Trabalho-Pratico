@@ -57,17 +57,21 @@ public abstract sealed class BaseElement
         return "None";
     }
 
+    @Override
+    public BaseElement clone() {
+        try {
+            BaseElement cloned = (BaseElement) super.clone();
+            cloned.area = new Area(this.area.top(), this.area.left(), this.area.bottom(), this.area.right());
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
     
     public void setPositionX(double position){setPosition(position, area.top());}
     public void setPositionY(double position){setPosition(area.left(), position);}
 
-    public double getPositionX() {
-        return area.left();
-    }
 
-    public double getPositionY() {
-        return area.top();
-    }
     public void setPosition(double positionX,double positionY){
         double width = area.right() - area.left();
         double height = area.bottom() - area.top();

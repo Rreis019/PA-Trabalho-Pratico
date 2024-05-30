@@ -1,4 +1,5 @@
 package pt.isec.pa.javalife.model.gameengine;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -87,7 +88,7 @@ public final class GameEngine implements IGameEngine {
 		} catch (InterruptedException ignored) {}
 	}
 
-	private class GameEngineThread extends Thread {
+	private class GameEngineThread extends Thread  {
 		long interval;
 	 	GameEngineThread(long interval) {
 		 	this.interval = interval;

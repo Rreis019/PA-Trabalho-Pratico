@@ -1,41 +1,159 @@
 package pt.isec.pa.javalife.model;
 import java.util.concurrent.ConcurrentMap;
 
-import pt.isec.pa.javalife.model.command.*;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
+import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
-import pt.isec.pa.javalife.model.memento.MementoManager;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-//Classe Facade
-public class EcosystemManager
+import pt.isec.pa.javalife.model.command.AddElementComand;
+import pt.isec.pa.javalife.model.command.SetIntervalCommand;
+import pt.isec.pa.javalife.model.command.CommandManager;
+import pt.isec.pa.javalife.model.command.RemoveElementComand;
+import pt.isec.pa.javalife.model.command.SetDamageFaunaToFloraCommand;
+import pt.isec.pa.javalife.model.command.SetElementPos;
+import pt.isec.pa.javalife.model.command.SetElementStrenght;
+import pt.isec.pa.javalife.model.command.SetEnergyPerMovementCommand;
+import pt.isec.pa.javalife.model.gameengine.IGameEngine;
+import pt.isec.pa.javalife.model.memento.CareTaker;
+import pt.isec.pa.javalife.model.memento.Memento;
+
+//Classe Facade 
+public class EcosystemManager implements Serializable
 {
-	private final GameEngine gameEngine;
+	private final transient  GameEngine gameEngine;
     private Ecosystem ecosystem;
-    private CommandManager commandManager;
-    private MementoManager mementoManager;
+    private CommandManager command;
+    private CareTaker careTaker;
 
+    private transient  PropertyChangeSupport pcs;
+    public static final String PROP_STATE = "state";
+    public static final String PROP_DATA = "data";
+
+    private int inspectedTargetId = -1;
 
     public EcosystemManager() {
+        pcs = new PropertyChangeSupport(this);
         gameEngine = new GameEngine();
-        ecosystem = new Ecosystem();
-        commandManager = new CommandManager();
-        mementoManager = new MementoManager(ecosystem);
+        ecosystem = new Ecosystem(pcs);
+        command = new CommandManager();
+        careTaker = new CareTaker(ecosystem);
         gameEngine.registerClient(ecosystem);
     }
 
+    /*-----------------------------------------------------------------*/
+
+    public void saveSnapshot() throws IOException{
+        careTaker.save();
+    }
+
+    public void restoreSnapshot() throws Exception{
+        careTaker.restore();
+    } 
+
+    //-------------------------Commands:
+
+    public boolean hasUndo(){return command.hasUndo();}
+    public boolean undo(){
+        boolean res = command.undo();
+        pcs.firePropertyChange(PROP_STATE, null, null);
+        pcs.firePropertyChange(PROP_DATA, null, null);
+        return res;
+    }
+
+    public boolean hasRedo(){return command.hasRedo();}
+    public boolean redo(){
+        boolean res = command.redo();
+        pcs.firePropertyChange(PROP_STATE, null, null);
+        pcs.firePropertyChange(PROP_DATA, null, null);
+        return res;
+    }
+
+
+    public boolean addElement(Element type_)
+    {       
+        boolean result = command.invokeCommand(new AddElementComand(ecosystem, type_));
+        pcs.firePropertyChange(PROP_STATE, null, null);   
+        return result;
+    }
+
+    public boolean setDamageFaunaToFlora(double damage)
+    {
+        boolean result = command.invokeCommand(new SetDamageFaunaToFloraCommand(ecosystem,damage));
+        pcs.firePropertyChange(PROP_DATA, null, null);  
+        return result;
+    }
+
+    public boolean setEnergyPerMovement(double energy)
+    {
+        boolean result = command.invokeCommand(new SetEnergyPerMovementCommand(ecosystem,energy));
+        pcs.firePropertyChange(PROP_DATA, null, null); 
+        return result;
+    }
+
+    public boolean setInterval(long newInterval) {
+        //gameEngine.setInterval(newInterval);
+        boolean result = command.invokeCommand(new SetIntervalCommand(ecosystem,gameEngine,newInterval));
+        return result;
+    }
+
+    public boolean setElementPos(IElement el,double posX,double posY)
+    {
+        boolean result = command.invokeCommand(new SetElementPos(ecosystem,el,posX,posY));
+        pcs.firePropertyChange(PROP_STATE, null, null); 
+        return result;
+    }
+
+    public boolean setElementStrenght(IElement el,double strenght_)
+    {
+        boolean result = command.invokeCommand(new SetElementStrenght(ecosystem,el,strenght_));
+        pcs.firePropertyChange(PROP_DATA, null, null); 
+        return result;
+    }
+
+    public boolean removeElement(IElement element_) {
+    	//ecosystem.removeElement(element_);
+        boolean result = command.invokeCommand(new RemoveElementComand(ecosystem,element_));
+        pcs.firePropertyChange(PROP_STATE, null, null); 
+        return result;
+    }
+
+    /*-----------------------------------------------------------------*/
+
+    public int getInspectTargetId()
+    {
+        return inspectedTargetId;
+    }
+
+    public void setInspectTarget(int id)
+    {
+        inspectedTargetId = id;
+        pcs.firePropertyChange(PROP_STATE, null, null);
+        pcs.firePropertyChange(PROP_DATA, null, null); 
+    }
+
+    public double getDamageToFlora(){return ecosystem.getDamageToFlora();}
+    public double getFaunaMovementEnergy() {return ecosystem.getFaunaMovementEnergy();}
+
+
+    public void setGameInterval(long newInterval) {
+        gameEngine.setInterval(newInterval);
+    }
 	public boolean startGame(long interval) {
 		return gameEngine.start(interval);
 	}
+
 
     public void stopGame() {
         gameEngine.stop();
@@ -45,13 +163,14 @@ public class EcosystemManager
         gameEngine.pause();
     }
 
+    public int getLastElementId() {
+        return ecosystem.getLastElementId();
+    }
+
+
     public void resumeGame() {
         gameEngine.resume();
     }
-
-	public void setGameInterval(long newInterval) {
-        gameEngine.setInterval(newInterval);
-	}
 
     public long getGameInterval() {
         return gameEngine.getInterval();
@@ -91,88 +210,33 @@ public class EcosystemManager
    		gameEngine.waitForTheEnd();
    	}
 
-    public IElement addElementToRandomFreePosition(Element type) {
-        return ecosystem.addElementToRandomFreePosition(type);
-    }
-
-    //-------------------------Commands:
-    public void addElementCommand(Element element){
-        ICommand addCommand = new AddElementCommand(ecosystem,element);
-        commandManager.invokeCommand(addCommand);
-    }
-    public void removeElementCommand(IElement element){
-        ICommand removeCommand = new RemoveElementCommand(ecosystem,element);
-        commandManager.invokeCommand(removeCommand);
-    }
-    public void setStrengthElementCommand(int elementId, double newStrength){
-        ICommand editCommand = new SetStrengthElementCommand(ecosystem,elementId,newStrength);
-        commandManager.invokeCommand(editCommand);
-    }
-    public void setPositionElementCommand(int elementId, double newX, double newY) {
-        ICommand command = new SetPositionElementCommand(ecosystem, elementId, newX, newY);
-        commandManager.invokeCommand(command);
-    }
-
-    public void setDamageToFloraCommand(double damage){
-        ICommand command = new SetDamageToFloraCommand(ecosystem, damage);
-        commandManager.invokeCommand(command);
-    }
-
-    public void setDecMovementEnergyCommand(double decMovementEnergy){
-        ICommand command = new SetDecMovementEnergyCommand(ecosystem, decMovementEnergy);
-        commandManager.invokeCommand(command);
-    }
-    public void setGameIntervalCommand(long newInterval){
-        ICommand command = new SetGameIntervalCommand(ecosystem, gameEngine, newInterval);
-        commandManager.invokeCommand(command);
-    }
-    public void undo(){
-        commandManager.undo();
-    }
-
-    public void redo(){
-        commandManager.redo();
-    }
-
-
-//_________________________
-    public void addElement(IElement element_) {
-        ecosystem.addElement(element_);
-    }
-    public void removeElement(IElement element_) {
-    	ecosystem.removeElement(element_);
-    }
     public void applyStrengthEvent(IElement element) {
         ecosystem.applyStrenghtEvent(element);
+        pcs.firePropertyChange(PROP_STATE, null, null);
     }
 
     public void applyHerbicideEvent(IElement element) {
         ecosystem.applyHerbicideEvent(element);
+          pcs.firePropertyChange(PROP_STATE, null, null);
     }
 
     public void applySunEvent(IElement element) {
         ecosystem.applySunEvent(element);
+          pcs.firePropertyChange(PROP_STATE, null, null);
     }
 
     public int getTicks(){return ecosystem.getTicks();}
     public void resetTicksCounter(){ecosystem.resetTicksCounter();}
-
-    public int updateLastElementId(){
-        return ecosystem.updateLastElementId();
-    }
-
-    public int getLastElementId() {
-        return ecosystem.getLastElementId();
-    }
 
 
     public ConcurrentMap<Integer, IElement> getElements() {
         return ecosystem.getElements();
     }
 
+      
     public boolean save(String filepath) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filepath))) {
-            ecosystem.updateLastElementId();
+            ecosystem.getLastElementId();
             oos.writeObject(ecosystem);
             return true;
         } catch (IOException e) {
@@ -189,8 +253,9 @@ public class EcosystemManager
             gameEngine.registerClient(ecosystem);
             gameEngine.resume();
             BaseElement.lastId = ecosystem.getLastElementId();
-           //
-            //_pcs.firePropertyChange(PROP_STATE_CHANGE, null, null);
+              pcs.firePropertyChange(PROP_STATE, null, null);
+            //
+            //_pcs.firePropertyChange(PROP_STATE_CHANGE);
         } catch (Exception e) {
             System.out.println(e.toString());
             return false;
@@ -201,6 +266,7 @@ public class EcosystemManager
 
 
     public boolean importGame(String filepath) {
+          pcs.firePropertyChange(PROP_STATE, null, null);
         return ecosystem.importToCSV(filepath);
     }
 
@@ -209,44 +275,26 @@ public class EcosystemManager
     }
 
     public void renderUpdated() {
-        ecosystem.updateRender();
+          pcs.firePropertyChange(PROP_STATE, null, null);
+          pcs.firePropertyChange(PROP_DATA, null, null);
     }
 
     public void clearElements() {
         ecosystem.clearElements();
     }
 
-    public void undoMemento() {
-        mementoManager.undo();
-    }
-
-    public void redoMemento() {
-        mementoManager.redo();
-    }
-
-    public void saveState() {
-        mementoManager.save();
-    }
-
-    public void resetHistory() {
-        mementoManager.reset();
-    }
-
-    public boolean canUndo() {
-        return mementoManager.hasUndo();
-    }
-
-    public boolean canRedo() {
-        return mementoManager.hasRedo();
+    public IElement addElementToRandomFreePosition(Element type) {
+        return ecosystem.addElementToRandomFreePosition(type);
     }
 
 
     public void addPropertyChangeListener(String prop,PropertyChangeListener listener) {
-        ecosystem.addPropertyChangeListener(prop,listener);
+        pcs.addPropertyChangeListener(prop,listener);
     }
 
     public void removeObserver(String prop,PropertyChangeListener listener) {
-        ecosystem.removeObserver(prop,listener);
+        pcs.removePropertyChangeListener(prop,listener);
     }
+
 
 }

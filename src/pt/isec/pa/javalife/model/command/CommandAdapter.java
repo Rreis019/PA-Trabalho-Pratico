@@ -1,22 +1,14 @@
 package pt.isec.pa.javalife.model.command;
 
-import pt.isec.pa.javalife.model.Ecosystem;
-
 import java.io.Serializable;
 
-abstract class CommandAdapter implements ICommand, Serializable {
-    protected Ecosystem ecosystem;
+import pt.isec.pa.javalife.model.Ecosystem;
+import pt.isec.pa.javalife.model.EcosystemManager;
 
-    protected CommandAdapter(Ecosystem ecosystem) {
-        this.ecosystem = ecosystem;
-    }
-    @Override
-    public boolean execute() {
-        return false;
-    }
+abstract class CommandAdapter implements ICommand,Serializable {
+    protected Ecosystem receiver;
 
-    @Override
-    public boolean undo() {
-        return false;
+    protected CommandAdapter(Ecosystem receiver) {
+        this.receiver = receiver;
     }
 }

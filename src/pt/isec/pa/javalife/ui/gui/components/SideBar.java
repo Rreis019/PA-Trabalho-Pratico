@@ -8,20 +8,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.shape.Rectangle;
 import pt.isec.pa.javalife.model.EcosystemManager;
+import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
+import pt.isec.pa.javalife.model.data.elements.Flora;
+import pt.isec.pa.javalife.model.data.elements.IElement;
+import pt.isec.pa.javalife.model.gameengine.GameEngineState;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
+import pt.isec.pa.javalife.model.data.Area;
+import pt.isec.pa.javalife.model.data.elements.BaseElement;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 /**
- * SideBar
+ * 
  */
 public class SideBar extends VBox {
 
@@ -33,11 +40,9 @@ public class SideBar extends VBox {
 
     private ComboBox<String> faunaDropdown;
     private Button btnAddElement;
-    private Button btnCreateEco;
+    private Button btnCreteEco;
     private BlueSlider strenghtSlider;
     private Button btnDelElement;
-    private Button btnUndo;
-    private Button btnRedo;
     private TextField txtId;
     private TextField txtType;
     private TextField txtX;
@@ -50,6 +55,9 @@ public class SideBar extends VBox {
     BlueSlider sUnitTimer;
     BlueSlider sEnergyMovement;
     BlueSlider sDamageFauna;
+
+    private Button btnUndo;
+    private Button btnRedo;
 
     EcosystemManager model;
 
@@ -69,8 +77,11 @@ public class SideBar extends VBox {
         ecoTab.setSpacing(10);
         ecoTab.setMaxWidth(width - 10);
 
+        //VBox.setMargin(ecoTab, new Insets(5));
+
+
         faunaDropdown = new ComboBox<>();
-        faunaDropdown.getItems().addAll("Fauna", "Flora","Inanimados");
+        faunaDropdown.getItems().addAll("Fauna", "Flora","Inanimados"); // Add your options here
         faunaDropdown.setPrefWidth(width - 10);
         faunaDropdown.setFocusTraversable(false);
         faunaDropdown.setStyle("-fx-border-width: 0;");
@@ -81,20 +92,10 @@ public class SideBar extends VBox {
         btnAddElement.setPrefWidth(width - 10);
         btnAddElement.setMinHeight(40);
 
-        btnCreateEco = new Button("Criar Ecossistema");
-        btnCreateEco.getStyleClass().add("btn-primary");
-        btnCreateEco.setPrefWidth(width - 10);
-        btnCreateEco.setMinHeight(40);
-
-        btnRedo = new Button("Redo");
-        btnRedo.getStyleClass().add("btn-primary");
-        btnRedo.setPrefWidth(width - 10);
-        btnRedo.setMinHeight(40);
-
-        btnUndo = new Button("Undo");
-        btnUndo.getStyleClass().add("btn-primary");
-        btnUndo.setPrefWidth(width - 10);
-        btnUndo.setMinHeight(40);
+        btnCreteEco = new Button("Criar Ecossistema");
+        btnCreteEco.getStyleClass().add("btn-primary");
+        btnCreteEco.setPrefWidth(width - 10);
+        btnCreteEco.setMinHeight(40);
 
         Rectangle separate = new Rectangle();
         separate.setWidth(width - 10);
@@ -111,7 +112,7 @@ public class SideBar extends VBox {
         separate3.setHeight(2);
         separate3.setFill(Color.web("#373054"));
 
-        Rectangle separate4 = new Rectangle();
+                Rectangle separate4 = new Rectangle();
         separate4.setWidth(width - 10);
         separate4.setHeight(2);
         separate4.setFill(Color.web("#373054"));
@@ -123,7 +124,20 @@ public class SideBar extends VBox {
         sEnergyMovement.setFloat(true);
         sDamageFauna.setFloat(true);
 
-        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreateEco,btnRedo, btnUndo, sUnitTimer,sEnergyMovement,sDamageFauna);
+
+        btnUndo = new Button("Undo");
+        btnUndo.getStyleClass().add("btn-primary");
+        btnUndo.setPrefWidth(width - 10);
+        btnUndo.setMinHeight(40);
+
+        btnRedo = new Button("Redo");
+        btnRedo.getStyleClass().add("btn-primary");
+        btnRedo.setPrefWidth(width - 10);
+        btnRedo.setMinHeight(40);
+
+
+        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreteEco,btnUndo,btnRedo,sUnitTimer,sEnergyMovement,sDamageFauna);
+
 
         inspectTab = new VBox();
         inspectTab.setSpacing(10);
@@ -136,8 +150,9 @@ public class SideBar extends VBox {
         btnDelElement.getStyleClass().add("btn-primary");
         btnDelElement.setPrefWidth(width - 10);
         btnDelElement.setMinHeight(40);
-
         btnDelElement.setTooltip(new Tooltip("Remove a entidade que esta selecionada"));
+
+
 
         HBox containerId = new HBox();
         Label lbId = new Label("Id  ");
@@ -151,6 +166,7 @@ public class SideBar extends VBox {
         containerId.setSpacing(12);
 
 
+
         HBox containerType = new HBox();
         Label lbType = new Label("Tipo");
         lbType.setPrefWidth(40);
@@ -162,8 +178,10 @@ public class SideBar extends VBox {
         containerType.setAlignment(Pos.CENTER);
         containerType.setSpacing(12);
 
+
         Label lbPosicao = new Label("Posição");
         lbPosicao.getStyleClass().addAll("text-bold");
+
 
         VBox containerX = new VBox();
         Label lbX = new Label("x");
@@ -249,6 +267,7 @@ public class SideBar extends VBox {
         space.setMinHeight(5);
 
         makeNumeric( txtId);
+        //makeNumeric( txtType);
         makeNumeric( txtX);
         makeNumeric( txtY);
         makeNumeric( txtEsq);
@@ -258,35 +277,169 @@ public class SideBar extends VBox {
         this.getChildren().addAll(navbar,space,ecoTab,inspectTab);
         
         sUnitTimer.setValue(model.getGameInterval());
-        sEnergyMovement.setValue(Fauna.decMovementEnergy);
-        sDamageFauna.setValue(Fauna.damageToFlora);
+        sEnergyMovement.setValue(model.getFaunaMovementEnergy());
+        sDamageFauna.setValue(model.getDamageToFlora());
         registerHandlers();
+    }
+
+    // private void showInspect(IElement element) {
+   public void update()
+    {
+        int id =  model.getInspectTargetId();
+        IElement ent = model.getElement(id);
+
+        this.getSsEnergyMovement().setValue(model.getFaunaMovementEnergy());
+        this.getSUnitTimer().setValue(model.getGameInterval());
+        this.getSsDamageFauna().setValue(model.getDamageToFlora());
+
+        if(ent != null)
+        {
+            this.getTxtId().setText(String.valueOf((int)ent.getId()));
+            this.getTxtType().setText(ent.getTypeString());
+            this.getTxtX().setText(String.valueOf((int)ent.getArea().left()));
+            this.getTxtY().setText(String.valueOf((int)ent.getArea().top()));
+
+
+            this.getTxtEsq().setText(String.valueOf((int)ent.getArea().left()));
+            this.getTxtDir().setText(String.valueOf((int)ent.getArea().right()));
+            this.getTxtCima().setText(String.valueOf((int)ent.getArea().top()));
+            this.getTxtBaixo().setText(String.valueOf((int)ent.getArea().bottom()));
+
+            if(ent.getType() == Element.FAUNA)
+            {
+                this.getStrenghtSlider().setValue((int)((Fauna)ent).getStrength());
+            }
+            else if(ent.getType() == Element.FLORA)
+            {
+                this.getStrenghtSlider().setValue((int)((Flora)ent).getStrength());
+            }
+
+        }
     }
 
     void registerHandlers()
     {
-        sUnitTimer.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+        sUnitTimer.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
+            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            model.setInterval((long)sUnitTimer.getValue());
+        });
+
+        sEnergyMovement.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
+            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            model.setEnergyPerMovement(sEnergyMovement.getValue());
+        });
+
+        sDamageFauna.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
+            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            model.setDamageFaunaToFlora(sDamageFauna.getValue());
+        });
+
+        txtX.setOnKeyReleased(event -> {
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
+                IElement ent = model.getElement(model.getInspectTargetId());
+                if(ent == null){return;}
+                Area area = ((BaseElement)ent).getArea();
+                model.setElementPos(ent,Integer.valueOf(txtX.getText()) ,area.top() );
+        });
+
+        txtY.setOnKeyReleased(event -> {
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
+                IElement ent = model.getElement(model.getInspectTargetId());
+                if(ent == null){return;}
+                Area area = ((BaseElement)ent).getArea();
+                model.setElementPos(ent,area.left(),Integer.valueOf(txtY.getText()));
+
+                //ent.setPositionY(Integer.valueOf(sidebar.getTxtY().getText()));
+        });
+
+       /*
+        txtY.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                model.setGameIntervalCommand((long)sUnitTimer.getValue());
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            System.out.println("y :):(:(:):(:");
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
+                IElement ent = model.getElement(model.getInspectTargetId());
+                if(ent == null){return;}
+                
+
+                Area area = ((BaseElement)ent).getArea();
+
+                //model.editElement(ent,area.left(),(double)Integer.valueOf(sidebar.getTxtY()),);
+    
+                model.setElementPos(ent,area.left(),Integer.valueOf(txtY.getText()));
+
+                //ent.setPositionY(Integer.valueOf(sidebar.getTxtY().getText()));
             }
         });
-    
-        sEnergyMovement.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+*/  
+         //private void showInspect(IElement element) {
+
+       
+
+        txtEsq.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-               // Fauna.decMovementEnergy = sEnergyMovement.getValue();
-                model.setDecMovementEnergyCommand(sEnergyMovement.getValue());
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
+                IElement ent = model.getElement(model.getInspectTargetId());
+                if(ent == null){return;}
+                ent.setPositionX(Integer.valueOf(txtEsq.getText()));
             }
         });
-    
-        sDamageFauna.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                model.setDamageToFloraCommand(sDamageFauna.getValue());
+
+        strenghtSlider.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
+            if(model.getCurrentState() != GameEngineState.PAUSED){return;}
+            IElement ent = model.getElement(model.getInspectTargetId());
+            if(ent == null){return;}
+            model.setElementStrenght(ent, Double.valueOf(strenghtSlider.getValue()));
+        });
+
+
+        btnDelElement.setOnAction(event -> {
+            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            IElement element_ = model.getElement(model.getInspectTargetId());
+            if(element_ == null){return;}
+            model.removeElement(element_);
+        //    onRender(gc);
+        });
+
+
+        btnAddElement.setOnAction(event -> {
+            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            String selectedType = faunaDropdown.getSelectionModel().getSelectedItem();
+
+            // Dependendo do tipo selecionado, adicione o tipo correspondente de elemento
+            if (selectedType != null) {
+                Element elementType;
+                switch (selectedType) {
+                    case "Fauna":
+                        elementType = Element.FAUNA;
+                        break;
+                    case "Flora":
+                        elementType = Element.FLORA;
+                        break;
+                    case "Inanimados":
+                        elementType = Element.INANIMATE;
+                        break;
+                    default:
+                        // Trate qualquer outro caso aqui, se necessário
+                        elementType = null;
+                        break;
+                }
+                // Adicione o elemento com o tipo determinado
+                if (elementType != null) {
+                    model.addElement(elementType);
+                    int id = model.getLastElementId();
+                    model.setInspectTarget(id);
+                    this.update();
+                    System.out.println("id" + id);
+                    showInspectTab();
+                    model.renderUpdated();
+                }
             }
         });
-    
+
+        btnUndo.setOnAction(event -> {model.undo();});
+        btnRedo.setOnAction(event -> {model.redo();});
     }
 
     public void showEcoTab()
@@ -301,9 +454,7 @@ public class SideBar extends VBox {
 
     public ComboBox<String> getFaunaDropdown() {return faunaDropdown;}
     public Button getBtnAddElement() {return btnAddElement;}
-    public Button getBtnCreateEco() {return btnCreateEco;}
-    public Button getBtnUndo() {return btnUndo;}
-    public Button getBtnRedo() {return btnRedo;}
+    public Button getBtnCreteEco() {return btnCreteEco;}
     public BlueSlider getStrenghtSlider() {return strenghtSlider;}
     public Button getBtnDelElement() {return btnDelElement;}
     public TextField getTxtId() {return txtId;}
@@ -317,9 +468,11 @@ public class SideBar extends VBox {
     public TextField getTxtCima() {return txtCima;}
     public TextField getTxtBaixo() {return txtBaixo;}
 
+    public BlueSlider getSUnitTimer(){return sUnitTimer;}
+    public BlueSlider getSsEnergyMovement(){return sEnergyMovement;}
+    public BlueSlider getSsDamageFauna(){return sDamageFauna;}
 
     public static void makeNumeric(TextField textField) {
-        // Adiciona um ChangeListener para validar a entrada do usuário
         textField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

@@ -3,14 +3,18 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
-import pt.isec.pa.javalife.model.command.CommandManager;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
+import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
@@ -18,9 +22,11 @@ import javafx.scene.shape.Rectangle;
 
 class CreateEcosystemScene extends Scene
 {
-    private EcosystemManager model;
+    EcosystemManager model;
     Stage primaryStage;
     Button criarButton;
+
+
     BlueSpinner SAltura;
     BlueSpinner Scomprimento;
     BlueSpinner Sfauna;
@@ -81,6 +87,12 @@ class CreateEcosystemScene extends Scene
         separate.setWidth(305);
         separate.setFill(Color.WHITE);
 
+        // Campos de texto
+        //Label TextoNome = new Label("Nome");
+        //TextoNome.setStyle("-fx-text-fill: white; -fx-text-alignment: left; -fx-font-size : 15px;");
+        //TextField Nome = new TextField();
+        
+
         //Componentes
         SAltura = new BlueSpinner("Altura",300,200,500,20);
         Scomprimento = new BlueSpinner("Comprimento",300,200,500,5);
@@ -91,6 +103,8 @@ class CreateEcosystemScene extends Scene
 
         sEnergyMovement = new BlueSlider("EnergiaMovimento(Fauna)", 300,0.1,0.5, 5);
         sDamageFauna = new BlueSlider("Dano da Fauna", 300,0.1,1, 5);
+
+
 
         sEnergyMovement.setFloat(true);
         sDamageFauna.setFloat(true);
@@ -225,8 +239,9 @@ class CreateEcosystemScene extends Scene
             model.setHeight(SAltura.getNumero());
             model.makeWall();
 
-            Fauna.decMovementEnergy = sEnergyMovement.getValue();
-            Fauna.damageToFlora = sDamageFauna.getValue();
+            //model.getFaunaMovementEnergy();
+            model.setEnergyPerMovement(sEnergyMovement.getValue());
+            model.setEnergyPerMovement(sDamageFauna.getValue());
             model.resetTicksCounter();
 
             for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.INANIMATE);}
