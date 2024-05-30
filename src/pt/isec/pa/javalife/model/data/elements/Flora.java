@@ -12,7 +12,7 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 /**
  * Flora
  */
-public non-sealed class Flora extends BaseElement  implements IElementWithImage,IElementWithStrength
+public non-sealed class Flora extends BaseElement  implements IElementWithStrength
 {
     //config
     private static final double initialStrength = 50;
@@ -28,11 +28,6 @@ public non-sealed class Flora extends BaseElement  implements IElementWithImage,
     }
 
 
-    @Override
-    public String getImage() {
-        // TODO : Retorna o caminho da imagem
-        return null;
-    }
 
     public void evolve(Ecosystem eco, long currentTime) {
         if(getStrength() == 0){return;}
@@ -71,10 +66,6 @@ public non-sealed class Flora extends BaseElement  implements IElementWithImage,
         return false;
     }
 
-    @Override
-    public void setImage(String image) {
-
-    }
 
     @Override
     public double getStrength(){

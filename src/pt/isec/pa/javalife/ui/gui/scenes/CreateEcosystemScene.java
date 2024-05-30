@@ -223,7 +223,6 @@ class CreateEcosystemScene extends Scene
 
             model.setEnergyPerMovement(sEnergyMovement.getValue());
             model.setEnergyPerMovement(sDamageFauna.getValue());
-            model.resetTicksCounter();
 
             for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.INANIMATE);}
             for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FAUNA);}
