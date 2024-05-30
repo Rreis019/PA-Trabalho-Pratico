@@ -1,36 +1,35 @@
 package pt.isec.pa.javalife.model.command;
 
-import pt.isec.pa.javalife.model.EcosystemManager;
-import pt.isec.pa.javalife.model.data.elements.Element;
+import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 
-public class RemoveElementCommand implements ICommand{
-    private EcosystemManager model;
-   // private Element element;
+public class RemoveElementCommand extends CommandAdapter{
     private IElement removedElement;
 
-
-    public RemoveElementCommand(EcosystemManager model, IElement element) {
-        this.model = model;
+    public RemoveElementCommand(Ecosystem ecosystem, IElement element) {
+        super(ecosystem);
+        this.ecosystem = ecosystem;
         this.removedElement = element;
-
     }
 
     @Override
     public boolean execute() {
-       model.setRemovedElement(removedElement); //Para armazenar o elemento apagado
-       model.removeElement(removedElement);
+       ecosystem.removeElement(removedElement);
+       ecosystem.updateRender();
+       System.out.println(removedElement.getId() + "ID2");
        return true;
     }
 
     @Override
     public boolean undo() {
         if(removedElement != null){
-            //model.addElementToRandomFreePosition(removedElement.getType()); --- Acho que iria criar um novo elemento
-            model.addElement(model.getRemovedElement());
-            model.renderUpdated();
+            //ecosystem.addElementToRandomFreePosition(removedElement.getType()); --- Acho que iria criar um novo elemento
+            ecosystem.addElement(removedElement);
+            ecosystem.updateRender();
+            System.out.println(removedElement.getId() + "ID1");
             return true;
         }
          return false;
     }
+
 }

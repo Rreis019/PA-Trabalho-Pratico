@@ -28,10 +28,8 @@ import java.util.Locale;
 
 
 public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
-    //private Set<IElement> elements;
     private ConcurrentMap<Integer, IElement> elements;
     int cacheLastElementId = -1;
-    private IElement removedElement;
     public int getLastElementId() { return cacheLastElementId;}    
     public int updateLastElementId() {
         int maxId = -1;
@@ -99,7 +97,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return ret;
     }
 
-    //public Set<IElement> getElements()
     public ConcurrentMap<Integer, IElement> getElements()
     {
         return elements;
@@ -155,53 +152,20 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         pcs.firePropertyChange(PROP_GAME_RENDER,null,null);
     }
 
-
-    /*
-    public void removeElement(IElement element_) {
-        elements.remove(element_);
-    }
-    public void addElement(Element type,double positionX,double positionY)
-    {
-        IElement ent = ElementsFactory.CreateElement(this,type, positionX, positionY);
-        elements.add(ent);
-    }
-    public IElement getElement(int id)
-    {
-        pcs.firePropertyChange(PROP_INSPECT,null,null);
-        System.out.printf("GetElement\n");
-        for(IElement ent : getElements()){
-            if(ent.getId() == id){ return ent;}
-        }
-
-        return null;
-    }
-
-    */
     public IElement getElement(int id) {
         pcs.firePropertyChange(PROP_INSPECT, null, null);
         return elements.get(id);
     }
 
-
    public void removeElement(IElement element_) {
         elements.remove(element_.getId());
     }
-
-    public void setRemovedElement(IElement element) {
-        this.removedElement = element;
-    }
-
-    public IElement getRemovedElement() {
-        return removedElement;
-    }
-
-    void addElement(IElement element_){
+    public void addElement(IElement element_){
         elements.put(element_.getId(), element_);
     }
 
     public void addElement(Element type, double positionX, double positionY) {
         IElement ent = ElementsFactory.CreateElement(this, type, positionX, positionY);
-        //elements.put(ent.getId(), ent);
         addElement(ent);
     }
 
@@ -238,7 +202,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
             boolean intersects_ = false;
 
-            //for (IElement e : elements) {
             for (IElement e : elements.values()) {
                 if (e.getType() == Element.INANIMATE && ent.getArea().intersects(e.getArea())) {
                     intersects_ = true;
@@ -248,12 +211,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
 
             if (!intersects_) {foundEmptyPosition = true;}
         }
-
-        //if (ent.getType() == Element.FAUNA) {
-         //   faunaStates.put((Fauna) ent, new FaunaStateContext(this, (Fauna) ent));
-        //}
-
-       // elements.put(ent.getId(),ent);
         addElement(ent);
         return ent;
     }
@@ -338,12 +295,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         addElement(left);
         addElement(right);
         addElement(bottom);
-        /*
-        elements.add(top);
-        elements.add(left);
-        elements.add(right);
-        elements.add(bottom);
-        */
     }
 
 
@@ -357,54 +308,20 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         return false;
     }
 
-    /*
-    private void handleIfOutBounds(Fauna element_){
-        Area area = element_.getArea();
-
-        if(area.left() < 0){
-            element_.setPositionX(0);
-            element_.setDirection(Direction.RIGHT);
-        }
-        else if(area.right() > getWidth())
-        {
-            element_.setPositionX(getWidth() - (area.right() - area.left())   );
-            element_.setDirection(Direction.LEFT);
-        }
-
-        if(area.top() < 0)
-        {
-            element_.setPositionY(0);
-            element_.setDirection(Direction.DOWN);
-        }
-        else if(area.bottom() > getHeight()) {
-            element_.setPositionY(getHeight() - (area.bottom() - area.top()));
-            element_.setDirection(Direction.UP);
-        }
-    } 
-    */
-
-
-
-
-
     private void handleColisions()
     {
-        ArrayList<Inanimate> inanimates = new ArrayList<>(); 
-        //for (IElement element_ : elements) {
+        ArrayList<Inanimate> inanimates = new ArrayList<>();
         for (IElement element_ : elements.values()) {
             if(element_.getType() == Element.INANIMATE){
                 inanimates.add((Inanimate)element_);
             }
         }
 
-        //for (IElement element_ : elements) {
         for (IElement element_ : elements.values()) {
             if(element_.getType() == Element.FAUNA){
 
                 Fauna f = (Fauna)element_;
-                Direction direction_ = f.getDirection(); 
-                //handleIfOutBounds(f);
-
+                Direction direction_ = f.getDirection();
 
                 for (Inanimate ina : inanimates) {
                     Area sol = f.getArea().solveColision(direction_, ina.getArea());
@@ -420,7 +337,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
         }
 
     }
-
 
 
     public boolean exportToCSV(String filepath) 
@@ -510,7 +426,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve, IEcosystem {
                             } else if (element.getType() == Element.FLORA) {
                                 ((Flora) element).setStrength(strength);
                             }
-                            //this.elements.add(element);
                             addElement(element);
                         }
                     }

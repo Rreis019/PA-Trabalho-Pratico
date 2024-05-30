@@ -1,6 +1,7 @@
 package pt.isec.pa.javalife.model;
 import java.util.concurrent.ConcurrentMap;
 
+import pt.isec.pa.javalife.model.command.*;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
@@ -8,24 +9,24 @@ import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import pt.isec.pa.javalife.model.gameengine.IGameEngine;
-//Classe Facade 
+//Classe Facade
 public class EcosystemManager
 {
 	private final GameEngine gameEngine;
     private Ecosystem ecosystem;
+    private CommandManager commandManager;
 
 
     public EcosystemManager() {
         gameEngine = new GameEngine();
         ecosystem = new Ecosystem();
+        commandManager = new CommandManager();
         gameEngine.registerClient(ecosystem);
     }
 
@@ -91,18 +92,52 @@ public class EcosystemManager
         return ecosystem.addElementToRandomFreePosition(type);
     }
 
+    //-------------------------Commands:
+    public void addElementCommand(Element element){
+        ICommand addCommand = new AddElementCommand(ecosystem,element);
+        commandManager.invokeCommand(addCommand);
+    }
+    public void removeElementCommand(IElement element){
+        ICommand removeCommand = new RemoveElementCommand(ecosystem,element);
+        commandManager.invokeCommand(removeCommand);
+    }
+    public void setStrengthElementCommand(int elementId, double newStrength){
+        ICommand editCommand = new SetStrengthElementCommand(ecosystem,elementId,newStrength);
+        commandManager.invokeCommand(editCommand);
+    }
+    public void setPositionElementCommand(int elementId, double newX, double newY) {
+        ICommand command = new SetPositionElementCommand(ecosystem, elementId, newX, newY);
+        commandManager.invokeCommand(command);
+    }
+
+    public void setDamageToFloraCommand(double damage){
+        ICommand command = new SetDamageToFloraCommand(ecosystem, damage);
+        commandManager.invokeCommand(command);
+    }
+
+    public void setDecMovementEnergyCommand(double decMovementEnergy){
+        ICommand command = new SetDecMovementEnergyCommand(ecosystem, decMovementEnergy);
+        commandManager.invokeCommand(command);
+    }
+    public void setGameIntervalCommand(long newInterval){
+        ICommand command = new SetGameIntervalCommand(ecosystem, gameEngine, newInterval);
+        commandManager.invokeCommand(command);
+    }
+    public void undo(){
+        commandManager.undo();
+    }
+
+    public void redo(){
+        commandManager.redo();
+    }
+
+
+//_________________________
     public void addElement(IElement element_) {
         ecosystem.addElement(element_);
     }
     public void removeElement(IElement element_) {
     	ecosystem.removeElement(element_);
-    }
-    //Para o undo:
-    public void setRemovedElement(IElement element_) {
-        ecosystem.setRemovedElement(element_);
-    }
-    public IElement getRemovedElement() {
-       return ecosystem.getRemovedElement();
     }
     public void applyStrengthEvent(IElement element) {
         ecosystem.applyStrenghtEvent(element);
@@ -118,6 +153,14 @@ public class EcosystemManager
 
     public int getTicks(){return ecosystem.getTicks();}
     public void resetTicksCounter(){ecosystem.resetTicksCounter();}
+
+    public int updateLastElementId(){
+        return ecosystem.updateLastElementId();
+    }
+
+    public int getLastElementId() {
+        return ecosystem.getLastElementId();
+    }
 
 
     public ConcurrentMap<Integer, IElement> getElements() {
@@ -178,8 +221,4 @@ public class EcosystemManager
         ecosystem.removeObserver(prop,listener);
     }
 
-
-    public void editElement(int elementId, double oldStrength) {
-        ecosystem.editElement(elementId, oldStrength);
-    }
 }

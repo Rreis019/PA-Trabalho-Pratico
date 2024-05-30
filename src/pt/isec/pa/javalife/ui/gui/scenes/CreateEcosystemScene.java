@@ -19,7 +19,6 @@ import javafx.scene.shape.Rectangle;
 class CreateEcosystemScene extends Scene
 {
     private EcosystemManager model;
-    private CommandManager commandManager;
     Stage primaryStage;
     Button criarButton;
     BlueSpinner SAltura;
@@ -37,12 +36,11 @@ class CreateEcosystemScene extends Scene
 
 
 
-    public CreateEcosystemScene(Stage primaryStage_,EcosystemManager manager_, CommandManager commandManager_)
+    public CreateEcosystemScene(Stage primaryStage_,EcosystemManager manager_)
     {
         super(new HBox());
         model = manager_;
         primaryStage =  primaryStage_;
-        commandManager = commandManager_;
         createView(primaryStage_);
         registerHandlers();
     }
@@ -83,12 +81,6 @@ class CreateEcosystemScene extends Scene
         separate.setWidth(305);
         separate.setFill(Color.WHITE);
 
-        // Campos de texto
-        //Label TextoNome = new Label("Nome");
-        //TextoNome.setStyle("-fx-text-fill: white; -fx-text-alignment: left; -fx-font-size : 15px;");
-        //TextField Nome = new TextField();
-        
-
         //Componentes
         SAltura = new BlueSpinner("Altura",300,200,500,20);
         Scomprimento = new BlueSpinner("Comprimento",300,200,500,5);
@@ -99,8 +91,6 @@ class CreateEcosystemScene extends Scene
 
         sEnergyMovement = new BlueSlider("EnergiaMovimento(Fauna)", 300,0.1,0.5, 5);
         sDamageFauna = new BlueSlider("Dano da Fauna", 300,0.1,1, 5);
-
-
 
         sEnergyMovement.setFloat(true);
         sDamageFauna.setFloat(true);
@@ -248,7 +238,7 @@ class CreateEcosystemScene extends Scene
 
             model.setGameInterval((long)sUnitTimer.getNumero());
             model.resumeGame();
-            MainScene mainscene = new MainScene(primaryStage,model,commandManager);
+            MainScene mainscene = new MainScene(primaryStage,model);
             primaryStage.setScene(mainscene);
             primaryStage.show();
 

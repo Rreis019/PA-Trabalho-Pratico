@@ -21,15 +21,15 @@ public class SplashScene extends Scene
 {
     Stage primaryStage;
     private EcosystemManager model;
-    private CommandManager commandManager;
-    public SplashScene(Stage primaryStage_, EcosystemManager manager_, CommandManager commandManager_)
+    //private CommandManager commandManager;
+    public SplashScene(Stage primaryStage_, EcosystemManager manager_)
     {
         super(new VBox());
         createView(primaryStage_);
         registerHandlers();
         primaryStage = primaryStage_;
         model = manager_;
-        commandManager = commandManager_;
+       // commandManager = commandManager_;
     }
 
     private void createView( Stage primaryStage)
@@ -119,7 +119,7 @@ public class SplashScene extends Scene
 
     private void registerHandlers(){
         setOnKeyPressed(event -> {
-            StartScene startScene = new StartScene(primaryStage,model,commandManager);
+            StartScene startScene = new StartScene(primaryStage,model);
             primaryStage.setScene(startScene);
             primaryStage.centerOnScreen();
             primaryStage.show();

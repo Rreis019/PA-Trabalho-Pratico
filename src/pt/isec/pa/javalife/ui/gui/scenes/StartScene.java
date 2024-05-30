@@ -20,13 +20,13 @@ public class StartScene extends Scene {
     Button btnCreate,btnImport;
     Stage primaryStage;
     private EcosystemManager model;
-    private CommandManager commandManager;
+    //private CommandManager commandManager;
 
-    public StartScene(Stage primaryStage_, EcosystemManager manager_, CommandManager commandManager_) {
+    public StartScene(Stage primaryStage_, EcosystemManager manager_) {
         super(new VBox());
         primaryStage =  primaryStage_;
         model = manager_;
-        commandManager = commandManager_;
+        //commandManager = commandManager_;
         createView(primaryStage_);
         registerHandlers();
     }
@@ -87,7 +87,7 @@ public class StartScene extends Scene {
     private void registerHandlers() {
         btnCreate.setOnAction(e -> {
             System.out.println("Botão 'Criar' foi clicado");
-            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model,commandManager);
+            CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
             // Criar um novo palco (janela)
             primaryStage.setScene(createEcoSystemScene);
             primaryStage.show();
@@ -102,7 +102,7 @@ public class StartScene extends Scene {
                 System.out.println("Arquivo CSV selecionado: " + selectedFile.getName());
                 if(model.load(selectedFile.getAbsolutePath())){
 
-                    MainScene mainscene = new MainScene(primaryStage,model,commandManager);
+                    MainScene mainscene = new MainScene(primaryStage,model);
                     primaryStage.setScene(mainscene);
                     primaryStage.show();
 

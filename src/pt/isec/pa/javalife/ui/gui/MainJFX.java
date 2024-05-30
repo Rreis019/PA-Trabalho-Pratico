@@ -11,15 +11,13 @@ import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.scenes.SplashScene;
 
 public class MainJFX extends Application {
-    //private Ecosystem model;
-    //private GameEngine gameEngine;
     private EcosystemManager model;
-    private CommandManager commandManager;
+    //private CommandManager commandManager;
 
 
     public MainJFX(){
         this.model = new EcosystemManager();
-        this.commandManager = new CommandManager();
+        //this.commandManager = new CommandManager();
     }
 
     public static void main(String[] args) {
@@ -37,7 +35,7 @@ public class MainJFX extends Application {
         Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
         primaryStage.getIcons().add(icon);
 
-        SplashScene splashScreen = new SplashScene(primaryStage,model,commandManager);
+        SplashScene splashScreen = new SplashScene(primaryStage,model);
 
         primaryStage.setScene(splashScreen);
         primaryStage.show();

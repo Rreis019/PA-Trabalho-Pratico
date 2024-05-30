@@ -14,6 +14,8 @@ public sealed interface IElement
 
     void setPositionX(double position);
     void setPositionY(double position);
+    double getPositionY();
+    double getPositionX();
     void setPosition(double positionX,double positionY);
 }
 

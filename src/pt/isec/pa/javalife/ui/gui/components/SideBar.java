@@ -33,9 +33,11 @@ public class SideBar extends VBox {
 
     private ComboBox<String> faunaDropdown;
     private Button btnAddElement;
-    private Button btnCreteEco;
+    private Button btnCreateEco;
     private BlueSlider strenghtSlider;
     private Button btnDelElement;
+    private Button btnUndo;
+    private Button btnRedo;
     private TextField txtId;
     private TextField txtType;
     private TextField txtX;
@@ -67,11 +69,8 @@ public class SideBar extends VBox {
         ecoTab.setSpacing(10);
         ecoTab.setMaxWidth(width - 10);
 
-        //VBox.setMargin(ecoTab, new Insets(5));
-
-
         faunaDropdown = new ComboBox<>();
-        faunaDropdown.getItems().addAll("Fauna", "Flora","Inanimados"); // Add your options here
+        faunaDropdown.getItems().addAll("Fauna", "Flora","Inanimados");
         faunaDropdown.setPrefWidth(width - 10);
         faunaDropdown.setFocusTraversable(false);
         faunaDropdown.setStyle("-fx-border-width: 0;");
@@ -82,10 +81,20 @@ public class SideBar extends VBox {
         btnAddElement.setPrefWidth(width - 10);
         btnAddElement.setMinHeight(40);
 
-        btnCreteEco = new Button("Criar Ecossistema");
-        btnCreteEco.getStyleClass().add("btn-primary");
-        btnCreteEco.setPrefWidth(width - 10);
-        btnCreteEco.setMinHeight(40);
+        btnCreateEco = new Button("Criar Ecossistema");
+        btnCreateEco.getStyleClass().add("btn-primary");
+        btnCreateEco.setPrefWidth(width - 10);
+        btnCreateEco.setMinHeight(40);
+
+        btnRedo = new Button("Redo");
+        btnRedo.getStyleClass().add("btn-primary");
+        btnRedo.setPrefWidth(width - 10);
+        btnRedo.setMinHeight(40);
+
+        btnUndo = new Button("Undo");
+        btnUndo.getStyleClass().add("btn-primary");
+        btnUndo.setPrefWidth(width - 10);
+        btnUndo.setMinHeight(40);
 
         Rectangle separate = new Rectangle();
         separate.setWidth(width - 10);
@@ -102,7 +111,7 @@ public class SideBar extends VBox {
         separate3.setHeight(2);
         separate3.setFill(Color.web("#373054"));
 
-                Rectangle separate4 = new Rectangle();
+        Rectangle separate4 = new Rectangle();
         separate4.setWidth(width - 10);
         separate4.setHeight(2);
         separate4.setFill(Color.web("#373054"));
@@ -114,9 +123,7 @@ public class SideBar extends VBox {
         sEnergyMovement.setFloat(true);
         sDamageFauna.setFloat(true);
 
-
-        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreteEco,sUnitTimer,sEnergyMovement,sDamageFauna);
-
+        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreateEco,btnRedo, btnUndo, sUnitTimer,sEnergyMovement,sDamageFauna);
 
         inspectTab = new VBox();
         inspectTab.setSpacing(10);
@@ -132,7 +139,6 @@ public class SideBar extends VBox {
 
         btnDelElement.setTooltip(new Tooltip("Remove a entidade que esta selecionada"));
 
-
         HBox containerId = new HBox();
         Label lbId = new Label("Id  ");
         lbId.setPrefWidth(40);
@@ -143,7 +149,6 @@ public class SideBar extends VBox {
         containerId.setAlignment(Pos.CENTER);
         txtId.setPrefWidth(TextField.USE_COMPUTED_SIZE);
         containerId.setSpacing(12);
-
 
 
         HBox containerType = new HBox();
@@ -157,10 +162,8 @@ public class SideBar extends VBox {
         containerType.setAlignment(Pos.CENTER);
         containerType.setSpacing(12);
 
-
         Label lbPosicao = new Label("Posição");
         lbPosicao.getStyleClass().addAll("text-bold");
-
 
         VBox containerX = new VBox();
         Label lbX = new Label("x");
@@ -246,7 +249,6 @@ public class SideBar extends VBox {
         space.setMinHeight(5);
 
         makeNumeric( txtId);
-        //makeNumeric( txtType);
         makeNumeric( txtX);
         makeNumeric( txtY);
         makeNumeric( txtEsq);
@@ -266,21 +268,22 @@ public class SideBar extends VBox {
         sUnitTimer.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                model.setGameInterval((long)sUnitTimer.getValue());
+                model.setGameIntervalCommand((long)sUnitTimer.getValue());
             }
         });
     
         sEnergyMovement.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                Fauna.decMovementEnergy = sEnergyMovement.getValue();
+               // Fauna.decMovementEnergy = sEnergyMovement.getValue();
+                model.setDecMovementEnergyCommand(sEnergyMovement.getValue());
             }
         });
     
         sDamageFauna.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                Fauna.damageToFlora = sDamageFauna.getValue();
+                model.setDamageToFloraCommand(sDamageFauna.getValue());
             }
         });
     
@@ -298,7 +301,9 @@ public class SideBar extends VBox {
 
     public ComboBox<String> getFaunaDropdown() {return faunaDropdown;}
     public Button getBtnAddElement() {return btnAddElement;}
-    public Button getBtnCreteEco() {return btnCreteEco;}
+    public Button getBtnCreateEco() {return btnCreateEco;}
+    public Button getBtnUndo() {return btnUndo;}
+    public Button getBtnRedo() {return btnRedo;}
     public BlueSlider getStrenghtSlider() {return strenghtSlider;}
     public Button getBtnDelElement() {return btnDelElement;}
     public TextField getTxtId() {return txtId;}

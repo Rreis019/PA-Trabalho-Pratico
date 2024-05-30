@@ -61,7 +61,13 @@ public abstract sealed class BaseElement
     public void setPositionX(double position){setPosition(position, area.top());}
     public void setPositionY(double position){setPosition(area.left(), position);}
 
+    public double getPositionX() {
+        return area.left();
+    }
 
+    public double getPositionY() {
+        return area.top();
+    }
     public void setPosition(double positionX,double positionY){
         double width = area.right() - area.left();
         double height = area.bottom() - area.top();
