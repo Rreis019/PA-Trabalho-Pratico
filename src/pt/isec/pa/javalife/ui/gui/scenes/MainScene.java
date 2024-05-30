@@ -344,10 +344,12 @@ public class MainScene extends Scene
         svgPlay.setOnMouseClicked((MouseEvent event) -> {
             if(model.getCurrentState() == GameEngineState.RUNNING){
                 model.pauseGame();
+                sidebar.enable();
                 svgPlay.setContent(svgPlayContent);
             }
             else if(model.getCurrentState() == GameEngineState.PAUSED){
                 model.resumeGame();
+                sidebar.disable();
                 svgPlay.setContent(svgStopContent);
             }
         }); 

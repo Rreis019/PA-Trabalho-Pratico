@@ -62,6 +62,7 @@ public class SideBar extends VBox {
 
     EcosystemManager model;
 
+
     public SideBar(EcosystemManager manager_)
     {
         model = manager_;
@@ -154,7 +155,6 @@ public class SideBar extends VBox {
         btnDelElement.setTooltip(new Tooltip("Remove a entidade que esta selecionada"));
 
 
-
         HBox containerId = new HBox();
         Label lbId = new Label("Id  ");
         lbId.setPrefWidth(40);
@@ -228,6 +228,11 @@ public class SideBar extends VBox {
         lbBaixo.getStyleClass().addAll("text-regular");
         containerBaixo.getChildren().addAll(lbBaixo,txtBaixo);
 
+        txtEsq.setDisable(true);
+        txtDir.setDisable(true);
+        txtCima.setDisable(true);
+        txtBaixo.setDisable(true);
+
         HBox containerArea = new HBox();
         containerArea.getChildren().addAll(containerEsq,containerCima,containerDir,containerBaixo);
         containerArea.setSpacing(6);
@@ -244,6 +249,7 @@ public class SideBar extends VBox {
         containerImg.getChildren().addAll(rectImg);
         inspectTab.getChildren().addAll(containerId,containerType,separate,lbPosicao,containerPos,separate2,lbArea,containerArea,separate3,strenghtSlider,btnDelElement);
 
+        if(model.getCurrentState() == GameEngineState.RUNNING){disable();}
 
         navbar = new SideBarNavbar(new SideBarNavbar.NavbarCallback() {
             @Override
@@ -259,7 +265,7 @@ public class SideBar extends VBox {
             @Override
             public boolean onSecondButtonClicked() {
 
-               if (model.getInspectTargetId() == -1) {
+               if (model.getElement(model.getInspectTargetId()) == null ) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erro");
                     alert.setHeaderText(null);
@@ -296,6 +302,29 @@ public class SideBar extends VBox {
         sDamageFauna.setValue(model.getDamageToFlora());
         registerHandlers();
     }
+
+
+    public void disable()
+    {
+        txtX.setDisable(true);
+        txtY.setDisable(true);
+        sUnitTimer.setDisable(true);
+        sDamageFauna.setDisable(true);
+        sEnergyMovement.setDisable(true);
+        strenghtSlider.setDisable(true);
+    }
+
+    public void enable()
+    {
+        txtX.setDisable(false);
+        txtY.setDisable(false);
+        sUnitTimer.setDisable(false);
+        sDamageFauna.setDisable(false);
+        sEnergyMovement.setDisable(false);
+        strenghtSlider.setDisable(false);
+    }
+
+
 
     // private void showInspect(IElement element) {
    public void update()
@@ -335,17 +364,17 @@ public class SideBar extends VBox {
     void registerHandlers()
     {
         sUnitTimer.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
-            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
             model.setInterval((long)sUnitTimer.getValue());
         });
 
         sEnergyMovement.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
-            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
             model.setEnergyPerMovement(sEnergyMovement.getValue());
         });
 
         sDamageFauna.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
-            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
             model.setDamageFaunaToFlora(sDamageFauna.getValue());
         });
 
@@ -391,15 +420,17 @@ public class SideBar extends VBox {
 
        
 
+        /*
         txtEsq.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
+                if(model.getCurrentState() != GameEngineState.PAUSED){showModError(); return;}
                 IElement ent = model.getElement(model.getInspectTargetId());
                 if(ent == null){return;}
                 ent.setPositionX(Integer.valueOf(txtEsq.getText()));
             }
         });
+        */
 
         strenghtSlider.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
             if(model.getCurrentState() != GameEngineState.PAUSED){return;}
@@ -410,18 +441,17 @@ public class SideBar extends VBox {
 
 
         btnDelElement.setOnAction(event -> {
-            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
             IElement element_ = model.getElement(model.getInspectTargetId());
             if(element_ == null){return;}
             model.removeElement(element_);
-            model.setInspectTarget(-1);
             showEcoTab();
         //    onRender(gc);
         });
 
 
         btnAddElement.setOnAction(event -> {
-            if (model.getCurrentState() != GameEngineState.PAUSED) {return;}
+            if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
             String selectedType = faunaDropdown.getSelectionModel().getSelectedItem();
 
             // Dependendo do tipo selecionado, adicione o tipo correspondente de elemento
@@ -468,6 +498,17 @@ public class SideBar extends VBox {
     {
         navbar.simulateSecondButtonClick();
     }
+
+
+    void showModError()
+    {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText("Tem que parar simulação para configurar o ecossistema...");
+        alert.showAndWait();
+    } 
+
 
     public ComboBox<String> getFaunaDropdown() {return faunaDropdown;}
     public Button getBtnAddElement() {return btnAddElement;}
