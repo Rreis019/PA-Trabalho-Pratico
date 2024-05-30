@@ -58,21 +58,25 @@ public class SideBarNavbar extends AnchorPane {
 
 
         backgroundInspect.setOnMouseClicked(event -> {
-            backgroundInspect.getStyleClass().clear();
-            backgroundInspect.getStyleClass().add("btn-primary");
-            backgroundEcossistema.getStyleClass().clear();
-            backgroundEcossistema.getStyleClass().add("btn-secondary");
-            callback.onSecondButtonClicked();
+            if(callback.onSecondButtonClicked())
+            {
+                backgroundInspect.getStyleClass().clear();
+                backgroundInspect.getStyleClass().add("btn-primary");
+                backgroundEcossistema.getStyleClass().clear();
+                backgroundEcossistema.getStyleClass().add("btn-secondary");
+            }
         });
 
 
 
          backgroundEcossistema.setOnMouseClicked(event -> {
-            backgroundEcossistema.getStyleClass().clear();
-            backgroundEcossistema.getStyleClass().add("btn-primary");
-            backgroundInspect.getStyleClass().clear();
-            backgroundInspect.getStyleClass().add("btn-secondary");
-            callback.onFirstButtonClicked();
+            if(callback.onFirstButtonClicked())
+            {
+                backgroundEcossistema.getStyleClass().clear();
+                backgroundEcossistema.getStyleClass().add("btn-primary");
+                backgroundInspect.getStyleClass().clear();
+                backgroundInspect.getStyleClass().add("btn-secondary");
+            }
         });
 
         this.getChildren().addAll(backgroundInspect, backgroundEcossistema, lbEcossistema, lbInspecionar);
@@ -81,8 +85,8 @@ public class SideBarNavbar extends AnchorPane {
 
 
     public interface NavbarCallback {
-        void onFirstButtonClicked();
-        void onSecondButtonClicked();
+        boolean onFirstButtonClicked();
+        boolean onSecondButtonClicked();
     }
 
     public void simulateFirstButtonClick() {

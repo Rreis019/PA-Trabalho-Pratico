@@ -26,7 +26,8 @@ import pt.isec.pa.javalife.model.data.elements.BaseElement;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 /**
  * 
  */
@@ -246,19 +247,33 @@ public class SideBar extends VBox {
 
         navbar = new SideBarNavbar(new SideBarNavbar.NavbarCallback() {
             @Override
-            public void onFirstButtonClicked() {
+            public boolean onFirstButtonClicked() {
                 ecoTab.setVisible(true);
                 ecoTab.setManaged(true);
                 inspectTab.setVisible(false);
                 inspectTab.setManaged(false);
+
+                return true;
             }
 
             @Override
-            public void onSecondButtonClicked() {
+            public boolean onSecondButtonClicked() {
+
+               if (model.getInspectTargetId() == -1) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Para inspecionar um objeto, primeiro clique com o botão direito em um.");
+                    alert.showAndWait();
+                    return false;
+                }
+
                 ecoTab.setVisible(false);
                 ecoTab.setManaged(false);
                 inspectTab.setVisible(true);
                 inspectTab.setManaged(true);
+
+                return true;
             }
         } ,200,35,"Ecossistema","Inspecionar");
 
@@ -399,6 +414,8 @@ public class SideBar extends VBox {
             IElement element_ = model.getElement(model.getInspectTargetId());
             if(element_ == null){return;}
             model.removeElement(element_);
+            model.setInspectTarget(-1);
+            showEcoTab();
         //    onRender(gc);
         });
 

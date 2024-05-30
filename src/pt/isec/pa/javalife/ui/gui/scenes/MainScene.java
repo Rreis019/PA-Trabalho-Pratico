@@ -480,7 +480,6 @@ public class MainScene extends Scene
             primaryStage.setScene(createEcoSystemScene);
         });
 
-        //Quando clico em um elemento abre o inspecionar
         canvas.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) { 
                 double mouseX = event.getX();
