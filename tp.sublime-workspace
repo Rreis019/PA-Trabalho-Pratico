@@ -520,65 +520,12 @@
 	"buffers":
 	[
 		{
-			"file": "src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
+			"file": "tp.sublime-project",
 			"settings":
 			{
-				"buffer_size": 38516,
-				"encoding": "UTF-8",
+				"buffer_size": 2559,
 				"line_ending": "Windows"
 			}
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
-			"settings":
-			{
-				"buffer_size": 16215,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
-			"settings":
-			{
-				"buffer_size": 4196,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/pt/isec/pa/javalife/ui/gui/scenes/SplashScene.java",
-			"settings":
-			{
-				"buffer_size": 4631,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "package pt.isec.pa.javalife.ui.gui.scenes;\nimport javafx.geometry.Pos;\nimport javafx.scene.control.*;\nimport javafx.scene.image.ImageView;\nimport javafx.scene.layout.*;\nimport pt.isec.pa.javalife.model.Ecosystem;\nimport pt.isec.pa.javalife.model.EcosystemManager;\nimport pt.isec.pa.javalife.model.data.elements.Element;\nimport pt.isec.pa.javalife.model.data.elements.Fauna;\nimport pt.isec.pa.javalife.model.gameengine.GameEngine;\nimport pt.isec.pa.javalife.ui.gui.FaunaImagesManager;\nimport pt.isec.pa.javalife.ui.gui.components.*;\nimport javafx.scene.Scene;\nimport javafx.stage.Stage;\n\nimport javafx.beans.value.ChangeListener;\nimport javafx.beans.value.ObservableValue;\n\nimport javafx.geometry.Insets;\nimport javafx.scene.paint.Color;\nimport javafx.scene.shape.Rectangle;\n\nclass CreateEcosystemScene extends Scene\n{\n    EcosystemManager model;\n    Stage primaryStage;\n    Button criarButton;\n\n\n    BlueSpinner SAltura;\n    BlueSpinner Scomprimento;\n    BlueSpinner Sfauna;\n    BlueSpinner Sflora;\n    BlueSpinner Sinanimados;\n    BlueSpinner sUnitTimer;\n    BlueSlider sEnergyMovement;\n    BlueSlider sDamageFauna;\n\n    ToggleGroup characterGroup;\n    VBox option1Box, option2Box, option3Box, option4Box;\n    RadioButton option1, option2, option3, option4;\n\n\n\n    public CreateEcosystemScene(Stage primaryStage_,EcosystemManager manager_)\n    {\n        super(new HBox());\n        model = manager_;\n        primaryStage =  primaryStage_;\n        createView(primaryStage_);\n        registerHandlers();\n    }\n\n    private void createView(Stage primaryStage)\n    {\n        //Adiciona o ficheiro de classes de css\n        getStylesheets().add(getClass().getResource(\"/style.css\").toExternalForm());\n        HBox root = (HBox) this.getRoot();\n        root.getStyleClass().add(\"primary-background\");\n        root.setSpacing(5);\n\n        VBox secondaryBackground = new VBox();\n        secondaryBackground.getStyleClass().add(\"secondary-background\");\n        secondaryBackground.setAlignment(Pos.TOP_CENTER);\n        VBox.setVgrow(secondaryBackground, Priority.ALWAYS);\n\n        //Titulo da pagina\n        primaryStage.setTitle(\"JavaLife - Criar Ecossistema\");\n\n        //Para colocar tudo com a cor secundária de fundo\n        VBox content = new VBox();\n        content.getStyleClass().add(\"secondary-background\");\n        content.setSpacing(10);\n        content.setMaxWidth(350);\n        VBox.setMargin(content, new Insets(5));\n\n        //Texto\n        Label Texto = new Label(\"Criação do ecossistema\");\n        Texto.setWrapText(true);\n        Texto.setAlignment(Pos.CENTER_LEFT);\n        Texto.getStyleClass().add(\"heading\");\n        Texto.setStyle(\"-fx-text-alignment: left;\");\n\n        //Barra Branca\n        Rectangle separate = new Rectangle();\n        separate.setHeight(2);\n        separate.setWidth(305);\n        separate.setFill(Color.WHITE);\n\n        // Campos de texto\n        //Label TextoNome = new Label(\"Nome\");\n        //TextoNome.setStyle(\"-fx-text-fill: white; -fx-text-alignment: left; -fx-font-size : 15px;\");\n        //TextField Nome = new TextField();\n        \n\n        //Componentes\n        SAltura = new BlueSpinner(\"Altura\",300,200,500,20);\n        Scomprimento = new BlueSpinner(\"Comprimento\",300,200,500,5);\n        Sfauna = new BlueSpinner(\"Quantidade Fauna\",10,0,100,5);\n        Sflora = new BlueSpinner(\"Quantidade Flora\",10,0,100,5);\n        Sinanimados = new BlueSpinner(\"Quantidade Inanimados\",10,0,100,5);\n        sUnitTimer = new BlueSpinner(\"Unidade de tempo\", 100,10,100, 1000);\n\n        sEnergyMovement = new BlueSlider(\"EnergiaMovimento(Fauna)\", 300,0.1,0.5, 5);\n        sDamageFauna = new BlueSlider(\"Dano da Fauna\", 300,0.1,1, 5);\n\n\n\n        sEnergyMovement.setFloat(true);\n        sDamageFauna.setFloat(true);\n\n\n        // Botão de criar\n        criarButton = new Button(\"Criar\");\n        criarButton.setMinWidth(150);\n        criarButton.setMinHeight(45);\n        criarButton.getStyleClass().add(\"btn-primary\");\n\n        HBox hbox1 = new HBox();\n        hbox1.getChildren().addAll(SAltura, Scomprimento);\n        hbox1.setSpacing(10); // Espaçamento entre os componentes\n        hbox1.setAlignment(Pos.CENTER);\n\n        HBox hbox2 = new HBox();\n        hbox2.getChildren().addAll(Sfauna, Sflora);\n        hbox2.setSpacing(10); // Espaçamento entre os componentes\n        hbox2.setAlignment(Pos.CENTER);\n\n        HBox hbox3 = new HBox();\n        hbox3.getChildren().addAll(Sinanimados,sUnitTimer);\n        hbox3.setSpacing(10); // Espaçamento entre os componentes\n        hbox3.setAlignment(Pos.CENTER);\n\n\n        VBox title = new VBox();\n        title.getChildren().addAll(Texto,separate);\n        //Label Erro = new Label(\"Mensagem de Erro\");\n        //Erro.setStyle(\"-fx-text-fill: white;-fx-font-size : 15px;\");\n        content.getChildren().addAll(title, hbox1, hbox2,hbox3,sDamageFauna,sEnergyMovement, criarButton);\n        secondaryBackground.getChildren().addAll(content);\n\n        //--------- Área de seleção de ícone para a fauna\n        Label lbFauna = new Label(\"Selecione um ícone para a fauna\");\n        lbFauna.getStyleClass().add(\"text-bold\");\n\n        characterGroup = new ToggleGroup();\n\n        option1 = new RadioButton();\n        option1.setToggleGroup(characterGroup);\n        Label lbLobo = new Label(\"Lobo\");\n        lbLobo.getStyleClass().add(\"text-bold\");\n        ImageView loboImage = new ImageView(FaunaImagesManager.getImage(\"lobo\"));\n        loboImage.setFitWidth(100);\n        loboImage.setFitHeight(100);\n\n        option2 = new RadioButton();\n        option2.setToggleGroup(characterGroup);\n        Label lbOvelha = new Label(\"Ovelha\");\n        lbOvelha.getStyleClass().add(\"text-bold\");\n        ImageView ovelhaImage = new ImageView(FaunaImagesManager.getImage(\"ovelha\"));\n        ovelhaImage.setFitWidth(100);\n        ovelhaImage.setFitHeight(100);\n\n        option3 = new RadioButton();\n        option3.setToggleGroup(characterGroup);\n        Label lbUrso = new Label(\"Urso\");\n        lbUrso.getStyleClass().add(\"text-bold\");\n        ImageView ursoImage = new ImageView(FaunaImagesManager.getImage(\"urso\"));\n        ursoImage.setFitWidth(100);\n        ursoImage.setFitHeight(100);\n\n        option4 = new RadioButton();\n        option4.setToggleGroup(characterGroup);\n        Label lbCobra = new Label(\"Cobra\");\n        lbCobra.getStyleClass().add(\"text-bold\");\n        ImageView cobraImage = new ImageView(FaunaImagesManager.getImage(\"cobra\"));\n        cobraImage.setFitWidth(100);\n        cobraImage.setFitHeight(90);\n\n       //Para fazer com que os radio buttons desapareçam\n        option1.setStyle(\"-fx-opacity: 0\");\n        option2.setStyle(\"-fx-opacity: 0\");\n        option3.setStyle(\"-fx-opacity: 0\");\n        option4.setStyle(\"-fx-opacity: 0\");\n\n        option1Box = new VBox();\n        option1Box.setAlignment(Pos.CENTER);\n        option1Box.getChildren().addAll(lbLobo,option1,loboImage);\n\n        option2Box = new VBox();\n        option2Box.setAlignment(Pos.CENTER);\n        option2Box.getChildren().addAll(lbOvelha,option2,ovelhaImage);\n\n        HBox charactersBox1 = new HBox();\n        charactersBox1.getChildren().addAll(option1Box, option2Box);\n        charactersBox1.setSpacing(60);\n        charactersBox1.setAlignment(Pos.CENTER);\n        option3Box = new VBox();\n        option3Box.setAlignment(Pos.CENTER);\n        option3Box.getChildren().addAll(lbUrso,option3,ursoImage);\n\n        option4Box = new VBox();\n        option4Box.setAlignment(Pos.CENTER);\n        option4Box.getChildren().addAll(lbCobra,option4,cobraImage);\n\n        HBox charactersBox2 = new HBox();\n        charactersBox2.getChildren().addAll(option3Box, option4Box);\n        charactersBox2.setSpacing(60);\n         charactersBox2.setAlignment(Pos.CENTER);\n\n        VBox characterBox = new VBox();\n        characterBox.setAlignment(Pos.CENTER);\n        characterBox.getStyleClass().add(\"secondary-background\");\n        characterBox.setSpacing(20);\n\n        characterBox.getChildren().addAll(lbFauna, charactersBox1, charactersBox2, criarButton);\n        characterBox.setAlignment(Pos.CENTER);\n\n\n        HBox.setHgrow(characterBox, Priority.ALWAYS);\n\n        root.setPadding(new Insets(5));\n        root.getChildren().addAll(secondaryBackground, characterBox);\n\n        //Tamanho da janela\n        primaryStage.setWidth(732);\n        primaryStage.setHeight(515);\n    }\n\n    private void registerHandlers()\n    {\n        Fauna temp = new Fauna(null, 0, 0);\n\n        criarButton.setOnAction(e -> {\n            System.out.println(\"Botão 'Criar' foi clicado\");\n            \n            model.clearElements();\n            model.setWidth(Scomprimento.getNumero());\n            model.setHeight(SAltura.getNumero());\n            model.makeWall();\n\n            //model.getFaunaMovementEnergy();\n            model.setEnergyPerMovement(sEnergyMovement.getValue());\n            model.setEnergyPerMovement(sDamageFauna.getValue());\n            model.resetTicksCounter();\n\n            for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.INANIMATE);}\n\n\n\n            for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FAUNA);}\n            for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FLORA);}\n\n            model.setGameInterval((long)sUnitTimer.getNumero());\n            model.resumeGame();\n            MainScene mainscene = new MainScene(primaryStage,model);\n            primaryStage.setScene(mainscene);\n            primaryStage.show();\n\n        });\n\n\n        option1Box.setOnMouseClicked(e -> option1.setSelected(true));\n\n        option2Box.setOnMouseClicked(e -> option2.setSelected(true));\n\n        option3Box.setOnMouseClicked(e -> option3.setSelected(true));\n\n        option4Box.setOnMouseClicked(e -> option4.setSelected(true));\n\n        characterGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {\n            if (newValue == option1) {\n                option1Box.getStyleClass().add(\"selected-container\");\n                option2Box.getStyleClass().remove(\"selected-container\");\n                option3Box.getStyleClass().remove(\"selected-container\");\n                option4Box.getStyleClass().remove(\"selected-container\");\n                temp.setImage(\"lobo\");\n            } else if (newValue == option2) {\n                option2Box.getStyleClass().add(\"selected-container\");\n                option1Box.getStyleClass().remove(\"selected-container\");\n                option3Box.getStyleClass().remove(\"selected-container\");\n                option4Box.getStyleClass().remove(\"selected-container\");\n                temp.setImage(\"ovelha\");\n            } else if (newValue == option3) {\n                option3Box.getStyleClass().add(\"selected-container\");\n                option1Box.getStyleClass().remove(\"selected-container\");\n                option2Box.getStyleClass().remove(\"selected-container\");\n                option4Box.getStyleClass().remove(\"selected-container\");\n                temp.setImage(\"urso\");\n            } else if (newValue == option4) {\n                option4Box.getStyleClass().add(\"selected-container\");\n                option1Box.getStyleClass().remove(\"selected-container\");\n                option2Box.getStyleClass().remove(\"selected-container\");\n                option3Box.getStyleClass().remove(\"selected-container\");\n                temp.setImage(\"cobra\");\n            }\n        });\n    }\n\n}\n",
-			"file": "src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
-			"file_size": 11749,
-			"file_write_time": 133614714714915594,
-			"settings":
-			{
-				"buffer_size": 11435,
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					4,
-					3,
-					"swap_line_up",
-					null,
-					"BgAAAGMDAAAAAAAAYwMAAAAAAAAcAAAAICAgIEVjb3N5c3RlbU1hbmFnZXIgbW9kZWw7CmIDAAAAAAAAfgMAAAAAAAAAAAAAYgMAAAAAAABiAwAAAAAAABwAAAAgICAgRWNvc3lzdGVtTWFuYWdlciBtb2RlbDsKSgMAAAAAAABmAwAAAAAAAAAAAABKAwAAAAAAAEoDAAAAAAAAHAAAACAgICBFY29zeXN0ZW1NYW5hZ2VyIG1vZGVsOwoyAwAAAAAAAE4DAAAAAAAAAAAAAA",
-					"AwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAHYDAAAAAAAAdwMAAAAAAAAAAAAAAADwvw"
-				]
-			]
 		}
 	],
 	"build_system": "",
@@ -589,16 +536,28 @@
 	"command_palette":
 	{
 		"height": 0.0,
-		"last_filter": "rename",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"rename",
-				"Rename File"
+				"close",
+				"File: Close All"
+			],
+			[
+				"term",
+				"Terminus: Toggle Panel"
 			],
 			[
 				"bui",
 				"Javatar: Builds..."
+			],
+			[
+				"BUI",
+				"Javatar: Builds..."
+			],
+			[
+				"rename",
+				"Rename File"
 			],
 			[
 				"call",
@@ -610,14 +569,6 @@
 			],
 			[
 				"buid",
-				"Javatar: Builds..."
-			],
-			[
-				"close",
-				"File: Close All"
-			],
-			[
-				"BUI",
 				"Javatar: Builds..."
 			],
 			[
@@ -647,10 +598,6 @@
 			[
 				"rena",
 				"Rename File"
-			],
-			[
-				"term",
-				"Terminus: Toggle Panel"
 			],
 			[
 				"buil",
@@ -876,11 +823,10 @@
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/memento",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/tests",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui",
@@ -890,50 +836,61 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/memento/IMementoOriginator.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Nova pasta/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/IElement.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Nova pasta/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/BaseElement.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Nova pasta/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/Ecosystem.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBarNavbar.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Nova pasta/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBarNavbar.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetElementStrenght.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Nova pasta/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/Alert.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/AddElementComand.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Nova pasta/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Nova pasta/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/BaseElement.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/EcosystemManager.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/memento/CareTaker.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetEnergyPerMovementCommand.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/Ecosystem.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/docs/pt/isec/pa/javalife/model/EcosystemManager.html",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/IElement.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/RemoveElementComand.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/SplashScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
+		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/memento/IMementoOriginator.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/MovingState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/tp.sublime-project",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/EcosystemManager.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/memento/Memento.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateContext.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaStateAdapter.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/Ecosystem.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/tests/FaunaStateMachineTest.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/IFaunaState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Inanimate.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/java.io.NotSerializableException",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/GameEngine.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/AddElementComand.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/CommandAdapter.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/CommandManager.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/mai. 29, 2024 10",
 		"/C/Users/Eu/Downloads/MainScene.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/RemoveElementComand.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/BaseElement.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/IElement.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetElementPos.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetIntervalCommand.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetEnergyPerMovementCommand.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetElementStrenght.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetDamageFaunaToFloraCommand.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/\tat pt.isec.pa.javalife.ui.gui.scenes.CreateEcosystemScene.lambda$registerHandlers$0(CreateEcosystemScene.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/\tat pt.isec.pa.javalife.model.EcosystemManager.setEnergyPerMovement(EcosystemManager.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/EditElementComand.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/Area.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Flora.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/EatingState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Fauna.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/command/SetDamageFaunaToFlora.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/ReproduceState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/SearchFoodState.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/states/AttackingState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/docs/pt/isec/pa/javalife/model/EcosystemManager.html",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/docs/pt/isec/pa/javalife/model/fsm/states/AttackingState.html",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/docs/pt/isec/pa/javalife/model/Ecosystem.html",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/Main.java",
@@ -945,13 +902,11 @@
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/IGameEngine.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/IGameEngineEvolve.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/MainJFX.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/SplashScene.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/INFO",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/ClickableSVG.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/.gitignore",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/Element.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/\tat pt.isec.pa.javalife.model.fsm.states.ReproduceState.execute(ReproduceState.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/ElementsFactory.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/data/elements/IElementWithImage.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/FaunaImagesManager.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/BlueSpinner.java",
@@ -962,7 +917,6 @@
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/IEcosystem.java",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/fsm/FaunaDirection.java",
 		"/C/Users/Eu/Downloads/Ex30_Completo/src/pt/isec/pa/ex30/Main.java",
-		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBarNavbar.java",
 		"/C/ValoraHelp/ValoraHelp/Drawings.cpp",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/Exception in thread \"JavaFX Application Thread\" java.lang.NullPointerException",
 		"/C/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/model/gameengine/GameEngineState.java",
@@ -1009,15 +963,11 @@
 		"/C/Users/Eu/Downloads/halflife-master/cl_dll/ev_common.cpp",
 		"/C/Users/Eu/Downloads/halflife-master/ricochet/dlls/teamplay_gamerules.cpp",
 		"/C/Users/Eu/Downloads/halflife-master/cl_dll/bench.h",
-		"/C/Users/Eu/Downloads/halflife-master/cl_dll/Exports.h",
-		"/C/Users/Eu/Downloads/halflife-master/cl_dll/StudioModelRenderer.cpp",
-		"/C/Users/Eu/Downloads/halflife-master/dmc/cl_dll/hud_spectator.cpp",
-		"/C/Users/Eu/Downloads/halflife-master/game_shared/voice_gamemgr.cpp",
-		"/C/Users/Eu/Downloads/halflife-master/dlls/cbase.h"
+		"/C/Users/Eu/Downloads/halflife-master/cl_dll/Exports.h"
 	],
 	"find":
 	{
-		"height": 32.0
+		"height": 44.0
 	},
 	"find_in_files":
 	{
@@ -1032,6 +982,31 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"callback",
+			"onSecondButtonClicked",
+			"onFirstButtonClicked",
+			"onSecondButtonClicked",
+			"Alert",
+			"alert",
+			"inspect",
+			"Inspecionar",
+			"inspect",
+			"ATTACK SHIT",
+			"id",
+			"oldStrenght",
+			"newStrenght",
+			"SetEnergyPerMovementCommand",
+			"oldValue",
+			"newValue",
+			"oldValue",
+			"inspecttarget",
+			"btnaddelement",
+			"inspectTarget",
+			"addelement",
+			"PROP_DATA",
+			"addelement",
+			"sidebar",
+			"inspectedTargetId",
 			"gameenginethread",
 			"svgSNapshot",
 			"stackReplay",
@@ -1134,32 +1109,7 @@
 			"option1Box",
 			"text-regular",
 			"ticks",
-			"Label",
-			"lbTicks",
-			"error",
-			"sidebar.getTxtId()",
-			"ticks",
-			"evolve",
-			"ChangeListener",
-			"descreaseEnergy",
-			"sUnitTimer",
-			"sUnitTimer\n",
-			"ecoTab",
-			"sunit",
-			"onrender",
-			"sUnit",
-			"TextoNome",
-			"slider",
-			"Erro",
-			"canvas",
-			"error",
-			"evolve",
-			"eolve",
-			"evolve",
-			"removeElement",
-			"gameEngine",
-			"PropertyChangeListener",
-			"gameEngine"
+			"Label"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1183,254 +1133,34 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 38516,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1831,
-								1831
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/MainScene.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 11021.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
+					"file": "tp.sublime-project",
 					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16215,
+						"buffer_size": 2559,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12123,
-								12123
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"registration_id": "fffd2ea1-30a3-4466-b485-5a28d44ec4d5",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/components/SideBar.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
+							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/tp.sublime-project",
+							"syntax": "Packages/JSON/JSON.sublime-syntax",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 7567.0,
+						"translation.y": 240.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4196,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								632,
-								632
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/StartScene.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 207.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/pt/isec/pa/javalife/ui/gui/scenes/SplashScene.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4631,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								837,
-								837
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/SplashScene.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 276.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11435,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1573,
-								1580
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".@#* ",
-									"registration_id": "fffd2ea1-30a3-4466-b485-5a28d44ec4d5",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "jdtls"
-								}
-							],
-							"lsp_active": true,
-							"lsp_uri": "file:///C:/Users/Eu/Documents/isec/PA/PA-Trabalho-Pratico/src/pt/isec/pa/javalife/ui/gui/scenes/CreateEcosystemScene.java",
-							"show_definitions": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 480.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"stack_multiselect": false,
 					"type": "text"
 				}
@@ -1482,7 +1212,7 @@
 	},
 	"output.exec":
 	{
-		"height": 267.0
+		"height": 34.0
 	},
 	"output.find_results":
 	{
@@ -1506,7 +1236,79 @@
 		"selected_items":
 		[
 			[
+				"faun",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
+				"fauna",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
+			],
+			[
 				"sidebar",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
+			],
+			[
+				"sideba",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
+			],
+			[
+				"main",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"elem",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\ElementsFactory.java"
+			],
+			[
+				"addel",
+				"src\\pt\\isec\\pa\\javalife\\model\\command\\AddElementComand.java"
+			],
+			[
+				"add",
+				"src\\pt\\isec\\pa\\javalife\\model\\command\\AddElementComand.java"
+			],
+			[
+				"eco",
+				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
+			],
+			[
+				"ecom",
+				"src\\pt\\isec\\pa\\javalife\\model\\command\\AddElementComand.java"
+			],
+			[
+				"mainscne",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"sideb",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
+			],
+			[
+				"mains",
+				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
+			],
+			[
+				"ecosy",
+				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
+			],
+			[
+				"REMOVE",
+				"src\\pt\\isec\\pa\\javalife\\model\\command\\RemoveElementComand.java"
+			],
+			[
+				"BASELE",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\BaseElement.java"
+			],
+			[
+				"IELEM",
+				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\IElement.java"
+			],
+			[
+				"ecost",
+				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
+			],
+			[
+				"SIDEBAR",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
 			],
 			[
@@ -1614,16 +1416,8 @@
 				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
 			],
 			[
-				"main",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
 				"ecos",
 				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
-			],
-			[
-				"add",
-				"src\\pt\\isec\\pa\\javalife\\model\\command\\AddElementComand.java"
 			],
 			[
 				"ideba",
@@ -1634,16 +1428,8 @@
 				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
 			],
 			[
-				"eco",
-				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
-			],
-			[
 				"base",
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\BaseElement.java"
-			],
-			[
-				"ecosy",
-				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
 			],
 			[
 				"side",
@@ -1656,10 +1442,6 @@
 			[
 				"coma",
 				"src\\pt\\isec\\pa\\javalife\\model\\command\\EditElementComand.java"
-			],
-			[
-				"sideba",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
 			],
 			[
 				"remove",
@@ -1690,10 +1472,6 @@
 				"src\\pt\\isec\\pa\\javalife\\model\\command\\SetIntervalCommand.java"
 			],
 			[
-				"ecost",
-				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
-			],
-			[
 				"movin",
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\MovingState.java"
 			],
@@ -1706,19 +1484,11 @@
 				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Flora.java"
 			],
 			[
-				"fauna",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
-			],
-			[
 				"ECOSYS",
 				"src\\pt\\isec\\pa\\javalife\\model\\EcosystemManager.java"
 			],
 			[
 				"SIDEBA",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
-			],
-			[
-				"sideb",
 				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\components\\SideBar.java"
 			],
 			[
@@ -1736,10 +1506,6 @@
 			[
 				"eat",
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\states\\EatingState.java"
-			],
-			[
-				"faun",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
 			],
 			[
 				"start",
@@ -1856,10 +1622,6 @@
 			[
 				"mga",
 				"src\\pt\\isec\\pa\\javalife\\model\\gameengine\\GameEngine.java"
-			],
-			[
-				"mainscne",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			],
 			[
 				"ma",
@@ -1984,38 +1746,6 @@
 			[
 				"DI",
 				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\Direction.java"
-			],
-			[
-				"fau",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\elements\\Fauna.java"
-			],
-			[
-				"dire",
-				"src\\pt\\isec\\pa\\javalife\\model\\fsm\\Direction.java"
-			],
-			[
-				"E",
-				"src\\pt\\isec\\pa\\javalife\\model\\Ecosystem.java"
-			],
-			[
-				"MAIN",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"MA",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"elem",
-				"src\\pt\\isec\\pa\\javalife\\model\\data\\ElementsFactory.java"
-			],
-			[
-				"mais",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
-			],
-			[
-				"MAINS",
-				"src\\pt\\isec\\pa\\javalife\\ui\\gui\\scenes\\MainScene.java"
 			]
 		],
 		"width": 0.0
@@ -2046,7 +1776,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 478.0,
+	"side_bar_width": 400.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

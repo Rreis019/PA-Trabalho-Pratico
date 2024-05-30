@@ -39,6 +39,13 @@ public final class Fauna extends BaseElement implements IElementWithStrength,IEl
         this.eco = ecosystem;
     }   
 
+    @Override
+public Fauna clone() {
+    Fauna cloned = (Fauna) super.clone();
+    cloned.ctx = new FaunaStateContext(this.eco, cloned);
+    return cloned;
+}
+
 
     public FaunaState getState(){return ctx.getState();}
     public FaunaStateContext getFSM(){return ctx;}

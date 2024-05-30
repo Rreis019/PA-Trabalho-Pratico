@@ -23,6 +23,7 @@ public final class FaunaStateContext implements Serializable {
 	}
 
 
+
 	void changeState(IFaunaState iFaunaState){
 		this.state = iFaunaState;
 	}
