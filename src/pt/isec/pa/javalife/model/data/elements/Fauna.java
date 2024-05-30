@@ -21,14 +21,13 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Fauna
  */
-public final class Fauna extends BaseElement implements IElementWithStrength,IElementWithImage
+public non-sealed class Fauna extends BaseElement implements IElementWithStrength,IElementWithImage
 {
     private static String image = "lobo";
     private Direction direction = Direction.RIGHT;
     private double strength = 50;
     private int velocity = 32;
     private static final int size = 32;
-
 
     private FaunaStateContext ctx;
     private Ecosystem eco;

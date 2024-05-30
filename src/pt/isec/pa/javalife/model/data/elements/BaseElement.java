@@ -21,11 +21,9 @@ public abstract sealed class BaseElement
     protected Area area;
 
     public BaseElement(Element type, double positionX,double positionY,double width,double height) {
-        //this.id = id;
         lastId = lastId + 1;
         this.id = lastId;
         this.type = type;
-        //this.area = area;
         setArea(positionX,positionY,width,height);
     }
 

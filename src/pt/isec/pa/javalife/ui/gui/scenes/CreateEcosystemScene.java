@@ -1,21 +1,18 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import pt.isec.pa.javalife.model.Ecosystem;
+
 import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
-import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.*;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -25,7 +22,6 @@ class CreateEcosystemScene extends Scene
     EcosystemManager model;
     Stage primaryStage;
     Button criarButton;
-
 
     BlueSpinner SAltura;
     BlueSpinner Scomprimento;
@@ -39,8 +35,6 @@ class CreateEcosystemScene extends Scene
     ToggleGroup characterGroup;
     VBox option1Box, option2Box, option3Box, option4Box;
     RadioButton option1, option2, option3, option4;
-
-
 
     public CreateEcosystemScene(Stage primaryStage_,EcosystemManager manager_)
     {
@@ -87,12 +81,6 @@ class CreateEcosystemScene extends Scene
         separate.setWidth(305);
         separate.setFill(Color.WHITE);
 
-        // Campos de texto
-        //Label TextoNome = new Label("Nome");
-        //TextoNome.setStyle("-fx-text-fill: white; -fx-text-alignment: left; -fx-font-size : 15px;");
-        //TextField Nome = new TextField();
-        
-
         //Componentes
         SAltura = new BlueSpinner("Altura",300,200,500,20);
         Scomprimento = new BlueSpinner("Comprimento",300,200,500,5);
@@ -104,11 +92,8 @@ class CreateEcosystemScene extends Scene
         sEnergyMovement = new BlueSlider("EnergiaMovimento(Fauna)", 300,0.1,0.5, 5);
         sDamageFauna = new BlueSlider("Dano da Fauna", 300,0.1,1, 5);
 
-
-
         sEnergyMovement.setFloat(true);
         sDamageFauna.setFloat(true);
-
 
         // Botão de criar
         criarButton = new Button("Criar");
@@ -131,13 +116,11 @@ class CreateEcosystemScene extends Scene
         hbox3.setSpacing(10); // Espaçamento entre os componentes
         hbox3.setAlignment(Pos.CENTER);
 
-
         VBox title = new VBox();
         title.getChildren().addAll(Texto,separate);
-        //Label Erro = new Label("Mensagem de Erro");
-        //Erro.setStyle("-fx-text-fill: white;-fx-font-size : 15px;");
         content.getChildren().addAll(title, hbox1, hbox2,hbox3,sDamageFauna,sEnergyMovement, criarButton);
         secondaryBackground.getChildren().addAll(content);
+
 
         //--------- Área de seleção de ícone para a fauna
         Label lbFauna = new Label("Selecione um ícone para a fauna");
@@ -177,7 +160,7 @@ class CreateEcosystemScene extends Scene
         cobraImage.setFitWidth(100);
         cobraImage.setFitHeight(90);
 
-       //Para fazer com que os radio buttons desapareçam
+        //Para fazer com que os radio buttons desapareçam
         option1.setStyle("-fx-opacity: 0");
         option2.setStyle("-fx-opacity: 0");
         option3.setStyle("-fx-opacity: 0");
@@ -195,6 +178,7 @@ class CreateEcosystemScene extends Scene
         charactersBox1.getChildren().addAll(option1Box, option2Box);
         charactersBox1.setSpacing(60);
         charactersBox1.setAlignment(Pos.CENTER);
+
         option3Box = new VBox();
         option3Box.setAlignment(Pos.CENTER);
         option3Box.getChildren().addAll(lbUrso,option3,ursoImage);
@@ -216,15 +200,17 @@ class CreateEcosystemScene extends Scene
         characterBox.getChildren().addAll(lbFauna, charactersBox1, charactersBox2, criarButton);
         characterBox.setAlignment(Pos.CENTER);
 
-
         HBox.setHgrow(characterBox, Priority.ALWAYS);
 
         root.setPadding(new Insets(5));
         root.getChildren().addAll(secondaryBackground, characterBox);
 
         //Tamanho da janela
-        primaryStage.setWidth(732);
-        primaryStage.setHeight(515);
+        //primaryStage.setWidth(732);
+        //primaryStage.setHeight(515);
+
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(600);
     }
 
     private void registerHandlers()
@@ -232,33 +218,26 @@ class CreateEcosystemScene extends Scene
         Fauna temp = new Fauna(null, 0, 0);
 
         criarButton.setOnAction(e -> {
-            System.out.println("Botão 'Criar' foi clicado");
-            
             model.clearElements();
             model.setWidth(Scomprimento.getNumero());
             model.setHeight(SAltura.getNumero());
             model.makeWall();
 
-            //model.getFaunaMovementEnergy();
             model.setEnergyPerMovement(sEnergyMovement.getValue());
             model.setEnergyPerMovement(sDamageFauna.getValue());
             model.resetTicksCounter();
 
             for (int i = 0; i < Sinanimados.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.INANIMATE);}
-
-
-
             for (int i = 0; i < Sfauna.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FAUNA);}
             for (int i = 0; i < Sflora.getNumero();i++ ) {model.addElementToRandomFreePosition(Element.FLORA);}
 
             model.setGameInterval((long)sUnitTimer.getNumero());
             model.resumeGame();
+
             MainScene mainscene = new MainScene(primaryStage,model);
             primaryStage.setScene(mainscene);
             primaryStage.show();
-
         });
-
 
         option1Box.setOnMouseClicked(e -> option1.setSelected(true));
 
@@ -296,5 +275,4 @@ class CreateEcosystemScene extends Scene
             }
         });
     }
-
 }

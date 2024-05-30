@@ -12,19 +12,15 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 /**
  * Flora
  */
-public final class Flora extends BaseElement  implements IElementWithImage,IElementWithStrength  
+public non-sealed class Flora extends BaseElement  implements IElementWithImage,IElementWithStrength
 {
     //config
     private static final double initialStrength = 50;
 	private static final double incEnergy = 0.5;
-
-
     private static final int size = 13;
     double strenght = initialStrength;
     private int reproductionCount = 0;
     private boolean attemptedReproduction = false;
-    
-
 
 
 	 public Flora(double positionX,double positionY) {

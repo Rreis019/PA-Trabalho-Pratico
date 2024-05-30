@@ -1,4 +1,7 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
+
+import pt.isec.pa.javalife.model.EcosystemManager;
+
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
@@ -13,10 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import pt.isec.pa.javalife.model.Ecosystem;
-import pt.isec.pa.javalife.model.EcosystemManager;
-import pt.isec.pa.javalife.model.gameengine.GameEngine;
-
 
 public class SplashScene extends Scene
 {

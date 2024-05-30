@@ -8,8 +8,7 @@ import java.util.HashMap;
 public class FaunaImagesManager { //classe Multiton
     private static final HashMap <String, Image> imagesFaunaMap = new HashMap<>();
 
-    private FaunaImagesManager() {
-    }
+    private FaunaImagesManager() {}
 
     public static Image getImage(String specie) {
         Image image = imagesFaunaMap.get(specie);
@@ -27,11 +26,11 @@ public class FaunaImagesManager { //classe Multiton
            if (is != null){
                return new Image(is);
            } else {
-               System.out.println("Erro para encontrar imagem" + path);
+               System.out.println("Erro para encontrar a imagem" + path);
                return null;
            }
        }catch (Exception e){
-           System.out.println("Erro para carregar imagem" + path);
+           System.out.println("Erro para carregar a imagem" + path);
            return null;
        }
     }

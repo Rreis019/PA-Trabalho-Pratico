@@ -1,22 +1,18 @@
 package pt.isec.pa.javalife.model;
 
+import pt.isec.pa.javalife.model.data.elements.*;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngineEvolve;
 import pt.isec.pa.javalife.model.memento.IMementoOriginator;
 import pt.isec.pa.javalife.model.memento.Memento;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngine;
-import  pt.isec.pa.javalife.model.data.elements.IElement;
-import pt.isec.pa.javalife.model.data.elements.Inanimate;
 import pt.isec.pa.javalife.model.fsm.Direction;
 import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 import pt.isec.pa.javalife.model.fsm.IFaunaState;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.ElementsFactory;
-import pt.isec.pa.javalife.model.data.elements.BaseElement;
-import pt.isec.pa.javalife.model.data.elements.Element;
-import  pt.isec.pa.javalife.model.data.elements.Fauna;
-import  pt.isec.pa.javalife.model.data.elements.Flora;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
@@ -243,8 +239,26 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
     public IElement addElementToRandomFreePosition(Element type) {
         Random random = new Random();
-        IElement ent = ElementsFactory.CreateElement(this,type, 0, 0);
 
+        double positionX = 0;
+        double positionY = 0;
+     //   IElement ent = ElementsFactory.CreateElement(this,type, 0, 0);
+
+        IElement ent;
+
+        switch (type) {
+            case INANIMATE:
+                ent = new Pedra(positionX, positionY);
+                break;
+            case FLORA:
+                ent = new Erva(positionX, positionY);
+                break;
+            case FAUNA:
+               ent = new Animal(this, positionX, positionY);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de elemento desconhecido: " + type);
+        }
         int maxWidth = getWidth() - ent.getSize();
         int maxHeight = getHeight() - ent.getSize();
 

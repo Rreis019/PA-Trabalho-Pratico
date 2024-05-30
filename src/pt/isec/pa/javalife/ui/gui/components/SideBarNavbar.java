@@ -1,8 +1,8 @@
 package pt.isec.pa.javalife.ui.gui.components;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
@@ -13,11 +13,9 @@ public class SideBarNavbar extends AnchorPane {
     Polygon backgroundEcossistema;
 
     public SideBarNavbar(NavbarCallback callback_,double width_,double height_,String firstButtonText,String secondButtonText) {
-
-        //setWidth(width_);
         callback = callback_;
 
-           setPrefSize(width_, height_);
+        setPrefSize(width_, height_);
         setMaxSize(width_, height_);
         setMinSize(width_, height_);
         
@@ -25,7 +23,6 @@ public class SideBarNavbar extends AnchorPane {
         double firstButtonHeight = height_;
 
         backgroundEcossistema = new Polygon();
-        //(firstButtonWidth / 5) -> width do triangulo
         backgroundEcossistema.getPoints().addAll(new Double[]{
                 0.0, 0.0,
                 firstButtonWidth - (firstButtonWidth / 5), 0.0,
@@ -68,7 +65,6 @@ public class SideBarNavbar extends AnchorPane {
         });
 
 
-
          backgroundEcossistema.setOnMouseClicked(event -> {
             if(callback.onFirstButtonClicked())
             {
@@ -81,8 +77,6 @@ public class SideBarNavbar extends AnchorPane {
 
         this.getChildren().addAll(backgroundInspect, backgroundEcossistema, lbEcossistema, lbInspecionar);
     }
-
-
 
     public interface NavbarCallback {
         boolean onFirstButtonClicked();

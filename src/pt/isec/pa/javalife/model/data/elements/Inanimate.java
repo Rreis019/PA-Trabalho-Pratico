@@ -8,7 +8,7 @@ import pt.isec.pa.javalife.model.data.elements.Element;
 /**
  * Inanimate
  */
-public final class Inanimate extends BaseElement
+public non-sealed class Inanimate extends BaseElement
 {
 	public static final int size = 16;
 

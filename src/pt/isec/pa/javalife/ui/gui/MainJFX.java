@@ -1,19 +1,16 @@
 package pt.isec.pa.javalife.ui.gui;
 
+import pt.isec.pa.javalife.model.EcosystemManager;
+import pt.isec.pa.javalife.ui.gui.scenes.SplashScene;
+
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
-import pt.isec.pa.javalife.model.Ecosystem;
-import pt.isec.pa.javalife.model.EcosystemManager;
-import pt.isec.pa.javalife.model.gameengine.GameEngine;
-import pt.isec.pa.javalife.ui.gui.scenes.SplashScene;
+
 
 public class MainJFX extends Application {
-    //private Ecosystem model;
-    //private GameEngine gameEngine;
     private EcosystemManager model;
-
 
     public MainJFX(){
         this.model = new EcosystemManager();
@@ -38,7 +35,6 @@ public class MainJFX extends Application {
 
         primaryStage.setScene(splashScreen);
         primaryStage.show();
-
     }
 
     @Override

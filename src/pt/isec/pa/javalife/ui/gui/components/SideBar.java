@@ -32,13 +32,11 @@ import javafx.scene.control.Alert;
  * 
  */
 public class SideBar extends VBox {
+    EcosystemManager model;
 
     private SideBarNavbar navbar;
     private VBox ecoTab;
     private VBox inspectTab;
-
-
-
     private ComboBox<String> faunaDropdown;
     private Button btnAddElement;
     private Button btnCreteEco;
@@ -60,9 +58,6 @@ public class SideBar extends VBox {
     private Button btnUndo;
     private Button btnRedo;
 
-    EcosystemManager model;
-
-
     public SideBar(EcosystemManager manager_)
     {
         model = manager_;
@@ -78,9 +73,6 @@ public class SideBar extends VBox {
         ecoTab = new VBox();
         ecoTab.setSpacing(10);
         ecoTab.setMaxWidth(width - 10);
-
-        //VBox.setMargin(ecoTab, new Insets(5));
-
 
         faunaDropdown = new ComboBox<>();
         faunaDropdown.getItems().addAll("Fauna", "Flora","Inanimados"); // Add your options here
@@ -114,7 +106,7 @@ public class SideBar extends VBox {
         separate3.setHeight(2);
         separate3.setFill(Color.web("#373054"));
 
-                Rectangle separate4 = new Rectangle();
+        Rectangle separate4 = new Rectangle();
         separate4.setWidth(width - 10);
         separate4.setHeight(2);
         separate4.setFill(Color.web("#373054"));
@@ -137,9 +129,7 @@ public class SideBar extends VBox {
         btnRedo.setPrefWidth(width - 10);
         btnRedo.setMinHeight(40);
 
-
         ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreteEco,btnUndo,btnRedo,sUnitTimer,sEnergyMovement,sDamageFauna);
-
 
         inspectTab = new VBox();
         inspectTab.setSpacing(10);
@@ -167,7 +157,6 @@ public class SideBar extends VBox {
         containerId.setSpacing(12);
 
 
-
         HBox containerType = new HBox();
         Label lbType = new Label("Tipo");
         lbType.setPrefWidth(40);
@@ -178,7 +167,6 @@ public class SideBar extends VBox {
         containerType.getChildren().addAll(lbType,txtType);
         containerType.setAlignment(Pos.CENTER);
         containerType.setSpacing(12);
-
 
         Label lbPosicao = new Label("Posição");
         lbPosicao.getStyleClass().addAll("text-bold");
@@ -191,6 +179,7 @@ public class SideBar extends VBox {
         containerX.getChildren().addAll(lbX,txtX);
 
         VBox containerY = new VBox();
+
         Label lbY = new Label("y");
         lbY.getStyleClass().addAll("text-regular");
         txtY = new TextField();
@@ -199,7 +188,6 @@ public class SideBar extends VBox {
         HBox  containerPos = new HBox();
         containerPos.setSpacing(6);
         containerPos.getChildren().addAll(containerX,containerY);
-
 
         Label lbArea = new Label("Area");
         lbArea.getStyleClass().addAll("text-bold");
@@ -288,7 +276,6 @@ public class SideBar extends VBox {
         space.setMinHeight(5);
 
         makeNumeric( txtId);
-        //makeNumeric( txtType);
         makeNumeric( txtX);
         makeNumeric( txtY);
         makeNumeric( txtEsq);
@@ -324,9 +311,6 @@ public class SideBar extends VBox {
         strenghtSlider.setDisable(false);
     }
 
-
-
-    // private void showInspect(IElement element) {
    public void update()
     {
         int id =  model.getInspectTargetId();
@@ -392,45 +376,7 @@ public class SideBar extends VBox {
                 if(ent == null){return;}
                 Area area = ((BaseElement)ent).getArea();
                 model.setElementPos(ent,area.left(),Integer.valueOf(txtY.getText()));
-
-                //ent.setPositionY(Integer.valueOf(sidebar.getTxtY().getText()));
         });
-
-       /*
-        txtY.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                            System.out.println("y :):(:(:):(:");
-                if(model.getCurrentState() != GameEngineState.PAUSED){return;}
-                IElement ent = model.getElement(model.getInspectTargetId());
-                if(ent == null){return;}
-                
-
-                Area area = ((BaseElement)ent).getArea();
-
-                //model.editElement(ent,area.left(),(double)Integer.valueOf(sidebar.getTxtY()),);
-    
-                model.setElementPos(ent,area.left(),Integer.valueOf(txtY.getText()));
-
-                //ent.setPositionY(Integer.valueOf(sidebar.getTxtY().getText()));
-            }
-        });
-*/  
-         //private void showInspect(IElement element) {
-
-       
-
-        /*
-        txtEsq.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(model.getCurrentState() != GameEngineState.PAUSED){showModError(); return;}
-                IElement ent = model.getElement(model.getInspectTargetId());
-                if(ent == null){return;}
-                ent.setPositionX(Integer.valueOf(txtEsq.getText()));
-            }
-        });
-        */
 
         strenghtSlider.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
             if(model.getCurrentState() != GameEngineState.PAUSED){return;}
@@ -439,16 +385,13 @@ public class SideBar extends VBox {
             model.setElementStrenght(ent, Double.valueOf(strenghtSlider.getValue()));
         });
 
-
         btnDelElement.setOnAction(event -> {
             if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
             IElement element_ = model.getElement(model.getInspectTargetId());
             if(element_ == null){return;}
             model.removeElement(element_);
             showEcoTab();
-        //    onRender(gc);
         });
-
 
         btnAddElement.setOnAction(event -> {
             if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
@@ -477,8 +420,8 @@ public class SideBar extends VBox {
                     model.addElement(elementType);
                     int id = model.getLastElementId();
                     model.setInspectTarget(id);
+
                     this.update();
-                    System.out.println("id" + id);
                     showInspectTab();
                     model.renderUpdated();
                 }
@@ -499,7 +442,6 @@ public class SideBar extends VBox {
         navbar.simulateSecondButtonClick();
     }
 
-
     void showModError()
     {
         Alert alert = new Alert(AlertType.ERROR);
@@ -508,7 +450,6 @@ public class SideBar extends VBox {
         alert.setContentText("Tem que parar simulação para configurar o ecossistema...");
         alert.showAndWait();
     } 
-
 
     public ComboBox<String> getFaunaDropdown() {return faunaDropdown;}
     public Button getBtnAddElement() {return btnAddElement;}

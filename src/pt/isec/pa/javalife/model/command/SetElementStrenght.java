@@ -25,8 +25,7 @@ public class SetElementStrenght extends CommandAdapter {
 	@Override
     public boolean execute() { 
     	IElement ent = receiver.getElement(elementId);
-    	if(ent == null){return true;}
-
+    	if(ent == null){return false;}
 
 		if(ent.getType() == Element.FLORA){((Flora)ent).setStrength(newStrength);}
 		if(ent.getType() == Element.FAUNA){((Fauna)ent).setStrength(newStrength);}
@@ -36,7 +35,7 @@ public class SetElementStrenght extends CommandAdapter {
     @Override
     public boolean undo() {
     	IElement ent = receiver.getElement(elementId);
-    	if(ent == null){return true;}
+    	if(ent == null){return false;}
 
 		if(ent.getType() == Element.FLORA){((Flora)ent).setStrength(oldStrength);}
 		if(ent.getType() == Element.FAUNA){((Fauna)ent).setStrength(oldStrength);}
