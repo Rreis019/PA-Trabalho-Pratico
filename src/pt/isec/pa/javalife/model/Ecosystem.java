@@ -242,7 +242,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
     public void addElement(Element type, double positionX, double positionY) {
         IElement ent = ElementsFactory.CreateElement(this, type, positionX, positionY);
-        //elements.put(ent.getId(), ent);
         addElement(ent);
     }
 
@@ -253,6 +252,15 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
             }
         }
         return true;
+    }
+
+    public boolean hasFlora(Area area) {
+        for (IElement element : elements.values()) {
+            if (element.getType() == Element.FLORA && element.getArea().intersects(area)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public IElement addElementToRandomFreePosition(Element type) {

@@ -8,6 +8,9 @@ import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ReproduceState extends FaunaStateAdapter{
 	int targetFaunaID = -1;
@@ -42,9 +45,13 @@ public class ReproduceState extends FaunaStateAdapter{
 		{
 			if(ticks == 10)
 			{
-				fauna.setStrength(fauna.getStrength() - 25);
-				
-				ecosystem.addElement(Element.FAUNA,fauna.getArea().left(),fauna.getArea().top());				
+				// Para encontrar a área livre ou com a flora mais próxima
+				Area newArea = findFreeOrFloraAreaNear(fauna.getArea(), ecosystem);
+				if (newArea != null) {
+					fauna.setStrength(fauna.getStrength() - 25);
+					ecosystem.addElement(Element.FAUNA, newArea.left(), newArea.top());
+				}
+
 				changeState(FaunaState.SEARCH_FOOD);
 			}
 			if(targetFaunaID == strongestFauna.getId())
@@ -57,6 +64,26 @@ public class ReproduceState extends FaunaStateAdapter{
 		}
 
 		return false;
+	}
+
+	private Area findFreeOrFloraAreaNear(Area area, Ecosystem eco) {
+		List<Area> adjacentAreas = getAdjacentAreas(area);
+		for (Area adjacentArea : adjacentAreas) {
+			if (!eco.isOutBounds(adjacentArea) && (eco.isAreaFree(adjacentArea) || eco.hasFlora(adjacentArea))) {
+				return adjacentArea;
+			}
+		}
+		return null;
+	}
+
+	private List<Area> getAdjacentAreas(Area area) {
+		double size = area.bottom() - area.top();
+		List<Area> adjacentAreas = new ArrayList<>();
+		adjacentAreas.add(new Area(area.top(), area.left() - size, area.bottom(), area.left()));
+		adjacentAreas.add(new Area(area.top(), area.right(), area.bottom(), area.right() + size));
+		adjacentAreas.add(new Area(area.bottom(), area.left(), area.bottom() + size, area.right()));
+		adjacentAreas.add(new Area(area.top() - size, area.left(), area.top(), area.right()));
+		return adjacentAreas;
 	}
 
 }
