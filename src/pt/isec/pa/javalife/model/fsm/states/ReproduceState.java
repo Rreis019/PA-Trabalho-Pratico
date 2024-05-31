@@ -1,8 +1,5 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
-import java.io.Serializable;
-import java.lang.annotation.ElementType;
-
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.Element;
@@ -10,9 +7,6 @@ import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
-
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 
 public class ReproduceState extends FaunaStateAdapter{

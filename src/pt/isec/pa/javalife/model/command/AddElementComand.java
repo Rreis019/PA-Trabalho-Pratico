@@ -1,12 +1,11 @@
 package pt.isec.pa.javalife.model.command;
+
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 
 import pt.isec.pa.javalife.model.Ecosystem;
 
 public class AddElementComand extends CommandAdapter {
-	//private Element element;
-    //private IElement addedElement;
 	private int id = -1;
 	private Element type;
 	private IElement copy;
@@ -18,8 +17,7 @@ public class AddElementComand extends CommandAdapter {
 	}
 
 	@Override
-    public boolean execute() { 
-    	
+    public boolean execute() {
     	if(id == -1){
 	    	IElement element = receiver.addElementToRandomFreePosition(type);
 	    	if(element == null){return false;}

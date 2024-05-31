@@ -192,7 +192,6 @@ public class MainScene extends Scene
 
     }
 
-
     void drawCornerBox(GraphicsContext gc,double x, double y, double w, double h)
     {
         gc.fillRect(x, y, 1, h / 4);// left up
@@ -208,7 +207,6 @@ public class MainScene extends Scene
         gc.fillRect(x + w - (w / 4) + 1, y + h, w / 4, 1);// ---bot right
     }
 
-
     private void onRender(GraphicsContext gc)
     {
         //clean background
@@ -221,7 +219,15 @@ public class MainScene extends Scene
 
         for (IElement element : elements.values()) {
             if (element.getType() == Element.FLORA) {
-                gc.setFill(Color.GREENYELLOW);
+                // Calcula a cor da flora segundo a sua força (inversamente proporcional)
+                Flora fl = (Flora) element;
+                double strength = fl.getStrength();
+                double alpha = 1.0 - (strength / 100.0); // Calcula o nível de transparência
+                Color floraColor = Color.GREENYELLOW.deriveColor(0, 1, 1, alpha);
+
+                gc.setFill(floraColor);
+                Area area = element.getArea();
+                gc.fillRect(area.left(), area.top(), area.right() - area.left(), area.bottom() - area.top());
             } else if (element.getType() == Element.INANIMATE) {
                 gc.setFill(Color.GRAY);
             }
@@ -282,8 +288,6 @@ public class MainScene extends Scene
         }
     }
 
-
-
     private void registerHandlers()
     {
         sidebar.getBtnCreateEco().setOnAction(event -> {
@@ -343,7 +347,6 @@ public class MainScene extends Scene
             }
         });
 
-
         model.addPropertyChangeListener(EcosystemManager.PROP_DATA, evt -> { sidebar.update(); });
 
         svgPlay.setOnMouseClicked((MouseEvent event) -> {
@@ -359,8 +362,6 @@ public class MainScene extends Scene
             }
         }); 
 
-
-        
         svgSnapShot.setOnMouseClicked((MouseEvent event) -> {
             try {
                 model.saveSnapshot();
@@ -377,9 +378,7 @@ public class MainScene extends Scene
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }); 
-
-
+        });
 
         svgApplyStrength.setOnMouseClicked((MouseEvent event) -> {
             IElement element = model.getElement(model.getInspectTargetId());
@@ -397,7 +396,6 @@ public class MainScene extends Scene
             System.out.println("SunEvent\n");
 
         }); 
-
 
         svgImportCsv.setOnMouseClicked((MouseEvent event) -> {
             FileChooser fileChooser = new FileChooser();
@@ -436,22 +434,6 @@ public class MainScene extends Scene
 
         svgSaveGame.setOnMouseClicked((MouseEvent event) -> {
             saveSimulation();
-           /* FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Gravar Simulação");
-            fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Arquivos de simulação", "*.dat")
-            );
-
-            File file = fileChooser.showSaveDialog(primaryStage);
-            if (file != null) {
-                String filePath = file.getAbsolutePath(); // Obtém o caminho absoluto do arquivo como String
-                if(model.save(filePath)){
-                    showAlert(AlertType.INFORMATION, "Sucesso", "O arquivo foi salvo com sucesso.");
-                }
-                else{
-                    showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao salvar o arquivo.");
-                }
-            }*/
         });
 
         svgLoadGame.setOnMouseClicked((MouseEvent event) -> {
@@ -492,22 +474,18 @@ public class MainScene extends Scene
                 double mouseX = event.getX();
                 double mouseY = event.getY();
 
-                //Set<IElement> elements = model.getElements();
                 ConcurrentMap<Integer, IElement> elements = model.getElements();
                 for (IElement element : elements.values()) {
-                    //if (element.getType() == Element.FAUNA) {
-                        if (mouseX >= element.getArea().left() && mouseX <= element.getArea().right() &&
-                                mouseY >= element.getArea().top() && mouseY <= element.getArea().bottom()) {
-                            
-                            model.setInspectTarget(element.getId());
-                            sidebar.update();
-                            sidebar.showInspectTab();
-                            
-                            break;
-                        }
+                    if (mouseX >= element.getArea().left() && mouseX <= element.getArea().right() &&
+                            mouseY >= element.getArea().top() && mouseY <= element.getArea().bottom()) {
+
+                        model.setInspectTarget(element.getId());
+                        sidebar.update();
+                        sidebar.showInspectTab();
+
+                        break;
                     }
-                
-                //}
+                }
             }
         });
 

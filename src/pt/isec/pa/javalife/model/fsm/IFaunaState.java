@@ -9,8 +9,7 @@ public interface IFaunaState {
 
 	FaunaState getState();
 	boolean execute();
-
-
+	
 	//TODO : Da alguma formar passar os dados da apliocação
 	public static IFaunaState createState(FaunaState type, FaunaStateContext context, Ecosystem ecosystem,Fauna fauna_)
 	{

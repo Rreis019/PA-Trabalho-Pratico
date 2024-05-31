@@ -7,7 +7,4 @@ public class Animal extends Fauna{
     public Animal(Ecosystem ecosystem, double positionX, double positionY) {
         super(ecosystem, positionX, positionY);
     }
-
-
-
 }

@@ -116,7 +116,6 @@ public class SideBar extends VBox {
         sEnergyMovement.setFloat(true);
         sDamageFauna.setFloat(true);
 
-
         btnUndo = new Button("Undo");
         btnUndo.getStyleClass().add("btn-primary");
         btnUndo.setPrefWidth(width - 10);
@@ -442,19 +441,15 @@ public class SideBar extends VBox {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(null);
-        alert.setContentText("Tem que parar simulação para configurar o ecossistema...");
+        alert.setContentText("Tem que parar a simulação para configurar o ecossistema...");
         alert.showAndWait();
     } 
 
-    public ComboBox<String> getFaunaDropdown() {return faunaDropdown;}
-    public Button getBtnAddElement() {return btnAddElement;}
     public Button getBtnCreateEco() {return btnCreateEco;}
     public BlueSlider getStrenghtSlider() {return strenghtSlider;}
-    public Button getBtnDelElement() {return btnDelElement;}
+
     public TextField getTxtId() {return txtId;}
     public TextField getTxtType() {return txtType;}
-
-
     public TextField getTxtX() {return txtX;}
     public TextField getTxtY() {return txtY;}
     public TextField getTxtEsq() {return txtEsq;}

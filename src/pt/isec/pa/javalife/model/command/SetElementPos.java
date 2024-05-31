@@ -1,11 +1,10 @@
 package pt.isec.pa.javalife.model.command;
-import pt.isec.pa.javalife.model.data.elements.Element;
+
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.Ecosystem;
-import pt.isec.pa.javalife.model.data.elements.Fauna;
-import pt.isec.pa.javalife.model.data.elements.Flora;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
-import pt.isec.pa.javalife.model.EcosystemManager;
+
+
 public class SetElementPos extends CommandAdapter {
 	private double oldPositionX,oldPositionY;
 	private double newPositionX,newPositionY;

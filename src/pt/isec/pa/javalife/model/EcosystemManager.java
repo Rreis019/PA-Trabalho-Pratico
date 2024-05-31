@@ -98,8 +98,6 @@ public class EcosystemManager implements Serializable
     */
     public boolean hasRedo(){return command.hasRedo();}
 
-
-
     /**
      * Refaz a última ação desfeita no ecossistema.
      * @return true se a operação de refazer foi bem-sucedida, false caso contrário.
@@ -110,7 +108,6 @@ public class EcosystemManager implements Serializable
         pcs.firePropertyChange(PROP_DATA, null, null);
         return res;
     }
-
 
     /**
      * Adiciona um novo elemento ao ecossistema.
@@ -207,7 +204,6 @@ public class EcosystemManager implements Serializable
     }
 
     /*-----------------------------------------------------------------*/
-
     /**
      * Obtém o ID do alvo inspecionado atualmente.
      * @return O ID do alvo inspecionado.
@@ -241,15 +237,17 @@ public class EcosystemManager implements Serializable
      * @return A energia gasta pela fauna por movimento.
      */
     public double getFaunaMovementEnergy() {return ecosystem.getFaunaMovementEnergy();}
-
+    public int getLastElementId() {
+        return ecosystem.getLastElementId();
+    }
 
     public void setGameInterval(long newInterval) {
         gameEngine.setInterval(newInterval);
     }
-	public boolean startGame(long interval) {
-		return gameEngine.start(interval);
-	}
 
+    public boolean startGame(long interval) {
+        return gameEngine.start(interval);
+    }
 
     public void stopGame() {
         gameEngine.stop();
@@ -258,11 +256,6 @@ public class EcosystemManager implements Serializable
     public void pauseGame() {
         gameEngine.pause();
     }
-
-    public int getLastElementId() {
-        return ecosystem.getLastElementId();
-    }
-
 
     public void resumeGame() {
         gameEngine.resume();
@@ -420,6 +413,7 @@ public class EcosystemManager implements Serializable
         pcs.addPropertyChangeListener(prop,listener);
     }
 
+
     /**
      * Remove um listener de propriedade.
      * 
@@ -430,10 +424,21 @@ public class EcosystemManager implements Serializable
         pcs.removePropertyChangeListener(prop,listener);
     }
 
+    /**
+     * Verifica se existem alterações não salvas no estado atual da simulação.
+     *
+     * @return true se existirem alterações não salvas, false caso contrário.
+     */
     public boolean hasUnsavedChanges() {
         return unsavedChanges;
     }
 
+
+    /**
+     * Define se existem alterações não salvas no ecossistema e notifica.
+     *
+     * @param unsavedChanges true se existirem alterações não salvas, false caso contrário.
+     */
     private void setUnsavedChanges(boolean unsavedChanges) {
         boolean old = this.unsavedChanges;
         this.unsavedChanges = unsavedChanges;

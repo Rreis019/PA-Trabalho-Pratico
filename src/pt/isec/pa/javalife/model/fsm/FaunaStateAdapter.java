@@ -15,7 +15,6 @@ public abstract class FaunaStateAdapter implements IFaunaState,Serializable {
         context.changeState(IFaunaState.createState(newState, context, ecosystem, fauna));
     }
 
-
 	public FaunaStateAdapter(FaunaStateContext context, Ecosystem eco,Fauna fauna_)
 	{
 		this.context = context;

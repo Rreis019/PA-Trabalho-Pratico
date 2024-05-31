@@ -1,6 +1,5 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
-import java.io.Serializable;
 import java.util.Random;
 
 import pt.isec.pa.javalife.model.Ecosystem;
@@ -11,9 +10,7 @@ import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 
-
 public class MovingState extends FaunaStateAdapter {
-
 
 	public MovingState(FaunaStateContext context, Ecosystem ecosystem,Fauna fauna_)
 	{
@@ -40,7 +37,6 @@ public class MovingState extends FaunaStateAdapter {
             }
 		}
 
-
 		if(fauna.getStrength() > 50){
 			changeState(FaunaState.REPRODUCE);
 		}
@@ -51,5 +47,4 @@ public class MovingState extends FaunaStateAdapter {
 		fauna.moveForward();
 		return false;
 	}
-
 }

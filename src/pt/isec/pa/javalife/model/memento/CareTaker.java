@@ -34,16 +34,14 @@ public class CareTaker implements Serializable {
      * @throws IOException Se ocorrer um erro de E/S ao salvar o estado.
      */
     public void save() throws IOException {
+        history.push(originator.getMemento());
+        if (history.size()>10)
+            history.removeFirst();
 
-            history.push(originator.getMemento());
-            if (history.size()>10)
-                history.removeFirst();
-
-            redoHist.push(originator.getMemento());
+        redoHist.push(originator.getMemento());
     }
 
-
-      /**
+     /**
      * Limpa o histórico.
      */
     public void cleanStack(){
@@ -59,7 +57,7 @@ public class CareTaker implements Serializable {
         return history.size();
     }
 
-      /**
+     /**
      * Restaura o estado anterior do originator a partir do histórico.
      * 
      * @throws Exception Se ocorrer um erro ao restaurar o estado anterior.
@@ -75,7 +73,5 @@ public class CareTaker implements Serializable {
     public void startReplay() throws Exception {
         Memento next = redoHist.removeLast();
         originator.setMemento(next);
-
-
     }
 }

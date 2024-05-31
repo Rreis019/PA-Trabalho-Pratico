@@ -1,17 +1,12 @@
 package pt.isec.pa.javalife.model.data.elements;
 
-import pt.isec.pa.javalife.model.data.elements.Element;
-import pt.isec.pa.javalife.model.data.elements.IElement;
-import pt.isec.pa.javalife.model.data.elements.Inanimate;
-import pt.isec.pa.javalife.model.data.elements.Flora;
-import pt.isec.pa.javalife.model.data.elements.Fauna;
-import javafx.scene.canvas.GraphicsContext;
 import pt.isec.pa.javalife.model.data.Area;
 
 public abstract sealed class BaseElement
     implements IElement
     permits Inanimate, Flora, Fauna {
     private static final long serialVersionUID = 1L;
+
     public static int lastId = 0;
 
     protected final int id;
@@ -78,18 +73,15 @@ public abstract sealed class BaseElement
     public void setPositionX(double position){setPosition(position, area.top());}
     public void setPositionY(double position){setPosition(area.left(), position);}
 
-
     public void setPosition(double positionX,double positionY){
         double width = area.right() - area.left();
         double height = area.bottom() - area.top();
         setArea(positionX, positionY, width, height);
     }
 
-
     public void setArea(double positionX,double positionY,double width,double height){
         this.area = new Area(positionY, positionX, positionY + height, positionX + width); 
     }
-    
 
     @Override
     public Area getArea() {return area;}

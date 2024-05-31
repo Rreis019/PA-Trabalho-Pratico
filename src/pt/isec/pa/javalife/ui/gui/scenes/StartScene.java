@@ -74,10 +74,10 @@ public class StartScene extends Scene {
         bottomPanel.getChildren().addAll(btnImport, lbImport);
 
         root.getChildren().addAll(topPanel, bottomPanel);
-        primaryStage.setWidth(732);
-        primaryStage.setHeight(515);
-       // primaryStage.setWidth(800);
-       // primaryStage.setHeight(600);
+        //primaryStage.setWidth(732);
+        //primaryStage.setHeight(515);
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(600);
     }
 
     private void registerHandlers() {

@@ -8,7 +8,7 @@ import java.io.*;
 public class Memento implements Serializable {
     private final byte[] snapshot;
 
-      /**
+     /**
      * Construtor da classe Memento.
      * 
      * @param obj O objeto cujo estado será encapsulado neste memento.

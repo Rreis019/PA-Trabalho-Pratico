@@ -64,7 +64,6 @@ public class SideBarNavbar extends AnchorPane {
             }
         });
 
-
          backgroundEcossistema.setOnMouseClicked(event -> {
             if(callback.onFirstButtonClicked())
             {

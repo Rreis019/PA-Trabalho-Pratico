@@ -1,6 +1,5 @@
 package pt.isec.pa.javalife.ui.gui.components;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;

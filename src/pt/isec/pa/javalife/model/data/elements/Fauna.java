@@ -1,21 +1,11 @@
 package pt.isec.pa.javalife.model.data.elements;
 
-import java.io.Serializable;
-import java.lang.ModuleLayer.Controller;
-import java.util.Set;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
-import pt.isec.pa.javalife.model.data.elements.BaseElement;
-import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.fsm.Direction;
 import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
-import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
@@ -28,7 +18,6 @@ public non-sealed class Fauna extends BaseElement implements IElementWithStrengt
     private double strength = 50;
     private int velocity = 32;
     private static final int size = 32;
-
     private FaunaStateContext ctx;
     private Ecosystem eco;
 
@@ -39,12 +28,11 @@ public non-sealed class Fauna extends BaseElement implements IElementWithStrengt
     }   
 
     @Override
-public Fauna clone() {
-    Fauna cloned = (Fauna) super.clone();
-    cloned.ctx = new FaunaStateContext(this.eco, cloned);
-    return cloned;
-}
-
+    public Fauna clone() {
+        Fauna cloned = (Fauna) super.clone();
+        cloned.ctx = new FaunaStateContext(this.eco, cloned);
+        return cloned;
+    }
 
     public FaunaState getState(){return ctx.getState();}
     public FaunaStateContext getFSM(){return ctx;}
@@ -73,9 +61,6 @@ public Fauna clone() {
         decreaseEnergy();
     }
 
-
-   
-    
     public void reverseDirection() {
         switch (direction) {
             case LEFT:
@@ -93,8 +78,6 @@ public Fauna clone() {
         }
     }
 
-
-
     private Direction getAlternativeDirection(Direction currentDirection) {
         switch (currentDirection) {
             case LEFT:
@@ -110,7 +93,6 @@ public Fauna clone() {
 
 
     //true -> ja chegou ao alvo
-    //public boolean moveTo(Set<IElement> elements,IElement target) {
      public boolean moveTo(ConcurrentMap<Integer, IElement> elements,IElement target) {
         double deltaX = target.getArea().left() - getArea().left();
         double deltaY = target.getArea().top() - getArea().top();
@@ -121,23 +103,18 @@ public Fauna clone() {
         if (Math.abs(deltaX) > Math.abs(deltaY)) {setDirection(dirX);
         } else {setDirection(dirY);}
 
-
         if (this.haveObstacleAhead(elements)) {  
             Direction dirRandom = getAlternativeDirection(getDirection());
             setDirection(dirRandom);
         }
 
-
         if(!getArea().intersects(target.getArea())){
             moveForward();
             return false;
         }
-
         return true;
     }
 
-
-    //private boolean haveObstacleAhead(Set<IElement> elements) {
     private boolean haveObstacleAhead(ConcurrentMap<Integer, IElement> elements) {    
         Area futureArea = null;
         switch (this.getDirection()) {

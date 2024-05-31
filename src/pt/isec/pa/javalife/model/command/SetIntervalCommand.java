@@ -1,9 +1,8 @@
 package pt.isec.pa.javalife.model.command;
-import pt.isec.pa.javalife.model.data.elements.Element;
-import pt.isec.pa.javalife.model.data.elements.IElement;
+
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.Ecosystem;
-import pt.isec.pa.javalife.model.EcosystemManager;
+
 public class SetIntervalCommand extends CommandAdapter {
 	private long newInterval = 0;
 	private long oldInterval = 0;

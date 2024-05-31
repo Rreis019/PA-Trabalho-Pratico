@@ -1,7 +1,8 @@
 package pt.isec.pa.javalife.model.data.elements;
-import java.io.Serializable;
 
 import pt.isec.pa.javalife.model.data.Area;
+
+import java.io.Serializable;
 
 public sealed interface IElement
     extends Serializable,Cloneable 
@@ -15,9 +16,7 @@ public sealed interface IElement
     void setPositionX(double position);
     void setPositionY(double position);
     void setPosition(double positionX,double positionY);
-
     IElement clone();
-
     boolean isReadOnly();
     void setReadonly(boolean inv);
 }

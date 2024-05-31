@@ -1,13 +1,7 @@
 package pt.isec.pa.javalife.model.data.elements;
 
-
-import java.io.Serializable;
-
-import javafx.scene.image.Image;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
-import pt.isec.pa.javalife.model.data.elements.BaseElement;
-import pt.isec.pa.javalife.model.data.elements.Element;
 
 /**
  * Flora
@@ -22,12 +16,9 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
     private int reproductionCount = 0;
     private boolean attemptedReproduction = false;
 
-
 	 public Flora(double positionX,double positionY) {
         super(Element.FLORA,positionX,positionY,size,size);
     }
-
-
 
     public void evolve(Ecosystem eco, long currentTime) {
         if(getStrength() == 0){return;}
@@ -40,7 +31,7 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
             if (reproduced) {
                 this.setStrength(60);
                 reproductionCount++;
-                attemptedReproduction = false; // Reset to attempt reproduction again in the future
+                attemptedReproduction = false;
             } else {
                 attemptedReproduction = true;
             }
@@ -65,7 +56,6 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
         }
         return false;
     }
-
 
     @Override
     public double getStrength(){

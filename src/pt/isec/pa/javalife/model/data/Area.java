@@ -1,12 +1,10 @@
 package pt.isec.pa.javalife.model.data;
 
-
 import java.io.Serializable;
 
 import pt.isec.pa.javalife.model.fsm.Direction;
 
 public record Area(double top, double left, double bottom, double right) implements Serializable {
-
 
     public static double distance(Area a1,Area a2)
     {
@@ -19,10 +17,6 @@ public record Area(double top, double left, double bottom, double right) impleme
         return !(this.right <= other.left || this.left >= other.right || 
                  this.bottom <= other.top || this.top >= other.bottom);
     }
-
-
-
-
 
     //Retorna area com posição corrigada do objeto que esta em movimento
     public Area solveColision(Direction dir,Area other)
@@ -52,6 +46,4 @@ public record Area(double top, double left, double bottom, double right) impleme
 
         return new Area(y, x, y + (this.bottom - this.top), x + (this.right - this.left));
     }
-    
-
 }

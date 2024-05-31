@@ -1,10 +1,7 @@
 package pt.isec.pa.javalife.model.fsm.states;
 
-import java.io.Serializable;
-
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
-import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.data.elements.Flora;
@@ -13,8 +10,6 @@ import pt.isec.pa.javalife.model.fsm.FaunaState;
 import pt.isec.pa.javalife.model.fsm.FaunaStateAdapter;
 import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
-
- 
 public class EatingState extends FaunaStateAdapter {
 
 	public EatingState(FaunaStateContext context, Ecosystem ecosystem, Fauna fauna_)

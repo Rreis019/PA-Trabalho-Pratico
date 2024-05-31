@@ -6,11 +6,9 @@ import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.data.elements.Flora;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.data.elements.Inanimate;
-import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
 
 public class ElementsFactory
 {
-
 	public static IElement CreateElement(Ecosystem eco,Element type,double positionX,double positionY)
 	{
 		switch(type)
@@ -24,5 +22,4 @@ public class ElementsFactory
 		}
 		return null;
 	}
-
 }

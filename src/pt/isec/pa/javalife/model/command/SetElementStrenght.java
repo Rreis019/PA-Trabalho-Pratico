@@ -4,7 +4,7 @@ import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.data.elements.Flora;
-import pt.isec.pa.javalife.model.EcosystemManager;
+
 public class SetElementStrenght extends CommandAdapter {
 	
 	private int elementId;

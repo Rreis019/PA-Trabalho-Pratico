@@ -1,4 +1,5 @@
 package pt.isec.pa.javalife.model.fsm;
+
 import java.io.Serializable;
 
 import pt.isec.pa.javalife.model.Ecosystem;
@@ -14,7 +15,7 @@ public final class FaunaStateContext implements Serializable {
 	private Ecosystem ecosystem;
 		
 
-	  /**
+	 /**
      * Construtor da classe FaunaStateContext.
      * Inicializa o contexto do estado da entidade Fauna com o estado inicial de MOVING.
      * 
@@ -29,7 +30,7 @@ public final class FaunaStateContext implements Serializable {
 	}
 
 
-	  /**
+	 /**
      * Obtém o estado atual da entidade Fauna.
      * 
      * @return O estado atual da entidade Fauna.
@@ -40,7 +41,7 @@ public final class FaunaStateContext implements Serializable {
 	}
 
 
-	    /**
+	 /**
      * Altera o estado atual da entidade Fauna.
      * 
      * @param iFaunaState O novo estado da entidade Fauna.
@@ -49,7 +50,7 @@ public final class FaunaStateContext implements Serializable {
 		this.state = iFaunaState;
 	}
 
-	    /**
+	 /**
      * Executa a ação correspondente ao estado atual da entidade Fauna.
      * 
      * @return true se a ação foi executada com sucesso, caso contrário false.

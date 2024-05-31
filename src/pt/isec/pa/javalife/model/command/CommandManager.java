@@ -1,4 +1,5 @@
 package pt.isec.pa.javalife.model.command;
+
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -19,9 +20,9 @@ public class CommandManager implements Serializable {
         redoCmds = new ArrayDeque<>();
     }
 
-/**
+    /**
      * Executa um comando e o adiciona ao histórico.
-     * 
+     *
      * @param cmd O comando a ser executado.
      * @return true se o comando foi executado com sucesso e adicionado ao histórico, caso contrário false.
      */

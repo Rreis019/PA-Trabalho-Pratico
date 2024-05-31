@@ -4,40 +4,23 @@ import pt.isec.pa.javalife.model.data.elements.*;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngineEvolve;
 import pt.isec.pa.javalife.model.memento.IMementoOriginator;
 import pt.isec.pa.javalife.model.memento.Memento;
-import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import  pt.isec.pa.javalife.model.gameengine.IGameEngine;
 import pt.isec.pa.javalife.model.fsm.Direction;
-import pt.isec.pa.javalife.model.fsm.FaunaState;
-import pt.isec.pa.javalife.model.fsm.FaunaStateContext;
-import pt.isec.pa.javalife.model.fsm.IFaunaState;
 import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.ElementsFactory;
 
-import java.beans.PropertyChangeListener;
+
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Queue;
 import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
-
-import java.util.Iterator;
 import java.util.Locale;
 
 /**
@@ -46,13 +29,10 @@ import java.util.Locale;
  * funcionalidades de serialização, evolução do jogo e memento.
  */
 public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOriginator {
-    //private Set<IElement> elements;
     private ConcurrentMap<Integer, IElement> elements;
     int cacheLastElementId = -1;
-    int totalTicks = 0;
     private double faunaMovementEnergy = 0.5;
     private double damageToFlora = 1;
-
     private final PropertyChangeSupport pcs; // Para o observable
 
     /**
@@ -68,22 +48,17 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
      */
     public double getFaunaMovementEnergy() {return faunaMovementEnergy;}
 
-
-
     /**
      * Define um novo valor para o dano que fauna provoca à flora..
      * @param newValue Novo valor para o dano à flora.
      */
     public void setDamageToFlora(double newValue){damageToFlora = newValue;}
 
-
-
     /**
      * Define um novo valor para a energia gasta movimento da fauna.
      * @param newValue Novo valor para a energia de movimento da fauna.
      */
     public void setFaunaMovementEnergy(double newValue){faunaMovementEnergy = newValue;}
-    
 
      /**
      * Obtém o ID do último elemento adicionado ao ecossistema.
@@ -103,7 +78,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
     }
 
 
-
     @Override
     public Memento getMemento() throws IOException {
          return new Memento(new Object[]{elements,faunaMovementEnergy,damageToFlora});
@@ -117,7 +91,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         this.damageToFlora = (double) objects[2];
     }
 
-
     private static boolean sunEventEffect = false;
     private int sunEventTick = 0;
 
@@ -127,9 +100,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
     @SuppressWarnings("this-escape")
     public Ecosystem(PropertyChangeSupport pcs_) {
-        //elements = new HashSet<>();
         elements = new ConcurrentHashMap<>();
-        //faunaStates = new HashMap<>();
         pcs = pcs_;
     }
 
@@ -144,7 +115,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
      * @return Altura do ecossistema.
      */
     public int getHeight(){return unitScale*numUnitsY;}
-
     public void setNumUnitsX(int numUnits_){numUnitsX = numUnits_;}
     public void setNumUnitsY(int numUnits_){numUnitsY = numUnits_;}
 
@@ -197,8 +167,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
                     str = f.getStrength();
                     weakestFauna = f;
                 }
-
-
             }
         }
         return weakestFauna;
@@ -235,31 +203,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         return strongestFauna;
     }
 
-
-
-
-    /*
-    public void removeElement(IElement element_) {
-        elements.remove(element_);
-    }
-    public void addElement(Element type,double positionX,double positionY)
-    {
-        IElement ent = ElementsFactory.CreateElement(this,type, positionX, positionY);
-        elements.add(ent);
-    }
-    public IElement getElement(int id)
-    {
-        pcs.firePropertyChange(PROP_INSPECT,null,null);
-        System.out.printf("GetElement\n");
-        for(IElement ent : getElements()){
-            if(ent.getId() == id){ return ent;}
-        }
-
-        return null;
-    }
-
-    */
-   
     /**
      * Obtém um elemento pelo seu ID.
      * @param id ID do elemento.
@@ -288,7 +231,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
      /**
      * Adiciona um elemento ao ecossistema.
-     * @param element Elemento a ser adicionado.
+     * @param element_ Elemento a ser adicionado.
      * @return true se o elemento foi adicionado, false caso contrário.
      */
     public void addElement(IElement element_){
@@ -315,8 +258,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
         double positionX = 0;
         double positionY = 0;
-     //   IElement ent = ElementsFactory.CreateElement(this,type, 0, 0);
-
         IElement ent;
 
         switch (type) {
@@ -342,25 +283,19 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
             boolean intersects_ = false;
 
-            //for (IElement e : elements) {
             for (IElement e : elements.values()) {
                 if (e.getType() == Element.INANIMATE && ent.getArea().intersects(e.getArea())) {
                     intersects_ = true;
-                    break; // Saia do loop assim que encontrar uma interseção
+                    break; // Sai do loop assim que encontra uma interseção
                 }
             }
 
             if (!intersects_) {foundEmptyPosition = true;}
         }
 
-        //if (ent.getType() == Element.FAUNA) {
-         //   faunaStates.put((Fauna) ent, new FaunaStateContext(this, (Fauna) ent));
-        //}
-
         elements.put(ent.getId(),ent);
         return ent;
     }
-
 
     /**
      * Chamado a cada X tempo definido no game engine
@@ -370,15 +305,12 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
      */
     @Override
     public void evolve(IGameEngine gameEngine, long currentTime) {
-        // Iterar sobre os estados da fauna usando um iterador
+        // Iterar sobre os estados da fauna com o iterador
         for (IElement element : elements.values()) {
             if(element.getType() == Element.FAUNA){((Fauna)element).getFSM().execute();}
             if(element.getType() == Element.FLORA){ ((Flora)element).evolve(this,currentTime);}
         }
 
-        //Iterator<IElement> elementIterator = elements.iterator();
-        //while (elementIterator.hasNext()) {
-         //   IElement element = elementIterator.next();
         for (IElement element : elements.values()) {
             if (element.getType() == Element.FAUNA) {
                 if (((Fauna) element).getStrength() <= 0) { removeElement(element); }
@@ -393,9 +325,7 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         }
 
         handleColisions();
-        pcs.firePropertyChange(EcosystemManager.PROP_STATE, null, null);   
-        //totalTicks = totalTicks + 1;
-        
+        pcs.firePropertyChange(EcosystemManager.PROP_STATE, null, null);
     }
 
     /**
@@ -453,7 +383,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
      */
     public void makeWallOfChina()
     {
-        
         Inanimate top = new Inanimate(0, 0);
         Inanimate left = new Inanimate(0, 0);
         Inanimate right = new Inanimate(0, 0);
@@ -475,12 +404,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         addElement(left);
         addElement(right);
         addElement(bottom);
-        /*
-        elements.add(top);
-        elements.add(left);
-        elements.add(right);
-        elements.add(bottom);
-        */
     }
 
     /**
@@ -499,35 +422,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
         return false;
     }
 
-    /*
-    private void handleIfOutBounds(Fauna element_){
-        Area area = element_.getArea();
-
-        if(area.left() < 0){
-            element_.setPositionX(0);
-            element_.setDirection(Direction.RIGHT);
-        }
-        else if(area.right() > getWidth())
-        {
-            element_.setPositionX(getWidth() - (area.right() - area.left())   );
-            element_.setDirection(Direction.LEFT);
-        }
-
-        if(area.top() < 0)
-        {
-            element_.setPositionY(0);
-            element_.setDirection(Direction.DOWN);
-        }
-        else if(area.bottom() > getHeight()) {
-            element_.setPositionY(getHeight() - (area.bottom() - area.top()));
-            element_.setDirection(Direction.UP);
-        }
-    } 
-    */
-
-
-
-
     /**
      * Lida com colisões entre elementos do ecossistema.
      */
@@ -541,14 +435,10 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
             }
         }
 
-        //for (IElement element_ : elements) {
         for (IElement element_ : elements.values()) {
             if(element_.getType() == Element.FAUNA){
-
                 Fauna f = (Fauna)element_;
                 Direction direction_ = f.getDirection(); 
-                //handleIfOutBounds(f);
-
 
                 for (Inanimate ina : inanimates) {
                     Area sol = f.getArea().solveColision(direction_, ina.getArea());
@@ -559,12 +449,8 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
                     }
                 }
             }
-
-
         }
-
     }
-
 
     /**
      * Exporta os a tipo,força e area dos elementos do ecossistema para um ficheiro CSV.
@@ -665,7 +551,6 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
                             } else if (element.getType() == Element.FLORA) {
                                 ((Flora) element).setStrength(strength);
                             }
-                            //this.elements.add(element);
                             addElement(element);
                         }
                     }
@@ -686,7 +571,4 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
         return true;
     }
-
-
-
 }
