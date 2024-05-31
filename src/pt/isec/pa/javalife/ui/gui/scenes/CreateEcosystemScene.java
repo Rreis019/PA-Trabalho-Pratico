@@ -87,7 +87,7 @@ class CreateEcosystemScene extends Scene
         Sfauna = new BlueSpinner("Quantidade Fauna",10,0,100,5);
         Sflora = new BlueSpinner("Quantidade Flora",10,0,100,5);
         Sinanimados = new BlueSpinner("Quantidade Inanimados",10,0,100,5);
-        sUnitTimer = new BlueSpinner("Unidade de tempo", 100,10,100, 1000);
+        sUnitTimer = new BlueSpinner("Unidade de tempo", 100,10,1000, 5);
 
         sEnergyMovement = new BlueSlider("EnergiaMovimento(Fauna)", 300,0.1,0.5, 5);
         sDamageFauna = new BlueSlider("Dano da Fauna", 300,0.1,1, 5);
