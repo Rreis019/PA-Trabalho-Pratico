@@ -47,4 +47,5 @@ public class MainJFX extends Application {
         model.stopGame();
         model.waitForTheEnd();
     }
+
 }

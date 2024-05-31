@@ -1,27 +1,24 @@
 package pt.isec.pa.javalife.ui.gui.scenes;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.EcosystemManager;
 import pt.isec.pa.javalife.model.data.Area;
-import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
 import pt.isec.pa.javalife.model.data.elements.Fauna;
 import pt.isec.pa.javalife.model.data.elements.Flora;
 import pt.isec.pa.javalife.model.data.elements.IElement;
-import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
 import pt.isec.pa.javalife.ui.gui.FaunaImagesManager;
 import pt.isec.pa.javalife.ui.gui.components.ClickableSVG;
 import pt.isec.pa.javalife.ui.gui.components.SideBar;
-import pt.isec.pa.javalife.ui.gui.components.SideBarNavbar;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.application.Platform;
 
-import java.util.Set;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
 
 import javafx.geometry.Insets;
@@ -31,18 +28,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Scale;
-import javafx.scene.shape.Polygon;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -58,6 +48,8 @@ public class MainScene extends Scene
     HBox topPanel; 
     VBox mainpanel;//sidebar;
     SideBar sidebar;
+
+    Button btnSair;
 
 
     ClickableSVG svgPlay;
@@ -88,10 +80,6 @@ public class MainScene extends Scene
     private void createView(Stage primaryStage)
     {
         getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-        
-
-
-        
 
         VBox root = (VBox) this.getRoot();
         root.getStyleClass().add("secondary-background");
@@ -155,17 +143,6 @@ public class MainScene extends Scene
         svgLoadGame.getStyleClass().add("icon");
         Tooltip.install(svgLoadGame,new Tooltip("Abrir\nPermite abrir e continuar uma simulação previamente gravada"));
 
-
-
-
-
-
-
-
-
-
-
-
         Region spacer = new Region();
         spacer.setMinWidth(0);
         spacer.setMaxWidth(0);
@@ -173,37 +150,31 @@ public class MainScene extends Scene
         Rectangle separateBar = new Rectangle(2, 35, Color.web("#5A508C"));
         Rectangle separateBar2 = new Rectangle(2, 35, Color.web("#5A508C"));
 
+        btnSair = new Button("Sair");
+        btnSair.getStyleClass().add("btn-primary");
+        btnSair.getStyleClass().add("text-bold");
+        btnSair.setMinHeight(35);
 
-        /*
-        Rectangle separateBar2 = new Rectangle(2, 35, Color.web("#5A508C"));
-
-        Label lbTicks = new Label("Ticks : 0");
-        lbTicks.getStyleClass().addAll("text-bold","text-purple");
-        lbTicks.setTextFill(Color.web("#373054"));
-    */
-
-        //#373054
+        Region spacerExit = new Region();
+        HBox.setHgrow(spacerExit, Priority.ALWAYS);
 
         topPanel = new HBox();
         topPanel.setMinHeight(35);
         topPanel.setSpacing(10);
         topPanel.getStyleClass().add("primary-background");
         topPanel.setAlignment(Pos.CENTER_LEFT);
-        topPanel.getChildren().addAll(spacer,svgPlay,svgSnapShot,svgRewind,separateBar,svgApplyStrength,svgApplyHerb,svgApplySun,separateBar2,svgImportCsv,svgExportCsv,svgLoadGame,svgSaveGame);
+        topPanel.getChildren().addAll(spacer,svgPlay,svgSnapShot,svgRewind,separateBar,svgApplyStrength,svgApplyHerb,svgApplySun,separateBar2,svgImportCsv,svgExportCsv,svgLoadGame,svgSaveGame,spacerExit,btnSair);
 
         canvas = new Canvas(model.getWidth(), model.getHeight());
         gc = canvas.getGraphicsContext2D();
 
         HBox content = new HBox();
         HBox ecosystemPanel = new HBox();
-        //ecosystemPanel.getStyleClass().add("primary-background");
         ecosystemPanel.getChildren().addAll(canvas);
-
 
         HBox.setHgrow(ecosystemPanel, Priority.ALWAYS);
         VBox.setVgrow(ecosystemPanel, Priority.ALWAYS);
         HBox.setMargin(ecosystemPanel, new Insets(10));
-
 
         sidebar = new SideBar(model);
 
@@ -211,8 +182,6 @@ public class MainScene extends Scene
         root.getChildren().addAll(topPanel,content);
 
         HBox.setHgrow(sidebar, Priority.ALWAYS);
-       
-        //System.out.printf("ecosystem width : %d , height : %d\n",model.getWidth(),model.getHeight()); 
 
         //sidebar margin , sidebar width +  content padding + ecosystem width
         int newWidth = 18 +  (int)200 + 10*2 + model.getWidth();
@@ -220,7 +189,6 @@ public class MainScene extends Scene
         int newHeight = 10 + 30 + 35 + 10 *2 + model.getHeight();
         primaryStage.setWidth(newWidth);
         primaryStage.setHeight(newHeight);
-        //System.out.printf("newWidth %d %d\n",(int)newWidth,(int)newHeight);
 
     }
 
@@ -247,7 +215,6 @@ public class MainScene extends Scene
         gc.setFill(Color.web("#373054"));
         gc.fillRect(0, 0,model.getWidth(),model.getHeight());
 
-        //Set<IElement> elements = model.getElements();
         ConcurrentMap<Integer, IElement> elements = model.getElements();
 
         IElement currentElement = null;
@@ -295,12 +262,9 @@ public class MainScene extends Scene
 
             if(model.getCurrentState() == GameEngineState.RUNNING)
             {
-                //sidebar.getTxtId().setText(String.valueOf(f.getId()));
-                //sidebar.getTxtType().setText(f.getTypeString());
                 
                 sidebar.getTxtX().setText(String.valueOf((int)area.left()));
                 sidebar.getTxtY().setText(String.valueOf((int)area.top()));
-
 
                 sidebar.getTxtEsq().setText(String.valueOf((int)area.left()));
                 sidebar.getTxtDir().setText(String.valueOf((int)area.right()));
@@ -314,18 +278,7 @@ public class MainScene extends Scene
                     sidebar.getStrenghtSlider().setValue(((Flora)currentElement).getStrength());
                 }
 
-
-
             }
-            /* ... so um retangulo
-            gc.setStroke(Color.WHITE);
-            gc.setLineWidth(1);
-             gc.strokeRect(f.getArea().left(), 
-                f.getArea().top() ,
-                f.getArea().right() - f.getArea().left(),
-                f.getArea().bottom() - f.getArea().top()); 
-            */
-
         }
     }
 
@@ -333,9 +286,61 @@ public class MainScene extends Scene
 
     private void registerHandlers()
     {
-        sidebar.getBtnCreteEco().setOnAction(event -> {
+        sidebar.getBtnCreateEco().setOnAction(event -> {
             CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
             primaryStage.setScene(createEcoSystemScene);
+        });
+
+        btnSair.setOnAction(event -> {
+            if(model.hasUnsavedChanges()) {
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Confirmar Saída");
+                alert.setHeaderText("Existem alterações por gravar");
+                alert.setContentText("Deseja guardar as alterações antes de sair?");
+
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icon.png")));
+
+
+                ButtonType buttonTypeSave = new ButtonType("Guardar", ButtonBar.ButtonData.YES);
+                ButtonType buttonTypeDontSave = new ButtonType("Não Guardar", ButtonBar.ButtonData.NO);
+                ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                alert.getButtonTypes().setAll(buttonTypeSave, buttonTypeDontSave, buttonTypeCancel);
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent() && result.get() == buttonTypeSave) {
+                    saveSimulation();
+                    model.stopGame();
+                    primaryStage.close();
+                } else if (result.isPresent() && result.get() == buttonTypeDontSave) {
+                    model.stopGame();
+                    primaryStage.close();
+                } else if (result.isPresent() && result.get() == buttonTypeCancel) {
+                    alert.close();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmar Saída");
+                alert.setHeaderText("Não há alterações por gravar");
+                alert.setContentText("Deseja sair da simulação?");
+
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icon.png")));
+
+                ButtonType buttonTypeYes = new ButtonType("Sim", ButtonBar.ButtonData.YES);
+                ButtonType buttonTypeNo = new ButtonType("Não", ButtonBar.ButtonData.NO);
+
+                alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent() && result.get() == buttonTypeYes) {
+                    model.stopGame();
+                    primaryStage.close();
+                } else if (result.isPresent() && result.get() == buttonTypeNo) {
+                    alert.close();
+                }
+            }
         });
 
 
@@ -430,8 +435,9 @@ public class MainScene extends Scene
         });
 
         svgSaveGame.setOnMouseClicked((MouseEvent event) -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Salvar Simulação");
+            saveSimulation();
+           /* FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Gravar Simulação");
             fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Arquivos de simulação", "*.dat")
             );
@@ -445,7 +451,7 @@ public class MainScene extends Scene
                 else{
                     showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao salvar o arquivo.");
                 }
-            }
+            }*/
         });
 
         svgLoadGame.setOnMouseClicked((MouseEvent event) -> {
@@ -465,7 +471,6 @@ public class MainScene extends Scene
                     showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao carregar o arquivo.");
                 }
             }
-
         });
         
         model.addPropertyChangeListener(EcosystemManager.PROP_STATE, evt -> {
@@ -477,7 +482,7 @@ public class MainScene extends Scene
             });
         });
 
-        sidebar.getBtnCreteEco().setOnAction(event -> {
+        sidebar.getBtnCreateEco().setOnAction(event -> {
             CreateEcosystemScene createEcoSystemScene = new CreateEcosystemScene(primaryStage,model);
             primaryStage.setScene(createEcoSystemScene);
         });
@@ -506,10 +511,26 @@ public class MainScene extends Scene
             }
         });
 
-    
-
     }
 
+    private void saveSimulation(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Gravar Simulação");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Arquivos de simulação", "*.dat")
+        );
+
+        File file = fileChooser.showSaveDialog(primaryStage);
+        if (file != null) {
+            String filePath = file.getAbsolutePath(); // Obtém o caminho absoluto do file como String
+            if(model.save(filePath)){
+                showAlert(AlertType.INFORMATION, "Sucesso", "O ficheiro foi guardado com sucesso.");
+            }
+            else{
+                showAlert(AlertType.ERROR, "Erro", "Ocorreu um erro ao guardar o ficheiro.");
+            }
+        }
+    }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

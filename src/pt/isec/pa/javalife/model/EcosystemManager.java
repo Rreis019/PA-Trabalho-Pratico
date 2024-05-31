@@ -4,9 +4,18 @@ import java.util.concurrent.ConcurrentMap;
 import pt.isec.pa.javalife.model.data.elements.IElement;
 import pt.isec.pa.javalife.model.gameengine.GameEngine;
 import pt.isec.pa.javalife.model.gameengine.GameEngineState;
-import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import pt.isec.pa.javalife.model.data.elements.Element;
+
+import pt.isec.pa.javalife.model.command.AddElementComand;
+import pt.isec.pa.javalife.model.command.SetIntervalCommand;
+import pt.isec.pa.javalife.model.command.CommandManager;
+import pt.isec.pa.javalife.model.command.RemoveElementComand;
+import pt.isec.pa.javalife.model.command.SetDamageFaunaToFloraCommand;
+import pt.isec.pa.javalife.model.command.SetElementPos;
+import pt.isec.pa.javalife.model.command.SetElementStrenght;
+import pt.isec.pa.javalife.model.command.SetEnergyPerMovementCommand;
+import pt.isec.pa.javalife.model.memento.CareTaker;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,17 +26,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import pt.isec.pa.javalife.model.command.AddElementComand;
-import pt.isec.pa.javalife.model.command.SetIntervalCommand;
-import pt.isec.pa.javalife.model.command.CommandManager;
-import pt.isec.pa.javalife.model.command.RemoveElementComand;
-import pt.isec.pa.javalife.model.command.SetDamageFaunaToFloraCommand;
-import pt.isec.pa.javalife.model.command.SetElementPos;
-import pt.isec.pa.javalife.model.command.SetElementStrenght;
-import pt.isec.pa.javalife.model.command.SetEnergyPerMovementCommand;
-import pt.isec.pa.javalife.model.gameengine.IGameEngine;
-import pt.isec.pa.javalife.model.memento.CareTaker;
-import pt.isec.pa.javalife.model.memento.Memento;
 
 //Classe Facade 
 public class EcosystemManager implements Serializable
@@ -40,8 +38,11 @@ public class EcosystemManager implements Serializable
     private transient  PropertyChangeSupport pcs;
     public static final String PROP_STATE = "state";
     public static final String PROP_DATA = "data";
+    public static final String PROP_UNSAVED_CHANGES = "unsavedChanges";
 
     private int inspectedTargetId = -1;
+
+    private boolean unsavedChanges = false;
 
     public EcosystemManager() {
         pcs = new PropertyChangeSupport(this);
@@ -84,20 +85,23 @@ public class EcosystemManager implements Serializable
     public boolean addElement(Element type_)
     {       
         boolean result = command.invokeCommand(new AddElementComand(ecosystem, type_));
-        pcs.firePropertyChange(PROP_STATE, null, null);   
+        if(result){setUnsavedChanges(true);}
+        pcs.firePropertyChange(PROP_STATE, null, null);
         return result;
     }
 
     public boolean setDamageFaunaToFlora(double damage)
     {
         boolean result = command.invokeCommand(new SetDamageFaunaToFloraCommand(ecosystem,damage));
-        pcs.firePropertyChange(PROP_DATA, null, null);  
+        if(result){setUnsavedChanges(true);}
+        pcs.firePropertyChange(PROP_DATA, null, null);
         return result;
     }
 
     public boolean setEnergyPerMovement(double energy)
     {
         boolean result = command.invokeCommand(new SetEnergyPerMovementCommand(ecosystem,energy));
+        if(result){setUnsavedChanges(true);}
         pcs.firePropertyChange(PROP_DATA, null, null); 
         return result;
     }
@@ -111,6 +115,7 @@ public class EcosystemManager implements Serializable
     public boolean setElementPos(IElement el,double posX,double posY)
     {
         boolean result = command.invokeCommand(new SetElementPos(ecosystem,el,posX,posY));
+        if(result){setUnsavedChanges(true);}
         pcs.firePropertyChange(PROP_STATE, null, null); 
         return result;
     }
@@ -118,6 +123,7 @@ public class EcosystemManager implements Serializable
     public boolean setElementStrenght(IElement el,double strenght_)
     {
         boolean result = command.invokeCommand(new SetElementStrenght(ecosystem,el,strenght_));
+        if(result){setUnsavedChanges(true);}
         pcs.firePropertyChange(PROP_DATA, null, null); 
         return result;
     }
@@ -125,6 +131,7 @@ public class EcosystemManager implements Serializable
     public boolean removeElement(IElement element_) {
     	//ecosystem.removeElement(element_);
         boolean result = command.invokeCommand(new RemoveElementComand(ecosystem,element_));
+        if(result){setUnsavedChanges(true);}
         pcs.firePropertyChange(PROP_STATE, null, null); 
         return result;
     }
@@ -238,6 +245,7 @@ public class EcosystemManager implements Serializable
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filepath))) {
             ecosystem.getLastElementId();
             oos.writeObject(ecosystem);
+            setUnsavedChanges(false);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -253,7 +261,8 @@ public class EcosystemManager implements Serializable
             gameEngine.registerClient(ecosystem);
             gameEngine.resume();
             BaseElement.lastId = ecosystem.getLastElementId();
-              pcs.firePropertyChange(PROP_STATE, null, null);
+            pcs.firePropertyChange(PROP_STATE, null, null);
+            setUnsavedChanges(false);
             //
             //_pcs.firePropertyChange(PROP_STATE_CHANGE);
         } catch (Exception e) {
@@ -266,7 +275,7 @@ public class EcosystemManager implements Serializable
 
 
     public boolean importGame(String filepath) {
-          pcs.firePropertyChange(PROP_STATE, null, null);
+        pcs.firePropertyChange(PROP_STATE, null, null);
         return ecosystem.importToCSV(filepath);
     }
 
@@ -294,6 +303,16 @@ public class EcosystemManager implements Serializable
 
     public void removeObserver(String prop,PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(prop,listener);
+    }
+
+    public boolean hasUnsavedChanges() {
+        return unsavedChanges;
+    }
+
+    private void setUnsavedChanges(boolean unsavedChanges) {
+        boolean old = this.unsavedChanges;
+        this.unsavedChanges = unsavedChanges;
+        pcs.firePropertyChange(PROP_UNSAVED_CHANGES, old, unsavedChanges);
     }
 
 

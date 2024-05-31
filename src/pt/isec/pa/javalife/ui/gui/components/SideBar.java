@@ -1,15 +1,11 @@
 package pt.isec.pa.javalife.ui.gui.components;
 
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.TextField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.shape.Rectangle;
@@ -27,7 +23,9 @@ import pt.isec.pa.javalife.model.data.elements.BaseElement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Alert;
+
+import java.util.Optional;
+
 /**
  * 
  */
@@ -39,7 +37,7 @@ public class SideBar extends VBox {
     private VBox inspectTab;
     private ComboBox<String> faunaDropdown;
     private Button btnAddElement;
-    private Button btnCreteEco;
+    private Button btnCreateEco;
     private BlueSlider strenghtSlider;
     private Button btnDelElement;
     private TextField txtId;
@@ -86,10 +84,10 @@ public class SideBar extends VBox {
         btnAddElement.setPrefWidth(width - 10);
         btnAddElement.setMinHeight(40);
 
-        btnCreteEco = new Button("Criar Ecossistema");
-        btnCreteEco.getStyleClass().add("btn-primary");
-        btnCreteEco.setPrefWidth(width - 10);
-        btnCreteEco.setMinHeight(40);
+        btnCreateEco = new Button("Criar Ecossistema");
+        btnCreateEco.getStyleClass().add("btn-primary");
+        btnCreateEco.setPrefWidth(width - 10);
+        btnCreateEco.setMinHeight(40);
 
         Rectangle separate = new Rectangle();
         separate.setWidth(width - 10);
@@ -129,7 +127,7 @@ public class SideBar extends VBox {
         btnRedo.setPrefWidth(width - 10);
         btnRedo.setMinHeight(40);
 
-        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreteEco,btnUndo,btnRedo,sUnitTimer,sEnergyMovement,sDamageFauna);
+        ecoTab.getChildren().addAll(faunaDropdown,btnAddElement, separate4, btnCreateEco,btnUndo,btnRedo,sUnitTimer,sEnergyMovement,sDamageFauna);
 
         inspectTab = new VBox();
         inspectTab.setSpacing(10);
@@ -397,7 +395,6 @@ public class SideBar extends VBox {
             if (model.getCurrentState() != GameEngineState.PAUSED) {showModError(); return;}
             String selectedType = faunaDropdown.getSelectionModel().getSelectedItem();
 
-            // Dependendo do tipo selecionado, adicione o tipo correspondente de elemento
             if (selectedType != null) {
                 Element elementType;
                 switch (selectedType) {
@@ -411,11 +408,9 @@ public class SideBar extends VBox {
                         elementType = Element.INANIMATE;
                         break;
                     default:
-                        // Trate qualquer outro caso aqui, se necessário
                         elementType = null;
                         break;
                 }
-                // Adicione o elemento com o tipo determinado
                 if (elementType != null) {
                     model.addElement(elementType);
                     int id = model.getLastElementId();
@@ -453,7 +448,7 @@ public class SideBar extends VBox {
 
     public ComboBox<String> getFaunaDropdown() {return faunaDropdown;}
     public Button getBtnAddElement() {return btnAddElement;}
-    public Button getBtnCreteEco() {return btnCreteEco;}
+    public Button getBtnCreateEco() {return btnCreateEco;}
     public BlueSlider getStrenghtSlider() {return strenghtSlider;}
     public Button getBtnDelElement() {return btnDelElement;}
     public TextField getTxtId() {return txtId;}
