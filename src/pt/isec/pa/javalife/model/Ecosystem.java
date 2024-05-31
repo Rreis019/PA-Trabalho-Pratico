@@ -262,10 +262,10 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
         switch (type) {
             case INANIMATE:
-                ent = new Pedra(positionX, positionY);
+                ent = new Stone(positionX, positionY);
                 break;
             case FLORA:
-                ent = new Erva(positionX, positionY);
+                ent = new Grass(positionX, positionY);
                 break;
             case FAUNA:
                ent = new Animal(this, positionX, positionY);

@@ -117,8 +117,10 @@ public class EcosystemManager implements Serializable
     public boolean addElement(Element type_)
     {       
         boolean result = command.invokeCommand(new AddElementComand(ecosystem, type_));
-        if(result){setUnsavedChanges(true);}
-        pcs.firePropertyChange(PROP_STATE, null, null);
+        if(result){
+            setUnsavedChanges(true);
+            pcs.firePropertyChange(PROP_STATE, null, null);
+        }
         return result;
     }
 
@@ -130,8 +132,11 @@ public class EcosystemManager implements Serializable
     public boolean setDamageFaunaToFlora(double damage)
     {
         boolean result = command.invokeCommand(new SetDamageFaunaToFloraCommand(ecosystem,damage));
-        if(result){setUnsavedChanges(true);}
-        pcs.firePropertyChange(PROP_DATA, null, null);
+        if(result){
+            setUnsavedChanges(true);
+            pcs.firePropertyChange(PROP_DATA, null, null);
+        }
+
         return result;
     }
 
@@ -143,8 +148,10 @@ public class EcosystemManager implements Serializable
     public boolean setEnergyPerMovement(double energy)
     {
         boolean result = command.invokeCommand(new SetEnergyPerMovementCommand(ecosystem,energy));
-        if(result){setUnsavedChanges(true);}
-        pcs.firePropertyChange(PROP_DATA, null, null); 
+        if(result){
+            setUnsavedChanges(true);
+            pcs.firePropertyChange(PROP_DATA, null, null);
+        }
         return result;
     }
 
@@ -154,7 +161,6 @@ public class EcosystemManager implements Serializable
      * @return true se o intervalo foi definido com sucesso, false caso contrário.
      */
     public boolean setInterval(long newInterval) {
-        //gameEngine.setInterval(newInterval);
         boolean result = command.invokeCommand(new SetIntervalCommand(ecosystem,gameEngine,newInterval));
         return result;
     }
@@ -170,8 +176,10 @@ public class EcosystemManager implements Serializable
     {
         if(el.isReadOnly()){return false;}
         boolean result = command.invokeCommand(new SetElementPos(ecosystem,el,posX,posY));
-        if(result){setUnsavedChanges(true);}
-        pcs.firePropertyChange(PROP_STATE, null, null); 
+        if(result){
+            setUnsavedChanges(true);
+            pcs.firePropertyChange(PROP_STATE, null, null);
+        }
         return result;
     }
 
@@ -185,8 +193,12 @@ public class EcosystemManager implements Serializable
     {
         if(el.isReadOnly()){return false;}
         boolean result = command.invokeCommand(new SetElementStrenght(ecosystem,el,strenght_));
-        if(result){setUnsavedChanges(true);}
-        pcs.firePropertyChange(PROP_DATA, null, null); 
+        if(result){
+            setUnsavedChanges(true);
+            pcs.firePropertyChange(PROP_DATA, null, null);
+            pcs.firePropertyChange(PROP_STATE, null, null);
+        }
+
         return result;
     }
 
@@ -196,10 +208,12 @@ public class EcosystemManager implements Serializable
      * @return true se o elemento foi removido com sucesso, false caso contrário.
      */
     public boolean removeElement(IElement element_) {
-    	//ecosystem.removeElement(element_);
         boolean result = command.invokeCommand(new RemoveElementComand(ecosystem,element_));
-        if(result){setUnsavedChanges(true);}
-        pcs.firePropertyChange(PROP_STATE, null, null); 
+        if(result){
+            setUnsavedChanges(true);
+            pcs.firePropertyChange(PROP_STATE, null, null);
+        }
+
         return result;
     }
 
