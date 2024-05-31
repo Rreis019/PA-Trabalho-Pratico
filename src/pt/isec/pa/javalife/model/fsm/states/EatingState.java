@@ -34,7 +34,7 @@ public class EatingState extends FaunaStateAdapter {
 		}
 
 		double distance = Area.distance(closestFlora.getArea(), fauna.getArea());
-		if(distance > fauna.getSize()){changeState(FaunaState.SEARCH_FOOD);}
+		if(distance > (fauna.getArea().right() -  fauna.getArea().left())){changeState(FaunaState.SEARCH_FOOD);}
 		
 	 	
 	 	Flora flora = (Flora)closestFlora;

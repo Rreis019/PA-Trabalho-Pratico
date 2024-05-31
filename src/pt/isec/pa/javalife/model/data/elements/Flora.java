@@ -1,5 +1,7 @@
 package pt.isec.pa.javalife.model.data.elements;
 
+import java.util.Random;
+
 import pt.isec.pa.javalife.model.Ecosystem;
 import pt.isec.pa.javalife.model.data.Area;
 
@@ -11,13 +13,13 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
     //config
     private static final double initialStrength = 50;
 	private static final double incEnergy = 0.5;
-    private static final int size = 13;
     double strenght = initialStrength;
     private int reproductionCount = 0;
     private boolean attemptedReproduction = false;
 
+    static Random random = new Random();
 	 public Flora(double positionX,double positionY) {
-        super(Element.FLORA,positionX,positionY,size,size);
+        super(Element.FLORA,positionX,positionY,(double)random.nextInt(20)  + 13,(double)random.nextInt(20)  + 13);
     }
 
     public void evolve(Ecosystem eco, long currentTime) {
@@ -41,14 +43,15 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
     private boolean tryReproduce(Ecosystem eco) {
         Area area = this.getArea();
         double[][] adjacentPositions = {
-            {area.left() - size, area.top()}, //esquerda
-            {area.left() + size, area.top()}, //direita
+            {area.left() - (area.right() - area.left())  , area.top()}, //esquerda
+            {area.left() + (area.right() - area.left()), area.top()}, //direita
             {area.left(), area.bottom()}, //baixo
-            {area.left(), area.top() - size}  //em cima
+            {area.left(), area.top() - (area.bottom() - area.top())}  //em cima
         };
 
         for (double[] pos : adjacentPositions) {
-            Area newArea = new Area(pos[1], pos[0], pos[1] + size, pos[0] + size);
+
+            Area newArea = new Area(pos[1], pos[0], pos[1] + (area.bottom() - area.top()), pos[0] + (area.right() - area.left()));
             if (!eco.isOutBounds(newArea) && eco.isAreaFree(newArea)) {
                 eco.addElement(Element.FLORA, pos[0], pos[1]);
                 return true;
@@ -69,7 +72,5 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
         if(strenght < 0){strenght = 0;}
     }
 
-    @Override
-    public int getSize(){return Flora.size;}
 
 }

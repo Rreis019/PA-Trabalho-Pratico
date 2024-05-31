@@ -8,7 +8,6 @@ public sealed interface IElement
     extends Serializable,Cloneable 
     permits BaseElement {
     int getId(); // returns the identifier
-    int getSize();
     Area getArea(); // returns the occupied area+
     Element getType();
     String getTypeString();

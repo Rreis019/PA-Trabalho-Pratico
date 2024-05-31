@@ -159,7 +159,5 @@ public non-sealed class Fauna extends BaseElement implements IElementWithStrengt
         if(strength > 100){strength = 100;}
     }
 
-    @Override
-    public int getSize(){return Fauna.size;}
 
 }

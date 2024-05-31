@@ -378,7 +378,10 @@ public class SideBar extends VBox {
         strenghtSlider.getSlider().addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
             if(model.getCurrentState() != GameEngineState.PAUSED){return;}
             IElement ent = model.getElement(model.getInspectTargetId());
+            System.out.println("teste");
             if(ent == null){return;}
+
+           
             model.setElementStrenght(ent, Double.valueOf(strenghtSlider.getValue()));
         });
 

@@ -10,6 +10,8 @@ import pt.isec.pa.javalife.model.data.Area;
 import pt.isec.pa.javalife.model.data.ElementsFactory;
 
 
+
+
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -273,8 +275,9 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
             default:
                 throw new IllegalArgumentException("Tipo de elemento desconhecido: " + type);
         }
-        int maxWidth = getWidth() - ent.getSize();
-        int maxHeight = getHeight() - ent.getSize();
+
+        int maxWidth = (int) (getWidth() - ent.getArea().right() - ent.getArea().left());
+        int maxHeight = (int) (getHeight() - ent.getArea().bottom() - ent.getArea().top());
 
         boolean foundEmptyPosition = false;
 
