@@ -222,7 +222,7 @@ public class MainScene extends Scene
                 // Calcula a cor da flora segundo a sua força (inversamente proporcional)
                 Flora fl = (Flora) element;
                 double strength = fl.getStrength();
-                double alpha = 1.0 - (strength / 100.0); // Calcula o nível de transparência
+                double alpha = strength / 100.0; // Calcula o nível de transparência
                 Color floraColor = Color.GREENYELLOW.deriveColor(0, 1, 1, alpha);
 
                 gc.setFill(floraColor);
