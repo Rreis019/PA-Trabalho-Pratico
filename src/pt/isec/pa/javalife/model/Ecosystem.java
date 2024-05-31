@@ -294,8 +294,10 @@ public class Ecosystem implements Serializable, IGameEngineEvolve , IMementoOrig
 
             boolean intersects_ = false;
 
+            //if(isAreaFree(ent.getArea())){break;}
+            
             for (IElement e : elements.values()) {
-                if (e.getType() == Element.INANIMATE && ent.getArea().intersects(e.getArea())) {
+                if (e.getType() != Element.FAUNA && ent.getArea().intersects(e.getArea())) {
                     intersects_ = true;
                     break; // Sai do loop assim que encontra uma interseção
                 }
