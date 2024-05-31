@@ -17,10 +17,18 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
     private int reproductionCount = 0;
     private boolean attemptedReproduction = false;
 
+    public static final double MAX_SIZE = 30; // Tamanho máximo que a Flora pode ter
+
     static Random random = new Random();
 	 public Flora(double positionX,double positionY) {
-        super(Element.FLORA,positionX,positionY,(double)random.nextInt(20)  + 13,(double)random.nextInt(20)  + 13);
+        super(Element.FLORA,positionX,positionY,generateSize(),generateSize());
     }
+
+
+    private static double generateSize() {
+        return 13 + (double)random.nextInt((int)(MAX_SIZE - 13));
+    }
+
 
     public void evolve(Ecosystem eco, long currentTime) {
         if(getStrength() == 0){return;}
@@ -42,6 +50,7 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
 
     private boolean tryReproduce(Ecosystem eco) {
         Area area = this.getArea();
+     
         double[][] adjacentPositions = {
             {area.left() - (area.right() - area.left())  , area.top()}, //esquerda
             {area.left() + (area.right() - area.left()), area.top()}, //direita
@@ -49,9 +58,10 @@ public non-sealed class Flora extends BaseElement  implements IElementWithStreng
             {area.left(), area.top() - (area.bottom() - area.top())}  //em cima
         };
 
+
         for (double[] pos : adjacentPositions) {
 
-            Area newArea = new Area(pos[1], pos[0], pos[1] + (area.bottom() - area.top()), pos[0] + (area.right() - area.left()));
+            Area newArea = new Area(pos[1], pos[0], pos[1] + MAX_SIZE, pos[0] + MAX_SIZE);
             if (!eco.isOutBounds(newArea) && eco.isAreaFree(newArea)) {
                 eco.addElement(Element.FLORA, pos[0], pos[1]);
                 return true;
